@@ -15,14 +15,14 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-xs-8">
-						<h1>Listar produtoras</h1>
+						<h1>Listar Equipamentos</h1>
 					</div>
 
 					<div class="col-xs-4">
 						<div class="aw-page-header-controls">
-							<a class="btn btn-primary" th:href="@{/jogos/produtoras/novo}"> <i
+							<a class="btn btn-primary" th:href="@{/ordemServico/equipamentos/novo}"> <i
 								class="fa fa-plus-square"></i> <span class="hidden-xs hidden-sm">Cadastro
-									produtora</span>
+									Equipamento</span>
 							</a>
 						</div>
 					</div>
@@ -43,20 +43,25 @@
 					<thead class="aw-table-header-solid">
 						<tr>
 							<th class="av-table-jogos-col-codigo">Código</th>
-							<th class="av-table-jogos-col-produtora">Produtora</th>
+							<th class="av-table-jogos-col-produtora">Descrição</th>
+							<th class="av-table-jogos-col-produtora">Nr de Série</th>
+							<th class="av-table-jogos-col-produtora">Marca</th>
+							<th class="av-table-jogos-col-produtora">Modelo</th>
 							<th class="av-table-jogos-col-icons">Excluir</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="produtora: ${produtoras}">
-							<td class="col-md-1 text-center" th:text="${produtora.id}">1</td>
+						<tr th:each="equipamento: ${equipamentos}">
+							<td class="col-md-1 text-center" th:text="${equipamento.id}">1</td>
 
-							<td><a th:href="@{/jogos/produtora/{id}(id=${produtora.id})}" th:text="${produtora.nome}">produtora1</a></td>
-
+							<td><a th:href="@{/ordemServico/equipamentos/{id}(id=${equipamento.id})}" th:text="${equipamento.descricao}">equipamento1</a></td>
+							<td th:text="${equipamento.nrserie}">123</td>
+							<td th:text="${equipamento.marca}">123</td>
+							<td th:text="${equipamento.modelo}">123</td>
 							<td class="text-center">
 								<form method="POST" th:onsubmit="'return confirm(\'Posso remover ' + 
-								${produtora.nome} + '?\');'" 
-								th:action="@{/jogos/produtora/{id}(id=${produtora.id})}">
+								${equipamento.descricao} + '?\');'" 
+								th:action="@{/ordemServico/equipamentos/{id}(id=${equipamento.id})}">
 								<input type="hidden" name="_method" value="DELETE"/>
 									<button type="submit" class="btn btn-danger btn-xs">
 										<span class="fa fa-trash"></span>
@@ -66,7 +71,7 @@
 						</tr>
 
 						<tr>
-							<td colspan="5" th:if="${produtoras.empty}">Nenhuma produtora cadastrada!!</td>
+							<td colspan="5" th:if="${equipamentos.empty}">Nenhum equipamento cadastrado!!!</td>
 						</tr>
 					</tbody>
 				</table>

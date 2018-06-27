@@ -44,6 +44,9 @@
 						<tr>
 							<th class="av-table-jogos-col-codigo">Código</th>
 							<th class="av-table-jogos-col-categoria">Nome</th>
+							<th>CPF</th>
+							 <th>Telefone</th>
+							 <th>e-mail</th>
 							<th class="av-table-jogos-col-icons">Excluir</th>
 						</tr>
 					</thead>
@@ -51,9 +54,11 @@
 						<tr th:each="cliente: ${clientes}">
 							<td class="col-md-1 text-center" th:text="${cliente.id}">1</td>
 
-							<td><a th:href="@{/ordemServico/clientes/{id}(id=${cliente.id})}" th:text="${cliente.nome}">cliente1</a></td>
-
-							<td class="col-md-2 text-center">
+							<td class="col-md-3"><a th:href="@{/ordemServico/clientes/{id}(id=${cliente.id})}" th:text="${cliente.nome}">cliente1</a></td>
+							<td th:text="${cliente.cpf}">123</td>
+							<td th:text="${cliente.telefone}">123</td>
+							<td th:text="${cliente.email}">123</td>
+							<td class="col-md-1 text-center">
 								<form method="POST" th:onsubmit="'return confirm(\'Posso remover ' + 
 								${cliente.nome} + '?\');'" 
 								th:action="@{/ordemServico/clientes/{id}(id=${cliente.id})}">
