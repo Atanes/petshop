@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.iridiumit</groupId>
-	<artifactId>Cadastro_Jogos</artifactId>
+	<artifactId>Cadastro_OrdemServico</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Cadastro_Jogos</name>
-	<description>Projeto Spring para controle de jogos eletronicos</description>
+	<name>Cadastro_OrdemServico</name>
+	<description>Projeto Spring para controle de Ordens Servicos do cliente Thomaz Edson</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
