@@ -25,7 +25,7 @@ public class OrdemServico {
 	@Temporal(TemporalType.DATE)
 	private Date dataOS;
 	
-	private string defeito;
+	private String defeito;
 	
 	@NotNull
 	private String emissor;
@@ -60,12 +60,12 @@ public class OrdemServico {
 	}
 
 	
-	public string getDefeito() {
+	public String getDefeito() {
 		return defeito;
 	}
 
 
-	public void setDefeito(string defeito) {
+	public void setDefeito(String defeito) {
 		this.defeito = defeito;
 	}
 
