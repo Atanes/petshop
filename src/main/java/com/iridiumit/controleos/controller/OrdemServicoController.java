@@ -1,5 +1,7 @@
 package com.iridiumit.controleos.controller;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +74,8 @@ public class OrdemServicoController {
 		if (result.hasErrors()) {
 			return novo(ordemServico);
 		}
-
+		Date dataOS = new Date();
+		ordemServico.setDataOS(dataOS);
 		ordensServico.save(ordemServico);
 
 		attributes.addFlashAttribute("mensagem", "Ordem de Servico salva com sucesso!!");

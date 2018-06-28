@@ -51,19 +51,21 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="os: ${ordensServico}">
-							<td class="col-md-1 text-center" th:text="${os.id}">1</td>
+						<tr th:each="ordemServico: ${ordensServico}">
+							<td class="col-md-1 text-center" th:text="${ordemServico.id}">1</td>
 
-							<td><a th:href="@{/ordensServico/{id}(id=${os.id})}" th:text="${os.data}">jogo Azul</a></td>
+							<td><a th:href="@{/ordemServico/{id}(id=${ordemServico.id})}" th:text="${ordemServico.dataOS}">os1</a></td>
+							
+							<td th:text="${ordemServico.emissor}">emissor</td>
+							
+							<td class="col-md-2 text-center" th:text="${ordemServico.cliente.nome}">cliente</td>
 
-							<td class="col-md-2 text-center" th:text="${os.cliente.nome}">RPG</td>
-
-							<td class="col-md-2 text-center" th:text="${os.equipamento.descricao}|">Disney</td>
+							<td class="col-md-2 text-center" th:text="${ordemServico.equipamento.descricao}|">equipamento</td>
 
 							<td class="text-center">
 								<form method="POST" th:onsubmit="'return confirm(\'Posso remover ' + 
-								${os.data} + '?\');'" 
-								th:action="@{/ordensServico/{id}(id=${os.id})}">
+								${ordemServico.id} + '?\');'" 
+								th:action="@{/ordemServico/{id}(id=${ordemServico.id})}">
 								<input type="hidden" name="_method" value="DELETE"/>
 									<button type="submit" class="btn btn-danger btn-xs">
 										<span class="fa fa-trash"></span>
