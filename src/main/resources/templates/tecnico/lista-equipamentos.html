@@ -2,33 +2,17 @@
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/layout-padrao}">
+	layout:decorate="~{layout/layout}">
 <head>
 </head>
 
 <body>
 
-	<section layout:fragment="conteudo">
-		<div class="page-header">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-xs-8">
-						<h1>Listar Equipamentos</h1>
-					</div>
-
-					<div class="col-xs-4">
-						<div class="aw-page-header-controls">
-							<a class="btn btn-primary" th:href="@{/ordemServico/equipamentos/novo}"> <i
-								class="fa fa-plus-square"></i> <span class="hidden-xs hidden-sm">Cadastro
-									Equipamento</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
+	<section layout:fragment="content">
 		<div class="container-fluid">
+			<div class="page-header">
+				<h3>Listagem - Equipamentos</h3>
+			</div>
 			<div class="alert  alert-success"
 				th:if="${!#strings.isEmpty(mensagem)}">
 				<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem

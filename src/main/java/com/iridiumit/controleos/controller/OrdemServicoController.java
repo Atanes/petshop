@@ -21,7 +21,7 @@ import com.iridiumit.controleos.repository.Equipamentos;
 import com.iridiumit.controleos.repository.OrdensServico;
 
 @Controller
-@RequestMapping("/ordemServico")
+@RequestMapping("/atendimento")
 public class OrdemServicoController {
 	
 	@Autowired
@@ -36,7 +36,7 @@ public class OrdemServicoController {
 	
 	@GetMapping
 	public ModelAndView listar() {
-		ModelAndView modelAndView = new ModelAndView("ordemServico/lista-ordemServico");
+		ModelAndView modelAndView = new ModelAndView("tecnico/lista-ordemServico");
 
 		modelAndView.addObject("ordensServico", ordensServico.findAll());
 		return modelAndView;
@@ -49,7 +49,7 @@ public class OrdemServicoController {
 
 		attributes.addFlashAttribute("mensagem", "Ordem de Servico excluida com sucesso!!");
 		
-		return "redirect:/ordemServico";
+		return "redirect:/atendimento";
 	}
 
 	@GetMapping("/{id}")
@@ -60,7 +60,7 @@ public class OrdemServicoController {
 
 	@GetMapping("/novo")
 	public ModelAndView novo(OrdemServico ordemServico) {
-		ModelAndView modelAndView = new ModelAndView("ordemServico/cadastro-ordemServico");
+		ModelAndView modelAndView = new ModelAndView("atendimento/cadastro-ordemServico");
 
 		modelAndView.addObject(ordemServico);
 		modelAndView.addObject("clientes", clientes.findAll());
@@ -69,7 +69,7 @@ public class OrdemServicoController {
 		return modelAndView;
 	}
 
-	@PostMapping("/novo")
+	@PostMapping("/salvar")
 	public ModelAndView salvar(@Valid OrdemServico ordemServico, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			return novo(ordemServico);
@@ -80,6 +80,6 @@ public class OrdemServicoController {
 
 		attributes.addFlashAttribute("mensagem", "Ordem de Servico salva com sucesso!!");
 
-		return new ModelAndView("redirect:/ordemServico/novo");
+		return new ModelAndView("redirect:/atendimento/novo");
 	}
 }

@@ -17,7 +17,7 @@ import com.iridiumit.controleos.model.Equipamento;
 import com.iridiumit.controleos.repository.Equipamentos;
 
 @Controller
-@RequestMapping("/ordemServico/equipamentos")
+@RequestMapping("/equipamentos")
 public class EquipamentoController {
 	
 	@Autowired
@@ -25,7 +25,7 @@ public class EquipamentoController {
 	
 	@GetMapping
 	public ModelAndView listar() {
-		ModelAndView modelAndView = new ModelAndView("ordemServico/equipamentos/lista-equipamentos");
+		ModelAndView modelAndView = new ModelAndView("equipamentos/lista-equipamentos");
 
 		modelAndView.addObject("equipamentos", equipamentos.findAll());
 		return modelAndView;
@@ -38,7 +38,7 @@ public class EquipamentoController {
 
 		attributes.addFlashAttribute("mensagem", "Equipamento excluido com sucesso!!");
 		
-		return "redirect:/ordemServico/equipamentos";
+		return "redirect:/equipamentos";
 	}
 
 	@GetMapping("/{id}")
@@ -49,14 +49,14 @@ public class EquipamentoController {
 
 	@GetMapping("/novo")
 	public ModelAndView novo(Equipamento equipamento) {
-		ModelAndView modelAndView = new ModelAndView("ordemServico/equipamentos/cadastro-equipamento");
+		ModelAndView modelAndView = new ModelAndView("atendimento/equipamentos/cadastro-equipamento");
 
 		modelAndView.addObject(equipamento);
 
 		return modelAndView;
 	}
 
-	@PostMapping("/novo")
+	@PostMapping("/salvar")
 	public ModelAndView salvar(@Valid Equipamento equipamento, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			return novo(equipamento);
@@ -66,6 +66,6 @@ public class EquipamentoController {
 
 		attributes.addFlashAttribute("mensagem", "Equipamento salvo com sucesso!!");
 
-		return new ModelAndView("redirect:/ordemServico/equipamentos/novo");
+		return new ModelAndView("redirect:/equipamentos/novo");
 	}
 }
