@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.iridiumit.controleos.security.GpUserDetailsService;
+import com.iridiumit.controleos.security.OSUserDetailsService;
 
 
 @Configuration
@@ -14,7 +14,7 @@ public class UdsSecurityConfig {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder builder, 
 			PasswordEncoder passwordEncoder, 
-			GpUserDetailsService userDetailsService) throws Exception {
+			OSUserDetailsService userDetailsService) throws Exception {
 		builder
 			.userDetailsService(userDetailsService)
 			.passwordEncoder(passwordEncoder);

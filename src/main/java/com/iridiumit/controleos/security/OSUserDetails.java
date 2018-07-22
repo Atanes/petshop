@@ -6,7 +6,7 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class GpUserDetails implements UserDetails {
+public class OSUserDetails implements UserDetails {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -16,7 +16,7 @@ public class GpUserDetails implements UserDetails {
 	private boolean ativo;
 	private Collection<GrantedAuthority> permissoes = new ArrayList<>();
 	
-	public GpUserDetails(String nome, String login, 
+	public OSUserDetails(String nome, String login, 
 			String senha, boolean ativo) {
 		this.nome = nome;
 		this.login = login;

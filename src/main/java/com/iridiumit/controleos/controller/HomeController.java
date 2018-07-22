@@ -2,14 +2,11 @@ package com.iridiumit.controleos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.iridiumit.controleos.model.OrdemServico;
 import com.iridiumit.controleos.repository.Clientes;
-import com.iridiumit.controleos.repository.Equipamentos;
 import com.iridiumit.controleos.repository.OrdensServico;
 
 @Controller
@@ -20,9 +17,6 @@ public class HomeController {
 	
 	@Autowired
 	private Clientes clientes;
-	
-	@Autowired
-	private Equipamentos equipamentos;
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/entrar")
     public String entrar() {
