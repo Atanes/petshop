@@ -26,7 +26,7 @@
 						<tr>
 							<th class="col-md-1 text-center">Código</th>
 							<th class="col-md-2">Nome</th>
-							<th>CPF</th>
+							<th>CPF_CNPJ</th>
 							 <th>Telefone</th>
 							 <th>e-mail</th>
 							<th class="col-md-1 text-center">Excluir</th>
@@ -37,7 +37,7 @@
 							<td class="col-md-1 text-center" th:text="${cliente.id}">1</td>
 
 							<td class="col-md-3"><a th:href="@{/ordemServico/clientes/{id}(id=${cliente.id})}" th:text="${cliente.nome}">cliente1</a></td>
-							<td th:text="${cliente.cpf}">123</td>
+							<td th:text="${cliente.cpf_cnpj}">123</td>
 							<td th:text="${cliente.telefone}">123</td>
 							<td th:text="${cliente.email}">123</td>
 							<td class="col-md-1 text-center">

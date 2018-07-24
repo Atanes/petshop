@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -29,6 +31,11 @@ public class Equipamento {
 	
 	private String modelo;
 	
+	private String cor;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
 
 	@OneToMany(cascade = CascadeType.ALL, 
 			fetch = FetchType.LAZY, 
@@ -84,6 +91,22 @@ public class Equipamento {
 
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
+	}
+	
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public Set<OrdemServico> getOrdemServico() {

@@ -21,11 +21,25 @@ public class OrdemServico {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name="data_os")
+	@Column(name="data_emissao")
 	@Temporal(TemporalType.DATE)
-	private Date dataOS;
+	private Date data_emissao;
 	
-	private String defeito;
+	@Column(name="data_aprovacao")
+	@Temporal(TemporalType.DATE)
+	private Date data_aprovacao;
+	
+	@Column(name="data_encerramento")
+	@Temporal(TemporalType.DATE)
+	private Date data_encerramento;
+	
+	private String defeitoAparelho;
+	
+	private String estadoAparelho;
+	
+	private String acessorios;
+	
+	private String status;
 	
 	@NotNull
 	private String emissor;
@@ -33,7 +47,6 @@ public class OrdemServico {
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
-	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "equipamento_id", nullable = false)
@@ -49,24 +62,63 @@ public class OrdemServico {
 		this.id = id;
 	}
 
-	
-	public Date getDataOS() {
-		return dataOS;
+	public Date getData_emissao() {
+		return data_emissao;
 	}
 
 
-	public void setDataOS(Date date) {
-		this.dataOS = date;
-	}
-
-	
-	public String getDefeito() {
-		return defeito;
+	public void setData_emissao(Date data_emissao) {
+		this.data_emissao = data_emissao;
 	}
 
 
-	public void setDefeito(String defeito) {
-		this.defeito = defeito;
+	public Date getData_aprovacao() {
+		return data_aprovacao;
+	}
+
+
+	public void setData_aprovacao(Date data_aprovacao) {
+		this.data_aprovacao = data_aprovacao;
+	}
+
+
+	public Date getData_encerramento() {
+		return data_encerramento;
+	}
+
+
+	public void setData_encerramento(Date data_encerramento) {
+		this.data_encerramento = data_encerramento;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+	public String getDefeitoAparelho() {
+		return defeitoAparelho;
+	}
+
+
+	public void setDefeitoAparelho(String defeitoAparelho) {
+		this.defeitoAparelho = defeitoAparelho;
+	}
+
+
+	public String getEstadoAparelho() {
+		return estadoAparelho;
+	}
+
+
+	public void setEstadoAparelho(String estadoAparelho) {
+		this.estadoAparelho = estadoAparelho;
 	}
 
 
@@ -78,7 +130,15 @@ public class OrdemServico {
 	public void setEmissor(String emissor) {
 		this.emissor = emissor;
 	}
+	
+	public String getAcessorios() {
+		return acessorios;
+	}
 
+
+	public void setAcessorios(String acessorios) {
+		this.acessorios = acessorios;
+	}
 
 	public Cliente getCliente() {
 		return cliente;

@@ -22,9 +22,11 @@ public class Cliente {
 	@NotNull
 	private String nome;
 	@NotNull
-	private String cpf;
+	private String cpf_cnpj;
 	@NotNull
 	private String telefone;
+	@NotNull
+	private String celular;
 	@NotNull
 	private String email;
 	
@@ -32,6 +34,11 @@ public class Cliente {
             fetch = FetchType.LAZY,
             mappedBy = "cliente")
     private Set<OrdemServico> ordemServico = new HashSet<>();
+	
+	@OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "cliente")
+    private Set<Equipamento> equipamento = new HashSet<>();
 
 	public Cliente(){
 		
@@ -60,12 +67,12 @@ public class Cliente {
 		this.nome = nome;
 	}
 	
-	public String getCpf() {
-		return cpf;
+	public String getCpf_cnpj() {
+		return cpf_cnpj;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setCpf_cnpj(String cpf_cnpj) {
+		this.cpf_cnpj = cpf_cnpj;
 	}
 
 	public String getTelefone() {
@@ -74,6 +81,14 @@ public class Cliente {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+	
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 
 	public String getEmail() {

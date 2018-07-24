@@ -75,7 +75,7 @@ public class OrdemServicoController {
 			return novo(ordemServico);
 		}
 		Date dataOS = new Date();
-		ordemServico.setDataOS(dataOS);
+		ordemServico.setData_emissao(dataOS);
 		ordensServico.save(ordemServico);
 
 		attributes.addFlashAttribute("mensagem", "Ordem de Servico salva com sucesso!!");

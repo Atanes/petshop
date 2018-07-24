@@ -38,12 +38,25 @@
 				
 				<input type="hidden" th:field="*{id}"/>
 
-				<div class="form-group">
-					<label for="emissor">Emissor</label>
-
-					<input id="emissor" type="text" class="form-control" 
-						th:field="*{emissor}"/>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="emissor">Emissor</label>
+		
+							<input id="emissor" type="text" class="form-control" 
+								th:field="*{emissor}"/>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="status">Status</label>
+		
+							<input id="status" type="text" class="form-control" 
+								th:field="*{status}"/>
+						</div>
+					</div>
 				</div>
+				
 
 				<div class="row">
 					<div class="col-sm-6">
@@ -69,6 +82,25 @@
 								<option th:each="equipamento: ${equipamentos}"
 									th:value="${equipamento.id}" th:text="${equipamento.descricao}">Opção 1</option>
 							</select>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="defeito">Defeito</label>
+							<textarea id="defeito" class="form-control" 
+								th:field="*{defeitoAparelho}"></textarea>
+							
+						</div>
+					</div>
+
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="estado">Estado</label>
+							<textarea id="estado" class="form-control" 
+								th:field="*{estadoAparelho}"></textarea>
 						</div>
 					</div>
 				</div>
