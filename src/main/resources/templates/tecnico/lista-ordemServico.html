@@ -37,7 +37,7 @@
 						<tr th:each="ordemServico: ${ordensServico}">
 							<td class="col-md-1 text-center" ><a th:href="@{/atendimento/{id}(id=${ordemServico.id})}" th:text="${ordemServico.id}">os1</a></td>
 
-							<td th:text="${ordemServico.dataOS}">os1</td>
+							<td th:text="${ordemServico.data_emissao}">os1</td>
 							
 							<td th:text="${ordemServico.emissor}">emissor</td>
 							

@@ -36,6 +36,25 @@
 				</div>
 
 				<input type="hidden" th:field="*{id}" />
+				
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="cliente">Cliente</label>
+
+							<select id="cliente" class="form-control"
+								th:field="*{cliente}" onchange="mostraNome()">
+								<option value="">Selecione o cliente</option>
+								<option th:each="cliente: ${clientes}"
+									th:value="${cliente.id}" th:text="${cliente.cpf_cnpj}">Opção 1</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-sm-6">
+						<label style="visibility: hidden;" id="nomeCliente">${cliente.nome}</label>
+					</div>
+				</div>
 
 				<div class="form-group">
 					<label for="descricao">Descricao</label> <input id="descricao"

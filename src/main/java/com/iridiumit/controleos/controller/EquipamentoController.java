@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iridiumit.controleos.model.Equipamento;
+import com.iridiumit.controleos.repository.Clientes;
 import com.iridiumit.controleos.repository.Equipamentos;
 
 @Controller
@@ -22,6 +23,9 @@ public class EquipamentoController {
 	
 	@Autowired
 	private Equipamentos equipamentos;
+	
+	@Autowired
+	private Clientes clientes;
 	
 	@GetMapping
 	public ModelAndView listar() {
@@ -52,6 +56,7 @@ public class EquipamentoController {
 		ModelAndView modelAndView = new ModelAndView("atendimento/equipamentos/cadastro-equipamento");
 
 		modelAndView.addObject(equipamento);
+		modelAndView.addObject("clientes", clientes.findAll());
 
 		return modelAndView;
 	}
