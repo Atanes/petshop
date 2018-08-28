@@ -1,7 +1,9 @@
 package com.iridiumit.controleos.controller;
 
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iridiumit.controleos.model.OrdemServico;
+import com.iridiumit.controleos.model.StatusOS;
 import com.iridiumit.controleos.repository.Clientes;
 import com.iridiumit.controleos.repository.Equipamentos;
 import com.iridiumit.controleos.repository.OrdensServico;
@@ -91,7 +95,8 @@ public class OrdemServicoController {
 		return new ModelAndView("redirect:/atendimento/novo");
 	}
 	
-	public String currentUserName(Principal principal) {
-        return principal.getName();
-    }
+	@ModelAttribute("ListaStatus")
+	public List<StatusOS> ListaStatus(){
+		return Arrays.asList(StatusOS.values());
+	}
 }

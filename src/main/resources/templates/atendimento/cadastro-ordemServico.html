@@ -43,18 +43,14 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label>Emissor</label> 
-							<div th:text="${#authentication.principal.nome}" th:field="*{emissor}">
-							    The value of the "name" property of the authentication object should appear here.
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
 							<label for="status">Status</label>
-		
-							<input id="status" type="text" class="form-control" 
-								th:field="*{status}"/>
+							
+							<select id="status" class="form-control"
+								th:field="*{status}">
+								<option value="">Selecione o status da O.S.</option>
+								<option th:each="status: ${ListaStatus}"
+									th:value="${status}" th:text="${status.descricao}">Opção 1</option>
+							</select>
 						</div>
 					</div>
 				</div>
