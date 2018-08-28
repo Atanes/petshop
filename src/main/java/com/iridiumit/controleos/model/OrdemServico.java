@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class OrdemServico {
@@ -41,7 +40,6 @@ public class OrdemServico {
 	
 	private String status;
 	
-	@NotNull
 	private String emissor;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

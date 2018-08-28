@@ -1,10 +1,12 @@
 package com.iridiumit.controleos.controller;
 
+import java.security.Principal;
 import java.util.Date;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +21,7 @@ import com.iridiumit.controleos.model.OrdemServico;
 import com.iridiumit.controleos.repository.Clientes;
 import com.iridiumit.controleos.repository.Equipamentos;
 import com.iridiumit.controleos.repository.OrdensServico;
+import com.iridiumit.controleos.security.OSUserDetails;
 
 @Controller
 @RequestMapping("/atendimento")
@@ -76,10 +79,19 @@ public class OrdemServicoController {
 		}
 		Date dataOS = new Date();
 		ordemServico.setData_emissao(dataOS);
+		
+		OSUserDetails principal = (OSUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String emissor = principal.getUsername();
+		
+		ordemServico.setEmissor(emissor);
 		ordensServico.save(ordemServico);
 
 		attributes.addFlashAttribute("mensagem", "Ordem de Servico salva com sucesso!!");
 
 		return new ModelAndView("redirect:/atendimento/novo");
 	}
+	
+	public String currentUserName(Principal principal) {
+        return principal.getName();
+    }
 }

@@ -1,4 +1,4 @@
-insert into permissao (id, nome) values 
+﻿insert into permissao (id, nome) values 
 	(1, 'ROLE_OS_ATENDIMENTO')
 	, (2, 'ROLE_OS_ORCAMENTO')
 	, (3, 'ROLE_OS_TECNICO')
@@ -6,12 +6,12 @@ insert into permissao (id, nome) values
 ;
 	
 insert into usuario (id, nome, login, senha, ativo) values 
-	(1, 'Atanes', 'atanes', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
-	, (2, 'Carlos', 'carlos', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
-	, (3, 'Técnico', 'tecnico', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
+	(1, 'Atanes', 'Atanes', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
+	, (2, 'Carlos', 'Carlos', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
+	, (3, 'Técnico', 'Tecnico', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
 	, (4, 'Administrador', 'admin', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
-	, (5, 'Atendente', 'atendente', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
-	, (6, 'Orcamento', 'orcamento', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
+	, (5, 'Atendente', 'Atendente', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
+	, (6, 'Orcamento', 'Orcamento', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
 ;
 	
 insert into usuario_permissao (usuario_id, permissao_id) values 

@@ -1,8 +1,10 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
     layout:decorate="~{layout/layout}">
 <head>
 </head>
@@ -36,15 +38,15 @@
 					<span th:text="${mensagem}">Mensagem sucesso!</span>
 				</div>
 				
-				<input type="hidden" th:field="*{id}"/>
-
+				<input type="hidden" th:field="*{id}"/>    
+			        
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label for="emissor">Emissor</label>
-		
-							<input id="emissor" type="text" class="form-control" 
-								th:field="*{emissor}"/>
+							<label>Emissor</label> 
+							<div th:text="${#authentication.principal.nome}" th:field="*{emissor}">
+							    The value of the "name" property of the authentication object should appear here.
+							</div>
 						</div>
 					</div>
 					<div class="col-sm-6">
