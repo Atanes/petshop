@@ -42,6 +42,8 @@ public class OrdemServico {
 	
 	private String emissor;
 	
+	private String grupoTrabalho;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
@@ -137,6 +139,17 @@ public class OrdemServico {
 	public void setAcessorios(String acessorios) {
 		this.acessorios = acessorios;
 	}
+	
+	
+	public String getGrupoTrabalho() {
+		return grupoTrabalho;
+	}
+
+
+	public void setGrupoTrabalho(String grupoTrabalho) {
+		this.grupoTrabalho = grupoTrabalho;
+	}
+
 
 	public Cliente getCliente() {
 		return cliente;
