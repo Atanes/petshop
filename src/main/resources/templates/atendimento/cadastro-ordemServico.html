@@ -13,7 +13,7 @@
 	<section layout:fragment="content">
 		<div class="container-fluid">
 			<div class="page-header">
-				<h3>Cadastro Ordem de Serviço</h3>
+				<h3>Cadastro de Ordem de Serviço</h3>
 			</div>
 
 			<form method="POST" class="form-vertical  js-form-loading"
@@ -54,12 +54,11 @@
 						</div>
 					</div>
 				</div>
-				
 
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-3">
 						<div class="form-group">
-							<label for="cliente">Cliente</label>
+							<label for="cliente">CPF/CNPJ</label>
 
 							<select id="cliente" class="form-control"
 								th:field="*{cliente}">
@@ -69,8 +68,15 @@
 							</select>
 						</div>
 					</div>
-
-					<div class="col-sm-6">
+					
+					<div class="col-sm-2">
+						<br/>
+						<div class="form-group">
+							<button class="btn  btn-primary" type="submit">Cadastrar Cliente</button>
+						</div>
+					</div>
+						
+					<div class="col-sm-5">
 						<div class="form-group">
 							<label for="equipamento">Equipamento</label>
 							
@@ -82,6 +88,14 @@
 							</select>
 						</div>
 					</div>
+					
+					<div class="col-sm-2">
+						<br/>
+						<div class="form-group">
+							<button class="btn  btn-primary" type="submit">Cadastrar Equipamento</button>
+						</div>
+					</div>
+					
 				</div>
 				
 				<div class="row">
@@ -103,9 +117,22 @@
 					</div>
 				</div>
 
+			<div>
+				<label for="grtec"> Escolha o Grupo Técnico: </label>
+					<select name="grtec" id="grtec">
+						<option value="RC">Receiver/Caixa</option>
+						<option value="JBL">JBL</option>
+						<option value="TM">Televisor / Microondas</option>
+						<option value="Inf">Informática</option>
+						<option value="Aud">Áudio</option>
+					</select>
+			</div>
+
+
 				<div class="form-group">
 					<button class="btn  btn-primary" type="submit">Salvar</button>
 				</div>
+			
 			</form>
 		</div>
 	</section>
