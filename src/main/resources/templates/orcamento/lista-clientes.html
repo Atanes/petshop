@@ -36,30 +36,42 @@
 						<tr th:each="cliente: ${clientes}">
 							<td class="col-md-1 text-center" th:text="${cliente.id}">1</td>
 
-							<td class="col-md-3"><a th:href="@{/ordemServico/clientes/{id}(id=${cliente.id})}" th:text="${cliente.nome}">cliente1</a></td>
+							<td class="col-md-3"><a th:href="@{atendimento/clientes/editar/{id}(id=${cliente.id})}" th:text="${cliente.nome}">cliente1</a></td>
 							<td th:text="${cliente.cpf_cnpj}">123</td>
 							<td th:text="${cliente.telefone}">123</td>
 							<td th:text="${cliente.email}">123</td>
 							<td class="col-md-1 text-center">
 								<form method="POST" th:onsubmit="'return confirm(\'Posso remover ' + 
 								${cliente.nome} + '?\');'" 
-								th:action="@{/ordemServico/clientes/{id}(id=${cliente.id})}">
+								th:action="@{atendimento/clientes/{id}(id=${cliente.id})}">
 								<input type="hidden" name="_method" value="DELETE"/>
 									<button type="submit" class="btn btn-danger btn-xs">
 										<span class="fa fa-trash"></span>
 									</button>
 								</form>
+								<a th:href="@{/equipamentos/selecao/{id}(id=${cliente.id})}">
+									<span class="fa fa-user"></span>
+								</a>
+									<a class="btn btn-link btn-xs js-atualizar-status"
+		   								title="Receber" rel="tooltip" data-placement="top"
+		   								th:attr="data-codigo=${cliente.id}"
+		   								th:href="@{/atendimento/clientes/{codigo}/receber(codigo=${cliente.id})}">
+		   							<span class="glyphicon glyphicon-check"></span>
+	   							</a>
+	   						
 							</td>
 						</tr>
 
 						<tr>
 							<td colspan="5" th:if="${clientes.empty}">Nenhum cliente cadastrado!!</td>
 						</tr>
+						
 					</tbody>
 				</table>
 			</div>
+			<p id="textoNovo">Nome do Cliente</p>
 		</div>
+		<script th:src="@{/layout/javascripts/iridiumit.js}"></script>
 	</section>
-
 </body>
 </html>

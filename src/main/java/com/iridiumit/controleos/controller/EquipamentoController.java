@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.iridiumit.controleos.model.Cliente;
 import com.iridiumit.controleos.model.Equipamento;
 import com.iridiumit.controleos.repository.Clientes;
 import com.iridiumit.controleos.repository.Equipamentos;
@@ -72,5 +73,17 @@ public class EquipamentoController {
 		attributes.addFlashAttribute("mensagem", "Equipamento salvo com sucesso!!");
 
 		return new ModelAndView("redirect:/equipamentos/novo");
+	}
+	
+	@GetMapping("/selecao/{id}")
+	public ModelAndView SelecaoPorCliente(@PathVariable Long id) {
+		
+		Cliente c = clientes.findOne(id);
+		ModelAndView modelAndView = new ModelAndView("tecnico/lista-equipamentos");
+
+		modelAndView.addObject("equipamentos", equipamentos.findByCliente(c));
+		modelAndView.addObject("mensagem", "Equipamentos do cliente " + c.getNome());
+		return modelAndView;
+
 	}
 }

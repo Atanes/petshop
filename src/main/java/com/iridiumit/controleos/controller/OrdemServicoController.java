@@ -1,6 +1,5 @@
 package com.iridiumit.controleos.controller;
 
-import java.security.Principal;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;

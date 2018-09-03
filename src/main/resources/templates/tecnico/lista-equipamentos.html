@@ -36,14 +36,14 @@
 						<tr th:each="equipamento: ${equipamentos}">
 							<td class="col-md-1 text-center" th:text="${equipamento.id}">1</td>
 
-							<td><a th:href="@{/ordemServico/equipamentos/{id}(id=${equipamento.id})}" th:text="${equipamento.descricao}">equipamento1</a></td>
+							<td><a th:href="@{/equipamentos/{id}(id=${equipamento.id})}" th:text="${equipamento.descricao}">equipamento1</a></td>
 							<td th:text="${equipamento.nrserie}">123</td>
 							<td th:text="${equipamento.marca}">123</td>
 							<td th:text="${equipamento.modelo}">123</td>
 							<td class="col-md-1 text-center">
 								<form method="POST" th:onsubmit="'return confirm(\'Posso remover ' + 
 								${equipamento.descricao} + '?\');'" 
-								th:action="@{/ordemServico/equipamentos/{id}(id=${equipamento.id})}">
+								th:action="@{/equipamentos/{id}(id=${equipamento.id})}">
 								<input type="hidden" name="_method" value="DELETE"/>
 									<button type="submit" class="btn btn-danger btn-xs">
 										<span class="fa fa-trash"></span>

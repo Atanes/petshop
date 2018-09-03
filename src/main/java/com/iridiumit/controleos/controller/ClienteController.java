@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -42,7 +43,7 @@ public class ClienteController {
 		return "redirect:/atendimento/clientes";
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("editar/{id}")
 	public ModelAndView editar(@PathVariable Long id) {
 
 		return novo(clientes.findOne(id));
@@ -68,5 +69,12 @@ public class ClienteController {
 		attributes.addFlashAttribute("mensagem", "Cliente salvo com sucesso!!");
 
 		return new ModelAndView("redirect:/atendimento/clientes/novo");
+	}
+	
+	@RequestMapping(value = "/{codigo}/receber", method = RequestMethod.PUT)
+	public @ResponseBody String receber(@PathVariable Long codigo) {
+		System.out.println("ok");
+		Cliente c = clientes.findOne(codigo);
+		return c.getNome();
 	}
 }

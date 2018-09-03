@@ -1,25 +1,49 @@
 <!DOCTYPE html>
-<html 
-	xmlns:th="http://www.thymeleaf.org"
+<html lang="pt" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
-	layout:decorate="~{layout/layout}"
->
-	<head>
-		<title>Bem vindo ao sistema!</title>
-	</head>
-	
-	<body>
-	
-		<div layout:fragment="content">
-			<div class="container-fluid">
-				<div class="page-header">
-					<h3><span sec:authentication="principal.nome"></span>, Bem vindo ao sistema!</h3>
-				</div>
-				<p>
-					Use o menu acima para navegar.
-				</p>
+	layout:decorate="~{layout/layout}">
+<head>
+<meta charset="UTF-8" />
+<title>Bem vindo ao sistema!</title>
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<div class="container-fluid">
+			<div class="page-header">
+				<h3>
+					<span sec:authentication="principal.nome"></span>, Bem vindo ao
+					sistema!
+				</h3>
 			</div>
+			<p>Use o menu acima para navegar.</p>
+			<fieldset>
+				<select id="s1" name="exemplo-quatro">
+					<option value="1">Primeira opção</option>
+					<option value="2">Segunda opção</option>
+					<option value="3">Terceira opção</option>
+					<option value="4">Quarta opção</option>
+					<option value="5">Quinta opção</option>
+					<option value="6">Sexta opção</option>
+					<option value="7">Sétima opção</option>
+					<option value="default" selected="selected">Opção default</option>
+				</select>
+				
+				<div class="form-group">
+							<label for="Equipamento">Equipamento</label>
+
+							<select id="Equipamento" class="form-control">
+								<option value="">Selecione o cliente</option>
+								<option th:each="e: ${equipamentos}"
+									th:value="${e.id}" th:text="${e.descricao}">Opção 1</option>
+							</select>
+						</div>
+						
+						
+			</fieldset>
 		</div>
-	</body>
+	</div>
+</body>
 </html>

@@ -17,4 +17,6 @@ public class RelatoriosController {
 		//modelAndView.addObject("clientes", clientes.findAll());
 		return modelAndView;
 	}
+	
+	
 }
