@@ -43,10 +43,10 @@
 							<label for="cliente">Cliente</label>
 
 							<select id="cliente" class="form-control"
-								th:field="*{cliente}" onchange="mostraNome()">
+								th:field="*{cliente}">
 								<option value="">Selecione o cliente</option>
 								<option th:each="cliente: ${clientes}"
-									th:value="${cliente.id}" th:text="${cliente.cpf_cnpj}">Opção 1</option>
+									th:value="${cliente.id}" th:text="${cliente.nome}">Opção 1</option>
 							</select>
 						</div>
 					</div>

@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +17,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.iridiumit.controleos.model.Cliente;
+import com.iridiumit.controleos.model.Equipamento;
 import com.iridiumit.controleos.model.OrdemServico;
 import com.iridiumit.controleos.model.StatusOS;
 import com.iridiumit.controleos.repository.Clientes;
@@ -98,4 +104,15 @@ public class OrdemServicoController {
 	public List<StatusOS> ListaStatus(){
 		return Arrays.asList(StatusOS.values());
 	}
+	
+	//Método que recebe os equipamentos de um determinado cliente para preencher um select com esses dados
+	@RequestMapping(value = "/cboEquipamentos", method = RequestMethod.GET)
+    public @ResponseBody List<Equipamento> adicionados(@RequestParam Long valor, Model model) {
+
+		Cliente c = clientes.findOne(valor);
+		List<Equipamento> cboEquipamentos = equipamentos.findByCliente(c);
+        model.addAttribute("adicionados", cboEquipamentos);
+        return cboEquipamentos;
+
+    }
 }

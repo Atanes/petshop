@@ -58,10 +58,10 @@
 				<div class="row">
 					<div class="col-sm-3">
 						<div class="form-group">
-							<label for="cliente">CPF/CNPJ</label>
+							<label for="cbocliente">CPF/CNPJ</label>
 
-							<select id="cliente" class="form-control"
-								th:field="*{cliente}">
+							<select id="cbocliente" class="form-control"
+								th:field="*{cliente}" onchange="comboEquipamentos()">
 								<option value="">Selecione o cliente</option>
 								<option th:each="cliente: ${clientes}"
 									th:value="${cliente.id}" th:text="${cliente.nome}">Opção 1</option>
@@ -78,13 +78,11 @@
 						
 					<div class="col-sm-5">
 						<div class="form-group">
-							<label for="equipamento">Equipamento</label>
+							<label for="cboequipamento">Equipamento</label>
 							
-							<select id="equipamento" class="form-control"
+							<select id="cboequipamento" class="form-control"
 								th:field="*{equipamento}">
 								<option value="">Selecione o equipamento</option>
-								<option th:each="equipamento: ${equipamentos}"
-									th:value="${equipamento.id}" th:text="${equipamento.descricao}">Opção 1</option>
 							</select>
 						</div>
 					</div>
@@ -135,6 +133,7 @@
 			
 			</form>
 		</div>
+		<script th:src="@{/layout/javascripts/iridiumit.js}"></script>
 	</section>
 </body>
 </html>

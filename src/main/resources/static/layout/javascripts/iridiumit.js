@@ -1,45 +1,77 @@
-$('#confirmacaoExclusaoModal').on('show.bs.modal', function(event) {
-	var button = $(event.relatedTarget);
-	
-	var codigoTitulo = button.data('codigo');
-	var descricaoTitulo = button.data('descricao');
-	
-	var modal = $(this);
-	var form = modal.find('form');
-	var action = form.data('url-base');
-	if (!action.endsWith('/')) {
-		action += '/';
-	}
-	form.attr('action', action + codigoTitulo);
-	
-	modal.find('.modal-body span').html('Tem certeza que deseja excluir o título <strong>' + descricaoTitulo + '</strong>?');
-});
+function adicionados() {
+    var valor = $("#s1").val();
+    var comboAdicionados = document.getElementById("Equipamento");
 
-$(function() {
-	$('[rel="tooltip"]').tooltip();
-	$('.js-currency').maskMoney({decimal: ',', thousands: '.', allowZero: true});
-	
-	$('.js-atualizar-status').on('click', function(event) {
-		event.preventDefault();
-		
-		var botaoReceber = $(event.currentTarget);
-		var urlReceber = botaoReceber.attr('href');
-		
-		var response = $.ajax({
-			url: urlReceber,
-			type: 'PUT'
-		});
-		
-		response.done(function(e) {
-			alert( "Cliente: " + e );
-			$("#textoNovo").html("<b>" + e + "</b>");
-			botaoReceber.hide();
-		});
-		
-		response.fail(function(e) {
-			console.log(e);
-			alert('Erro recebendo cobrança');
-		});
-		
-	});
-});
+    $.ajax({
+        type : 'GET',
+        url : '/adicionados',
+
+        crossDomain : true,
+        data : ({
+            valor : valor
+        }),
+        contentType : "application/json; charset=utf-8",
+        dataType : "json",
+
+        success : function(data) {
+            console.log("sucesso");
+
+            console.log(data);
+            var listaDados = data; // Lista retornada pelo banco
+
+            for (var i = 0; i < listaDados.length; i++) {
+                console.log(listaDados[i]);
+                $("#equip").prepend($('<option>', {
+
+                    value : listaDados[i].id,
+                    text : listaDados[i].descricao
+                }));
+            }
+
+        },
+        error : function(data) {
+            console.log("erro na funçao");
+        }
+
+    });
+
+}
+
+function comboEquipamentos() {
+    var valor = $("#cbocliente").val();
+    
+    let dropdown = $('#cboequipamento');
+
+    dropdown.empty();
+
+    $.ajax({
+        type : 'GET',
+        url : '/atendimento/cboEquipamentos',
+
+        crossDomain : true,
+        data : ({
+            valor : valor
+        }),
+        contentType : "application/json; charset=utf-8",
+        dataType : "json",
+
+        success : function(data) {
+            console.log("sucesso");
+
+            console.log(data);
+            var listaDados = data; // Lista retornada pelo banco
+            dropdown.append($('<option></option>').attr('value', '').text('Selecione o equipamento'));
+            
+            for (var i = 0; i < listaDados.length; i++) {
+                console.log(listaDados[i]);
+                dropdown.append($('<option></option>').attr('value', listaDados[i].id).text(listaDados[i].descricao));
+            }
+
+        },
+        error : function(data) {
+            console.log("erro na funçao");
+        }
+
+    });
+
+}

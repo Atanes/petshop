@@ -19,30 +19,6 @@
 				</h3>
 			</div>
 			<p>Use o menu acima para navegar.</p>
-			<fieldset>
-				<select id="s1" name="exemplo-quatro">
-					<option value="1">Primeira opção</option>
-					<option value="2">Segunda opção</option>
-					<option value="3">Terceira opção</option>
-					<option value="4">Quarta opção</option>
-					<option value="5">Quinta opção</option>
-					<option value="6">Sexta opção</option>
-					<option value="7">Sétima opção</option>
-					<option value="default" selected="selected">Opção default</option>
-				</select>
-				
-				<div class="form-group">
-							<label for="Equipamento">Equipamento</label>
-
-							<select id="Equipamento" class="form-control">
-								<option value="">Selecione o cliente</option>
-								<option th:each="e: ${equipamentos}"
-									th:value="${e.id}" th:text="${e.descricao}">Opção 1</option>
-							</select>
-						</div>
-						
-						
-			</fieldset>
 		</div>
 	</div>
 </body>
