@@ -15,8 +15,8 @@
 			</div>
 			<div class="alert  alert-success"
 				th:if="${!#strings.isEmpty(mensagem)}">
-				<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem
-					sucesso!</span>
+				<i class="fa fa-check-circle"></i>
+				<span th:text="${mensagem}">Mensagem sucesso!</span>
 			</div>
 
 			<div class="table-responsive">
@@ -27,7 +27,7 @@
 							<th class="col-md-1 text-center">Código</th>
 							<th class="col-md-3">Nome</th>
 							<th>CPF_CNPJ</th>
-							<th>Telefone</th>
+							<th>Celular</th>
 							<th>e-mail</th>
 							<th class="col-md-1 text-center">Ações</th>
 						</tr>
@@ -38,7 +38,7 @@
 
 							<td class="col-md-3" th:text="${cliente.nome}">123</td>
 							<td th:text="${cliente.cpf_cnpj}">123</td>
-							<td th:text="${cliente.telefone}">123</td>
+							<td th:text="${cliente.celular}">123</td>
 							<td th:text="${cliente.email}">123</td>
 							<td class="col-md-1 text-center">
 							<a th:href="@{atendimento/clientes/editar/{id}(id=${cliente.id})}" th:title="Editar">
