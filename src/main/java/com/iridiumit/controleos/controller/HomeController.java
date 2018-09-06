@@ -43,4 +43,9 @@ public class HomeController {
 		modelAndView.addObject("clientes", clientes.findAll());
 		return modelAndView;
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/acessonegado")
+    public String acessonegado() {
+        return "acessonegado";
+    }
 }

@@ -35,7 +35,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll()
 			.and()
 			.rememberMe()
-				.userDetailsService(userDetailsService);
+				.userDetailsService(userDetailsService)
+			.and()
+			.exceptionHandling().accessDeniedPage("/acessonegado");;
 	}
 
 }
