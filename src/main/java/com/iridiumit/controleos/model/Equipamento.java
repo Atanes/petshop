@@ -12,7 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Equipamento {
@@ -21,14 +22,16 @@ public class Equipamento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull
+	@NotBlank (message = "{descricao.not.blank}")
 	private String descricao;
 	
-	@NotNull
+	@NotBlank (message = "{nrserie.not.blank}")
 	private String nrserie;
 	
+	@NotBlank (message = "{marca.not.blank}")
 	private String marca;
 	
+	@NotBlank (message = "{modelo.not.blank}")
 	private String modelo;
 	
 	private String cor;

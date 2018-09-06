@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 public class OrdemServico {
 	
@@ -32,8 +34,10 @@ public class OrdemServico {
 	@Temporal(TemporalType.DATE)
 	private Date data_encerramento;
 	
+	@NotBlank (message = "{defeito.not.blank}")
 	private String defeitoAparelho;
 	
+	@NotBlank (message = "{estadoAparelho.not.blank}")
 	private String estadoAparelho;
 	
 	private String acessorios;

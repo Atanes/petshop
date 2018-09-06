@@ -10,7 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Cliente {
@@ -19,15 +21,16 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
+	@NotBlank (message = "{name.not.blank}")
 	private String nome;
-	@NotNull
+	@NotBlank(message = "{CPF_CNPJ.not.blank}")
 	private String cpf_cnpj;
-	@NotNull
+	
 	private String telefone;
-	@NotNull
+	@NotBlank(message = "{celular.not.blank}")
 	private String celular;
-	@NotNull
+	@NotBlank(message = "{email.not.blank}")
+	@Email(message = "{email.not.valid}")
 	private String email;
 	
 	@OneToMany(cascade = CascadeType.ALL,

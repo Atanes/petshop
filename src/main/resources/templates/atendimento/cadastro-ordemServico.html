@@ -83,6 +83,8 @@
 							<select id="cboequipamento" class="form-control"
 								th:field="*{equipamento}">
 								<option value="">Selecione o equipamento</option>
+								<option th:each="equipamento: ${equipamentos}"
+									th:value="${equipamento.id}" th:text="${equipamento.descricao}">Opção 1</option>
 							</select>
 						</div>
 					</div>

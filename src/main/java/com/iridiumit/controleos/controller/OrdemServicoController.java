@@ -66,8 +66,13 @@ public class OrdemServicoController {
 
 	@GetMapping("/{id}")
 	public ModelAndView editar(@PathVariable Long id) {
+		ModelAndView modelAndView = new ModelAndView("atendimento/cadastro-ordemServico");
+		
+		modelAndView.addObject(ordensServico.findOne(id));
+		modelAndView.addObject("clientes", clientes.findAll());
+		modelAndView.addObject("equipamentos", equipamentos.findByCliente(ordensServico.findOne(id).getCliente()));
 
-		return novo(ordensServico.findOne(id));
+		return modelAndView;
 	}
 
 	@GetMapping("/novo")
