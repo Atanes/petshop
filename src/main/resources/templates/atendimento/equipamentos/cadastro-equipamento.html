@@ -55,28 +55,40 @@
 						<label style="visibility: hidden;" id="nomeCliente">${cliente.nome}</label>
 					</div>
 				</div>
-
-				<div class="form-group">
-					<label for="descricao">Descricao</label> <input id="descricao"
-						type="text" class="form-control" th:field="*{descricao}" />
+				
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="form-group">
+							<label for="descricao">Descrição</label> <input id="descricao"
+								type="text" class="form-control" th:field="*{descricao}" />
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="nrserie">Nº de Série</label> <input id="nrserie"
+								type="text" class="form-control" th:field="*{nrserie}" />
+						</div>
+					</div>
 				</div>
-
-				<div class="form-group">
-					<label for="nrserie">Nr de Série</label> <input id="nrserie"
-						type="text" class="form-control" th:field="*{nrserie}" />
-				</div>
-
-				<div class="form-group">
-					<label for="marca">Marca</label> <input id="marca"
-						type="text" class="form-control" th:field="*{marca}" />
-				</div>
-				<div class="form-group">
-					<label for="modelo">Modelo</label> <input id="modelo"
-						type="text" class="form-control" th:field="*{modelo}" />
-				</div>
-				<div class="form-group">
-					<label for="cor">Cor</label> <input id="cor"
-						type="text" class="form-control" th:field="*{cor}" />
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="marca">Marca</label> <input id="marca"
+								type="text" class="form-control" th:field="*{marca}" />
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="modelo">Modelo</label> <input id="modelo"
+								type="text" class="form-control" th:field="*{modelo}" />
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="cor">Cor</label> <input id="cor"
+								type="text" class="form-control" th:field="*{cor}" />
+						</div>
+					</div>
 				</div>
 				<div class="form-group">
 					<button class="btn  btn-primary" type="submit">Salvar</button>
