@@ -67,7 +67,7 @@ public class Cliente {
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nome = nome.toUpperCase();
 	}
 	
 	public String getCpf_cnpj() {
@@ -99,7 +99,7 @@ public class Cliente {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.toUpperCase();
 	}
 
 	public Set<OrdemServico> getOrdemServico() {

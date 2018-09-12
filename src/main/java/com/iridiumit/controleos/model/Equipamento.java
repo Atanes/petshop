@@ -69,7 +69,7 @@ public class Equipamento {
 	}
 
 	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+		this.descricao = descricao.toUpperCase();
 	}
 	
 	public String getNrserie() {
@@ -85,7 +85,7 @@ public class Equipamento {
 	}
 
 	public void setMarca(String marca) {
-		this.marca = marca;
+		this.marca = marca.toUpperCase();
 	}
 
 	public String getModelo() {
@@ -93,7 +93,7 @@ public class Equipamento {
 	}
 
 	public void setModelo(String modelo) {
-		this.modelo = modelo;
+		this.modelo = modelo.toUpperCase();
 	}
 	
 	public String getCor() {
@@ -101,7 +101,7 @@ public class Equipamento {
 	}
 
 	public void setCor(String cor) {
-		this.cor = cor;
+		this.cor = cor.toUpperCase();
 	}
 
 	public Cliente getCliente() {
