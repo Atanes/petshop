@@ -51,6 +51,16 @@
 							th:field="*{senha}"/>
 					</div>
 				</div>
+				<div class="row">
+					<label for="permissao">Permissão</label>
+					
+					<select id="permissao" class="form-control"
+						th:field="*{permissao}">
+						<option value="">Selecione a permissão para o usuário</option>
+						<option th:each="permissao: ${permissoes}"
+						th:value="${permissao.id}" th:text="${permissao.nome}">Opção 1</option>
+					</select>
+				</div>
 				
 				<h1>Faltam alguns campos e a validação da senha antes de salvar!!</h1>
 				

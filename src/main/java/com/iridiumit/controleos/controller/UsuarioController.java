@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.iridiumit.controleos.model.Permissao;
 import com.iridiumit.controleos.model.Usuario;
+import com.iridiumit.controleos.repository.Permissoes;
 import com.iridiumit.controleos.repository.UsuarioDAO;
 import com.iridiumit.controleos.repository.Usuarios;
 
@@ -23,6 +25,9 @@ public class UsuarioController {
 	
 	@Autowired
 	private Usuarios usuarios;
+	
+	@Autowired
+	private Permissoes permissoes;
 	
 	@Autowired
 	private UsuarioDAO usuarioDAO;
@@ -56,21 +61,30 @@ public class UsuarioController {
 		ModelAndView modelAndView = new ModelAndView("/administracao/cadastro-usuario");
 
 		modelAndView.addObject(usuario);
-		modelAndView.addObject("usuarios", usuarios.findAll());
+		modelAndView.addObject("permissoes", permissoes.findAll());
 
 		return modelAndView;
 	}
 
 	@PostMapping("/salvar")
-	public ModelAndView salvar(@Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
+	public ModelAndView salvar(@Valid Usuario usuario, Permissao permissao, BindingResult result, RedirectAttributes attributes) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		Usuario u = usuarios.findByLogin(usuario.getLogin());
+		
+		Permissao p = permissoes.findByNome(permissao.getNome());
+		
+		if (u != null) {
+            result.rejectValue("login", "error.usuario",
+                            "Já existe um usuário cadastrado com esse login!");
+        }
+		
 		if (result.hasErrors()) {
-			return novo(usuario);
-		}
-
-		usuarioDAO.adicionaUsuario(usuario);
-
-		attributes.addFlashAttribute("mensagem", "Usuario salvo com sucesso!!");
-
+            modelAndView.setViewName("/administracao/usuarios/novo");
+        } else {
+        	usuarioDAO.adicionaUsuario(usuario, p);
+        	attributes.addFlashAttribute("mensagem", "Usuario salvo com sucesso!!");
+        }
 		return new ModelAndView("redirect:/administracao/usuarios/novo");
 	}
 }
