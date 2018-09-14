@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -27,7 +26,6 @@ public class Usuario implements UserDetails {
     private String nome;
     private boolean ativo;
     
-    @NotEmpty
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "usuario_permissao", 
              joinColumns = { @JoinColumn(name = "usuario_id") }, 
@@ -84,7 +82,7 @@ public class Usuario implements UserDetails {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.toUpperCase();
     }
     
     public Set<Permissao> getPermissoes() {
