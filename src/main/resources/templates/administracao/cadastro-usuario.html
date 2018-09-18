@@ -35,14 +35,15 @@
 				</div>
 
 				<input type="hidden" th:field="*{id}" />
-
-				<div class="form-group">
-					<label for="nome">Nome</label> <input id="nome" type="text"
-						class="form-control" th:field="*{nome}" />
-				</div>
-				<div class="form-group">
-					<label for="login">Login</label> <input id="login" type="text"
-						class="form-control" th:field="*{login}" />
+				<div class="row">
+					<div class="col-sm-6 form-group">
+						<label for="nome">Nome</label> <input id="nome" type="text"
+							class="form-control" th:field="*{nome}" />
+					</div>
+					<div class="col-sm-6 form-group">
+						<label for="login">Login</label> <input id="login" type="text"
+							class="form-control" th:field="*{login}" />
+					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-6 form-group">
@@ -58,16 +59,21 @@
 					</div>
 				</div>
 				<div class="row">
-					<label for="permissao">Permissão</label>
-					
-					<select id="permissao" class="form-control" th:field="*{permissoes}">
-						<option value="">Selecione a permissão para o usuário</option>
-						<option th:each="permissao: ${permissoes}"
-						th:value="${permissao.id}" th:text="${#strings.substring(permissao.nome,8)}">Opção 1</option>
-					</select>
+					<div class="col-sm-6 form-group">
+						<label for="permissao">Permissão</label>
+						
+						<select id="permissao" class="form-control" th:field="*{permissoes}">
+							<option value="">Selecione a permissão para o usuário</option>
+							<option th:each="permissao: ${permissoes}"
+							th:value="${permissao.id}" th:text="${#strings.substring(permissao.nome,8)}">Opção 1</option>
+						</select>
+					</div>
+					<div class="col-sm-6 form-group">
+						<label for="email">E-mail</label>
+						<input id="email" class="form-control" 
+							th:field="*{email}" type="text" required  placeholder="seunome@dominio.com.br" title="E-mail"/>
+					</div>
 				</div>
-				
-				<h1>Faltam alguns campos e a validação da senha antes de salvar!!</h1>
 				
 				<div class="form-group">
 					<button class="btn  btn-primary" type="submit" id="inputSubmit">Salvar</button>

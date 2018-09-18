@@ -24,21 +24,21 @@
 					class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
 					<thead class="aw-table-header-solid">
 						<tr>
-							<th class="col-md-1 text-center">Login</th>
-							<th class="col-md-3">Nome</th>
-							<th class="col-md-2">Senha</th>
-							<th class="col-md-3">Status</th>
+							<th class="col-md-2 text-center">Login</th>
+							<th class="col-md-4">Nome</th>
+							<th class="col-md-4">E-mail</th>
+							<th class="col-md-1">Status</th>
 							<th class="col-md-1 text-center">Excluir</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="usuario: ${usuarios}">
-							<td class="col-md-1 text-center" th:text="${usuario.login}">1</td>
+							<td class="text-center" th:text="${usuario.login}">1</td>
 
 							<td><a th:href="@{/administracao/usuarios/{id}(id=${usuario.id})}" th:text="${usuario.nome}">usuario1</a></td>
-							<td th:text="${usuario.senha}">123</td>
-							<td th:text="${usuario.ativo}">123</td>
-							<td class="col-md-1 text-center">
+							<td th:text="${usuario.email}">123</td>
+							<td th:text="${usuario.ativo} ? 'Ativo' : 'Inativo'">123</td>
+							<td class="text-center">
 								<form method="POST" th:onsubmit="'return confirm(\'Posso remover ' + 
 								${usuario.nome} + '?\');'" 
 								th:action="@{/administracao/{id}(id=${usuario.login})}">

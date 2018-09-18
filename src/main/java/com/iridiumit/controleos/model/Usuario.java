@@ -13,7 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,12 +30,19 @@ public class Usuario implements Serializable, UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Size (min = 5, max = 20, message = "{login.tamanho}")
     private String login;
+    
+    @NotBlank (message = "{senha.not.blank}")
     private String senha;
+    @NotBlank (message = "{name.not.blank}")
     private String nome;
+    @NotBlank(message = "{email.not.blank}")
+	@Email(message = "{email.not.valid}")
+    private String email;
     private boolean ativo;
     
-    @NotEmpty
+    @NotEmpty(message = "{permissao.not.empty}")
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "usuario_permissao", 
              joinColumns = { @JoinColumn(name = "usuario_id") }, 
@@ -44,11 +54,12 @@ public class Usuario implements Serializable, UserDetails {
     }
     
     public Usuario(Long id, String nome, String login, 
-			String senha, boolean ativo) {
+			String senha, String email, boolean ativo) {
 		this.id = id;
     	this.nome = nome;
 		this.login = login;
 		this.senha = senha;
+		this.email = email;
 		this.ativo = ativo;
 	}
     
@@ -103,6 +114,14 @@ public class Usuario implements Serializable, UserDetails {
         this.nome = nome.toUpperCase();
     }
     
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public Set<Permissao> getPermissoes() {
 		return permissoes;
 	}
