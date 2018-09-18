@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.iridiumit.controleos.model.Permissao;
 import com.iridiumit.controleos.model.Usuario;
 import com.iridiumit.controleos.repository.Permissoes;
 import com.iridiumit.controleos.repository.UsuarioDAO;
 import com.iridiumit.controleos.repository.Usuarios;
+
+import ch.qos.logback.core.net.SyslogOutputStream;
 
 @Controller
 @RequestMapping("/administracao/usuarios")
@@ -61,30 +63,31 @@ public class UsuarioController {
 		ModelAndView modelAndView = new ModelAndView("/administracao/cadastro-usuario");
 
 		modelAndView.addObject(usuario);
+		
 		modelAndView.addObject("permissoes", permissoes.findAll());
 
 		return modelAndView;
 	}
 
 	@PostMapping("/salvar")
-	public ModelAndView salvar(@Valid Usuario usuario, Permissao permissao, BindingResult result, RedirectAttributes attributes) {
-		ModelAndView modelAndView = new ModelAndView();
-		
+	public ModelAndView salvar(@Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
+
 		Usuario u = usuarios.findByLogin(usuario.getLogin());
 		
-		Permissao p = permissoes.findByNome(permissao.getNome());
-		
 		if (u != null) {
-            result.rejectValue("login", "error.usuario",
-                            "Já existe um usuário cadastrado com esse login!");
+			result.rejectValue("login", "erro.login");
         }
 		
 		if (result.hasErrors()) {
-            modelAndView.setViewName("/administracao/usuarios/novo");
+            return novo(usuario);
         } else {
-        	usuarioDAO.adicionaUsuario(usuario, p);
+        	//usuarios.save(usuario);
+        	usuarioDAO.adicionaUsuario(usuario);
         	attributes.addFlashAttribute("mensagem", "Usuario salvo com sucesso!!");
         }
+		
 		return new ModelAndView("redirect:/administracao/usuarios/novo");
+		
+		
 	}
 }

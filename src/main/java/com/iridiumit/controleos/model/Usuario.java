@@ -1,31 +1,38 @@
 package com.iridiumit.controleos.model;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-public class Usuario implements UserDetails {
+public class Usuario implements Serializable, UserDetails {
 
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     private String login;
     private String senha;
     private String nome;
     private boolean ativo;
     
+    @NotEmpty
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "usuario_permissao", 
              joinColumns = { @JoinColumn(name = "usuario_id") }, 
@@ -43,6 +50,17 @@ public class Usuario implements UserDetails {
 		this.login = login;
 		this.senha = senha;
 		this.ativo = ativo;
+	}
+    
+    @Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Set<Permissao> roles = new HashSet<Permissao>();
+		if (permissoes != null) {
+			for (Permissao userProfile : permissoes) {
+				roles.add(userProfile);
+			}
+		}
+		return roles;
 	}
     
     public Long getId() {
@@ -85,7 +103,7 @@ public class Usuario implements UserDetails {
         this.nome = nome.toUpperCase();
     }
     
-    public Set<Permissao> getPermissoes() {
+	public Set<Permissao> getPermissoes() {
 		return permissoes;
 	}
 
@@ -122,12 +140,6 @@ public class Usuario implements UserDetails {
     public boolean isEnabled() {
         return ativo;
     }
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public int hashCode() {

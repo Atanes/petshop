@@ -54,17 +54,16 @@
 					<div class="col-sm-6 form-group">
 						<label for="senha2">Confirmar Senha</label>
 						<input id="senha2" class="form-control" 
-							th:field="*{senha}" type="password" required  placeholder="Repetir Senha" title="Repetir Senha"/>
+							type="password" required  placeholder="Repetir Senha" title="Repetir Senha"/>
 					</div>
 				</div>
 				<div class="row">
 					<label for="permissao">Permissão</label>
 					
-					<select id="permissao" class="form-control"
-						th:field="*{permissao}">
+					<select id="permissao" class="form-control" th:field="*{permissoes}">
 						<option value="">Selecione a permissão para o usuário</option>
 						<option th:each="permissao: ${permissoes}"
-						th:value="${permissao.id}" th:text="${permissao.nome}">Opção 1</option>
+						th:value="${permissao.id}" th:text="${#strings.substring(permissao.nome,8)}">Opção 1</option>
 					</select>
 				</div>
 				

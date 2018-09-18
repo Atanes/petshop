@@ -1,11 +1,10 @@
 package com.iridiumit.controleos.repository;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,17 +13,17 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
-import com.iridiumit.controleos.model.Permissao;
 import com.iridiumit.controleos.model.Usuario;
 
 @Repository
+@Transactional
 public class UsuarioDAO implements UserDetailsService{
 
     @PersistenceContext
     private EntityManager manager;
     
     @Autowired
-    private Permissoes permissoes;
+    Permissoes permissoes;
 
     @Override
     public UserDetails loadUserByUsername (String login) throws UsernameNotFoundException {
@@ -39,14 +38,11 @@ public class UsuarioDAO implements UserDetailsService{
      return usuarios.get(0);
     }
 
-    public void adicionaUsuario(Usuario usuario, Permissao permissao){
+    public void adicionaUsuario(Usuario usuario){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hasSenha = passwordEncoder.encode(usuario.getSenha());
         usuario.setSenha(hasSenha);
         usuario.setAtivo(true);
-        
-        Permissao p = permissoes.findOne(permissao.getId());
-        usuario.setPermissoes(new HashSet<Permissao>(Arrays.asList(p)));
         
         manager.persist(usuario);
     }
