@@ -51,5 +51,14 @@ public class UsuarioDAO implements UserDetailsService{
         return manager.createQuery("select u from Usuario u", Usuario.class).getResultList();
     }
 
+	public void atualizarUsuario(Usuario usuario) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hasSenha = passwordEncoder.encode(usuario.getSenha());
+        usuario.setSenha(hasSenha);
+        
+        manager.merge(usuario);
+		
+	}
+
 
 }

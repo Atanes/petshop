@@ -5,7 +5,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +17,6 @@ import com.iridiumit.controleos.model.Usuario;
 import com.iridiumit.controleos.repository.Permissoes;
 import com.iridiumit.controleos.repository.UsuarioDAO;
 import com.iridiumit.controleos.repository.Usuarios;
-
-import ch.qos.logback.core.net.SyslogOutputStream;
 
 @Controller
 @RequestMapping("/administracao/usuarios")
@@ -55,12 +52,23 @@ public class UsuarioController {
 	@GetMapping("/{id}")
 	public ModelAndView editar(@PathVariable Long id) {
 
-		return novo(usuarios.findOne(id));
+		return editar(usuarios.findOne(id));
 	}
 
 	@GetMapping("/novo")
 	public ModelAndView novo(Usuario usuario) {
 		ModelAndView modelAndView = new ModelAndView("/administracao/cadastro-usuario");
+
+		modelAndView.addObject(usuario);
+		
+		modelAndView.addObject("permissoes", permissoes.findAll());
+
+		return modelAndView;
+	}
+	
+	@GetMapping("/editar")
+	public ModelAndView editar(Usuario usuario) {
+		ModelAndView modelAndView = new ModelAndView("/administracao/editar-usuario");
 
 		modelAndView.addObject(usuario);
 		
@@ -81,13 +89,24 @@ public class UsuarioController {
 		if (result.hasErrors()) {
             return novo(usuario);
         } else {
-        	//usuarios.save(usuario);
         	usuarioDAO.adicionaUsuario(usuario);
         	attributes.addFlashAttribute("mensagem", "Usuario salvo com sucesso!!");
         }
 		
 		return new ModelAndView("redirect:/administracao/usuarios/novo");
+	}
+	
+	@PostMapping("/atualizar")
+	public ModelAndView atualizar(@Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
+
+		if (result.hasErrors()) {
+            return editar(usuario);
+        } else {
+        	usuarioDAO.atualizarUsuario(usuario);
+        	attributes.addFlashAttribute("mensagem", "Usuario atualizado com sucesso!!");
+        }
 		
-		
+		return new ModelAndView("redirect:/administracao/usuarios");
+			
 	}
 }

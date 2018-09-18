@@ -25,8 +25,9 @@
 					<thead class="aw-table-header-solid">
 						<tr>
 							<th class="col-md-2 text-center">Login</th>
-							<th class="col-md-4">Nome</th>
-							<th class="col-md-4">E-mail</th>
+							<th class="col-md-3">Nome</th>
+							<th class="col-md-3">E-mail</th>
+							<th class="col-md-2">permisssão</th>
 							<th class="col-md-1">Status</th>
 							<th class="col-md-1 text-center">Excluir</th>
 						</tr>
@@ -37,6 +38,7 @@
 
 							<td><a th:href="@{/administracao/usuarios/{id}(id=${usuario.id})}" th:text="${usuario.nome}">usuario1</a></td>
 							<td th:text="${usuario.email}">123</td>
+							<td th:text="${usuario.permissoes}">123</td>
 							<td th:text="${usuario.ativo} ? 'Ativo' : 'Inativo'">123</td>
 							<td class="text-center">
 								<form method="POST" th:onsubmit="'return confirm(\'Posso remover ' + 

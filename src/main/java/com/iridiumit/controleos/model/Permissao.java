@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.jpa.criteria.expression.function.SubstringFunction;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -85,5 +86,11 @@ public class Permissao implements Serializable, GrantedAuthority{
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return  this.getNome().substring(8);
+	}
+
+	
 	
 }
