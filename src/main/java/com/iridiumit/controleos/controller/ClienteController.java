@@ -69,6 +69,13 @@ public class ClienteController {
 
 	@PostMapping("/salvar")
 	public ModelAndView salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attributes) {
+		
+		Cliente c = clientes.findByCpfcnpj(cliente.getCpfcnpj());
+		
+		if (c != null) {
+			result.rejectValue("cpfcnpj", "cpfcnpj.existente");
+        }
+		
 		if (result.hasErrors()) {
 			return novo(cliente);
 		}

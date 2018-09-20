@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Equipamento {
 	
@@ -38,11 +41,13 @@ public class Equipamento {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
+	@JsonBackReference
     private Cliente cliente;
 
 	@OneToMany(cascade = CascadeType.ALL, 
 			fetch = FetchType.LAZY, 
 			mappedBy = "equipamento")
+	@JsonIgnore
 	private Set<OrdemServico> ordemServico = new HashSet<>();
 	
 	public Equipamento(){

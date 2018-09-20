@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Cliente {
 	
@@ -24,7 +26,7 @@ public class Cliente {
 	@NotBlank (message = "{name.not.blank}")
 	private String nome;
 	@NotBlank(message = "{CPF_CNPJ.not.blank}")
-	private String cpf_cnpj;
+	private String cpfcnpj;
 	
 	private String telefone;
 	@NotBlank(message = "{celular.not.blank}")
@@ -41,6 +43,7 @@ public class Cliente {
 	@OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "cliente")
+	@JsonManagedReference
     private Set<Equipamento> equipamento = new HashSet<>();
 
 	public Cliente(){
@@ -70,12 +73,12 @@ public class Cliente {
 		this.nome = nome.toUpperCase();
 	}
 	
-	public String getCpf_cnpj() {
-		return cpf_cnpj;
+	public String getCpfcnpj() {
+		return cpfcnpj;
 	}
 
-	public void setCpf_cnpj(String cpf_cnpj) {
-		this.cpf_cnpj = cpf_cnpj;
+	public void setCpfcnpj(String cpf_cnpj) {
+		this.cpfcnpj = cpf_cnpj;
 	}
 
 	public String getTelefone() {

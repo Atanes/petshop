@@ -69,6 +69,7 @@ function comboEquipamentos() {
 
         },
         error : function(data) {
+        	console.log(data)
             console.log("erro na funçao");
         }
 
