@@ -43,7 +43,7 @@
 							<td class="text-center">
 								<form method="POST" th:onsubmit="'return confirm(\'Posso remover ' + 
 								${usuario.nome} + '?\');'" 
-								th:action="@{/administracao/{id}(id=${usuario.login})}">
+								th:action="@{/administracao/usuarios/{id}(id=${usuario.id})}">
 								<input type="hidden" name="_method" value="DELETE"/>
 									<button type="submit" class="btn btn-danger btn-xs">
 										<span class="fa fa-trash"></span>
