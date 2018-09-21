@@ -2,12 +2,14 @@ package com.iridiumit.controleos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iridiumit.controleos.repository.Clientes;
 import com.iridiumit.controleos.repository.OrdensServico;
+import com.iridiumit.controleos.repository.filtros.ClienteFiltro;
 
 @Controller
 public class HomeController {
@@ -37,10 +39,13 @@ public class HomeController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/orcamento")
-	public ModelAndView listar() {
+	public ModelAndView listar(@ModelAttribute("filtro") ClienteFiltro filtro) {
+		
+		String nome = filtro.getCpf_nome() == null ? "%" : filtro.getCpf_nome();
+		
 		ModelAndView modelAndView = new ModelAndView("orcamento/lista-clientes");
-
-		modelAndView.addObject("clientes", clientes.findAll());
+		
+		modelAndView.addObject("clientes", clientes.findByNomeContaining(nome));
 		return modelAndView;
 	}
 	

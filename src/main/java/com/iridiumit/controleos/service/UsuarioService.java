@@ -24,8 +24,6 @@ public class UsuarioService implements UserDetailsService{
 	@Autowired
 	private Permissoes permissoes;
 	
-	
-	
 	public List<Usuario> filtrar(UsuarioFiltro filtro) {
 		String nome = filtro.getNome() == null ? "%" : filtro.getNome();
 		return usuarios.findByNomeContainingIgnoreCase(nome);

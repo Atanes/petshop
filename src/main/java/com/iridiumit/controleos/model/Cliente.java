@@ -50,10 +50,12 @@ public class Cliente {
 		
 	}
 	
-	public Cliente(Long id, String nome, Set<OrdemServico> ordemServico) {
+	public Cliente(Long id, String nome, String cpfcnpj, String email, Set<OrdemServico> ordemServico) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.cpfcnpj = cpfcnpj;
+		this.email = email;
 		this.ordemServico = ordemServico;
 	}
 

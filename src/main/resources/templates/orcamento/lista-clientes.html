@@ -19,21 +19,23 @@
 				<span th:text="${mensagem}">Mensagem sucesso!</span>
 			</div>
 			
-			<form method="GET" class="form-horizontal">
-	   			<div class="form-group">
-	   				<div class="col-sm-4">
-	   					<div class="input-group">
-	   						<input class="form-control" placeholder="Qual cliente você está procurando?"
-	   							autofocus="autofocus"></input>
-	   						<span class="input-group-btn">
-	   							<button type="submit" class="btn btn-default">
-	   								<i class="glyphicon glyphicon-search"></i>
-	   							</button>
-	   						</span>
-	   					</div>
-	   				</div>
-	   			</div>
-	   		</form>
+			<form method="GET" class="form-horizontal"
+					action="/atendimento/clientes" th:object="${filtro}">
+					<div class="form-group">
+						<div class="col-sm-4">
+							<div class="input-group">
+								<input class="form-control"
+									placeholder="Qual cliente você está procurando?"
+									autofocus="autofocus" th:field="*{cpf_nome}"></input> <span
+									class="input-group-btn">
+									<button type="submit" class="btn btn-default">
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</form>
 
 			<div class="table-responsive">
 				<table id="tabela-produtos"
