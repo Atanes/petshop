@@ -45,7 +45,7 @@ public class HomeController {
 		
 		ModelAndView modelAndView = new ModelAndView("orcamento/lista-clientes");
 		
-		modelAndView.addObject("clientes", clientes.findByNomeContaining(nome));
+		modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCase(nome));
 		return modelAndView;
 	}
 	

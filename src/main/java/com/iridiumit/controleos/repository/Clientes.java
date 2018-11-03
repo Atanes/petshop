@@ -8,7 +8,7 @@ import com.iridiumit.controleos.model.Cliente;
 
 public interface Clientes extends JpaRepository<Cliente, Long>{
 
-	List<Cliente> findByNomeContaining(String nome);
+	List<Cliente> findByNomeContainingIgnoreCase(String nome);
 	
 	Cliente findByCpfcnpj(String cpf_cnpj);
 

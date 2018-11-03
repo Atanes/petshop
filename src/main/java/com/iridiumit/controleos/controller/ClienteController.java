@@ -34,7 +34,7 @@ public class ClienteController {
 		
 		ModelAndView modelAndView = new ModelAndView("orcamento/lista-clientes");
 
-		modelAndView.addObject("clientes", clientes.findByNomeContaining(filtro.getCpf_nome()));
+		modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCase(filtro.getCpf_nome()));
 		return modelAndView;
 	}
 	
