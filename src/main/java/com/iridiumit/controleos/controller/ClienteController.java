@@ -78,7 +78,7 @@ public class ClienteController {
 		
 		Cliente c = clienteService.localizarLogin(cliente.getCpfcnpj());
 		
-		if (c != null) {
+		if (c != null && c.getId() != cliente.getId()) {
 			result.rejectValue("cpfcnpj", "cpfcnpj.existente");
         }
 		

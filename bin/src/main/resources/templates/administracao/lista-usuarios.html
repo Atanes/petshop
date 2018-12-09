@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head>
+</head>
+
+<body>
+
+	<section layout:fragment="content">
+		<div class="container-fluid">
+			<div class="page-header">
+				<h3>Listagem - Usuários</h3>
+			</div>
+			<div class="alert  alert-success"
+				th:if="${!#strings.isEmpty(mensagem)}">
+				<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem
+					sucesso!</span>
+			</div>
+
+			<div class="panel-body">
+				<form method="GET" class="form-horizontal"
+					action="/administracao/usuarios" th:object="${filtro}">
+					<div class="form-group">
+						<div class="col-sm-4">
+							<div class="input-group">
+								<input class="form-control"
+									placeholder="Qual usuário você está procurando?"
+									autofocus="autofocus" th:field="*{nome}"></input> <span
+									class="input-group-btn">
+									<button type="submit" class="btn btn-default">
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</form>
+
+				<div class="table-responsive">
+					<table id="tabela-produtos"
+						class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
+						<thead class="aw-table-header-solid">
+							<tr>
+								<th class="col-md-2 text-center">Login</th>
+								<th class="col-md-3">Nome</th>
+								<th class="col-md-3">E-mail</th>
+								<th class="col-md-2">permisssão</th>
+								<th class="col-md-1">Status</th>
+								<th class="col-md-1 text-center">Excluir</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="usuario: ${usuarios}">
+								<td class="text-center" th:text="${usuario.login}">1</td>
+
+								<td><a
+									th:href="@{/administracao/usuarios/{id}(id=${usuario.id})}"
+									th:text="${usuario.nome}">usuario1</a></td>
+								<td th:text="${usuario.email}">123</td>
+								<td th:text="${usuario.permissoes}">123</td>
+								<td th:text="${usuario.ativo} ? 'Ativo' : 'Inativo'">123</td>
+								<td class="text-center">
+									<form method="POST"
+										th:onsubmit="'return confirm(\'Posso remover ' + 
+								${usuario.nome} + '?\');'"
+										th:action="@{/administracao/usuarios/{id}(id=${usuario.id})}">
+										<input type="hidden" name="_method" value="DELETE" />
+										<button type="submit" class="btn btn-danger btn-xs">
+											<span class="fa fa-trash"></span>
+										</button>
+									</form>
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan="5" th:if="${usuarios.empty}">Nenhum usuário
+									cadastrado!!!</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>

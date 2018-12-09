@@ -1,5 +1,7 @@
 package com.iridiumit.controleos.controller;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -7,8 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iridiumit.controleos.relatorios.ClienteREL;
+import com.iridiumit.controleos.relatorios.UsuarioREL;
 import com.iridiumit.controleos.repository.Clientes;
 import com.iridiumit.controleos.repository.OrdensServico;
+import com.iridiumit.controleos.repository.Usuarios;
 import com.iridiumit.controleos.repository.filtros.ClienteFiltro;
 
 @Controller
@@ -20,6 +25,12 @@ public class HomeController {
 	@Autowired
 	private Clientes clientes;
 	
+	@Autowired
+	private Usuarios usuarios;
+	
+	@Autowired 
+	protected ServletContext servletContext;
+	
 	@RequestMapping(method = RequestMethod.GET, path = "/entrar")
     public String entrar() {
         return "entrar";
@@ -27,6 +38,38 @@ public class HomeController {
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/")
     public String inicio() {
+        return "inicio";
+    }
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/relatorios/clientes")
+    public String relatorioClientes() {
+		
+		System.out.print(servletContext.getRealPath("/"));
+		
+		ClienteREL relatorio = new ClienteREL();
+		try {
+			relatorio.imprimir(clientes.findAll());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+        return "inicio";
+    }
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/relatorios/usuarios")
+    public String relatorioUsuarios() {
+		
+		System.out.print(servletContext.getRealPath("/"));
+		
+		UsuarioREL relatorio = new UsuarioREL();
+		try {
+			relatorio.imprimir(usuarios.findAll());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
         return "inicio";
     }
 	

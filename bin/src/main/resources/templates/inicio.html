@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	layout:decorate="~{layout/layout}">
+<head>
+<meta charset="UTF-8" />
+<title>Bem vindo ao sistema!</title>
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<div class="container-fluid">
+			<div class="page-header">
+				<h3>
+					<span sec:authentication="principal.nome"></span>, Bem vindo ao
+					sistema!
+				</h3>
+			</div>
+			<p>Use o menu acima para navegar.</p>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head>
+</head>
+
+<body>
+	<section layout:fragment="content">
+		<div class="container-fluid">
+			<div class="page-header">
+				<h3>Cadastro Cliente</h3>
+			</div>
+
+			<form method="POST" class="form-vertical  js-form-loading"
+				th:object="${cliente}" th:action="@{/atendimento/clientes/salvar}">
+				<div class="alert  alert-danger  alert-dismissible" role="alert"
+					th:if="${#fields.hasAnyErrors()}">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<div th:each="erro: ${#fields.detailedErrors()}">
+						<i class="fa fa-exclamation-circle"></i> <span
+							th:text="${erro.message}">Mensagem erro.</span>
+					</div>
+				</div>
+
+				<div class="alert  alert-success"
+					th:if="${!#strings.isEmpty(mensagem)}">
+					<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem
+						sucesso!</span>
+				</div>
+
+				<input type="hidden" th:field="*{id}" />
+
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="cpfcnpj">CPF</label> <input id="cpfcnpj" type="text"
+								class="form-control" th:field="*{cpfcnpj}" />
+						</div>
+					</div>
+					<div class="col-sm-9">
+						<div class="form-group">
+							<label for="nome">Nome</label> <input id="nome" type="text"
+								class="form-control" th:field="*{nome}" />
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="rua">Rua</label> <input id="rua" type="text"
+								class="form-control" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="nr">Nº</label> <input id="nr" type="text"
+								class="form-control" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="cep">CEP</label> <input id="cep" type="text"
+								class="form-control" />
+						</div>
+					</div>
+				</div>
+		
+		
+				<div class="row">
+					<div class="col-sm-6 form-group">
+						<label for="telefone">Telefone</label>
+						<input id="telefone" type="text" class="form-control" 
+								th:field="*{telefone}"/>
+					</div>
+							
+					<div class="col-sm-6 form-group">
+						<label for="celular">Celular</label>
+						<input id="celular" type="text" class="form-control" 
+								th:field="*{celular}"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="email">e-Mail</label>
+					<input id="email" type="text" class="form-control" 
+						th:field="*{email}"/>
+				</div>
+						
+				<div class="form-group">
+					<button class="btn  btn-primary" type="submit">Salvar</button>
+				</div>
+			</form>
+		</div>
+	</section>
+</body>
+</html>

@@ -21,6 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/resources/**", "/signup", "/about").permitAll()
 				.antMatchers("/").hasAnyRole("OS_ADMIN", "OS_ATENDIMENTO", "OS_TECNICO", "OS_ORCAMENTO")
 				.antMatchers("/administracao/**").hasAnyRole("OS_ADMIN")
+				.antMatchers("/relatorios/**").hasAnyRole("OS_ADMIN")
 				.antMatchers("/atendimento/**").hasAnyRole("OS_ADMIN","OS_ATENDIMENTO")
 				.antMatchers("/tecnico/**").hasAnyRole("OS_ADMIN","OS_TECNICO")
 				.antMatchers("/orcamento/**").hasAnyRole("OS_ADMIN","OS_ORCAMENTO")
