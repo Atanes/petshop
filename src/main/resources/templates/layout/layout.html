@@ -55,6 +55,17 @@
 		                </li>
 		                <li sec:authorize="hasRole('OS_TECNICO') or hasRole('OS_ADMIN')"><a href="/tecnico">Tecnicos</a></li>
 		                <li sec:authorize="hasRole('OS_ORCAMENTO') or hasRole('OS_ADMIN')"><a href="/orcamento">Orçamento</a></li>
+		            	<li class="dropdown" sec:authorize="hasRole('OS_ORCAMENTO') or hasRole('OS_ADMIN')">
+		                	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								Relatórios 
+								<span class="caret"></span>
+							</a>
+		                	<ul class="dropdown-menu">
+								<li><a href="/rel-clientes" target="_blank">Clientes</a></li>
+								<li><a href="/rel-usuarios" target="_blank">Usuários</a></li>
+				                <li><a href="/relatorios/os" target="_blank">Ordens de Serviço </a></li>
+							</ul>
+		                </li>
 		            </ul>
 		            
 		            <form action="/logout" method="post" class="navbar-form navbar-right">
@@ -80,8 +91,6 @@
 							<ul class="dropdown-menu">
 								<li><a href="/administracao/usuarios">Listar Usuários</a></li>
 								<li><a href="/administracao/usuarios/novo">Incluir Usuário</a></li>
-								<li><a href="/relatorios/clientes">Relatório Clientes</a></li>
-								<li><a href="/relatorios/usuarios">Relatório Usuários</a></li>
 							</ul>
 						</li>
 		            </ul>

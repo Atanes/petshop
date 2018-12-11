@@ -31,7 +31,7 @@ public class UsuarioREL {
 		
 		JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(usuarios));
  
-		JasperExportManager.exportReportToPdfFile(print, "C:/Temp/Relatorio_de_Usuarios.pdf");		
+		JasperExportManager.exportReportToPdfFile(print, this.pathToReportPackage + "Relatorio_de_Usuarios.pdf");		
 	}
  
 	public String getPathToReportPackage() {

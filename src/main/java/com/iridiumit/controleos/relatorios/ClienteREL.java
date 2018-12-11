@@ -31,7 +31,7 @@ public class ClienteREL {
 		
 		JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(clientes));
  
-		JasperExportManager.exportReportToPdfFile(print, "C:/Temp/Relatorio_de_Clientes.pdf");		
+		JasperExportManager.exportReportToPdfFile(print, this.pathToReportPackage + "Relatorio_de_Clientes.pdf");		
 	}
  
 	public String getPathToReportPackage() {
