@@ -70,6 +70,7 @@ public class OrdemServicoController {
 		
 		modelAndView.addObject(ordensServico.findOne(id));
 		modelAndView.addObject("clientes", clientes.findAll());
+		modelAndView.addObject("idcliente", ordensServico.findOne(id).getCliente().getId());
 		modelAndView.addObject("equipamentos", equipamentos.findByCliente(ordensServico.findOne(id).getCliente()));
 
 		return modelAndView;
@@ -81,6 +82,7 @@ public class OrdemServicoController {
 
 		modelAndView.addObject(ordemServico);
 		modelAndView.addObject("clientes", clientes.findAll());
+		modelAndView.addObject("idcliente", 0);
 		modelAndView.addObject("equipamentos", equipamentos.findAll());
 
 		return modelAndView;

@@ -89,7 +89,7 @@
 						</select>
 					</div>
 					<div class="col-sm-2">
-						<a class="btn btn-primary mesmo-tamanho" th:href="@{/equipamentos/novo}"
+						<a class="btn btn-primary mesmo-tamanho" th:href="@{/equipamentos__${idcliente != 0}? '/novo/' + ${idcliente} : '/novo'__}"
 							title="Incluir Equipamento"> 
 							<span class="glyphicon glyphicon-plus"></span> Equipamento
 						</a>

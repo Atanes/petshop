@@ -63,6 +63,16 @@ public class EquipamentoController {
 
 		return modelAndView;
 	}
+	
+	@GetMapping("/novo/{id}")
+	public ModelAndView incluir(Equipamento equipamento, @PathVariable("id") Long id) {
+		ModelAndView modelAndView = new ModelAndView("atendimento/equipamentos/cadastro-equipamento");
+
+		modelAndView.addObject(equipamento);
+		modelAndView.addObject("clientes", clientes.findOne(id));
+
+		return modelAndView;
+	}
 
 	@PostMapping("/salvar")
 	public ModelAndView salvar(@Valid Equipamento equipamento, BindingResult result, RedirectAttributes attributes) {
