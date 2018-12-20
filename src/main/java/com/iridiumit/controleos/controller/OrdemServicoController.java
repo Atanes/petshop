@@ -119,6 +119,7 @@ public class OrdemServicoController {
 		Cliente c = clientes.findOne(valor);
 		List<Equipamento> cboEquipamentos = equipamentos.findByCliente(c);
         model.addAttribute("adicionados", cboEquipamentos);
+        model.addAttribute("idcliente", c.getId());
         return cboEquipamentos;
 
     }

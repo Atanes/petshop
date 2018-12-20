@@ -2,6 +2,8 @@
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	layout:decorate="~{layout/layout}">
 <head>
 </head>
@@ -14,8 +16,7 @@
 			</div>
 
 			<form method="POST" class="form-vertical  js-form-loading"
-				th:object="${equipamento}"
-				th:action="@{/equipamentos/salvar}">
+				th:object="${equipamento}" th:action="@{/equipamentos/salvar}">
 				<div class="alert  alert-danger  alert-dismissible" role="alert"
 					th:if="${#fields.hasAnyErrors()}">
 					<button type="button" class="close" data-dismiss="alert"
@@ -36,18 +37,25 @@
 				</div>
 
 				<input type="hidden" th:field="*{id}" />
-				
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="cliente">Cliente</label>
 
-							<select id="cliente" class="form-control"
-								th:field="*{cliente}">
+				<div class="row">
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="cbocliente">Cliente</label> <select id="cbocliente"
+								class="form-control" th:field="*{cliente}">
 								<option value="">Selecione o cliente</option>
-								<option th:each="cliente: ${clientes}"
-									th:value="${cliente.id}" th:text="${cliente.nome}">Opção 1</option>
+								<option th:each="cliente: ${clientes}" th:value="${cliente.id}"
+									th:text="${cliente.nome}">Opção 1</option>
 							</select>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label>&nbsp</label> <a class="btn btn-primary mesmo-tamanho"
+								th:href="@{/atendimento/clientes/novo}" title="Incluir Cliente">
+								<span class="glyphicon glyphicon-plus"></span> Cliente
+							</a>
 						</div>
 					</div>
 
@@ -55,7 +63,7 @@
 						<label style="visibility: hidden;" id="nomeCliente">${cliente.nome}</label>
 					</div>
 				</div>
-				
+
 				<div class="row">
 					<div class="col-sm-8">
 						<div class="form-group">
@@ -73,20 +81,20 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="form-group">
-							<label for="marca">Marca</label> <input id="marca"
-								type="text" class="form-control" th:field="*{marca}" />
+							<label for="marca">Marca</label> <input id="marca" type="text"
+								class="form-control" th:field="*{marca}" />
 						</div>
 					</div>
 					<div class="col-sm-4">
 						<div class="form-group">
-							<label for="modelo">Modelo</label> <input id="modelo"
-								type="text" class="form-control" th:field="*{modelo}" />
+							<label for="modelo">Modelo</label> <input id="modelo" type="text"
+								class="form-control" th:field="*{modelo}" />
 						</div>
 					</div>
 					<div class="col-sm-4">
 						<div class="form-group">
-							<label for="cor">Cor</label> <input id="cor"
-								type="text" class="form-control" th:field="*{cor}" />
+							<label for="cor">Cor</label> <input id="cor" type="text"
+								class="form-control" th:field="*{cor}" />
 						</div>
 					</div>
 				</div>
