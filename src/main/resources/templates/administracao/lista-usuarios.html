@@ -48,24 +48,25 @@
 								<th class="col-md-3">E-mail</th>
 								<th class="col-md-2">permisssão</th>
 								<th class="col-md-1">Status</th>
-								<th class="col-md-1 text-center">Excluir</th>
+								<th class="text-center">Ações</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="usuario: ${usuarios}">
 								<td class="text-center" th:text="${usuario.login}">1</td>
 
-								<td><a
-									th:href="@{/administracao/usuarios/{id}(id=${usuario.id})}"
-									th:text="${usuario.nome}">usuario1</a></td>
+								<td	th:text="${usuario.nome}">usuario1</a></td>
 								<td th:text="${usuario.email}">123</td>
 								<td th:text="${usuario.permissoes}">123</td>
 								<td th:text="${usuario.ativo} ? 'Ativo' : 'Inativo'">123</td>
 								<td class="text-center">
 									<form method="POST"
-										th:onsubmit="'return confirm(\'Posso remover ' + 
-								${usuario.nome} + '?\');'"
+										th:onsubmit="'return confirm(\'Posso remover o usuário: ' + 
+								${usuario.nome} + ' da base de dados?\');'"
 										th:action="@{/administracao/usuarios/{id}(id=${usuario.id})}">
+										<a class="btn btn-primary btn-xs" th:href="@{/administracao/usuarios/{id}(id=${usuario.id})}"
+											th:title="Editar"> <span class="fa fa-pencil acoes"></span>
+										</a>
 										<input type="hidden" name="_method" value="DELETE" />
 										<button type="submit" class="btn btn-danger btn-xs">
 											<span class="fa fa-trash"></span>
