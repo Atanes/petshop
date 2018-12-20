@@ -42,32 +42,37 @@
 					class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
 					<thead class="aw-table-header-solid">
 						<tr>
-							<th class="col-md-1 text-center">Código</th>
+							<th class="text-center">Código</th>
 							<th class="col-md-3">Nome</th>
 							<th>CPF_CNPJ</th>
 							<th>Celular</th>
 							<th>e-mail</th>
-							<th class="col-md-1 text-center">Ações</th>
+							<th class="text-center">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="cliente: ${clientes}">
-							<td class="col-md-1 text-center" th:text="${cliente.id}">1</td>
+							<td class="text-center" th:text="${cliente.id}">1</td>
 
 							<td class="col-md-3" th:text="${cliente.nome}">123</td>
 							<td th:text="${cliente.cpfcnpj}">123</td>
 							<td th:text="${cliente.celular}">123</td>
 							<td th:text="${cliente.email}">123</td>
-							<td class="col-md-1 text-center">
-							<a th:href="@{atendimento/clientes/editar/{id}(id=${cliente.id})}" th:title="Editar">
-								<span class="fa fa-address-book acoes"></span>
-							</a>
-							<a th:href="@{/equipamentos/selecao/{id}(id=${cliente.id})}" th:title="Equipamentos">
+							<td class="text-center">
+							<form method="POST"
+									th:onsubmit="'return confirm(\'Posso remover o cliente: ' + 
+								${cliente.nome} + ' da base de dados?\');'"
+									th:action="@{atendimento/clientes/excluir/{id}(id=${cliente.id})}">
+									<a class="btn btn-primary btn-xs" th:href="@{atendimento/clientes/editar/{id}(id=${cliente.id})}"
+										th:title="Editar"> <span class="fa fa-address-book acoes"></span>
+									</a> <input type="hidden" name="_method" value="DELETE" />
+									<a class="btn btn-primary btn-xs" th:href="@{/equipamentos/selecao/{id}(id=${cliente.id})}" th:title="Equipamentos">
 									<span class="fa fa-plug acoes"></span>
-							</a>
-							<a th:href="@{atendimento/clientes/excluir/{id}(id=${cliente.id})}" th:title="Excluir">
-									<span class="fa fa-trash acoes"></span>
-							</a>							
+									</a>
+									<button type="submit" class="btn btn-danger btn-xs" title="Excluir">
+										<span class="fa fa-trash acoes"></span>
+									</button>
+								</form>							
 							</td>
 						</tr>
 

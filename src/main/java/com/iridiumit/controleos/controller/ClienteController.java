@@ -32,9 +32,11 @@ public class ClienteController {
 	@GetMapping
 	public ModelAndView listar(@ModelAttribute("filtro") ClienteFiltro filtro) {
 		
+		String nome = filtro.getCpf_nome() == null ? "%" : filtro.getCpf_nome();
+		
 		ModelAndView modelAndView = new ModelAndView("orcamento/lista-clientes");
 
-		modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCase(filtro.getCpf_nome()));
+		modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCase(nome));
 		return modelAndView;
 	}
 	
