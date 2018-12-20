@@ -27,6 +27,7 @@ import com.iridiumit.controleos.model.Cliente;
 import com.iridiumit.controleos.model.Equipamento;
 import com.iridiumit.controleos.model.OrdemServico;
 import com.iridiumit.controleos.model.StatusOS;
+import com.iridiumit.controleos.model.GruposTrabalho;
 import com.iridiumit.controleos.repository.Clientes;
 import com.iridiumit.controleos.repository.Equipamentos;
 import com.iridiumit.controleos.repository.OrdensServico;
@@ -110,6 +111,11 @@ public class OrdemServicoController {
 	@ModelAttribute("ListaStatus")
 	public List<StatusOS> ListaStatus(){
 		return Arrays.asList(StatusOS.values());
+	}
+	
+	@ModelAttribute("GruposTrabalho")
+	public List<GruposTrabalho> GruposTrabalho(){
+		return Arrays.asList(GruposTrabalho.values());
 	}
 	
 	//Método que recebe os equipamentos de um determinado cliente para preencher um select com esses dados

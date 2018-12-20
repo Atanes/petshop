@@ -32,20 +32,22 @@ public class EquipamentoController {
 	
 	@GetMapping
 	public ModelAndView listar() {
-		ModelAndView modelAndView = new ModelAndView("equipamentos/lista-equipamentos");
+		ModelAndView modelAndView = new ModelAndView("tecnico/lista-equipamentos");
 
 		modelAndView.addObject("equipamentos", equipamentos.findAll());
 		return modelAndView;
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/excluir/{id}")
 	public String remover(@PathVariable Long id, RedirectAttributes attributes) {
+		
+		Cliente c = equipamentos.findOne(id).getCliente();
 		
 		equipamentos.delete(id);
 
 		attributes.addFlashAttribute("mensagem", "Equipamento excluido com sucesso!!");
 		
-		return "redirect:/equipamentos";
+		return "redirect:/equipamentos/selecao/" + c.getId();
 	}
 
 	@GetMapping("/{id}")

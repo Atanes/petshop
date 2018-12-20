@@ -40,17 +40,7 @@ public class ClienteController {
 		return modelAndView;
 	}
 	
-	@DeleteMapping("/{id}")
-	public String remover(@PathVariable Long id, RedirectAttributes attributes) {
-		
-		clienteService.excluir(id);
-
-		attributes.addFlashAttribute("mensagem", "Cliente excluido com sucesso!!");
-		
-		return "redirect:/atendimento/clientes";
-	}
-	
-	@GetMapping("excluir/{id}")
+	@DeleteMapping("excluir/{id}")
 	public String excluir(@PathVariable Long id, RedirectAttributes attributes) {
 		
 		clienteService.excluir(id);
