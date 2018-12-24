@@ -51,7 +51,8 @@ public class OrdemServicoController {
 	public ModelAndView listar() {
 		ModelAndView modelAndView = new ModelAndView("tecnico/lista-ordemServico");
 
-		modelAndView.addObject("ordensServico", ordensServico.findAll());
+		//modelAndView.addObject("ordensServico", ordensServico.findAll());
+		modelAndView.addObject("ordensServico", ordensServico.findByStatus("ANALISE"));
 		return modelAndView;
 	}
 	
