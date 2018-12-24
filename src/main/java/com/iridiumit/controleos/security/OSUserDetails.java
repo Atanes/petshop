@@ -42,6 +42,10 @@ public class OSUserDetails implements UserDetails {
 	public String getUsername() {
 		return login;
 	}
+	
+	public String getLogin(){
+		return this.login;
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {

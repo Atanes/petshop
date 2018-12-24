@@ -81,16 +81,16 @@ public class HomeController {
 	public ModelAndView tecnico() {
 		ModelAndView modelAndView = new ModelAndView("tecnico/lista-ordemServico");
 
-		modelAndView.addObject("ordensServico", ordensServico.findAll());
+		modelAndView.addObject("ordensServico", ordensServico.findByStatus("ANALISE"));
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.GET, path = "/orcamento")
+	@RequestMapping(method = RequestMethod.GET, path = "/clientes")
 	public ModelAndView listar(@ModelAttribute("filtro") ClienteFiltro filtro) {
 
 		String nome = filtro.getCpf_nome() == null ? "%" : filtro.getCpf_nome();
 
-		ModelAndView modelAndView = new ModelAndView("orcamento/lista-clientes");
+		ModelAndView modelAndView = new ModelAndView("administracao/lista-clientes");
 
 		modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCase(nome));
 		return modelAndView;

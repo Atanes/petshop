@@ -8,6 +8,6 @@ import com.iridiumit.controleos.model.OrdemServico;
 
 public interface OrdensServico extends JpaRepository<OrdemServico, Long>{
 	
-	List<OrdensServico> findByStatus(String status);
+	List<OrdemServico> findByStatus(String status);
 
 }
