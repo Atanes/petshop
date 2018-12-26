@@ -59,7 +59,7 @@
 									<a class="btn btn-primary btn-xs" th:href="@{/atendimento/{id}(id=${ordemServico.id})}"
 										th:title="Editar"> <span class="fa fa-pencil acoes"></span>
 									</a> 
-									<a class="btn btn-success btn-xs" th:href="@{/orcamento/novo/{login}/{id}(login=${#authentication.principal.login}, id=${ordemServico.id})}"
+									<a class="btn btn-success btn-xs" th:href="@{/orcamento/novo/{id}(id=${ordemServico.id})}"
 										th:title="Parecer"> <span class="fa fa-file-text acoes"></span>
 									</a><input type="hidden" name="_method" value="DELETE" />
 									<button type="submit" class="btn btn-danger btn-xs" title="Excluir">

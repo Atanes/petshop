@@ -3,6 +3,7 @@ package com.iridiumit.controleos.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.iridiumit.controleos.model.Orcamento;
 import com.iridiumit.controleos.repository.Orcamentos;
 import com.iridiumit.controleos.repository.OrdensServico;
+import com.iridiumit.controleos.security.OSUserDetails;
 import com.iridiumit.controleos.service.UsuarioService;
 
 @Controller
@@ -47,7 +49,7 @@ public class OrcamentoController {
 
 		attributes.addFlashAttribute("mensagem", "Orçamento excluido com sucesso!!");
 		
-		return "redirect:/lista-orcamento";
+		return "redirect:/orcamento/lista-orcamento";
 	}
 
 	/*@GetMapping("editar/{id}")
@@ -56,12 +58,14 @@ public class OrcamentoController {
 		return novo(orcamentos.findOne(id), orcamentos.getOne(id).getOs().getId());
 	}*/
 
-	@GetMapping("/novo/{login}/{id}")
-	public ModelAndView novo(Orcamento orcamento, @PathVariable("login") String login, @PathVariable("id") Long id) {
+	@GetMapping("/novo/{id}")
+	public ModelAndView novo(Orcamento orcamento, @PathVariable("id") Long id) {
 		ModelAndView modelAndView = new ModelAndView("tecnico/cadastro-orcamento");
+		
+		OSUserDetails principal = (OSUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		orcamento.setOs(ordensServico.findOne(id));
-		orcamento.setUsuario(usuarios.localizarLogin(login));
+		orcamento.setUsuario(usuarios.localizarLogin(principal.getLogin()));
 		modelAndView.addObject(orcamento);
 
 		return modelAndView;
@@ -71,7 +75,7 @@ public class OrcamentoController {
 	public ModelAndView salvar(@Valid Orcamento orcamento, BindingResult result, RedirectAttributes attributes) {
 		
 		if (result.hasErrors()) {
-			return novo(orcamento, orcamento.getUsuario().getLogin(), orcamento.getOs().getId());
+			return novo(orcamento, orcamento.getOs().getId());
 		}
 		
 		ordensServico.getOne(orcamento.getId()).setStatus("ORCAMENTO");

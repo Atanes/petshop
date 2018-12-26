@@ -75,6 +75,7 @@
 							<label for="cboequipamento">Equipamento</label> <select
 								id="cboequipamento" class="form-control" style="width: 100%;"
 								th:field="*{equipamento}" onchange="">
+								<option value="">Selecione o equipamento</option>
 								<option th:each="equipamento: ${equipamentos}" th:value="${equipamento.id}"
 									th:text="${equipamento.descricao}">Opção 1</option>		
 							</select>
