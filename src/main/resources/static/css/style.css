@@ -10,6 +10,15 @@ footer {
 	margin: 1px;
 }
 
+.logo_iridiumit {
+	width: 50px;
+	margin-bottom: 10px;
+}
+
+.texto_iridiumit {
+	width: 150px;
+}
+
 label {
 	display: block;
 	text-align: left;

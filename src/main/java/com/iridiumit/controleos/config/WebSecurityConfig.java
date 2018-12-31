@@ -3,6 +3,7 @@ package com.iridiumit.controleos.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import com.iridiumit.controleos.security.OSUserDetailsService;
@@ -18,7 +19,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.
 			authorizeRequests()
-				.antMatchers("/resources/**", "/signup", "/about").permitAll()
 				.antMatchers("/").hasAnyRole("OS_ADMIN", "OS_ATENDIMENTO", "OS_TECNICO", "OS_ORCAMENTO")
 				.antMatchers("/administracao/**").hasAnyRole("OS_ADMIN")
 				.antMatchers("/relatorios/**").hasAnyRole("OS_ADMIN")
@@ -27,6 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/orcamento/**").hasAnyRole("OS_ADMIN","OS_ORCAMENTO","OS_TECNICO")
 				.anyRequest()
 				.authenticated()
+				.antMatchers("/resources/**", "/signup", "/about").permitAll()
 			.and()
 			.formLogin()
 				.loginPage("/entrar")
@@ -41,5 +42,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.exceptionHandling().accessDeniedPage("/acessonegado");;
 	}
-
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+	    web.ignoring().antMatchers("/resources/**");
+	}
 }

@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>Cadastro_OrdemServico</name>
-	<description>Projeto Spring para controle de Ordens Servicos do cliente Thomaz Edson</description>
+	<description>Projeto Spring exemplo para controle de Ordens Servicos: IridiumIT</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

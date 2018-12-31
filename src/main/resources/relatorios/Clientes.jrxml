@@ -85,10 +85,14 @@
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch">
+		<band height="79" splitType="Stretch">
 			<image>
-				<reportElement x="10" y="16" width="100" height="23" uuid="dde0d410-a05b-4db4-a422-fe5dbe454bbd"/>
-				<imageExpression><![CDATA["src/main/resources/static/layout/images/iridium_transparent.png"]]></imageExpression>
+				<reportElement x="0" y="8" width="50" height="38" uuid="dde0d410-a05b-4db4-a422-fe5dbe454bbd"/>
+				<imageExpression><![CDATA["src/main/resources/static/images/logo_iridiumIT.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="54" y="14" width="110" height="30" uuid="9298cdf3-d0a9-44a6-95ed-6838cbc5bc75"/>
+				<imageExpression><![CDATA["src/main/resources/static/images/iridiumIT.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageFooter>

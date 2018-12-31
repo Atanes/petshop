@@ -8,16 +8,18 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 			
-		<title>Thomaz Edson Equipamentos: LOGIN</title>
+		<title>IridiumIT - Aplicação Exemplo: LOGIN</title>
 
 	    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 
 	    <link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet"/>
 
 	    <link th:href="@{/webjars/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
+	    
+	    <link th:href="@{/css/style.css}" rel="stylesheet"/>
 
 	</head>
-
+	
 	<body style="background-color: #f9f9f9">
 		<div class="row">
 			<div class="col-sm-4 col-sm-offset-4">
@@ -28,7 +30,12 @@
 				<div th:if="${param.logout}">
 					<div class="alert alert-info">Até logo!</div>
 				</div>
-
+				<div>
+					<a th:href="www.iridiumit.com.br" >
+						<img class="logo_iridiumit" th:src="@{/images/logo_iridiumIT.png}">
+						<img class="texto_iridiumit" alt="IridiumIT Tecnologia" th:src="@{/images/iridiumIT.png}" />
+					</a>
+				</div>
 				<div class="panel panel-info">
 					<div class="panel-heading">
 				    	<h3 class="panel-title">ENTRE</h3>
