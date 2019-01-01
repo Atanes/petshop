@@ -11,9 +11,8 @@
 
 	<title>IridiumIT</title>
 	
-	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/vendors.min.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/algaworks.min.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/lista-jogos.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/js/vendors.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/js/algaworks.min.css}" />
 	
 	<script th:src="@{layout/vendors/jquery/jquery.js}"></script>
 
@@ -31,7 +30,7 @@
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand  hidden-xs" href="#">
-						<img alt="IridiumIT" th:src="@{/layout/imagens/iridiumIT.png}" />
+						<img alt="IridiumIT" th:src="@{/images/iridiumIT.png}" />
 					</a>
 
 					<ul class="nav  navbar-nav">
@@ -115,12 +114,8 @@
 		</footer>
 	</div>
 
-	<script th:src="@{/layout/javascripts/vendors.min.js}"></script>
-	<script th:src="@{/layout/javascripts/algaworks.min.js}"></script>
-	<script th:src="@{/javascripts/vendors/jquery.mask.min.js}"></script>
+	<script th:src="@{/js/vendors.min.js}"></script>
+	<script th:src="@{/js/algaworks.min.js}"></script>
 
-	<script>
-		jQuery('.js-moeda').mask("#.##0,00", { reverse: true });
-	</script>
 </body>
 </html>

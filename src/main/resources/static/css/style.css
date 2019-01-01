@@ -10,9 +10,24 @@ footer {
 	margin: 1px;
 }
 
+.logo_menu {
+	width: 35px;
+	margin-top: 5px;
+}
+
 .logo_iridiumit {
 	width: 50px;
 	margin-bottom: 10px;
+}
+
+.posicao_rodape {
+	position: relative;
+}
+
+.texto_iridiumit_rodape {
+	position: absolute;
+	width: 60px;
+	right: 20px;
 }
 
 .texto_iridiumit {
