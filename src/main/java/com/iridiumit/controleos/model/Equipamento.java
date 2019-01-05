@@ -39,6 +39,8 @@ public class Equipamento {
 	
 	private String cor;
 	
+	private String url_imagen;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
 	@JsonBackReference
@@ -107,6 +109,14 @@ public class Equipamento {
 
 	public void setCor(String cor) {
 		this.cor = cor.toUpperCase();
+	}
+
+	public String getUrl_imagen() {
+		return url_imagen;
+	}
+
+	public void setUrl_imagen(String url_imagen) {
+		this.url_imagen = url_imagen;
 	}
 
 	public Cliente getCliente() {
