@@ -34,7 +34,7 @@ public class ClienteController {
 		
 		String nome = filtro.getCpf_nome() == null ? "%" : filtro.getCpf_nome();
 		
-		ModelAndView modelAndView = new ModelAndView("orcamento/lista-clientes");
+		ModelAndView modelAndView = new ModelAndView("administracao/lista-clientes");
 
 		modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCase(nome));
 		return modelAndView;
