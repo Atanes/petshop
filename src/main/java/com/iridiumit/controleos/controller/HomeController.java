@@ -3,8 +3,6 @@ package com.iridiumit.controleos.controller;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.servlet.ServletContext;
-
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -34,9 +32,6 @@ public class HomeController {
 
 	@Autowired
 	private Usuarios usuarios;
-
-	@Autowired
-	protected ServletContext servletContext;
 
 	@RequestMapping(method = RequestMethod.GET, path = "/entrar")
 	public String entrar() {
