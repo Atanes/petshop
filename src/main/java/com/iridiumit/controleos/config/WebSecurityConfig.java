@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/orcamento/**").hasAnyRole("OS_ADMIN","OS_ORCAMENTO","OS_TECNICO")
 				.anyRequest()
 				.authenticated()
-				.antMatchers("/resources/**", "/signup", "/about").permitAll()
+				.antMatchers("/resources/**", "/signup", "/about", "/imagens_produtos/**").permitAll()
 			.and()
 			.formLogin()
 				.loginPage("/entrar")

@@ -27,8 +27,9 @@
 							<th class="text-center">Código</th>
 							<th class="col-md-3">Descrição</th>
 							<th class="col-md-2">Nr de Série</th>
-							<th class="col-md-3">Marca</th>
+							<th class="col-md-2">Marca</th>
 							<th class="col-md-2">Modelo</th>
+							<th>Imagem</th>
 							<th class="text-center">Ações</th>
 						</tr>
 					</thead>
@@ -40,6 +41,7 @@
 							<td th:text="${equipamento.nrserie}">123</td>
 							<td th:text="${equipamento.marca}">123</td>
 							<td th:text="${equipamento.modelo}">123</td>
+							<td><img class="amostra_imagens" th:src="${equipamento.url_imagen}"/></td>
 							<td class="col-md-1 text-center">
 								<form method="POST" th:onsubmit="'return confirm(\'Posso remover o equipamento: ' + 
 								${equipamento.descricao} + ' da base de dados?\');'" 

@@ -1,16 +1,7 @@
 package com.iridiumit.controleos.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.jsf.FacesContextUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -30,10 +20,13 @@ import com.iridiumit.controleos.model.Cliente;
 import com.iridiumit.controleos.model.Equipamento;
 import com.iridiumit.controleos.repository.Clientes;
 import com.iridiumit.controleos.repository.Equipamentos;
+import com.iridiumit.controleos.utils.Disco;
 
 @Controller
 @RequestMapping("/equipamentos")
 public class EquipamentoController {
+	
+	public static String uploadDirectory = "/public/imagens_produtos/";
 
 	@Autowired
 	private Equipamentos equipamentos;
@@ -42,8 +35,8 @@ public class EquipamentoController {
 	private Clientes clientes;
 	
 	@Autowired
-	private ServletContext servletContext;
-
+	private Disco disco;
+	
 	@GetMapping
 	public ModelAndView listar() {
 		ModelAndView modelAndView = new ModelAndView("tecnico/lista-equipamentos");
@@ -89,7 +82,7 @@ public class EquipamentoController {
 
 		return modelAndView;
 	}
-
+	
 	@PostMapping("/salvando")
 	public ModelAndView salvando(@Valid Equipamento equipamento, BindingResult result, RedirectAttributes attributes,
 			MultipartFile imagem) {
@@ -97,18 +90,23 @@ public class EquipamentoController {
 			return novo(equipamento);
 		}
 		
+		disco.salvarFoto(imagem);
+		
+		equipamento.setUrl_imagen("/public/imagens_produtos/" + imagem.getOriginalFilename());
 		
 		//Em uma aplicação publicada na WEB esse endereço deve ser trocado para um caminho no servidor de aplicações
 		//ou um servidor de arquivos
-		String path = "C:/Temp/imagens/imagens_produtos" + File.separator + imagem.getOriginalFilename();
+		/*String path = new File("").getAbsolutePath() + "/src/main/resources/static/imagens_produtos/" + imagem.getOriginalFilename();
+		
+		System.out.println(path);
 
 		File saveFile = new File(path);
 		try {
 			FileUtils.writeByteArrayToFile(saveFile, imagem.getBytes());
-			equipamento.setUrl_imagen(path);
+			equipamento.setUrl_imagen("/imagens_produtos/" + imagem.getOriginalFilename());
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 		equipamentos.save(equipamento);
 
