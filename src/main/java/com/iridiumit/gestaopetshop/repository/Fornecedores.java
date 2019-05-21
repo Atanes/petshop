@@ -1,10 +1,13 @@
 package com.iridiumit.gestaopetshop.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.iridiumit.gestaopetshop.model.Fornecedor;
 
-public interface Orcamentos extends JpaRepository<Fornecedor, Long>{
+public interface Fornecedores extends JpaRepository<Fornecedor, Long>{
 	
+	List<Fornecedor> findByNome(String nome);
 
 }

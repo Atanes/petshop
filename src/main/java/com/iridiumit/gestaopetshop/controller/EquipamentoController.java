@@ -19,17 +19,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.iridiumit.gestaopetshop.model.Cliente;
 import com.iridiumit.gestaopetshop.model.Equipamento;
 import com.iridiumit.gestaopetshop.repository.Clientes;
-import com.iridiumit.gestaopetshop.repository.Equipamentos;
+import com.iridiumit.gestaopetshop.repository.Produtos;
 import com.iridiumit.gestaopetshop.utils.Disco;
 
 @Controller
-@RequestMapping("/equipamentos")
+@RequestMapping("/produtos")
 public class EquipamentoController {
 	
 	public static String uploadDirectory = "/public/imagens_produtos/";
 
 	@Autowired
-	private Equipamentos equipamentos;
+	private Produtos produtos;
 
 	@Autowired
 	private Clientes clientes;
@@ -39,33 +39,33 @@ public class EquipamentoController {
 	
 	@GetMapping
 	public ModelAndView listar() {
-		ModelAndView modelAndView = new ModelAndView("tecnico/lista-equipamentos");
+		ModelAndView modelAndView = new ModelAndView("tecnico/lista-produtos");
 
-		modelAndView.addObject("equipamentos", equipamentos.findAll());
+		modelAndView.addObject("produtos", produtos.findAll());
 		return modelAndView;
 	}
 
 	@DeleteMapping("/excluir/{id}")
 	public String remover(@PathVariable Long id, RedirectAttributes attributes) {
 
-		Cliente c = equipamentos.findOne(id).getCliente();
+		Cliente c = produtos.findOne(id).getCliente();
 
-		equipamentos.delete(id);
+		produtos.delete(id);
 
 		attributes.addFlashAttribute("mensagem", "Equipamento excluido com sucesso!!");
 
-		return "redirect:/equipamentos/selecao/" + c.getId();
+		return "redirect:/produtos/selecao/" + c.getId();
 	}
 
 	@GetMapping("/{id}")
 	public ModelAndView editar(@PathVariable Long id) {
 
-		return novo(equipamentos.findOne(id));
+		return novo(produtos.findOne(id));
 	}
 
 	@GetMapping("/novo")
 	public ModelAndView novo(Equipamento equipamento) {
-		ModelAndView modelAndView = new ModelAndView("atendimento/equipamentos/cadastro-equipamento");
+		ModelAndView modelAndView = new ModelAndView("atendimento/produtos/cadastro-equipamento");
 
 		modelAndView.addObject(equipamento);
 		modelAndView.addObject("clientes", clientes.findAll());
@@ -75,7 +75,7 @@ public class EquipamentoController {
 
 	@GetMapping("/novo/{id}")
 	public ModelAndView incluir(Equipamento equipamento, @PathVariable("id") Long id) {
-		ModelAndView modelAndView = new ModelAndView("atendimento/equipamentos/cadastro-equipamento");
+		ModelAndView modelAndView = new ModelAndView("atendimento/produtos/cadastro-equipamento");
 
 		modelAndView.addObject(equipamento);
 		modelAndView.addObject("clientes", clientes.findOne(id));
@@ -108,11 +108,11 @@ public class EquipamentoController {
 			e.printStackTrace();
 		}*/
 
-		equipamentos.save(equipamento);
+		produtos.save(equipamento);
 
 		attributes.addFlashAttribute("mensagem", "Equipamento salvo com sucesso!!");
 
-		return new ModelAndView("redirect:/equipamentos/novo");
+		return new ModelAndView("redirect:/produtos/novo");
 	}
 
 	@PostMapping("/salvar")
@@ -121,31 +121,31 @@ public class EquipamentoController {
 			return novo(equipamento);
 		}
 
-		equipamentos.save(equipamento);
+		produtos.save(equipamento);
 
 		attributes.addFlashAttribute("mensagem", "Equipamento salvo com sucesso!!");
 
-		return new ModelAndView("redirect:/equipamentos/novo");
+		return new ModelAndView("redirect:/produtos/novo");
 	}
 
-	// Teste para preencher lista de equipamentos na tela - sem uso no momento
+	// Teste para preencher lista de produtos na tela - sem uso no momento
 	@GetMapping("/selecao/{id}")
 	public ModelAndView SelecaoPorCliente(@PathVariable Long id) {
 
 		Cliente c = clientes.findOne(id);
-		ModelAndView modelAndView = new ModelAndView("tecnico/lista-equipamentos");
+		ModelAndView modelAndView = new ModelAndView("tecnico/lista-produtos");
 
-		modelAndView.addObject("equipamentos", equipamentos.findByCliente(c));
-		modelAndView.addObject("mensagem", "Equipamentos do cliente " + c.getNome());
+		modelAndView.addObject("produtos", produtos.findByCliente(c));
+		modelAndView.addObject("mensagem", "Produtos do cliente " + c.getNome());
 		return modelAndView;
 
 	}
 
-	// Teste para preencher lista de equipamentos na tela - sem uso no momento
+	// Teste para preencher lista de produtos na tela - sem uso no momento
 	@RequestMapping(value = "/lista/{id}", method = RequestMethod.GET)
 	public String showGuestList(Model model, @PathVariable("id") Long id) {
 		Cliente c = clientes.findOne(id);
-		model.addAttribute("equipamentos", equipamentos.findByCliente(c));
+		model.addAttribute("produtos", produtos.findByCliente(c));
 
 		return "orcamento/lista-clientes :: resultsList";
 	}

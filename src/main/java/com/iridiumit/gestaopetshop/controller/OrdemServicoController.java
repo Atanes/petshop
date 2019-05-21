@@ -29,7 +29,7 @@ import com.iridiumit.gestaopetshop.model.GruposTrabalho;
 import com.iridiumit.gestaopetshop.model.OrdemServico;
 import com.iridiumit.gestaopetshop.model.StatusOS;
 import com.iridiumit.gestaopetshop.repository.Clientes;
-import com.iridiumit.gestaopetshop.repository.Equipamentos;
+import com.iridiumit.gestaopetshop.repository.Produtos;
 import com.iridiumit.gestaopetshop.repository.OrdensServico;
 import com.iridiumit.gestaopetshop.security.OSUserDetails;
 
@@ -44,7 +44,7 @@ public class OrdemServicoController {
 	private Clientes clientes;
 	
 	@Autowired
-	private Equipamentos equipamentos;
+	private Produtos produtos;
 		
 	
 	@GetMapping
@@ -72,7 +72,7 @@ public class OrdemServicoController {
 		modelAndView.addObject(ordensServico.findOne(id));
 		modelAndView.addObject("clientes", clientes.findAll());
 		modelAndView.addObject("idcliente", ordensServico.findOne(id).getCliente().getId());
-		modelAndView.addObject("equipamentos", equipamentos.findByCliente(ordensServico.findOne(id).getCliente()));
+		modelAndView.addObject("produtos", produtos.findByCliente(ordensServico.findOne(id).getCliente()));
 
 		return modelAndView;
 	}
@@ -84,7 +84,7 @@ public class OrdemServicoController {
 		modelAndView.addObject(ordemServico);
 		modelAndView.addObject("clientes", clientes.findAll());
 		modelAndView.addObject("idcliente", 0);
-		modelAndView.addObject("equipamentos", equipamentos.findAll());
+		modelAndView.addObject("produtos", produtos.findAll());
 
 		return modelAndView;
 	}
@@ -118,12 +118,12 @@ public class OrdemServicoController {
 		return Arrays.asList(GruposTrabalho.values());
 	}
 	
-	//Método que recebe os equipamentos de um determinado cliente para preencher um select com esses dados
+	//Método que recebe os produtos de um determinado cliente para preencher um select com esses dados
 	@RequestMapping(value = "/cboEquipamentos", method = RequestMethod.GET)
     public @ResponseBody List<Equipamento> adicionados(@RequestParam Long valor, Model model) {
 
 		Cliente c = clientes.findOne(valor);
-		List<Equipamento> cboEquipamentos = equipamentos.findByCliente(c);
+		List<Equipamento> cboEquipamentos = produtos.findByCliente(c);
         model.addAttribute("adicionados", cboEquipamentos);
         model.addAttribute("idcliente", c.getId());
         return cboEquipamentos;

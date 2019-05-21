@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iridiumit.gestaopetshop.model.Animal;
 import com.iridiumit.gestaopetshop.relatorios.ClienteREL;
 import com.iridiumit.gestaopetshop.relatorios.UsuarioREL;
 import com.iridiumit.gestaopetshop.repository.Clientes;
@@ -25,7 +26,7 @@ import com.iridiumit.gestaopetshop.repository.filtros.ClienteFiltro;
 public class HomeController {
 
 	@Autowired
-	private OrdensServico ordensServico;
+	private Animal animal;
 
 	@Autowired
 	private Clientes clientes;
