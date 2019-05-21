@@ -40,7 +40,7 @@ function adicionados() {
 function comboEquipamentos() {
     var valor = $("#cbocliente").val();
     
-    let dropdown = $('#cboequipamento');
+    let dropdown = $('#cboequipamento');    
 
     dropdown.empty();
 
@@ -72,7 +72,7 @@ function comboEquipamentos() {
         	console.log(data)
             console.log("erro na funçao");
         }
-
+      
     });
 
 }
