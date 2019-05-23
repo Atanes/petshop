@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.iridiumit.gestaopetshop.model.Animal;
 import com.iridiumit.gestaopetshop.relatorios.ClienteREL;
 import com.iridiumit.gestaopetshop.relatorios.UsuarioREL;
 import com.iridiumit.gestaopetshop.repository.Clientes;
-import com.iridiumit.gestaopetshop.repository.OrdensServico;
+import com.iridiumit.gestaopetshop.repository.Fornecedores;
 import com.iridiumit.gestaopetshop.repository.Usuarios;
 import com.iridiumit.gestaopetshop.repository.filtros.ClienteFiltro;
 
@@ -26,7 +25,7 @@ import com.iridiumit.gestaopetshop.repository.filtros.ClienteFiltro;
 public class HomeController {
 
 	@Autowired
-	private Animal animal;
+	private Fornecedores fornecedores;
 
 	@Autowired
 	private Clientes clientes;
@@ -73,11 +72,11 @@ public class HomeController {
 		return IOUtils.toByteArray(in);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, path = "/tecnico")
-	public ModelAndView tecnico() {
-		ModelAndView modelAndView = new ModelAndView("tecnico/lista-ordemServico");
+	@RequestMapping(method = RequestMethod.GET, path = "/fornecedores")
+	public ModelAndView fornecedor() {
+		ModelAndView modelAndView = new ModelAndView("fornecedor/lista-fornecedores");
 
-		modelAndView.addObject("ordensServico", ordensServico.findByStatus("ANALISE"));
+		modelAndView.addObject("fornecedores", fornecedores.findAll());
 		return modelAndView;
 	}
 
