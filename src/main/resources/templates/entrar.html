@@ -16,11 +16,16 @@
 
 	    <link th:href="@{/webjars/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
 	    
-	    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+	    <link th:href="@{/css/componentes.css}" rel="stylesheet"/>
 
 	</head>
 	
 	<body style="background-color: #f9f9f9">
+		<div class="logo-cliente-login">
+			<a th:href="www.petshop.com.br" >
+				<img class="logo_petshop" th:src="@{/images/petshop.png}">
+			</a>
+		</div>
 		<div class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 				<div th:if="${param.error}">
@@ -30,12 +35,7 @@
 				<div th:if="${param.logout}">
 					<div class="alert alert-info">Até logo!</div>
 				</div>
-				<div>
-					<a th:href="www.iridiumit.com.br" >
-						<img class="logo_iridiumit" th:src="@{/images/logo_iridiumIT.png}">
-						<img class="texto_iridiumit" alt="Iridium IT Consulting & Technology" th:src="@{/images/iridiumIT.png}" />
-					</a>
-				</div>
+				
 				<div class="panel panel-info">
 					<div class="panel-heading">
 				    	<h3 class="panel-title">ENTRE</h3>
@@ -60,8 +60,14 @@
 							</div>
 
 							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							
 						</form>
 					</div>
+						<div class="logo-iridiumit-login">
+							<a th:href="www.iridiumit.com.br" >
+								<img class="logo_iridiumit" th:src="@{/images/iridium.png}">
+							</a>
+						</div>
 				</div>
 			</div>
 		</div>

@@ -1,0 +1,20 @@
+@CHARSET "ISO-8859-1";
+.logo-iridiumit-login {
+	padding: 10px;
+	
+	text-align: right;
+}
+
+.logo_iridiumit {
+	width: 50px;
+}
+
+.logo-cliente-login {
+	padding: 20px;
+	
+	text-align: center;
+}
+
+.logo_petshop {
+	width: 500px;
+}

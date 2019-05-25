@@ -6,14 +6,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import com.iridiumit.gestaopetshop.security.OSUserDetailsService;
+import com.iridiumit.gestaopetshop.security.PetShopUserDetailsService;
 
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	private OSUserDetailsService userDetailsService;
+	private PetShopUserDetailsService userDetailsService;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

@@ -23,9 +23,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 @Component
-public class OSUserDetailsService implements UserDetailsService {
+public class PetShopUserDetailsService implements UserDetailsService {
 
-	private static final Logger logger = Logger.getLogger(OSUserDetailsService.class.getSimpleName());
+	private static final Logger logger = Logger.getLogger(PetShopUserDetailsService.class.getSimpleName());
 
 	@Autowired
 	private DataSource dataSource;
@@ -37,7 +37,7 @@ public class OSUserDetailsService implements UserDetailsService {
 		try {
 			connection = dataSource.getConnection();
 
-			OSUserDetails userDetails = buscarUsuario(connection, login);
+			PetShopUserDetails userDetails = buscarUsuario(connection, login);
 
 			Collection<GrantedAuthority> permissoesPorUsuario = buscarPermissoes(connection,
 					login, PERMISSOES_POR_USUARIO);
@@ -64,7 +64,7 @@ public class OSUserDetailsService implements UserDetailsService {
 		}
 	}
 
-	public OSUserDetails buscarUsuario(Connection connection, String login) throws SQLException {
+	public PetShopUserDetails buscarUsuario(Connection connection, String login) throws SQLException {
 		PreparedStatement ps = connection.prepareStatement(USUARIO_POR_LOGIN);
 		ps.setString(1, login);
 
@@ -81,7 +81,7 @@ public class OSUserDetailsService implements UserDetailsService {
 		rs.close();
 		ps.close();
 
-		return new OSUserDetails(nome, login, password, ativo);
+		return new PetShopUserDetails(nome, login, password, ativo);
 	}
 
 	public Collection<GrantedAuthority> buscarPermissoes(Connection connection, String login, String sql) throws SQLException {

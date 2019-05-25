@@ -41,7 +41,7 @@ public class Fornecedor {
 	
 	@OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
-            mappedBy = "produto")
+            mappedBy = "fornecedor")
     private Set<Produto> produto = new HashSet<>();
 	
 	public Fornecedor(){

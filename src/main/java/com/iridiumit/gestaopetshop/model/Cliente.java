@@ -35,7 +35,7 @@ public class Cliente {
 	
 	@OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
-            mappedBy = "animal")
+            mappedBy = "cliente")
     private Set<Animal> animal = new HashSet<>();
 	
 	public Cliente(){
