@@ -36,7 +36,7 @@ public class ClienteService{
 	}
 	
 	public Cliente localizarLogin(String cpf){
-		return clientes.findByCpfcnpj(cpf);
+		return clientes.findByCpf(cpf);
 	}
 	
 	public void incluir(Cliente cliente){

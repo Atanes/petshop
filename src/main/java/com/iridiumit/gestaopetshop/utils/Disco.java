@@ -12,10 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class Disco {
 	
-	@Value("${controleos.disco.raiz}")
+	@Value("${petshop.disco.raiz}")
 	private String raiz;
 	
-	@Value("${controleos.disco.diretorio-imagens}")
+	@Value("${petshop.disco.diretorio-imagens}")
 	private String diretorioFotos;
 	
 	public void salvarFoto(MultipartFile foto) {

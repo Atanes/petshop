@@ -21,13 +21,13 @@ public class Fornecedor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank (message = "{nome.not.blank}")
+	@NotBlank (message = "{nomeFornecedor.not.blank}")
 	private String nome;
 	
-	@NotBlank(message = "{telefone.not.blank}")
+	@NotBlank(message = "{telefoneFornecedor.not.blank}")
 	private String telefone;
 	
-	@NotBlank(message = "{celular.not.blank}")
+	@NotBlank(message = "{celularFornecedor.not.blank}")
 	private String celular;
 	
 	@NotBlank(message = "{email.not.blank}")
@@ -36,7 +36,7 @@ public class Fornecedor {
 	
 	private String site;
 	
-	@NotBlank(message = "{contato.not.blank}")
+	@NotBlank(message = "{contatoFornecedor.not.blank}")
 	private String contato;
 	
 	@OneToMany(cascade = CascadeType.ALL,

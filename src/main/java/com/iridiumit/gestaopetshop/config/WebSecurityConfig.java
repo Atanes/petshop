@@ -19,12 +19,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.
 			authorizeRequests()
-				.antMatchers("/").hasAnyRole("OS_ADMIN", "OS_ATENDIMENTO", "OS_TECNICO", "OS_ORCAMENTO")
-				.antMatchers("/administracao/**").hasAnyRole("OS_ADMIN")
-				.antMatchers("/relatorios/**").hasAnyRole("OS_ADMIN")
-				.antMatchers("/atendimento/**").hasAnyRole("OS_ADMIN","OS_ATENDIMENTO")
-				.antMatchers("/tecnico/**").hasAnyRole("OS_ADMIN","OS_TECNICO")
-				.antMatchers("/orcamento/**").hasAnyRole("OS_ADMIN","OS_ORCAMENTO","OS_TECNICO")
+				.antMatchers("/").hasAnyRole("PS_ADMIN", "PS_ATENDIMENTO", "PS_VETERINARIO", "PS_CAIXA")
+				.antMatchers("/administracao/**").hasAnyRole("PS_ADMIN")
+				.antMatchers("/relatorios/**").hasAnyRole("PS_ADMIN","PS_VETERINARIO")
+				.antMatchers("/atendimento/**").hasAnyRole("PS_ADMIN","PS_ATENDIMENTO")
+				.antMatchers("/veterinario/**").hasAnyRole("PS_ADMIN","PS_VETERINARIO")
+				.antMatchers("/caixa/**").hasAnyRole("PS_ADMIN","PS_CAIXA")
 				.anyRequest()
 				.authenticated()
 				.antMatchers("/resources/**", "/signup", "/about", "/imagens_produtos/**").permitAll()

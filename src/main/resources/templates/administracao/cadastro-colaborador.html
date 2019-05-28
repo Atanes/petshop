@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head>
+</head>
+
+<body>
+	<section layout:fragment="content">	
+		<div class="container-fluid">
+			<div class="page-header">
+				<h3>Cadastro Usuário</h3>
+			</div>
+
+			<form name="formulario" method="POST" class="form-vertical  js-form-loading"
+				th:object="${usuario}" th:action="@{/administracao/usuarios/salvar}">
+				
+				<div class="alert  alert-danger  alert-dismissible" role="alert"
+					th:if="${#fields.hasAnyErrors()}">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<div th:each="erro: ${#fields.detailedErrors()}">
+						<i class="fa fa-exclamation-circle"></i> <span
+							th:text="${erro.message}">Mensagem erro.</span>
+					</div>
+				</div>
+
+				<div class="alert  alert-success"
+					th:if="${!#strings.isEmpty(mensagem)}">
+					<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem
+						sucesso!</span>
+				</div>
+    			
+				<input type="hidden" th:field="*{id}" />
+				<div class="row">
+					<div class="col-sm-6 form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
+						<label for="nome">Nome</label> <input id="nome" type="text"
+							class="form-control" th:field="*{nome}" />
+					</div>
+					<div class="col-sm-6 form-group" th:classappend="${#fields.hasErrors('login')} ? has-error">
+						<label for="login">Login</label> <input id="login" type="text"
+							class="form-control" th:field="*{login}" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 form-group" th:classappend="${#fields.hasErrors('senha')} ? has-error">
+						<label for="senha">Senha</label>
+						<input id="senha" class="form-control" 
+							th:field="*{senha}" type="password" placeholder="Digite uma Senha" title="Senha"/>
+					</div>
+					
+					<div class="col-sm-6 form-group">
+						<label for="senha2">Confirmar Senha</label>
+						<input id="senha2" class="form-control" 
+						type="password" placeholder="Repetir Senha" title="Repetir Senha"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 form-group" th:classappend="${#fields.hasErrors('permissoes')} ? has-error">
+						<label for="permissao">Permissão</label>
+						
+						<select id="permissao" class="form-control" th:field="*{permissoes}">
+							<option value="">Selecione a permissão para o usuário</option>
+							<option th:each="permissao: ${permissoes}"
+							th:value="${permissao.id}" th:text="${#strings.substring(permissao.nome,8)}">Opção 1</option>
+						</select>
+					</div>
+					<div class="col-sm-6 form-group" th:classappend="${#fields.hasErrors('email')} ? has-error">
+						<label for="email">E-mail</label>
+						<input id="email" class="form-control" 
+							th:field="*{email}" type="text" placeholder="seunome@dominio.com.br" title="E-mail"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<button class="btn  btn-primary" type="submit" id="inputSubmit">Salvar</button>
+				</div>
+			</form>
+		</div>
+			<script>
+			  $(function(){
+				$("#inputSubmit").click(function(){
+			      var senha = $("#senha").val();
+			      var senha2 = $("#senha2").val();
+			      if(senha != senha2){
+			        event.preventDefault();
+			      	alert("As senhas não são iguais!");
+			      }
+			    });
+			  });
+			</script>
+	</section>
+</body>
+</html>

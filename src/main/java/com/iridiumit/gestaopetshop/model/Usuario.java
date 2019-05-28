@@ -25,21 +25,24 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class Usuario implements Serializable, UserDetails {
 
     private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@NotBlank (message = "{name.not.blank}")
+	private String nome;
+	
+	@NotBlank(message = "{email.not.blank}")
+	@Email(message = "{email.not.valid}")
+	private String email;
+	
     @Size (min = 5, max = 20, message = "{login.tamanho}")
     private String login;
     
     @NotBlank (message = "{senha.not.blank}")
     private String senha;
-    @NotBlank (message = "{name.not.blank}")
-    private String nome;
-    @NotBlank(message = "{email.not.blank}")
-	@Email(message = "{email.not.valid}")
-    private String email;
+   
     private boolean ativo;
     
     @NotEmpty(message = "{permissao.not.empty}")
@@ -49,21 +52,46 @@ public class Usuario implements Serializable, UserDetails {
              inverseJoinColumns = { @JoinColumn(name = "permissao_id") })
     private Set<Permissao> permissoes = new HashSet<Permissao>();
     
-    public Usuario(){
+    public Usuario() {
     	
     }
     
-    public Usuario(Long id, String nome, String login, 
-			String senha, String email, boolean ativo) {
+    public Usuario(Long id, String nome, String email, String login, String senha, boolean ativo,
+			Set<Permissao> permissoes) {
 		this.id = id;
-    	this.nome = nome;
+		this.nome = nome;
+		this.email = email;
 		this.login = login;
 		this.senha = senha;
-		this.email = email;
 		this.ativo = ativo;
+		this.permissoes = permissoes;
 	}
-    
-    @Override
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Set<Permissao> roles = new HashSet<Permissao>();
 		if (permissoes != null) {
@@ -72,14 +100,6 @@ public class Usuario implements Serializable, UserDetails {
 			}
 		}
 		return roles;
-	}
-    
-    public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getLogin() {
@@ -106,22 +126,6 @@ public class Usuario implements Serializable, UserDetails {
         this.senha = senha;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome.toUpperCase();
-    }
-    
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public Set<Permissao> getPermissoes() {
 		return permissoes;
 	}
@@ -137,7 +141,7 @@ public class Usuario implements Serializable, UserDetails {
 
     @Override
     public String getUsername() {
-        return nome;
+        return this.getNome();
     }
 
     @Override
@@ -191,5 +195,4 @@ public class Usuario implements Serializable, UserDetails {
 		return true;
 	}
 
-	
 }

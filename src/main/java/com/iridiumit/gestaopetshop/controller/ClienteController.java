@@ -68,10 +68,10 @@ public class ClienteController {
 	@PostMapping("/salvar")
 	public ModelAndView salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attributes) {
 		
-		Cliente c = clienteService.localizarLogin(cliente.getCpfcnpj());
+		Cliente c = clienteService.localizarLogin(cliente.getCpf());
 		
 		if (c != null && c.getId() != cliente.getId()) {
-			result.rejectValue("cpfcnpj", "cpfcnpj.existente");
+			result.rejectValue("cpf", "cpf.existente");
         }
 		
 		if (result.hasErrors()) {

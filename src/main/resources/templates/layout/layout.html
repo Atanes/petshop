@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8" />
 
-<title>Sistema exemplos para controle de Ordens de Serviço -
-	IridiumIT</title>
+<title>Sistema para gestão e administração de um Pet Shop -
+	by IridiumIT</title>
 
 <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
 	rel="stylesheet" />
@@ -38,7 +38,7 @@
 
 				<ul class="nav navbar-nav">
 					<li class="dropdown"
-						sec:authorize="hasRole('OS_ATENDIMENTO') or hasRole('OS_ADMIN')">
+						sec:authorize="hasRole('PS_ATENDIMENTO') or hasRole('PS_ADMIN')">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"
 						role="button" aria-haspopup="true" aria-expanded="false">
 							Atendimento <span class="caret"></span>
@@ -49,16 +49,16 @@
 							<li><a href="/atendimento/clientes">Listar Clientes</a></li>
 							<li><a href="/atendimento/clientes/novo">Cadastro
 									Cliente</a></li>
-							<li><a href="/equipamentos">Listar Equipamentos</a></li>		
-							<li><a href="/equipamentos/novo">Cadastro Equipamento</a></li>
+							<li><a href="/equipamentos">Listar Produtos</a></li>		
+							<li><a href="/equipamentos/novo">Cadastro Produtos</a></li>
 						</ul>
 					</li>
-					<li sec:authorize="hasRole('OS_TECNICO') or hasRole('OS_ADMIN')"><a
-						href="/tecnico">Tecnicos</a></li>
-					<li sec:authorize="hasRole('OS_ORCAMENTO') or hasRole('OS_ADMIN')"><a
-						href="/orcamento">Orçamento</a></li>
+					<li sec:authorize="hasRole('PS_CAIXA') or hasRole('PS_ADMIN')"><a
+						href="/tecnico">Caixa</a></li>
+					<li sec:authorize="hasRole('PS_VETERINARIO') or hasRole('PS_ADMIN')"><a
+						href="/orcamento">Consulta</a></li>
 					<li class="dropdown"
-						sec:authorize="hasRole('OS_ORCAMENTO') or hasRole('OS_ADMIN')">
+						sec:authorize="hasRole('PS_VETERINARIO') or hasRole('PS_ADMIN')">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"
 						role="button" aria-haspopup="true" aria-expanded="false">
 							Relatórios <span class="caret"></span>
@@ -66,8 +66,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="/rel-clientes" target="_blank">Clientes</a></li>
 							<li><a href="/rel-usuarios" target="_blank">Usuários</a></li>
-							<li><a href="/relatorios/os" target="_blank">Ordens de
-									Serviço </a></li>
+							<li><a href="/relatorios/os" target="_blank">Consultas</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -83,11 +82,10 @@
 					<input type="hidden" th:name="${_csrf.parameterName}"
 						th:value="${_csrf.token}" />
 				</form>
-				<!--
-		            -->
+				<!-- Menu com as funções de administração do sistema -->
 
 				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown" sec:authorize="hasRole('OS_ADMIN')"><a
+					<li class="dropdown" sec:authorize="hasRole('PS_ADMIN')"><a
 						href="#" class="dropdown-toggle" data-toggle="dropdown"
 						role="button" aria-haspopup="true" aria-expanded="false">
 							Administração <span class="caret"></span>

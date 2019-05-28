@@ -10,6 +10,6 @@ public interface Clientes extends JpaRepository<Cliente, Long>{
 
 	List<Cliente> findByNomeContainingIgnoreCase(String nome);
 	
-	Cliente findByCpfcnpj(String cpf_cnpj);
+	Cliente findByCpf(String cpf);
 
 }
