@@ -1,15 +1,16 @@
 package com.iridiumit.gestaopetshop.model;
 
-public enum GruposTrabalho {
+public enum GrupoColaboradores {
 	
 	CAIXA("Caixa"), 
 	ATENDENTE("Atendente"), 
 	VETERINARIO("Veterinário"), 
-	APOIO("Apoio");
+	APOIO("Apoio"),
+	GERENTE("Gerente");
 	
 	private String descricao;
 	
-	GruposTrabalho(String descricao){
+	GrupoColaboradores(String descricao){
 		this.descricao = descricao;
 	}
 	
