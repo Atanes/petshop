@@ -26,7 +26,7 @@
 							<div class="input-group">
 								<input class="form-control"
 									placeholder="Qual cliente você está procurando?"
-									autofocus="autofocus" th:field="*{cpf_nome}"></input> <span
+									autofocus="autofocus" th:field="*{nome}"></input> <span
 									class="input-group-btn">
 									<button type="submit" class="btn btn-default">
 										<i class="glyphicon glyphicon-search"></i>
@@ -44,7 +44,7 @@
 						<tr>
 							<th class="text-center">Código</th>
 							<th class="col-md-3">Nome</th>
-							<th>CPF_CNPJ</th>
+							<th>CPF</th>
 							<th>Celular</th>
 							<th>e-mail</th>
 							<th class="text-center">Ações</th>
@@ -55,14 +55,14 @@
 							<td class="text-center" th:text="${cliente.id}">1</td>
 
 							<td class="col-md-3" th:text="${cliente.nome}">123</td>
-							<td th:text="${cliente.cpfcnpj}">123</td>
+							<td th:text="${cliente.cpf}">123</td>
 							<td th:text="${cliente.celular}">123</td>
 							<td th:text="${cliente.email}">123</td>
 							<td class="text-center">
 							<form method="POST"
 									th:onsubmit="'return confirm(\'Posso remover o cliente: ' + 
 								${cliente.nome} + ' da base de dados?\');'"
-									th:action="@{atendimento/clientes/excluir/{id}(id=${cliente.id})}">
+									th:action="@{/atendimento/clientes/excluir/{id}(id=${cliente.id})}">
 									<a class="btn btn-primary btn-xs" th:href="@{/atendimento/clientes/editar/{id}(id=${cliente.id})}"
 										th:title="Editar"> <span class="fa fa-pencil acoes"></span>
 									</a> <input type="hidden" name="_method" value="DELETE" />

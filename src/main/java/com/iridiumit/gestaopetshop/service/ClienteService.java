@@ -17,13 +17,13 @@ public class ClienteService{
 		
 	public List<Cliente> filtrar(ClienteFiltro filtro) {
 		
-		String nome = filtro.getCpf_nome() == null ? "%" : filtro.getCpf_nome();
+		String nome = filtro.getNome() == null ? "%" : filtro.getNome();
 		return clientes.findByNomeContainingIgnoreCase(nome);
 	}
 	
-	public List<Cliente> filtrar(String cpf_nome) {
+	public List<Cliente> filtrar(String nome) {
 		
-		String pesquisa = cpf_nome == null ? "%" : cpf_nome;
+		String pesquisa = nome == null ? "%" : nome;
 		return clientes.findByNomeContainingIgnoreCase(pesquisa);
 	}
 	

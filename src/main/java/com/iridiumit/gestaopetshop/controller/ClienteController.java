@@ -32,7 +32,7 @@ public class ClienteController {
 	@GetMapping
 	public ModelAndView listar(@ModelAttribute("filtro") ClienteFiltro filtro) {
 		
-		String nome = filtro.getCpf_nome() == null ? "%" : filtro.getCpf_nome();
+		String nome = filtro.getNome() == null ? "%" : filtro.getNome();
 		
 		ModelAndView modelAndView = new ModelAndView("administracao/lista-clientes");
 
