@@ -1,8 +1,13 @@
 package com.iridiumit.gestaopetshop.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import javax.validation.Valid;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,10 +16,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iridiumit.gestaopetshop.model.Cliente;
+import com.iridiumit.gestaopetshop.relatorios.ClienteREL;
 import com.iridiumit.gestaopetshop.repository.Clientes;
 import com.iridiumit.gestaopetshop.repository.filtros.ClienteFiltro;
 import com.iridiumit.gestaopetshop.service.ClienteService;
@@ -83,6 +90,21 @@ public class ClienteController {
 		attributes.addFlashAttribute("mensagem", "Cliente salvo com sucesso!!");
 
 		return new ModelAndView("redirect:/atendimento/clientes/novo");
+	}
+	
+	@GetMapping(value = "/rel-clientes", produces = MediaType.APPLICATION_PDF_VALUE)
+	public @ResponseBody byte[] getRelClientes() throws IOException {
+
+		ClienteREL relatorio = new ClienteREL();
+		try {
+			relatorio.imprimir(clientes.findAll());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		InputStream in = getClass().getResourceAsStream("/relatorios/Relatorio_de_Clientes.pdf");
+		return IOUtils.toByteArray(in);
 	}
 	
 }

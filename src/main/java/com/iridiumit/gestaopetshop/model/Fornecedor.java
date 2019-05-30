@@ -24,6 +24,9 @@ public class Fornecedor {
 	@NotBlank (message = "{nomeFornecedor.not.blank}")
 	private String nome;
 	
+	@NotBlank (message = "{cnpjFornecedor.not.blank}")
+	private String cnpj;
+	
 	@NotBlank(message = "{telefoneFornecedor.not.blank}")
 	private String telefone;
 	
@@ -50,7 +53,6 @@ public class Fornecedor {
 
 	public Fornecedor(Long id, String nome, String telefone, String celular, String email, String site, String contato,
 			Set<Produto> produto) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -75,6 +77,14 @@ public class Fornecedor {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
 
 	public String getTelefone() {
@@ -129,6 +139,7 @@ public class Fornecedor {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
@@ -142,6 +153,11 @@ public class Fornecedor {
 		if (getClass() != obj.getClass())
 			return false;
 		Fornecedor other = (Fornecedor) obj;
+		if (cnpj == null) {
+			if (other.cnpj != null)
+				return false;
+		} else if (!cnpj.equals(other.cnpj))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;

@@ -79,8 +79,6 @@ public class ColaboradorController {
 			}
         }
 		
-		System.out.println("Valor = " + colaborador.getFuncao());
-		
 		if (colaborador.getFuncao().equals("")) {
 			result.rejectValue("funcao", "funcao.vazia");
         }

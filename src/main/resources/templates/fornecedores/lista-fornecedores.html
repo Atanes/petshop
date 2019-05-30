@@ -11,7 +11,7 @@
 	<section layout:fragment="content">
 		<div class="container-fluid">
 			<div class="page-header">
-				<h3>Listagem - Equipamentos</h3>
+				<h3>Listagem - Fornecedores</h3>
 			</div>
 			<div class="alert  alert-success"
 				th:if="${!#strings.isEmpty(mensagem)}">
@@ -25,28 +25,28 @@
 					<thead class="aw-table-header-solid">
 						<tr>
 							<th class="text-center">Código</th>
-							<th class="col-md-3">Descrição</th>
-							<th class="col-md-2">Nr de Série</th>
-							<th class="col-md-2">Marca</th>
-							<th class="col-md-2">Modelo</th>
-							<th>Imagem</th>
+							<th class="col-md-2">CNPJ</th>
+							<th class="col-md-3">Nome</th>
+							<th class="col-md-2">Contato</th>
+							<th class="col-md-2">E-mail</th>
+							<th>Telefone</th>
 							<th class="text-center">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="equipamento: ${equipamentos}">
-							<td class="col-md-1 text-center" th:text="${equipamento.id}">1</td>
+						<tr th:each="fornecedor: ${fornecedores}">
+							<td class="col-md-1 text-center" th:text="${fornecedor.id}">1</td>
 
-							<td th:text="${equipamento.descricao}">equipamento1</td>
-							<td th:text="${equipamento.nrserie}">123</td>
-							<td th:text="${equipamento.marca}">123</td>
-							<td th:text="${equipamento.modelo}">123</td>
-							<td><img class="amostra_imagens" th:src="${equipamento.url_imagen}"/></td>
+							<td th:text="${fornecedor.cnpj}">fornecedor1</td>
+							<td th:text="${fornecedor.nome}">123</td>
+							<td th:text="${fornecedor.contato}">123</td>
+							<td th:text="${fornecedor.email}">123</td>
+							<td th:text="${fornecedor.telefone}">123</td>
 							<td class="col-md-1 text-center">
-								<form method="POST" th:onsubmit="'return confirm(\'Posso remover o equipamento: ' + 
-								${equipamento.descricao} + ' da base de dados?\');'" 
-								th:action="@{/equipamentos/excluir/{id}(id=${equipamento.id})}">
-								<a class="btn btn-primary btn-xs" th:href="@{/equipamentos/{id}(id=${equipamento.id})}"
+								<form method="POST" th:onsubmit="'return confirm(\'Posso remover o fornecedor: ' + 
+								${fornecedor.nome} + ' da base de dados?\');'" 
+								th:action="@{/fornecedores/excluir/{id}(id=${fornecedor.id})}">
+								<a class="btn btn-primary btn-xs" th:href="@{/fornecedores/editar/{id}(id=${fornecedor.id})}"
 										th:title="Editar"> <span class="fa fa-pencil acoes"></span>
 									</a>
 								<input type="hidden" name="_method" value="DELETE"/>
@@ -58,7 +58,7 @@
 						</tr>
 
 						<tr>
-							<td colspan="5" th:if="${equipamentos.empty}">Nenhum equipamento cadastrado!!!</td>
+							<td colspan="5" th:if="${fornecedores.empty}">Nenhum fornecedor cadastrado!!!</td>
 						</tr>
 					</tbody>
 				</table>

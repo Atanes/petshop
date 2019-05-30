@@ -39,11 +39,6 @@ public class ColaboradorService{
 		return colaboradores.findByCpf(cpf);
 	}
 	
-	public void incluir(Colaborador colaborador){
-               
-		colaboradores.save(colaborador);
-    }
-	
 	public void salvar(Colaborador colaborador) {
 		
 		colaboradores.save(colaborador);

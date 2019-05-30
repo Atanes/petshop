@@ -44,15 +44,17 @@
 							Atendimento <span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="/atendimento">Listar OS´s</a></li>
-							<li><a href="/atendimento/novo">Cadastro OS</a></li>
 							<li><a href="/atendimento/clientes">Listar Clientes</a></li>
 							<li><a href="/atendimento/clientes/novo">Cadastro
 									Cliente</a></li>
-							<li><a href="/equipamentos">Listar Produtos</a></li>		
-							<li><a href="/equipamentos/novo">Cadastro Produtos</a></li>
+							<li><a href="/atendimento/clientes/animais">Listar Animais</a></li>
+							<li><a href="/atendimento/clientes/animais/novo">Cadastro
+									Animais</a></li>
+							<li><a href="/atendimento/consultas">Listar Consultas</a></li>
+							<li><a href="/atendimento/consultas/novo">Cadastro Consultas</a></li>
 						</ul>
 					</li>
+					
 					<li sec:authorize="hasRole('PS_CAIXA') or hasRole('PS_ADMIN')"><a
 						href="/tecnico">Caixa</a></li>
 					<li sec:authorize="hasRole('PS_VETERINARIO') or hasRole('PS_ADMIN')"><a
@@ -64,8 +66,8 @@
 							Relatórios <span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="/rel-clientes" target="_blank">Clientes</a></li>
-							<li><a href="/rel-usuarios" target="_blank">Usuários</a></li>
+							<li><a href="/atendimento/clientes/rel-clientes" target="_blank">Clientes</a></li>
+							<li><a href="/administracao/usuarios/rel-usuarios" target="_blank">Usuários</a></li>
 							<li><a href="/relatorios/os" target="_blank">Consultas</a></li>
 						</ul>
 					</li>
@@ -96,6 +98,10 @@
 							<li><a href="/administracao/usuarios/novo">Incluir Usuário</a></li>
 							<li><a href="/administracao/colaboradores">Listar Colaboradores</a></li>
 							<li><a href="/administracao/colaboradores/novo">Incluir	Colaborador</a></li>
+							<li><a href="/fornecedores">Listar Fornecedores</a></li>		
+							<li><a href="/fornecedores/novo">Cadastro Fornecedores</a></li>
+							<li><a href="/fornecedores/produtos">Listar Produtos</a></li>		
+							<li><a href="/fornecedores/produtos/novo">Cadastro Produtos</a></li>
 						</ul></li>
 				</ul>
 			</div>

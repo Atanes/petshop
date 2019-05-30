@@ -1,10 +1,14 @@
 package com.iridiumit.gestaopetshop.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,10 +17,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iridiumit.gestaopetshop.model.Usuario;
+import com.iridiumit.gestaopetshop.relatorios.UsuarioREL;
 import com.iridiumit.gestaopetshop.repository.filtros.UsuarioFiltro;
 import com.iridiumit.gestaopetshop.service.UsuarioService;
 
@@ -110,4 +116,19 @@ public class UsuarioController {
 		return new ModelAndView("redirect:/administracao/usuarios");
 			
 	}
+	
+	@GetMapping(value = "/rel-usuarios", produces = MediaType.APPLICATION_PDF_VALUE)
+	public @ResponseBody byte[] getRelUsuarios() throws IOException {
+
+		UsuarioREL relatorio = new UsuarioREL();
+		try {
+			relatorio.imprimir(usuarioService.listarTodos());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		InputStream in = getClass().getResourceAsStream("/relatorios/Relatorio_de_Usuarios.pdf");
+		return IOUtils.toByteArray(in);
+	}
+
 }
