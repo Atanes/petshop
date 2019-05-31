@@ -64,11 +64,11 @@
 								${colaborador.nome} + ' da base de dados?\');'"
 									th:action="@{/administracao/colaboradores/excluir/{id}(id=${colaborador.matricula})}">
 									<a class="btn btn-primary btn-xs" th:href="@{/administracao/colaboradores/editar/{id}(id=${colaborador.matricula})}"
-										th:title="Editar"> <span class="fa fa-pencil acoes"></span>
+										th:title="Editar"> <span class="fa fa-pencil-alt acoes"></span>
 									</a>
 									<input type="hidden" name="_method" value="DELETE" />
 									<button type="submit" class="btn btn-danger btn-xs" title="Excluir">
-										<span class="fa fa-trash acoes"></span>
+										<i class="far fa-trash-alt acoes"></i>
 									</button>
 								</form>							
 							</td>

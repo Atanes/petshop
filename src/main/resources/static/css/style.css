@@ -1,49 +1,12 @@
-body {
-	margin-top: 30px;
-}
-
-footer {
-	color: #AAA
-}
-
 .acoes {
 	margin: 1px;
 }
 
-.amostra_imagens {
-	width: 30px;
-}
-
-
 .logo_menu {
-	width: 35px;
-	margin-top: 5px;
-}
-
-.logo_iridiumit {
 	width: 50px;
-	margin-bottom: 10px;
-}
-
-.posicao_rodape {
-	position: relative;
-}
-
-.texto_iridiumit_rodape {
-	position: absolute;
-	width: 60px;
-	right: 20px;
-}
-
-.texto_iridiumit {
-	width: 150px;
-}
-
-label {
-	display: block;
-	text-align: left;
-	margin-bottom: .5em;
-	padding-left: 0px;
+    float: left;
+    top:50%;
+    margin-top: 12px;
 }
 
 .form-horizontal .form-group {

@@ -47,11 +47,11 @@
 								${fornecedor.nome} + ' da base de dados?\');'" 
 								th:action="@{/fornecedores/excluir/{id}(id=${fornecedor.id})}">
 								<a class="btn btn-primary btn-xs" th:href="@{/fornecedores/editar/{id}(id=${fornecedor.id})}"
-										th:title="Editar"> <span class="fa fa-pencil acoes"></span>
+										th:title="Editar"> <span class="fas fa-pencil-alt acoes"></span>
 									</a>
 								<input type="hidden" name="_method" value="DELETE"/>
 									<button type="submit" class="btn btn-danger btn-xs" title="Excluir">
-										<span class="fa fa-trash"></span>
+										<i class="far fa-trash-alt acoes"></i>
 									</button>
 								</form>
 							</td>
