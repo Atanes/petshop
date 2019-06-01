@@ -9,33 +9,33 @@
 <body>
 
 	<section layout:fragment="content">
-		<div class="container-fluid">
-			<div class="page-header">
-				<h3>Listagem - Clientes</h3>
-			</div>
+		<div class="layout-pagina">
+		
+			<h1 class="titulo-formulario">Listagem de clientes</h1>
+			
 			<div class="alert  alert-success"
 				th:if="${!#strings.isEmpty(mensagem)}">
-				<i class="fa fa-check-circle"></i>
-				<span th:text="${mensagem}">Mensagem sucesso!</span>
+				<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem
+					sucesso!</span>
 			</div>
 			
 			<form method="GET" class="form-horizontal"
-					action="/atendimento/clientes" th:object="${filtro}">
-					<div class="form-group">
-						<div class="col-sm-4">
-							<div class="input-group">
-								<input class="form-control"
-									placeholder="Qual cliente você está procurando?"
-									autofocus="autofocus" th:field="*{nome}"></input> <span
-									class="input-group-btn">
-									<button type="submit" class="btn btn-default">
-										<i class="glyphicon glyphicon-search"></i>
-									</button>
-								</span>
-							</div>
+				action="/atendimento/clientes" th:object="${filtro}">
+				<div class="form-group">
+					<div class="col-sm-4">
+						<div class="input-group">
+							<input class="form-control"
+								placeholder="Qual cliente você está procurando?"
+								autofocus="autofocus" th:field="*{nome}"></input> <span
+								class="input-group-btn">
+								<button type="submit" class="btn btn-default">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</span>
 						</div>
 					</div>
-				</form>
+				</div>
+			</form>
 
 			<div class="table-responsive">
 				<table id="tabela-produtos"
@@ -59,27 +59,31 @@
 							<td th:text="${cliente.celular}">123</td>
 							<td th:text="${cliente.email}">123</td>
 							<td class="text-center">
-							<form method="POST"
+								<form method="POST"
 									th:onsubmit="'return confirm(\'Posso remover o cliente: ' + 
 								${cliente.nome} + ' da base de dados?\');'"
 									th:action="@{/atendimento/clientes/excluir/{id}(id=${cliente.id})}">
-									<a class="btn btn-primary btn-xs" th:href="@{/atendimento/clientes/editar/{id}(id=${cliente.id})}"
+									<a class="btn btn-primary btn-xs"
+										th:href="@{/atendimento/clientes/editar/{id}(id=${cliente.id})}"
 										th:title="Editar"> <span class="fa fa-pencil-alt acoes"></span>
-									</a> <input type="hidden" name="_method" value="DELETE" />
-									<a class="btn btn-success btn-xs" th:href="@{/equipamentos/selecao/{id}(id=${cliente.id})}" th:title="Equipamentos">
-									<span class="fa fa-plug acoes"></span>
+									</a> <input type="hidden" name="_method" value="DELETE" /> <a
+										class="btn btn-success btn-xs"
+										th:href="@{/equipamentos/selecao/{id}(id=${cliente.id})}"
+										th:title="Equipamentos"> <span class="fa fa-plug acoes"></span>
 									</a>
-									<button type="submit" class="btn btn-danger btn-xs" title="Excluir">
+									<button type="submit" class="btn btn-danger btn-xs"
+										title="Excluir">
 										<i class="far fa-trash-alt acoes"></i>
 									</button>
-								</form>							
+								</form>
 							</td>
 						</tr>
 
 						<tr>
-							<td colspan="5" th:if="${clientes.empty}">Nenhum cliente cadastrado!!</td>
+							<td colspan="5" th:if="${clientes.empty}">Nenhum cliente
+								cadastrado!!</td>
 						</tr>
-						
+
 					</tbody>
 				</table>
 			</div>

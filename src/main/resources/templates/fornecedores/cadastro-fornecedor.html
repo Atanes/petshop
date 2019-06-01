@@ -8,10 +8,9 @@
 
 <body>
 	<section layout:fragment="content">
-		<div class="container-fluid">
-			<div class="page-header">
-				<h3>Cadastro Fornecedor</h3>
-			</div>
+		<div class="layout-pagina">
+		
+			<h1 class="titulo-formulario">Cadastro de fornecedor</h1>
 
 			<form method="POST" class="form-vertical  js-form-loading"
 				th:object="${fornecedor}" th:action="@{/fornecedores/salvar}">

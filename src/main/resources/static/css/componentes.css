@@ -8,6 +8,17 @@
 	width: 500px;
 }
 
+.logo_menu {
+	width: 50px;
+    float: left;
+    top:50%;
+    margin-top: 12px;
+}
+
+.menu-centralizado {
+	margin-top: 8px;
+}
+
 /*------- Menu -------*/
 
 .menu {
@@ -62,4 +73,39 @@
     padding-right: 0px;
   }
 
+}
+
+/*------- Formulario -------*/
+.grupo-entrada {
+	margin-bottom: 15px;
+	display: block;
+}
+
+.label-padrao {
+	font-weight: bold;
+}
+
+.campo-padrao {
+	width: 100%;
+	height: 2.5em;
+
+	font-size: 1.5rem;
+
+	margin-top: 5px;
+
+	border: 1px solid #ccc;
+	border-radius: 5px;
+
+	background-color: #fff;
+}
+
+.titulo-formulario {
+	margin: 0;
+	margin-bottom: 40px;
+	margin-top: 20px;
+
+	border-bottom: 1px solid #ccc;
+
+	font-size: 2.6rem;
+	font-weight: normal;
 }

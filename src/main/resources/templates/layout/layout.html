@@ -12,13 +12,12 @@
 <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
 	rel="stylesheet" />
 
-<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"
-	rel="stylesheet" />
-
 <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet" />
 
-<link th:href="@{/css/style.css}" rel="stylesheet" />
 <link th:href="@{/css/layout.css}" rel="stylesheet" />
+
+<link th:href="@{/css/componentes.css}" rel="stylesheet" />
+
 <link th:href="@{/css/estilo_IridiumIT.css}" rel="stylesheet" />
 
 <script th:src="@{/webjars/jquery/2.2.4/jquery.js}"></script>
@@ -40,7 +39,7 @@
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 
-					<ul class="nav navbar-nav">
+					<ul class="nav navbar-nav menu-centralizado">
 						<li class="dropdown"
 							sec:authorize="hasRole('PS_ATENDIMENTO') or hasRole('PS_ADMIN')">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"
@@ -99,7 +98,7 @@
 					</form>
 					<!-- Menu com as funções de administração do sistema -->
 
-					<ul class="nav navbar-nav navbar-right">
+					<ul class="nav navbar-nav navbar-right menu-centralizado">
 						<li class="dropdown" sec:authorize="hasRole('PS_ADMIN')"><a
 							href="#" class="dropdown-toggle" data-toggle="dropdown"
 							role="button" aria-haspopup="true" aria-expanded="false">
@@ -132,20 +131,17 @@
 			aparecerão aqui.</div>
 	</div>
 
-	<div class="container">
-		<hr />
-
-		<footer class="aw-layout-footer  js-content">
-			<div class="container-fluid layout-rodape">
+		<footer>
+		
+			<div class="layout-rodape">
 				<span class="aw-footer-disclaimer">&copy; 2018 IridiumIT.
 					Todos os direitos reservados.</span> <a th:href="www.iridiumit.com.br">
 					<img class="marca_iridiumit_rodape" alt="IridiumIT Tecnologia"
 					th:src="@{/images/logo_nome_IridiumIT.png}" />
 				</a>
-
-
 			</div>
+			
 		</footer>
-	</div>
+
 </body>
 </html>

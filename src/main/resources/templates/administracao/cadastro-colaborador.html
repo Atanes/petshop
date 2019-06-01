@@ -8,10 +8,10 @@
 
 <body>
 	<section layout:fragment="content">
-		<div class="container-fluid">
-			<div class="page-header">
-				<h3>Cadastro Colaborador</h3>
-			</div>
+		<div class="layout-pagina">
+		
+			<h1 class="titulo-formulario">Cadastro de colaborador</h1>
+			
 
 			<form method="POST" class="form-vertical  js-form-loading"
 				th:object="${colaborador}" th:action="@{/administracao/colaboradores/salvar}">
