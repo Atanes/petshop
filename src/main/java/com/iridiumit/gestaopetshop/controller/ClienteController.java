@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iridiumit.gestaopetshop.model.Cliente;
 import com.iridiumit.gestaopetshop.relatorios.ClienteREL;
+import com.iridiumit.gestaopetshop.repository.Animais;
 import com.iridiumit.gestaopetshop.repository.Clientes;
 import com.iridiumit.gestaopetshop.repository.filtros.ClienteFiltro;
 import com.iridiumit.gestaopetshop.service.ClienteService;
@@ -35,6 +36,9 @@ public class ClienteController {
 	
 	@Autowired
 	private Clientes clientes;
+	
+	@Autowired
+	private Animais animais;
 	
 	@GetMapping
 	public ModelAndView listar(@ModelAttribute("filtro") ClienteFiltro filtro) {
@@ -90,6 +94,18 @@ public class ClienteController {
 		attributes.addFlashAttribute("mensagem", "Cliente salvo com sucesso!!");
 
 		return new ModelAndView("redirect:/atendimento/clientes/novo");
+	}
+	
+	@GetMapping("/selecao/{id}")
+	public ModelAndView SelecaoPorCliente(@PathVariable Long id) {
+
+		Cliente c = clientes.findOne(id);
+		ModelAndView modelAndView = new ModelAndView("animais/lista-animais");
+
+		modelAndView.addObject("animais", animais.findByCliente(c));
+		modelAndView.addObject("mensagem", "Animais do cliente " + c.getNome());
+		return modelAndView;
+
 	}
 	
 	@GetMapping(value = "/rel-clientes", produces = MediaType.APPLICATION_PDF_VALUE)
