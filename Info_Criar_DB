@@ -83,6 +83,15 @@ CREATE TABLE `usuario_permissao` (
   CONSTRAINT `FKtcuagcmypmug2ddh2d5uol8s5` FOREIGN KEY (`permissao_id`) REFERENCES `permissao` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
+CREATE TABLE `usuario_grupo` (
+  `usuario_id` bigint(20) NOT NULL,
+  `grupo_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`usuario_id`,`grupo_id`),
+  KEY `fk_usuariogrupo_grupo` (`grupo_id`),
+  CONSTRAINT `fk_usuariogrupo_grupo` FOREIGN KEY (`grupo_id`) REFERENCES `grupo` (`id`),
+  CONSTRAINT `fk_usuariogrupo_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 
 #---SQL para inserir aluns usuários no banco de dados---#
 
