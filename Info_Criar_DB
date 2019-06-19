@@ -1,83 +1,112 @@
 #---SQL para criar as tabelas do banco de dados---#
 
-drop table if exists usuario_grupo;
-drop table if exists usuario_permissao;
-drop table if exists grupo_permissao;
-drop table if exists permissao;
-drop table if exists grupo;
-drop table if exists usuario;
+CREATE TABLE `animal` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `data_nasc` date DEFAULT NULL,
+  `especie` varchar(255) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `pedigree` varchar(255) DEFAULT NULL,
+  `raca` varchar(255) DEFAULT NULL,
+  `cliente_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK7p41093e3kpqckn9o6bosc98r` (`cliente_id`),
+  CONSTRAINT `FK7p41093e3kpqckn9o6bosc98r` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
-create table if not exists usuario (
-	id bigint not null auto_increment,
-	nome varchar(100) not null,
-	login varchar(50) not null,
-	senha varchar(100) not null,
-	ativo boolean default false,
-	primary key (id),
-	unique key un_usuario_login (login)
-);
+CREATE TABLE `cliente` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `celular` varchar(255) NOT NULL,
+  `cpf` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `telefone` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
-create table if not exists permissao (
-	id bigint not null auto_increment,
-	nome varchar(100) not null,
-	primary key (id)
-);
+CREATE TABLE `colaborador` (
+  `matricula` bigint(20) NOT NULL AUTO_INCREMENT,
+  `cpf` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `funcao` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) NOT NULL,
+  PRIMARY KEY (`matricula`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
-create table if not exists usuario_permissao (
-	usuario_id bigint not null,
-	permissao_id bigint not null,
-	primary key (usuario_id, permissao_id),
-	constraint fk_usuariopermissao_usuario foreign key (usuario_id) references usuario(id),
-	constraint fk_usuariopermissao_permissao foreign key (permissao_id) references permissao(id)
-);
+CREATE TABLE `fornecedor` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `celular` varchar(255) NOT NULL,
+  `cnpj` varchar(255) NOT NULL,
+  `contato` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `site` varchar(255) DEFAULT NULL,
+  `telefone` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
-create table if not exists grupo (
-	id bigint not null auto_increment,
-	nome varchar(100) not null,
-	primary key (id),
-	unique key un_grupo_nome (nome)
-);
+CREATE TABLE `permissao` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8
 
-create table if not exists usuario_grupo (
-	usuario_id bigint not null,
-	grupo_id bigint not null,
-	primary key(usuario_id, grupo_id),
-	constraint fk_usuariogrupo_usuario foreign key (usuario_id) references usuario(id),
-	constraint fk_usuariogrupo_grupo foreign key (grupo_id) references grupo(id)
-);
+CREATE TABLE `produto` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(255) NOT NULL,
+  `qtd` float NOT NULL,
+  `tipo` varchar(255) NOT NULL,
+  `unidade_medida` varchar(255) NOT NULL,
+  `valor_compra` double NOT NULL,
+  `valor_venda` double NOT NULL,
+  `fornecedor_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKo6c1dbi17sempey5dpnx6ovrj` (`fornecedor_id`),
+  CONSTRAINT `FKo6c1dbi17sempey5dpnx6ovrj` FOREIGN KEY (`fornecedor_id`) REFERENCES `fornecedor` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
-create table if not exists grupo_permissao (
-	grupo_id bigint not null,
-	permissao_id bigint not null,
-	primary key (grupo_id, permissao_id),
-	constraint fk_grupopermissao_grupo foreign key (grupo_id) references grupo(id),
-	constraint fk_grupopermissao_permissao foreign key (permissao_id) references permissao(id)
-);
+CREATE TABLE `usuario` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ativo` bit(1) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `login` varchar(20) DEFAULT NULL,
+  `nome` varchar(255) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8
+
+CREATE TABLE `usuario_permissao` (
+  `usuario_id` bigint(20) NOT NULL,
+  `permissao_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`usuario_id`,`permissao_id`),
+  KEY `FKtcuagcmypmug2ddh2d5uol8s5` (`permissao_id`),
+  CONSTRAINT `FK5wc2vh351r26qbqt1tc52sh4m` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
+  CONSTRAINT `FKtcuagcmypmug2ddh2d5uol8s5` FOREIGN KEY (`permissao_id`) REFERENCES `permissao` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
 
 #---SQL para inserir aluns usuários no banco de dados---#
 
 insert into permissao (id, nome) values 
-	(1, 'ROLE_OS_ATENDIMENTO')
-	, (2, 'ROLE_OS_ORCAMENTO')
-	, (3, 'ROLE_OS_TECNICO')
-	, (4, 'ROLE_OS_ADMIN')
+	(1, 'ROLE_PS_ADMIN')
+	, (2, 'ROLE_PS_VETERINARIO')
+	, (3, 'ROLE_PS_CAIXA')
+	, (4, 'ROLE_PS_ATENDIMENTO')
     ;
 	
-insert into usuario (id, nome, login, senha, ativo) values 
-	(1, 'Atanes', 'Atanes', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
-	, (2, 'Carlos', 'carlos', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
-	, (3, 'Técnico', 'tecnico', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
-	, (4, 'Administrador', 'admin', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
-	, (5, 'Atendente', 'atendente', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
-	, (6, 'Orcamento', 'orcamento', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', true)
+insert into usuario (id, ativo, email, login, nome, senha) values 
+	(1, true, 'aatanes100@gmail.com', 'Atanes', 'Atanes', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2')
+	, (2, true, 'alexandre@a2d.com.br', 'Alexandre', 'Alexandre', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2')
+	, (3, true, 'daniel@a2d.com.br','Daniel', 'Daniel', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2')
+	, (4, true,'veterinario@teste.com', 'Veterinario', 'Veterinario', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2')
+	, (5, true, 'caixa@teste.com', 'Caixa', 'Caixa', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2')
+	, (6, true, 'atendimento@teste.com','Atendimento', 'Atendimento', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2')
 ;
 	
 insert into usuario_permissao (usuario_id, permissao_id) values 
-	(1, 4)
-	, (2, 4)
-	, (3, 3)
-	, (4, 4)
-	, (5, 1)
-	, (6, 2)
+	(1, 1)
+	, (2, 1)
+	, (3, 1)
+	, (4, 2)
+	, (5, 3)
+	, (6, 4)
 ;
