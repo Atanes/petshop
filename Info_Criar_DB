@@ -83,6 +83,14 @@ CREATE TABLE `usuario_permissao` (
   CONSTRAINT `FKtcuagcmypmug2ddh2d5uol8s5` FOREIGN KEY (`permissao_id`) REFERENCES `permissao` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
+CREATE TABLE `grupo` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `un_grupo_nome` (`nome`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+SELECT * FROM petshopbd.grupo;
+
 CREATE TABLE `usuario_grupo` (
   `usuario_id` bigint(20) NOT NULL,
   `grupo_id` bigint(20) NOT NULL,
