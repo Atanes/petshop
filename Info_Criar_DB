@@ -100,6 +100,16 @@ CREATE TABLE `usuario_grupo` (
   CONSTRAINT `fk_usuariogrupo_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+CREATE TABLE `grupo_permissao` (
+  `grupo_id` bigint(20) NOT NULL,
+  `permissao_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`grupo_id`,`permissao_id`),
+  KEY `fk_grupopermissao_permissao` (`permissao_id`),
+  CONSTRAINT `fk_grupopermissao_grupo` FOREIGN KEY (`grupo_id`) REFERENCES `grupo` (`id`),
+  CONSTRAINT `fk_grupopermissao_permissao` FOREIGN KEY (`permissao_id`) REFERENCES `permissao` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+SELECT * FROM petshopbd.grupo_permissao;
+
 
 #---SQL para inserir aluns usuários no banco de dados---#
 
