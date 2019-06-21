@@ -2,10 +2,13 @@ package com.iridiumit.gestaopetshop.model;
 
 public enum StatusConsulta {
 	
-	AGENDADA("Agendada"), 
+	AGENDADA("Agendada"),
+	AGUARDANDO("Aguardando"),
 	ATENDIMENTO("Em atendimento"), 
-	FINALIZADA("Finalizada"), 
-	RETORNO("Retorno");
+	CANCELADA("Cancelada"),
+	CONFIRMADA("Confirmada"),
+	FALTOU("Faltou"),
+	FINALIZADA("Finalizada");
 	
 	private String descricao;
 	

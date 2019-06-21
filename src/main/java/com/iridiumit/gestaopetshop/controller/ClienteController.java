@@ -45,7 +45,7 @@ public class ClienteController {
 		
 		String nome = filtro.getNome() == null ? "%" : filtro.getNome();
 		
-		ModelAndView modelAndView = new ModelAndView("administracao/lista-clientes");
+		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes");
 
 		modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCase(nome));
 		return modelAndView;
@@ -69,7 +69,7 @@ public class ClienteController {
 
 	@GetMapping("/novo")
 	public ModelAndView novo(Cliente cliente) {
-		ModelAndView modelAndView = new ModelAndView("atendimento/clientes/cadastro-cliente");
+		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/cadastro-cliente");
 
 		modelAndView.addObject(cliente);
 

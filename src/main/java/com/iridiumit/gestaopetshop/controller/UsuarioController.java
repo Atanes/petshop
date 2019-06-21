@@ -36,7 +36,7 @@ public class UsuarioController {
 	@GetMapping
 	public ModelAndView listar(@ModelAttribute("filtro") UsuarioFiltro filtro) {
 		
-		ModelAndView modelAndView = new ModelAndView("administracao/lista-usuarios");
+		ModelAndView modelAndView = new ModelAndView("administracao/usuario/lista-usuarios");
 		
 		List<Usuario> usuarios = usuarioService.filtrar(filtro);
 
@@ -62,7 +62,7 @@ public class UsuarioController {
 
 	@GetMapping("/novo")
 	public ModelAndView novo(Usuario usuario) {
-		ModelAndView modelAndView = new ModelAndView("/administracao/cadastro-usuario");
+		ModelAndView modelAndView = new ModelAndView("/administracao/usuario/cadastro-usuario");
 
 		modelAndView.addObject(usuario);
 		
@@ -73,7 +73,7 @@ public class UsuarioController {
 	
 	@GetMapping("/editar")
 	public ModelAndView editar(Usuario usuario) {
-		ModelAndView modelAndView = new ModelAndView("/administracao/editar-usuario");
+		ModelAndView modelAndView = new ModelAndView("/administracao/usuario/editar-usuario");
 
 		modelAndView.addObject(usuario);
 		

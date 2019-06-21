@@ -38,7 +38,7 @@ public class ColaboradorController {
 		
 		String nome = filtro.getNome() == null ? "%" : filtro.getNome();
 		
-		ModelAndView modelAndView = new ModelAndView("administracao/lista-colaboradores");
+		ModelAndView modelAndView = new ModelAndView("administracao/colaborador/lista-colaboradores");
 
 		modelAndView.addObject("colaboradores", colaboradores.findByNomeContainingIgnoreCase(nome));
 		return modelAndView;
@@ -62,7 +62,7 @@ public class ColaboradorController {
 
 	@GetMapping("/novo")
 	public ModelAndView novo(Colaborador colaborador) {
-		ModelAndView modelAndView = new ModelAndView("administracao/cadastro-colaborador");
+		ModelAndView modelAndView = new ModelAndView("administracao/colaborador/cadastro-colaborador");
 
 		modelAndView.addObject(colaborador);
 
