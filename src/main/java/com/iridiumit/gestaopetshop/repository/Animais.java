@@ -13,4 +13,6 @@ public interface Animais extends JpaRepository<Animal, Long>{
 	
 	List<Animal> findByCliente (Cliente c);
 
+	List<Animal> findByNomeContainingIgnoreCase(String nome);
+
 }

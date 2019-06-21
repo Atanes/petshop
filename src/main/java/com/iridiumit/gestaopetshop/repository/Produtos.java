@@ -11,5 +11,7 @@ public interface Produtos extends JpaRepository<Produto, Long>{
 
 	List<Produto> findByFornecedor(Fornecedor f);
 	
-	List<Fornecedor> findByDescricao(String descricao);
+	List<Produto> findByDescricao(String descricao);
+	
+	List<Produto> findByDescricaoContainingIgnoreCase(String descricao);
 }

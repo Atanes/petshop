@@ -1,5 +1,8 @@
 package com.iridiumit.gestaopetshop.model;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -112,6 +115,16 @@ public class Produto {
 		this.valorVenda = valorVenda;
 	}
 
+	public String convertValorToMoney(Double valor){
+		DecimalFormat df = new DecimalFormat("###,###.00");
+		DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+		dfs.setDecimalSeparator(',');
+		dfs.setGroupingSeparator('.');
+		df.setDecimalFormatSymbols(dfs);
+		return "R$ " + df.format(valor);
+	}
+	
+	
 	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}

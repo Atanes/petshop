@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import com.iridiumit.gestaopetshop.model.Animal;
 import com.iridiumit.gestaopetshop.model.Cliente;
 import com.iridiumit.gestaopetshop.repository.Animais;
 import com.iridiumit.gestaopetshop.repository.Clientes;
+import com.iridiumit.gestaopetshop.repository.filtros.AnimalFiltro;
 
 
 @Controller
@@ -30,10 +32,13 @@ public class AnimalController {
 	private Animais animais;
 	
 	@GetMapping
-	public ModelAndView listar() {
+	public ModelAndView listar(@ModelAttribute("filtro") AnimalFiltro filtro) {
+		
+		String nome = filtro.getNome() == null ? "%" : filtro.getNome();
+		
 		ModelAndView modelAndView = new ModelAndView("animais/lista-animais");
 
-		modelAndView.addObject("animais", animais.findAll());
+		modelAndView.addObject("animais", animais.findByNomeContainingIgnoreCase(nome));
 		return modelAndView;
 	}
 

@@ -19,6 +19,24 @@
 				<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem
 					sucesso!</span>
 			</div>
+			
+			<form method="GET" class="form-horizontal"
+				action="/clientes/animais" th:object="${filtro}">
+				<div class="form-group">
+					<div class="col-sm-4">
+						<div class="input-group">
+							<input class="form-control"
+								placeholder="Qual animal você está procurando?"
+								autofocus="autofocus" th:field="*{nome}"></input> <span
+								class="input-group-btn">
+								<button type="submit" class="btn btn-default">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</form>
 
 			<div class="table-responsive">
 				<table id="tabela-animais"
@@ -36,17 +54,17 @@
 					</thead>
 					<tbody>
 						<tr th:each="animal: ${animais}">
-							<td class="col-md-1 text-center" th:text="${animal.id}">p1</td>
+							<td class="col-md-1 text-center" th:text="${animal.id}">a1</td>
 
 							<td class="col-md-3"
-								th:text="${animal.nome}">os1</td>
+								th:text="${animal.nome}">a1</td>
 
 							<td class="col-md-1"
-								th:text="${animal.raca}">qtd</td>
+								th:text="${animal.raca}">raca</td>
 
-							<td class="col-md-1" th:text="${animal.especie}">valorcompra</td>
+							<td class="col-md-1" th:text="${animal.especie}">especie</td>
 							
-							<td class="col-md-1" th:text="${animal.pedigree}">valorvenda</td>
+							<td class="col-md-1" th:text="${animal.pedigree}">pedigree</td>
 
 							<td class="col-md-3"
 								th:text="${animal.cliente.nome}">cliente</td>
@@ -60,6 +78,9 @@
 									th:action="@{/clientes/animais/excluir/{id}(id=${animal.id})}">
 									<a class="btn btn-primary btn-xs" th:href="@{/clientes/animais/{id}(id=${animal.id})}"
 										th:title="Editar"> <span class="fa fa-pencil-alt acoes"></span>
+									</a>
+									<a class="btn btn-success btn-xs" th:href="@{/clientes/animais/servicos/{id}(id=${animal.id})}"
+										th:title="'Incluir Serviços'"> <span class="fa fa-cart-arrow-down acoes"></span>
 									</a> 
 									<button type="submit" class="btn btn-danger btn-xs" title="Excluir">
 										<span class="far fa-trash-alt acoes"></span>
