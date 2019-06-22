@@ -56,8 +56,12 @@
 						<tr th:each="animal: ${animais}">
 							<td class="col-md-1 text-center" th:text="${animal.id}">a1</td>
 
-							<td class="col-md-3"
-								th:text="${animal.nome}">a1</td>
+							<td class="col-md-3">
+								<a class="btn btn-info btn-xs" th:href="@{/atendimento/consultas/novo/{id}(id=${animal.id})}"
+										th:title="Consultas"> <span class="fa fa-user-md acoes"></span>
+									</a>
+									<span th:text="${animal.nome}"></span>
+								</td>
 
 							<td class="col-md-1"
 								th:text="${animal.raca}">raca</td>
@@ -69,19 +73,17 @@
 							<td class="col-md-3"
 								th:text="${animal.cliente.nome}">cliente</td>
 
-							
-
 							<td class="col-md-1 text-center">
 								<form method="POST"
 									th:onsubmit="'return confirm(\'Posso remover o animal: ' + 
 								${animal.nome} + ' da base de dados?\');'"
 									th:action="@{/clientes/animais/excluir/{id}(id=${animal.id})}">
+									<a class="btn btn-success btn-xs" th:href="@{/clientes/animais/servicos/{id}(id=${animal.id})}"
+										th:title="'Incluir Serviços'"> <span class="fa fa-cart-arrow-down acoes"></span>
+									</a>
 									<a class="btn btn-primary btn-xs" th:href="@{/clientes/animais/{id}(id=${animal.id})}"
 										th:title="Editar"> <span class="fa fa-pencil-alt acoes"></span>
 									</a>
-									<a class="btn btn-success btn-xs" th:href="@{/clientes/animais/servicos/{id}(id=${animal.id})}"
-										th:title="'Incluir Serviços'"> <span class="fa fa-cart-arrow-down acoes"></span>
-									</a> 
 									<button type="submit" class="btn btn-danger btn-xs" title="Excluir">
 										<span class="far fa-trash-alt acoes"></span>
 									</button>

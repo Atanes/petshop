@@ -1,5 +1,6 @@
 package com.iridiumit.gestaopetshop.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Consulta {
@@ -22,17 +24,26 @@ public class Consulta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
+	@Column(name="tipo")
+	private String tipo;
+	
+	@Column(name="status")
+	private String status;
+	
 	@Column(name="data_registro")
 	@Temporal(TemporalType.DATE)
-	private Date data_registro;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date dataRegistro;
 	
 	@Column(name="data_confirmacao")
 	@Temporal(TemporalType.DATE)
-	private Date data_confirmacao;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date dataConfirmacao;
 	
 	@Column(name="data_atendimento")
 	@Temporal(TemporalType.DATE)
-	private Date data_atendimento;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date dataAtendimento;
 	
 	@NotBlank (message = "{sintomas.not.blank}")
 	private String sintomas;
@@ -56,9 +67,9 @@ public class Consulta {
 			String diagnostico, Animal animal, Colaborador colaborador) {
 		
 		this.codigo = codigo;
-		this.data_registro = data_registro;
-		this.data_confirmacao = data_confirmacao;
-		this.data_atendimento = data_atendimento;
+		this.dataRegistro = data_registro;
+		this.dataConfirmacao = data_confirmacao;
+		this.dataAtendimento = data_atendimento;
 		this.sintomas = sintomas;
 		this.diagnostico = diagnostico;
 		this.animal = animal;
@@ -73,28 +84,50 @@ public class Consulta {
 		this.codigo = codigo;
 	}
 
-	public Date getData_registro() {
-		return data_registro;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setData_registro(Date data_registro) {
-		this.data_registro = data_registro;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
-	public Date getData_confirmacao() {
-		return data_confirmacao;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setData_confirmacao(Date data_confirmacao) {
-		this.data_confirmacao = data_confirmacao;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	public Date getData_atendimento() {
-		return data_atendimento;
+	public Date getDataRegistro() {
+		return dataRegistro;
 	}
 
-	public void setData_atendimento(Date data_atendimento) {
-		this.data_atendimento = data_atendimento;
+	public void setDataRegistro(Date data_registro) {
+		this.dataRegistro = data_registro;
+	}
+
+	public Date getDataConfirmacao() {
+		return dataConfirmacao;
+	}
+
+	public void setDataConfirmacao(Date data_confirmacao) {
+		this.dataConfirmacao = data_confirmacao;
+	}
+
+	public Date getDataAtendimento() {
+		return dataAtendimento;
+	}
+	
+	public String getDataAtendimentoFormatada(){
+		Date data = this.dataAtendimento; 
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+		return formato.format(data);
+	}
+
+	public void setDataAtendimento(Date data_atendimento) {
+		this.dataAtendimento = data_atendimento;
 	}
 
 	public String getSintomas() {
