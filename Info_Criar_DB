@@ -137,3 +137,16 @@ insert into usuario_permissao (usuario_id, permissao_id) values
 	, (5, 3)
 	, (6, 4)
 ;
+
+# ------ PostGreSQL -------#
+CREATE TABLE grupo (
+  id bigint NOT NULL,
+  nome varchar(100) NOT NULL,
+  PRIMARY KEY (id, nome)
+)
+
+CREATE SEQUENCE grupo_id
+START 1
+INCREMENT 1
+MINVALUE 1
+OWNED BY grupo.id;
