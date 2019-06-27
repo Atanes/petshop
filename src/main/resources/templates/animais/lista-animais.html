@@ -27,8 +27,8 @@
 						<div class="input-group">
 							<input class="form-control"
 								placeholder="Qual animal você está procurando?"
-								autofocus="autofocus" th:field="*{nome}"></input> <span
-								class="input-group-btn">
+								autofocus="autofocus" th:field="*{nome}"></input>
+								<span class="input-group-btn">
 								<button type="submit" class="btn btn-default">
 									<i class="glyphicon glyphicon-search"></i>
 								</button>
@@ -58,7 +58,7 @@
 
 							<td class="col-md-3">
 								<a class="btn btn-info btn-xs" th:href="@{/atendimento/consultas/novo/{id}(id=${animal.id})}"
-										th:title="Consultas"> <span class="fa fa-user-md acoes"></span>
+										th:title="'Incluir Consultas'"> <span class="fa fa-user-md acoes"></span>
 									</a>
 									<span th:text="${animal.nome}"></span>
 								</td>

@@ -24,6 +24,7 @@ import com.iridiumit.gestaopetshop.model.Cliente;
 import com.iridiumit.gestaopetshop.relatorios.ClienteREL;
 import com.iridiumit.gestaopetshop.repository.Animais;
 import com.iridiumit.gestaopetshop.repository.Clientes;
+import com.iridiumit.gestaopetshop.repository.filtros.AnimalFiltro;
 import com.iridiumit.gestaopetshop.repository.filtros.ClienteFiltro;
 import com.iridiumit.gestaopetshop.service.ClienteService;
 
@@ -97,7 +98,7 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/selecao/{id}")
-	public ModelAndView SelecaoPorCliente(@PathVariable Long id) {
+	public ModelAndView SelecaoPorCliente(@PathVariable Long id, @ModelAttribute("filtro") AnimalFiltro filtro) {
 
 		Cliente c = clientes.findOne(id);
 		ModelAndView modelAndView = new ModelAndView("animais/lista-animais");
