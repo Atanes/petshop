@@ -94,7 +94,7 @@ public class ConsultaController {
 
 		attributes.addFlashAttribute("mensagem", "Consulta agendada com sucesso!!");
 
-		return new ModelAndView("redirect:/atendimento/consultas/lista-consultas");
+		return new ModelAndView("redirect:/atendimento/consultas");
 	}
 
 	@PostMapping("/salvar")
