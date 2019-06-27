@@ -96,6 +96,25 @@ public class ConsultaController {
 
 		return new ModelAndView("redirect:/atendimento/consultas");
 	}
+	
+	@GetMapping("/atender/{codigo}")
+	public ModelAndView atender(@PathVariable Long codigo) {
+		
+		ModelAndView modelAndView = new ModelAndView("atendimento/consulta/atender-consulta");
+		
+		Consulta c = consultas.findOne(codigo);
+		
+		Date dataAtendimento = new Date();
+		
+		c.setDataAtendimento(dataAtendimento);
+		c.setStatus("ATENDIMENTO");
+		
+		consultas.saveAndFlush(c);
+		
+		modelAndView.addObject(c);
+
+		return modelAndView;
+	}
 
 	@PostMapping("/salvar")
 	public ModelAndView salvar(@Valid Consulta consulta, BindingResult result, RedirectAttributes attributes) {
@@ -103,12 +122,14 @@ public class ConsultaController {
 		if (result.hasErrors()) {
 			return incluir(consulta, consulta.getAnimal().getId());
 		}
+		
+		consulta.setStatus("FINALIZADA");
 
 		consultas.save(consulta);
 
-		attributes.addFlashAttribute("mensagem", "Consulta salva com sucesso!!");
+		attributes.addFlashAttribute("mensagem", "Consulta finalizada com sucesso!!");
 
-		return new ModelAndView("redirect:/atendimento/consultas/lista-consultas");
+		return new ModelAndView("redirect:/atendimento/consultas");
 	}
 	
 	@ModelAttribute("StatusConsulta")

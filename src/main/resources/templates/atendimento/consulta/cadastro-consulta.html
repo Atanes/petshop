@@ -51,7 +51,7 @@
 						<div class="form-group">
 							<label for="status">Tipo</label> <select id="tipo"
 								class="form-control" th:field="*{tipo}">
-								<option th:each="tipos: ${TipoConsulta}" th:value="${tipo}"
+								<option th:each="tipos: ${TipoConsulta}" th:value="${tipos}"
 									th:text="${tipos.descricao}">Opção 1</option>
 							</select>
 						</div>

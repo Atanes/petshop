@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head>
+</head>
+
+<body>
+	<section layout:fragment="content">	
+		<div class="layout-pagina">
+		
+			<h1 class="titulo-formulario">Atendimento de consultas</h1>
+
+			<form name="formulario" method="POST" class="form-vertical  js-form-loading"
+				th:object="${consulta}" th:action="@{/atendimento/consultas/salvar}">
+				
+				<div class="alert  alert-danger  alert-dismissible" role="alert"
+					th:if="${#fields.hasAnyErrors()}">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<div th:each="erro: ${#fields.detailedErrors()}">
+						<i class="fa fa-exclamation-circle"></i> <span
+							th:text="${erro.message}">Mensagem erro.</span>
+					</div>
+				</div>
+
+				<div class="alert  alert-success"
+					th:if="${!#strings.isEmpty(mensagem)}">
+					<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem
+						sucesso!</span>
+				</div>
+    			
+				<input type="hidden" th:field="*{codigo}" />
+				<input type="hidden" th:field="*{dataAtendimento}" />
+				<input type="hidden" th:field="*{animal}" />
+				<input type="hidden" th:field="*{colaborador}" />
+				
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="status">Data da Consulta: <span class="layout-cabecalho--consulta" th:text="${consulta.getDataAtendimentoFormatada()}"></span></label>
+						</div>
+					</div>
+					
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="status">Tipo: <span class="layout-cabecalho--consulta" th:text="${consulta.tipo}"></span></label>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="status">Veterinário: <span class="layout-cabecalho--consulta" th:text="${consulta.colaborador.nome}"></span></label>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="status">Animal: <span class="layout-cabecalho--consulta" th:text="${consulta.animal.nome}"></span></label>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="status">Raça: <span class="layout-cabecalho--consulta" th:text="${consulta.animal.raca}"></span></label>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="status">Espécie: <span class="layout-cabecalho--consulta" th:text="${consulta.animal.especie}"></span></label>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="sintomas">Sintomas</label>
+							<textarea id="sintomas" rows="4" cols="50"
+								class="form-control" th:field="*{sintomas}"></textarea>
+						</div>
+					</div>
+					
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="diagnostico">Diagnostico</label>
+							<textarea id="diagnostico" rows="4" cols="50"
+								class="form-control" th:field="*{diagnostico}"></textarea>
+						</div>
+					</div>
+					
+				</div>
+				<div class="form-group">
+					<button class="btn  btn-primary" type="submit">Salvar</button>
+				</div>
+			</form>
+		</div>
+	</section>
+</body>
+</html>

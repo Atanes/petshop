@@ -48,6 +48,10 @@
 								${consulta.codigo} + ' relativa ao ' + ${consulta.animal.nome} + ' da base de dados?\');'"
 									th:action="@{/atendimento/consultas/excluir/{codigo}(codigo=${consulta.codigo})}">
 									<input type="hidden" name="_method" value="DELETE" />
+									<a class="btn btn-warning btn-xs"
+										th:href="@{/atendimento/consultas/atender/{codigo}(codigo=${consulta.codigo})}"
+										th:title="'Realizar Consulta'"> <span class="fa fa-user-md acoes"></span>
+									</a>
 									<a class="btn btn-primary btn-xs"
 										th:href="@{/atendimento/consultas/{codigo}(codigo=${consulta.codigo})}"
 										th:title="Editar"> <span class="fa fa-pencil-alt acoes"></span>
