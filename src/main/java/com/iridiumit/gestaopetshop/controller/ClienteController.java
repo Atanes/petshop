@@ -21,9 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iridiumit.gestaopetshop.model.Cliente;
+import com.iridiumit.gestaopetshop.model.Endereco;
 import com.iridiumit.gestaopetshop.relatorios.ClienteREL;
 import com.iridiumit.gestaopetshop.repository.Animais;
 import com.iridiumit.gestaopetshop.repository.Clientes;
+import com.iridiumit.gestaopetshop.repository.Enderecos;
 import com.iridiumit.gestaopetshop.repository.filtros.AnimalFiltro;
 import com.iridiumit.gestaopetshop.repository.filtros.ClienteFiltro;
 import com.iridiumit.gestaopetshop.service.ClienteService;
@@ -37,6 +39,9 @@ public class ClienteController {
 	
 	@Autowired
 	private Clientes clientes;
+	
+	@Autowired
+	private Enderecos enderecos;
 	
 	@Autowired
 	private Animais animais;
@@ -79,8 +84,9 @@ public class ClienteController {
 
 	@PostMapping("/salvar")
 	public ModelAndView salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attributes) {
-		
+		 
 		Cliente c = clienteService.localizarLogin(cliente.getCpf());
+		Endereco e = cliente.getEndereco();
 		
 		if (c != null && c.getId() != cliente.getId()) {
 			result.rejectValue("cpf", "cpf.existente");
@@ -89,6 +95,10 @@ public class ClienteController {
 		if (result.hasErrors()) {
 			return novo(cliente);
 		}
+		
+		enderecos.save(e);
+		
+		cliente.setEndereco(e);
 
 		clienteService.salvar(cliente);
 

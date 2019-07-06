@@ -35,6 +35,7 @@
 				</div>
 
 				<input type="hidden" th:field="*{id}" />
+				<input type="hidden" th:field="*{endereco}" />
 
 				<div class="row">
 					<div class="col-sm-3">
@@ -56,25 +57,25 @@
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="cep">CEP</label>
-							<input id="cep" type="text"	class="form-control" onblur="pesquisacep(this.value);" />
+							<input id="cep" type="text"	class="form-control" onblur="pesquisacep(this.value);" th:field="*{endereco.CEP}"/>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="rua">Rua</label>
-							<input id="rua" type="text"	class="form-control" />
+							<input id="rua" type="text"	class="form-control" th:field="*{endereco.rua}"/>
 						</div>
 					</div>
 					<div class="col-sm-1">
 						<div class="form-group">
 							<label for="nr">Nº</label>
-							<input id="nr" type="text" class="form-control" />
+							<input id="nr" type="text" class="form-control" th:field="*{endereco.nr}"/>
 						</div>
 					</div>
 					<div class="col-sm-2">
 						<div class="form-group">
 							<label for="complemento">Complemento</label>
-							<input id="complemento" type="text"	class="form-control" />
+							<input id="complemento" type="text"	class="form-control" th:field="*{endereco.complemento}"/>
 						</div>
 					</div>
 				
@@ -85,19 +86,19 @@
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="bairro">Bairro</label> 
-							<input name="bairro" type="text" id="bairro" class="form-control" />
+							<input name="bairro" type="text" id="bairro" class="form-control" th:field="*{endereco.bairro}"/>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="cidade">Cidade</label> 
-							<input name="cidade" type="text" id="cidade" class="form-control" />
+							<input name="cidade" type="text" id="cidade" class="form-control" th:field="*{endereco.cidade}"/>
 						</div>
 					</div>
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="uf">Estado</label> 
-							<input name="uf" type="text" id="uf" class="form-control" />
+							<input name="uf" type="text" id="uf" class="form-control" th:field="*{endereco.estado}"/>
 						</div>
 					</div>
 				

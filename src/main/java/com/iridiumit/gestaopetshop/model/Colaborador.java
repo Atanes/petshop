@@ -17,6 +17,7 @@ public class Colaborador {
 	
 	@NotBlank (message = "{name.not.blank}")
 	private String nome;
+	
 	@NotBlank(message = "{CPF.not.blank}")
 	private String cpf;
 	

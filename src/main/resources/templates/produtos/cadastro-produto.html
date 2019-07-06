@@ -32,8 +32,8 @@
 
 				<div class="alert  alert-success"
 					th:if="${!#strings.isEmpty(mensagem)}">
-					<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem
-						sucesso!</span>
+					<i class="fa fa-check-circle"></i>
+					<span th:text="${mensagem}">Mensagem sucesso!</span>
 				</div>
 
 				<input type="hidden" th:field="*{id}" />
@@ -48,14 +48,15 @@
 									<option value="">Selecione o fornecedor</option>
 									<option th:each="fornecedor: ${fornecedores}"
 										th:value="${fornecedor.id}"
-										th:text="${fornecedor.nome} + ' - ' + ${fornecedor.cnpj}">Opção
-										1</option>
-								</select>
-								<span class="input-group-btn">
+										th:text="${fornecedor.nome} + ' - ' + ${fornecedor.cnpj}">
+										Opção 1
+									</option>
+							</select>
+							<span class="input-group-btn">
 								<a id="btnfornecedor" class="btn btn-primary"
 										th:href="@{/fornecedores/novo}" title="Incluir Fornecedor">
 										<span class="glyphicon glyphicon-plus"></span> Fornecedor
-									</a>
+								</a>
 							</span>
 						</div>
 						<!-- /input-group -->
@@ -63,48 +64,67 @@
 					<!-- /.col-sm-6 -->
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label for="descricao">Descrição</label> <input id="descricao"
-								type="text" class="form-control" th:field="*{descricao}" />
+							<label for="descricao">Descrição</label>
+							<input id="descricao" type="text" class="form-control" th:field="*{descricao}" />
 						</div>
 					</div>
 				</div>
 				<!-- /.row -->
 
 				<div class="row">
-					<div class="col-sm-4">
+					<div class="col-sm-3">
 						<div class="form-group">
-							<label for="tipo">Tipo</label> <input id="tipo" type="text"
-								class="form-control" th:field="*{tipo}" />
+							<label for="tipo">Tipo</label>
+							<select	id="tipo" class="form-control" th:field="*{tipo}">
+									<option value="">Selecione o tipo</option>
+									<option value="Acessorio">Acessório</option>
+									<option value="Alimento">Alimento</option>
+									<option value="Brinquedo">Brinquedo</option>
+									<option value="Higiene">Higiene</option>
+									<option value="Medicamento">Medicamento</option>
+							</select>
 						</div>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-1">
 						<div class="form-group">
-							<label for="qtd">Qtd</label> <input id="qtd" type="text"
-								class="form-control" th:field="*{qtd}" />
+							<label for="qtd">Qtd</label>
+							<input id="qtd" type="text"	class="form-control" th:field="*{qtd}" />
 						</div>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-2">
 						<div class="form-group">
-							<label for="unidademedida">Unidade de medida</label> <input
-								id="unidademedida" type="text" class="form-control"
-								th:field="*{unidadeMedida}" />
+							<label for="unidademedida">Unidade de medida</label>
+							<select	id="unidademedida" class="form-control" th:field="*{unidadeMedida}">
+									<option value="">Selecione o unidade</option>
+									<option value="Ampola">Ampola</option>
+									<option value="Barra">Barra</option>
+									<option value="Capsula">Cápsula</option>
+									<option value="Cartela">Cartela</option>
+									<option value="Caixa">Caixa</option>
+									<option value="Embalagem">Embalagem</option>
+									<option value="Frasco">Frasco</option>
+									<option value="Kit">Kit</option>
+									<option value="Kilo">Kilo</option>
+									<option value="Lata">Lata</option>
+									<option value="Litro">Litro</option>
+									<option value="Metro">Metro</option>
+									<option value="Pacote">Pacote</option>
+									<option value="Palete">Palete</option>
+									<option value="Unidade">Unidade</option>
+							</select>
 						</div>
 					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-sm-4">
+
+					<div class="col-sm-3">
 						<div class="form-group">
-							<label for="valorcompra">Valor compra</label> <input
-								id="valorcompra" type="text" class="form-control"
-								th:field="*{valorCompra}" />
+							<label for="valorcompra">Valor compra</label>
+							<input id="valorcompra" type="text" class="form-control" th:field="*{valorCompra}" />
 						</div>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-3">
 						<div class="form-group">
-							<label for="valorvenda">Valor venda</label> <input
-								id="valorvenda" type="text" class="form-control"
-								th:field="*{valorVenda}" />
+							<label for="valorvenda">Valor venda</label>
+							<input id="valorvenda" type="text" class="form-control"	th:field="*{valorVenda}" />
 						</div>
 					</div>
 				</div>

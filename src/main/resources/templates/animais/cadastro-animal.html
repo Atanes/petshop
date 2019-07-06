@@ -32,8 +32,8 @@
 
 				<div class="alert  alert-success"
 					th:if="${!#strings.isEmpty(mensagem)}">
-					<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem
-						sucesso!</span>
+					<i class="fa fa-check-circle"></i>
+					<span th:text="${mensagem}">Mensagem sucesso!</span>
 				</div>
 
 				<input type="hidden" th:field="*{id}" />
@@ -42,20 +42,19 @@
 					<div class="col-sm-6">
 					<label for="cbocliente">Cliente</label>
 						<div class="input-group">
-							<select
-									id="cbocliente" class="form-control"
-									th:field="*{cliente}">
+							<select	id="cbocliente" class="form-control" th:field="*{cliente}">
 									<option value="">Selecione o cliente</option>
 									<option th:each="cliente: ${clientes}"
 										th:value="${cliente.id}"
-										th:text="${cliente.nome} + ' - ' + ${cliente.cpf}">Opção
-										1</option>
-								</select>
-								<span class="input-group-btn">
+										th:text="${cliente.nome} + ' - ' + ${cliente.cpf}">
+										Opção1
+									</option>
+							</select>
+							<span class="input-group-btn">
 								<a id="btnfornecedor" class="btn btn-primary"
 										th:href="@{/atendimento/clientes/novo}" title="Incluir Cliente">
 										<span class="glyphicon glyphicon-plus"></span> Cliente
-									</a>
+								</a>
 							</span>
 						</div>
 						<!-- /input-group -->
@@ -63,41 +62,43 @@
 					<!-- /.col-sm-6 -->
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label for="nome">Nome</label> <input id="nome"
-								type="text" class="form-control" th:field="*{nome}" />
+							<label for="nome">Nome</label>
+							<input id="nome" type="text" class="form-control" th:field="*{nome}" />
 						</div>
 					</div>
 				</div>
 				<!-- /.row -->
 
 				<div class="row">
-					<div class="col-sm-4">
-						<div class="form-group">
-							<label for="raca">Raça</label> <input id="raca" type="text"
-								class="form-control" th:field="*{raca}" />
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="form-group">
-							<label for="especie">Espécie</label> <input id="especie" type="text"
-								class="form-control" th:field="*{especie}" />
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="form-group">
-							<label for="pedigree">Pedigree</label> <input
-								id="pedigree" type="text" class="form-control"
-								th:field="*{pedigree}" />
-						</div>
-					</div>
-				</div>
 				
-				<div class="row">
-					<div class="col-sm-4">
+					<div class="col-sm-3">
 						<div class="form-group">
-							<label for="data_nasc">Data de nascimento</label> <input
-								id="data_nasc" type="date" class="form-control"
-								th:field="*{data_nasc}" />
+							<label for="data_nasc">Data de nascimento</label>
+							<input	id="data_nasc" type="date" class="form-control"	th:field="*{data_nasc}" />
+						</div>
+					</div>
+				
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="raca">Raça</label>
+							<input id="raca" type="text" class="form-control" th:field="*{raca}" />
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="especie">Espécie</label>
+							<input id="especie" type="text"	class="form-control" th:field="*{especie}" />
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="pedigree">Pedigree</label>
+							<select	id="pedigree" class="form-control" th:field="*{pedigree}">
+									<option value="sim">Sim</option>
+									<option value="não">Não</option>
+							</select>
 						</div>
 					</div>
 	

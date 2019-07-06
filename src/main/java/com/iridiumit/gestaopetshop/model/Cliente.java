@@ -9,7 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -39,12 +41,16 @@ public class Cliente {
             mappedBy = "cliente")
     private Set<Animal> animal = new HashSet<>();
 	
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "endereco_id", nullable = false)
+    private Endereco endereco;
+	
 	public Cliente (){
 		
 	}
 	
 	public Cliente(Long id, String nome, String cpf, String email, String telefone, String celular,
-			Set<Animal> animal) {
+			Set<Animal> animal, Endereco endereco) {
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
@@ -52,6 +58,7 @@ public class Cliente {
 		this.telefone = telefone;
 		this.celular = celular;
 		this.animal = animal;
+		this.endereco = endereco;
 	}
 
 	public Long getId() {
@@ -108,6 +115,14 @@ public class Cliente {
 
 	public void setAnimal(Set<Animal> animal) {
 		this.animal = animal;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	@Override
