@@ -37,15 +37,17 @@
 				<input type="hidden" th:field="*{id}" />
 				
 				<div class="row">
+				
 					<div class="col-sm-5 form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
-						<label for="nome">Nome</label> <input id="nome" type="text"
-							class="form-control" th:field="*{nome}" />
+						<label for="nome">Nome</label>
+						<input id="nome" type="text" class="form-control" th:field="*{nome}" />
 					</div>
+					
 					<div class="col-sm-5 form-group" th:classappend="${#fields.hasErrors('email')} ? has-error">
 						<label for="email">E-mail</label>
-						<input id="email" class="form-control" 
-							th:field="*{email}" type="text" placeholder="seunome@dominio.com.br" title="E-mail"/>
+						<input id="email" class="form-control" th:field="*{email}" type="text" placeholder="seunome@dominio.com.br" title="E-mail"/>
 					</div>
+					
 					<div class="col-sm-2 form-group" th:classappend="${#fields.hasErrors('permissoes')} ? has-error">
 						<label for="permissao">Permissão</label>
 						
@@ -55,6 +57,7 @@
 							th:value="${permissao.id}" th:text="${#strings.substring(permissao.nome,8)}">Opção 1</option>
 						</select>
 					</div>
+					
 				</div>
 				
 				<div class="row">
@@ -63,6 +66,7 @@
 						<label for="login">Login</label>
 						<input id="login" type="text" class="form-control" th:field="*{login}" />
 					</div>
+					
 					<div class="col-sm-4 form-group" th:classappend="${#fields.hasErrors('senha')} ? has-error">
 						<label for="senha">Senha</label>
 						<input id="senha" class="form-control" 

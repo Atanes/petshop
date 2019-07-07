@@ -14,6 +14,7 @@
 
 			<form method="POST" class="form-vertical  js-form-loading"
 				th:object="${fornecedor}" th:action="@{/fornecedores/salvar}">
+				
 				<div class="alert  alert-danger  alert-dismissible" role="alert"
 					th:if="${#fields.hasAnyErrors()}">
 					<button type="button" class="close" data-dismiss="alert"
