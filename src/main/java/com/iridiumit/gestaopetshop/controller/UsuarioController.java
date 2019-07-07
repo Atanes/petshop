@@ -62,7 +62,7 @@ public class UsuarioController {
 
 	@GetMapping("/novo")
 	public ModelAndView novo(Usuario usuario) {
-		ModelAndView modelAndView = new ModelAndView("/administracao/usuario/cadastro-usuario");
+		ModelAndView modelAndView = new ModelAndView("administracao/usuario/cadastro-usuario");
 		
 		modelAndView.addObject(usuario);
 		
@@ -73,7 +73,7 @@ public class UsuarioController {
 	
 	@GetMapping("/editar")
 	public ModelAndView editar(Usuario usuario) {
-		ModelAndView modelAndView = new ModelAndView("/administracao/usuario/editar-usuario");
+		ModelAndView modelAndView = new ModelAndView("administracao/usuario/editar-usuario");
 
 		modelAndView.addObject(usuario);
 		

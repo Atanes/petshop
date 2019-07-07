@@ -65,6 +65,7 @@ public class AnimalController {
 		ModelAndView modelAndView = new ModelAndView("animais/cadastro-animal");
 
 		modelAndView.addObject(animal);
+		
 		modelAndView.addObject("clientes", clientes.findAll());
 
 		return modelAndView;
@@ -75,6 +76,7 @@ public class AnimalController {
 		ModelAndView modelAndView = new ModelAndView("animais/cadastro-animal");
 
 		modelAndView.addObject(animal);
+		
 		modelAndView.addObject("clientes", clientes.findOne(id));
 
 		return modelAndView;
