@@ -63,7 +63,7 @@ public class UsuarioController {
 	@GetMapping("/novo")
 	public ModelAndView novo(Usuario usuario) {
 		ModelAndView modelAndView = new ModelAndView("/administracao/usuario/cadastro-usuario");
-
+		
 		modelAndView.addObject(usuario);
 		
 		modelAndView.addObject("permissoes", usuarioService.permissoes());
@@ -95,7 +95,6 @@ public class UsuarioController {
 			usuario.setSenha(null);
             return novo(usuario);
         } else {
-        	//usuarioDAO.adicionaUsuario(usuario);
         	usuarioService.incluir(usuario);
         	attributes.addFlashAttribute("mensagem", "Usuario salvo com sucesso!!");
         }

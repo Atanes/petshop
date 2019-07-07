@@ -23,10 +23,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 public class Usuario implements Serializable, UserDetails {
-
-    private static final long serialVersionUID = 1L;
     
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5920857421039751118L;
+
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -56,8 +59,9 @@ public class Usuario implements Serializable, UserDetails {
     	
     }
     
-    public Usuario(Long id, String nome, String email, String login, String senha, boolean ativo,
+	public Usuario(Long id, String nome, String email, String login, String senha, boolean ativo,
 			Set<Permissao> permissoes) {
+		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;

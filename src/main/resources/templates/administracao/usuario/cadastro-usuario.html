@@ -35,6 +35,7 @@
 				</div>
     			
 				<input type="hidden" th:field="*{id}" />
+				
 				<div class="row">
 					<div class="col-sm-5 form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
 						<label for="nome">Nome</label> <input id="nome" type="text"
@@ -49,7 +50,7 @@
 						<label for="permissao">Permissão</label>
 						
 						<select id="permissao" class="form-control" th:field="*{permissoes}">
-							<option value="">Selecione a permissão para o usuário</option>
+							<option value="">Selecione o tipo de permissão</option>
 							<option th:each="permissao: ${permissoes}"
 							th:value="${permissao.id}" th:text="${#strings.substring(permissao.nome,8)}">Opção 1</option>
 						</select>
@@ -59,8 +60,8 @@
 				<div class="row">
 				
 					<div class="col-sm-4 form-group" th:classappend="${#fields.hasErrors('login')} ? has-error">
-						<label for="login">Login</label> <input id="login" type="text"
-							class="form-control" th:field="*{login}" />
+						<label for="login">Login</label>
+						<input id="login" type="text" class="form-control" th:field="*{login}" />
 					</div>
 					<div class="col-sm-4 form-group" th:classappend="${#fields.hasErrors('senha')} ? has-error">
 						<label for="senha">Senha</label>
