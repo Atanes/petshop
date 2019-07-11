@@ -38,7 +38,7 @@
 				<input type="hidden" th:field="*{id}" />
 
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-5">
 					<label for="cbocliente">Cliente</label>
 						<div class="input-group">
 							<select	id="cbocliente" class="form-control" th:field="*{cliente}">
@@ -59,11 +59,20 @@
 						<!-- /input-group -->
 					</div>
 					<!-- /.col-sm-6 -->
-					<div class="col-sm-6">
+					<div class="col-sm-5">
 						<div class="form-group">
 							<label for="nome">Nome</label>
 							<input id="nome" type="text" class="form-control" th:field="*{nome}" />
 						</div>
+					</div>
+					
+					<div class="col-sm-2">
+						<label for="sexo">Sexo</label>
+							<select	id="sexo" class="form-control" th:field="*{sexo}">
+									<option value="">Selecione o sexo</option>
+									<option value="Femea">Fêmea</option>
+									<option value="Macho">Macho</option>
+							</select>
 					</div>
 				</div>
 				<!-- /.row -->
@@ -101,10 +110,7 @@
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="pedigree">Pedigree</label>
-							<select	id="pedigree" class="form-control" th:field="*{pedigree}">
-									<option value="sim">Sim</option>
-									<option value="não">Não</option>
-							</select>
+							<input class="form-check-input" type="checkbox" value="true" id="pedigree" th:field="*{pedigree}">
 						</div>
 					</div>
 	

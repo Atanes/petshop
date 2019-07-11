@@ -100,6 +100,13 @@
 			<version>2.2.4</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.webjars/jquery.inputmask -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery.inputmask</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>

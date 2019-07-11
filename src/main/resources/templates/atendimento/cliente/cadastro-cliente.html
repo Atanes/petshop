@@ -5,6 +5,25 @@
 	layout:decorate="~{layout/layout}">
 <head>
 	<script th:src="@{/js/BuscaCEP.js}"></script>
+	<script th:src="@{/webjars/jquery.inputmask/3.1.0/jquery.inputmask.bundle.js}"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+	
+			$("#cpf").inputmask("999.999.999-99");
+			$("#rg").inputmask("99.999.999-*");
+	
+			$("#telefone1").inputmask({
+				mask : [ "(99) 9999-9999", "(99) 99999-9999", ],
+				keepStatic : true
+			});
+	
+			$("#telefone2").inputmask({
+				mask : [ "(99) 9999-9999", "(99) 99999-9999", ],
+				keepStatic : true
+			});
+	
+		});
+	</script>
 </head>
 
 <body>
@@ -39,18 +58,64 @@
 				<input type="hidden" th:field="*{endereco}" />
 
 				<div class="row">
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="cpf">CPF</label>
-							<input id="cpf" type="text"	class="form-control" th:field="*{cpf}" />
-						</div>
-					</div>
-					<div class="col-sm-9">
+					
+					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="nome">Nome</label>
 							<input id="nome" type="text" class="form-control" th:field="*{nome}" />
 						</div>
 					</div>
+					
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="data_nasc">Data de nascimento</label>
+							<input	id="data_nasc" type="date" class="form-control"	th:field="*{data_nasc}" />
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<label for="sexo">Sexo</label>
+							<select	id="sexo" class="form-control" th:field="*{sexo}">
+									<option value="">Selecione o sexo</option>
+									<option value="Feminino">Feminino</option>
+									<option value="Masculino">Masculino</option>
+									<option value="Indiferente">Indiferente</option>
+							</select>
+					</div>
+					
+				</div>
+				
+				<div class="row">
+					
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label for="cpf">CPF</label>
+							<input id="cpf" type="text"	class="form-control" placeholder="Ex.: 000.000.000-00" th:field="*{cpf}" />
+						</div>
+					</div>
+					
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label for="rg">RG</label>
+							<input id="rg" type="text"	class="form-control" placeholder="Ex.: 00.000.000-0" th:field="*{rg}" />
+						</div>
+					</div>
+				
+					<div class="col-sm-2 form-group">
+						<label for="telefone1">Telefone principal</label>
+						<input id="telefone1" type="text" class="form-control" th:field="*{telefone1}"/>
+					</div>
+							
+					<div class="col-sm-2 form-group">
+						<label for="telefone2">Telefone adicional</label>
+						<input id="telefone2" type="text" class="form-control" th:field="*{telefone2}"/>
+					</div>
+					
+					<div class="col-sm-4 form-group">
+						<label for="email">E-mail</label>
+						<input id="email" type="text" class="form-control" th:field="*{email}"/>
+					</div>
+					
 				</div>
 				
 				<div class="row">
@@ -105,25 +170,6 @@
 				
 				</div>		
 		
-				<div class="row">
-				
-					<div class="col-sm-3 form-group">
-						<label for="telefone">Telefone</label>
-						<input id="telefone" type="text" class="form-control" th:field="*{telefone}"/>
-					</div>
-							
-					<div class="col-sm-3 form-group">
-						<label for="celular">Celular</label>
-						<input id="celular" type="text" class="form-control" th:field="*{celular}"/>
-					</div>
-					
-					<div class="col-sm-6 form-group">
-						<label for="email">E-mail</label>
-						<input id="email" type="text" class="form-control" th:field="*{email}"/>
-					</div>
-					
-				</div>
-				
 				<div class="form-group">
 					<button class="btn  btn-primary" type="submit">Salvar</button>
 				</div>

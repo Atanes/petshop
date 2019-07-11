@@ -1,9 +1,11 @@
 package com.iridiumit.gestaopetshop.model;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,9 +14,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Cliente {
@@ -25,6 +30,7 @@ public class Cliente {
 	
 	@NotBlank (message = "{name.not.blank}")
 	private String nome;
+	
 	@NotBlank(message = "{CPF.not.blank}")
 	private String cpf;
 	
@@ -32,9 +38,20 @@ public class Cliente {
 	@Email(message = "{email.not.valid}")
 	private String email;
 	
-	private String telefone;
-	@NotBlank(message = "{celular.not.blank}")
-	private String celular;
+	@NotBlank(message = "{telefone1.not.blank}")
+	private String telefone1;
+	
+	private String telefone2;
+	
+	@NotBlank (message = "{sexo.not.blank}")
+	private String sexo;
+	
+	private String rg;
+	
+	@Column(name="data_nasc")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date data_nasc;
 	
 	@OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
@@ -48,15 +65,19 @@ public class Cliente {
 	public Cliente (){
 		
 	}
-	
-	public Cliente(Long id, String nome, String cpf, String email, String telefone, String celular,
-			Set<Animal> animal, Endereco endereco) {
+
+	public Cliente(Long id, String nome, String cpf, String email, String telefone1, String telefone2, String sexo,
+			String rg, Date data_nasc, Set<Animal> animal, Endereco endereco) {
+		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
-		this.telefone = telefone;
-		this.celular = celular;
+		this.telefone1 = telefone1;
+		this.telefone2 = telefone2;
+		this.sexo = sexo;
+		this.rg = rg;
+		this.data_nasc = data_nasc;
 		this.animal = animal;
 		this.endereco = endereco;
 	}
@@ -93,20 +114,44 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public String getTelefone1() {
+		return telefone1;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setTelefone1(String telefone) {
+		this.telefone1 = telefone;
 	}
 	
-	public String getCelular() {
-		return celular;
+	public String getTelefone2() {
+		return telefone2;
 	}
 
-	public void setCelular(String celular) {
-		this.celular = celular;
+	public void setTelefone2(String celular) {
+		this.telefone2 = celular;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
+	public Date getData_nasc() {
+		return data_nasc;
+	}
+
+	public void setData_nasc(Date data_nasc) {
+		this.data_nasc = data_nasc;
 	}
 
 	public Set<Animal> getAnimal() {

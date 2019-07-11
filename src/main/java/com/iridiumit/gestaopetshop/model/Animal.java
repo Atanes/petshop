@@ -26,12 +26,15 @@ public class Animal {
 	@NotBlank (message = "{nome.not.blank}")
 	private String nome;
 	
+	@NotBlank (message = "{sexo.not.blank}")
+	private String sexo;
+	
 	private String raca;
 	
 	@NotBlank (message = "{especie.not.blank}")
 	private String especie;
 	
-	private String pedigree;
+	private boolean pedigree;
 	
 	@Column(name="data_nasc")
 	@Temporal(TemporalType.DATE)
@@ -43,76 +46,92 @@ public class Animal {
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
+	public Animal() {
+
+	}
+
+	public Animal(Long id, String nome, String sexo, String raca, String especie, boolean pedigree, Date data_nasc,
+			Cliente cliente) {
+		this.id = id;
+		this.nome = nome;
+		this.sexo = sexo;
+		this.raca = raca;
+		this.especie = especie;
+		this.pedigree = pedigree;
+		this.data_nasc = data_nasc;
+		this.cliente = cliente;
+	}
 
 	public Long getId() {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public String getNome() {
 		return nome;
 	}
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 
 	public String getRaca() {
 		return raca;
 	}
 
-
 	public void setRaca(String raca) {
 		this.raca = raca;
 	}
-
 
 	public String getEspecie() {
 		return especie;
 	}
 
-
 	public void setEspecie(String especie) {
 		this.especie = especie;
 	}
 
+	public String getSexo() {
+		return sexo;
+	}
 
-	public String getPedigree() {
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public boolean isPedigree() {
 		return pedigree;
 	}
 
-
-	public void setPedigree(String pedigree) {
+	public void setPedigree(boolean pedigree) {
 		this.pedigree = pedigree;
 	}
-
+	
+	public String getPedigree(){
+		if(this.pedigree){
+			return "Sim";
+		}
+		return "Não";
+	}
 
 	public Date getData_nasc() {
 		return data_nasc;
 	}
 
-
 	public void setData_nasc(Date data_nasc) {
 		this.data_nasc = data_nasc;
 	}
-
 
 	public Cliente getCliente() {
 		return cliente;
 	}
 
-
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
 
 	@Override
 	public int hashCode() {
