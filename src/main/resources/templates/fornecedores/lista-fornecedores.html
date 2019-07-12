@@ -15,8 +15,8 @@
 			
 			<div class="alert  alert-success"
 				th:if="${!#strings.isEmpty(mensagem)}">
-				<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem
-					sucesso!</span>
+				<i class="fa fa-check-circle"></i>
+				<span th:text="${mensagem}">Mensagem sucesso!</span>
 			</div>
 
 			<div class="table-responsive">
@@ -25,10 +25,10 @@
 					<thead class="aw-table-header-solid">
 						<tr>
 							<th class="text-center">Código</th>
-							<th class="col-md-2">CNPJ</th>
-							<th class="col-md-3">Nome</th>
-							<th class="col-md-2">Contato</th>
-							<th class="col-md-2">E-mail</th>
+							<th>CNPJ</th>
+							<th>Nome</th>
+							<th>Contato</th>
+							<th>E-mail</th>
 							<th>Telefone</th>
 							<th class="text-center">Ações</th>
 						</tr>
