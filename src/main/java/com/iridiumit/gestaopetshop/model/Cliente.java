@@ -1,5 +1,6 @@
 package com.iridiumit.gestaopetshop.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -34,6 +35,8 @@ public class Cliente {
 	@NotBlank(message = "{CPF.not.blank}")
 	private String cpf;
 	
+	private String rg;
+	
 	@NotBlank(message = "{email.not.blank}")
 	@Email(message = "{email.not.valid}")
 	private String email;
@@ -45,8 +48,6 @@ public class Cliente {
 	
 	@NotBlank (message = "{sexo.not.blank}")
 	private String sexo;
-	
-	private String rg;
 	
 	@Column(name="data_nasc")
 	@Temporal(TemporalType.DATE)
@@ -148,6 +149,12 @@ public class Cliente {
 
 	public Date getData_nasc() {
 		return data_nasc;
+	}
+	
+	public String getDataNascFormatada() {
+		Date data = this.data_nasc; 
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+		return formato.format(data);
 	}
 
 	public void setData_nasc(Date data_nasc) {

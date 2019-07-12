@@ -1,5 +1,8 @@
 package com.iridiumit.gestaopetshop.model;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -120,9 +123,26 @@ public class Animal {
 	public Date getData_nasc() {
 		return data_nasc;
 	}
+	
+	public String getDataNascFormatada() {
+		Date data = this.data_nasc; 
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+		return formato.format(data);
+	}
 
 	public void setData_nasc(Date data_nasc) {
 		this.data_nasc = data_nasc;
+	}
+	
+	public String getIdade() {
+		
+		final LocalDate dataNasc = ((java.sql.Date) this.data_nasc).toLocalDate();
+		
+	    final LocalDate dataAtual = LocalDate.now();
+	    final Period periodo = Period.between(dataNasc, dataAtual);
+	    String idade = periodo.getYears() + " ano(s), " + periodo.getMonths() + " mese(s) e " + periodo.getDays() + " dia(s)";
+	    System.out.println(idade);
+	    return idade;
 	}
 
 	public Cliente getCliente() {

@@ -45,6 +45,7 @@
 						<tr>
 							<th class="text-center">Código</th>
 							<th>Nome</th>
+							<th>Data Nasc.</th>
 							<th>Raça</th>
 							<th>Espécie</th>
 							<th>Pedigree</th>
@@ -62,7 +63,9 @@
 									</a>
 									<span th:text="${animal.nome}"></span>
 								</td>
-
+								
+							<td th:text="${animal.getDataNascFormatada()}">data_nasc</td>
+							
 							<td class="col-md-1"
 								th:text="${animal.raca}">raca</td>
 

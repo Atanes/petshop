@@ -92,6 +92,16 @@ public class Endereco {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	
+	public String getLogradouro() {
+		String logradouro = this.rua + ", nrº " + this.nr;
+		
+		if(!this.complemento.equals("")){
+			logradouro += " - " + this.complemento;
+		}
+		
+		return logradouro;
+	}
 
 	@Override
 	public int hashCode() {

@@ -57,6 +57,22 @@ public class ClienteController {
 		return modelAndView;
 	}
 	
+	@GetMapping("/{id}")
+	public ModelAndView clienteAnimais(@PathVariable Long id) {
+		
+		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes-e-animais");
+		
+		Cliente c = clientes.findOne(id);
+		
+		modelAndView.addObject(c);
+
+		modelAndView.addObject("animais", animais.findByCliente(c));
+		
+		modelAndView.addObject("mensagem", "Cliente salvo com sucesso!");
+		
+		return modelAndView;
+	}
+	
 	@DeleteMapping("excluir/{id}")
 	public String excluir(@PathVariable Long id, RedirectAttributes attributes) {
 		
@@ -104,17 +120,25 @@ public class ClienteController {
 
 		attributes.addFlashAttribute("mensagem", "Cliente salvo com sucesso!!");
 
-		return new ModelAndView("redirect:/atendimento/clientes/novo");
+		//return new ModelAndView("redirect:/atendimento/clientes/novo");
+		
+		return new ModelAndView("redirect:/atendimento/clientes/" + cliente.getId());
+		
+		
 	}
 	
 	@GetMapping("/selecao/{id}")
 	public ModelAndView SelecaoPorCliente(@PathVariable Long id, @ModelAttribute("filtro") AnimalFiltro filtro) {
 
 		Cliente c = clientes.findOne(id);
-		ModelAndView modelAndView = new ModelAndView("animais/lista-animais");
+		//ModelAndView modelAndView = new ModelAndView("animais/lista-animais");
+		
+		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes-e-animais");
+		
+		modelAndView.addObject(c);
 
 		modelAndView.addObject("animais", animais.findByCliente(c));
-		modelAndView.addObject("mensagem", "Animais do cliente " + c.getNome());
+		//modelAndView.addObject("mensagem", "Animais do cliente " + c.getNome());
 		return modelAndView;
 
 	}

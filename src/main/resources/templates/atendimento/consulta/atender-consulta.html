@@ -30,8 +30,8 @@
 
 				<div class="alert  alert-success"
 					th:if="${!#strings.isEmpty(mensagem)}">
-					<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem
-						sucesso!</span>
+					<i class="fa fa-check-circle"></i>
+					<span th:text="${mensagem}">Mensagem sucesso!</span>
 				</div>
     			
 				<input type="hidden" th:field="*{codigo}" />
