@@ -112,11 +112,31 @@
 							<p class="form-group" th:text="${cliente.endereco.estado}"></p>
 						</div>
 					</div>
+					
+					
+				
+				</div>
+				
+				<div class="row">
+				
+					<div class="col-sm-6">
+						<a id="btnincluiranimal" class="btn btn-success btn-sm col-sm-2"
+							th:href="@{/clientes/animais/incluirAnimal/{id}(id=${cliente.id})}" th:title="'Incluir Animais'">
+							<span class="fa fa-paw acoes"></span> Animal
+						</a>
+					</div>
+				
+					<div class="col-sm-6">
+						<a id="btneditarcliente" class="btn btn-primary btn-sm col-sm-2 pull-right"
+							th:href="@{/atendimento/clientes/editar/{id}(id=${cliente.id})}" th:title="'Editar Cliente'"> 
+							<span class="fa fa-pencil-alt acoes"></span> Cliente
+						</a>
+					</div>
 				
 				</div>
 				
 			<h1 class="titulo-formulario">Animais</h1>
-
+			
 			<div class="table-responsive">
 				<table id="tabela-animais"
 					class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">

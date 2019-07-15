@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -52,6 +53,7 @@ public class Cliente {
 	@Column(name="data_nasc")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Past (message = "{data_nasc.mustbe.past}")
 	private Date data_nasc;
 	
 	@OneToMany(cascade = CascadeType.ALL,

@@ -5,7 +5,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +41,7 @@ public class AnimalController {
 		return modelAndView;
 	}
 
-	@DeleteMapping("/excluir/{id}")
+	@PostMapping("/excluir/{id}")
 	public String remover(@PathVariable Long id, RedirectAttributes attributes) {
 
 		Cliente c = animais.findOne(id).getCliente();
@@ -51,7 +50,7 @@ public class AnimalController {
 
 		attributes.addFlashAttribute("mensagem", "Animal excluido com sucesso!!");
 
-		return "redirect:/clientes/animais/selecao/" + c.getId();
+		return "redirect:/atendimento/clientes/selecao/" + c.getId();
 	}
 
 	@GetMapping("/{id}")
@@ -62,11 +61,26 @@ public class AnimalController {
 
 	@GetMapping("/novo")
 	public ModelAndView novo(Animal animal) {
-		ModelAndView modelAndView = new ModelAndView("animais/cadastro-animal");
+		ModelAndView modelAndView = new ModelAndView("animais/cadastro-animal2");
 
 		modelAndView.addObject(animal);
 		
-		modelAndView.addObject("clientes", clientes.findAll());
+		//modelAndView.addObject("clientes", clientes.findAll());
+
+		return modelAndView;
+	}
+	
+	@GetMapping("/incluirAnimal/{id}")
+	public ModelAndView incluirAnimal(@PathVariable Long id) {
+		ModelAndView modelAndView = new ModelAndView("animais/cadastro-animal2");
+		
+		Cliente c = clientes.findOne(id);
+		
+		Animal a = new Animal();
+		
+		a.setCliente(c);
+		
+		modelAndView.addObject(a);
 
 		return modelAndView;
 	}
@@ -92,7 +106,7 @@ public class AnimalController {
 
 		attributes.addFlashAttribute("mensagem", "Animal salvo com sucesso!!");
 
-		return new ModelAndView("redirect:/clientes/animais/novo");
+		return new ModelAndView("redirect:/atendimento/clientes/selecao/" + animal.getCliente().getId());
 	}
 
 }
