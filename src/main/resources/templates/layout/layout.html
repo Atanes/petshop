@@ -80,7 +80,7 @@
 						<li sec:authorize="hasRole('PS_CAIXA') or hasRole('PS_ADMIN')">
 							<a	href="/atendimento/caixa">Caixa</a>
 						</li>
-						<li	sec:authorize="hasRole('PS_VETERINARIO') or hasRole('PS_ADMIN')">
+						<li	sec:authorize="hasRole('PS_VETERINARIO')">
 							<a	href="/atendimento/consultas">Consulta</a>
 						</li>
 						<li class="dropdown" sec:authorize="hasRole('PS_VETERINARIO') or hasRole('PS_ADMIN')">
