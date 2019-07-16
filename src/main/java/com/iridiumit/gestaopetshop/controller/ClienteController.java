@@ -53,7 +53,18 @@ public class ClienteController {
 		
 		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes");
 
-		modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCase(nome));
+		modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCaseAndAtivo(nome, true));
+		return modelAndView;
+	}
+	
+	@GetMapping("/inativos")
+	public ModelAndView listarInativos(@ModelAttribute("filtro") ClienteFiltro filtro) {
+		
+		String nome = filtro.getNome() == null ? "%" : filtro.getNome();
+		
+		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes");
+
+		modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCaseAndAtivo(nome, false));
 		return modelAndView;
 	}
 	
@@ -76,9 +87,15 @@ public class ClienteController {
 	@DeleteMapping("excluir/{id}")
 	public String excluir(@PathVariable Long id, RedirectAttributes attributes) {
 		
-		clienteService.excluir(id);
+		//clienteService.excluir(id);
+		
+		Cliente c = clientes.findOne(id);
+		
+		c.setAtivo(false);
+		
+		clienteService.salvar(c);
 
-		attributes.addFlashAttribute("mensagem", "Cliente excluido com sucesso!!");
+		attributes.addFlashAttribute("mensagem", "Cliente inativado com sucesso!!");
 		
 		return "redirect:/atendimento/clientes";
 	}
@@ -115,6 +132,8 @@ public class ClienteController {
 		enderecos.save(e);
 		
 		cliente.setEndereco(e);
+		
+		cliente.setAtivo(true);
 
 		clienteService.salvar(cliente);
 

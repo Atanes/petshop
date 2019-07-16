@@ -8,8 +8,10 @@ import com.iridiumit.gestaopetshop.model.Cliente;
 
 public interface Clientes extends JpaRepository<Cliente, Long>{
 
-	List<Cliente> findByNomeContainingIgnoreCase(String nome);
+	List<Cliente> findByNomeContainingIgnoreCaseAndAtivo(String nome, boolean ativo);
 	
 	Cliente findByCpf(String cpf);
+	
+	List<Cliente> findByAtivo(boolean ativo);
 
 }

@@ -65,12 +65,14 @@ public class Cliente {
     @JoinColumn(name = "endereco_id", nullable = false)
     private Endereco endereco;
 	
+	private boolean ativo;
+	
 	public Cliente (){
 		
 	}
 
 	public Cliente(Long id, String nome, String cpf, String email, String telefone1, String telefone2, String sexo,
-			String rg, Date data_nasc, Set<Animal> animal, Endereco endereco) {
+			String rg, Date data_nasc, Set<Animal> animal, Endereco endereco, boolean ativo) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -83,6 +85,7 @@ public class Cliente {
 		this.data_nasc = data_nasc;
 		this.animal = animal;
 		this.endereco = endereco;
+		this.ativo = true;
 	}
 
 	public Long getId() {
@@ -177,6 +180,14 @@ public class Cliente {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override
