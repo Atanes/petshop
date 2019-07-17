@@ -62,7 +62,7 @@ public class ClienteController {
 		
 		String nome = filtro.getNome() == null ? "%" : filtro.getNome();
 		
-		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes");
+		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes-inativos");
 
 		modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCaseAndAtivo(nome, false));
 		return modelAndView;
@@ -105,6 +105,28 @@ public class ClienteController {
 
 		return novo(clienteService.localizar(id));
 	}
+	
+	@GetMapping("ativar/{id}")
+	public ModelAndView ativar(@PathVariable Long id) {
+
+		Cliente c = clienteService.localizar(id);
+		
+		c.setAtivo(true);
+		
+		clientes.save(c);
+		
+		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes-e-animais");
+		
+		modelAndView.addObject(c);
+
+		modelAndView.addObject("animais", animais.findByCliente(c));
+		
+		modelAndView.addObject("mensagem", "Cliente re-ativado com sucesso!");
+		
+		return modelAndView;
+		
+		
+	}
 
 	@GetMapping("/novo")
 	public ModelAndView novo(Cliente cliente) {
@@ -138,8 +160,6 @@ public class ClienteController {
 		clienteService.salvar(cliente);
 
 		attributes.addFlashAttribute("mensagem", "Cliente salvo com sucesso!!");
-
-		//return new ModelAndView("redirect:/atendimento/clientes/novo");
 		
 		return new ModelAndView("redirect:/atendimento/clientes/" + cliente.getId());
 		
@@ -150,14 +170,13 @@ public class ClienteController {
 	public ModelAndView SelecaoPorCliente(@PathVariable Long id, @ModelAttribute("filtro") AnimalFiltro filtro) {
 
 		Cliente c = clientes.findOne(id);
-		//ModelAndView modelAndView = new ModelAndView("animais/lista-animais");
 		
 		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes-e-animais");
 		
 		modelAndView.addObject(c);
 
 		modelAndView.addObject("animais", animais.findByCliente(c));
-		//modelAndView.addObject("mensagem", "Animais do cliente " + c.getNome());
+		
 		return modelAndView;
 
 	}

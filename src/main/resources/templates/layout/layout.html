@@ -46,11 +46,20 @@
 								Atendimento <span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu">
+							
 								<li><a href="/atendimento/clientes">
 										<i class="fas fa-address-card"></i>&nbsp;
 										Listar Clientes
 									</a>
 								</li>
+								
+								<li sec:authorize="hasRole('PS_ADMIN')">
+										<a href="/atendimento/clientes/inativos">
+										<i class="fas fa-address-card"></i>&nbsp;
+										Listar Clientes (Inativos)
+									</a>
+								</li>
+								
 								<li><a href="/atendimento/clientes/novo">
 										<i class="fas fa-user-plus"></i>&nbsp;
 										Incluir Cliente
