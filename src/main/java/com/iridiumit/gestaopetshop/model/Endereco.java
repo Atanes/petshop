@@ -17,7 +17,7 @@ public class Endereco {
 	@NotBlank(message = "{CEP.not.blank}")
 	private String CEP;
 	
-	private String rua;
+	private String logradouro;
 	
 	private String nr;
 	
@@ -41,16 +41,16 @@ public class Endereco {
 		return CEP;
 	}
 
-	public void setCEP(String cEP) {
-		CEP = cEP;
+	public void setCEP(String cep) {
+		CEP = cep;
 	}
 
-	public String getRua() {
-		return rua;
+	public String getLogradouro() {
+		return logradouro;
 	}
 
-	public void setRua(String rua) {
-		this.rua = rua;
+	public void setLogradouro(String rua) {
+		this.logradouro = rua;
 	}
 
 	public String getNr() {
@@ -93,8 +93,8 @@ public class Endereco {
 		this.estado = estado;
 	}
 	
-	public String getLogradouro() {
-		String logradouro = this.rua + ", nrº " + this.nr;
+	public String getEndereco() {
+		String logradouro = this.logradouro + ", nrº " + this.nr;
 		
 		if(!this.complemento.equals("")){
 			logradouro += " - " + this.complemento;
