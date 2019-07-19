@@ -38,7 +38,7 @@
 					<thead>
 						<tr>
 							<th scope="col" class="text-center">Matricula</th>
-							<th scope="col" class="col-md-3">Nome</th>
+							<th scope="col">Nome</th>
 							<th scope="col">CPF</th>
 							<th scope="col">Função</th>
 							<th scope="col">e-mail</th>
@@ -49,7 +49,7 @@
 						<tr th:each="colaborador: ${colaboradores}">
 							<td class="text-center" th:text="${colaborador.matricula}">1</td>
 
-							<td class="col-md-3" th:text="${colaborador.nome}">123</td>
+							<td th:text="${colaborador.nome}">123</td>
 							<td th:text="${colaborador.cpf}">123</td>
 							<td th:text="${colaborador.funcao}">123</td>
 							<td th:text="${colaborador.email}">123</td>

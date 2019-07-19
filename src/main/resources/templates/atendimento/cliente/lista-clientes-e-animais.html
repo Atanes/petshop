@@ -143,14 +143,14 @@
 							<th scope="col">Raça</th>
 							<th scope="col">Espécie</th>
 							<th scope="col">Pedigree</th>
-							<th scope="col" class="col-md-1 text-center">Ações</th>
+							<th scope="col" class="text-center">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="animal: ${animais}">
 							<td class="text-center" th:text="${animal.id}">a1</td>
 
-							<td class="col-sm-3">
+							<td>
 								<a class="btn btn-info btn-sm" th:href="@{/atendimento/consultas/novo/{id}(id=${animal.id})}"
 										th:title="'Incluir Consultas'"> <span class="fa fa-user-md acoes"></span>
 									</a>
@@ -163,7 +163,7 @@
 							
 							<td th:text="${animal.getPedigree()}">pedigree</td>
 
-							<td class="col-sm-2 text-center">
+							<td class="text-center">
 								<form method="POST"
 									th:onsubmit="'return confirm(\'Posso remover o animal: ' + 
 								${animal.nome} + ' da base de dados?\');'"

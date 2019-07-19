@@ -33,7 +33,7 @@
 					<thead>
 						<tr>
 							<th scope="col" class="text-center">Código</th>
-							<th scope="col" class="col-md-3">Nome</th>
+							<th scope="col">Nome</th>
 							<th scope="col">CPF</th>
 							<th scope="col">Telefone</th>
 							<th scope="col">e-mail</th>
@@ -44,7 +44,7 @@
 						<tr th:each="cliente: ${clientes}">
 							<td class="text-center" th:text="${cliente.id}">1</td>
 
-							<td class="col-md-3" th:text="${cliente.nome}">123</td>
+							<td th:text="${cliente.nome}">123</td>
 							<td th:text="${cliente.cpf}">123</td>
 							<td th:text="${cliente.telefone1}">123</td>
 							<td th:text="${cliente.email}">123</td>

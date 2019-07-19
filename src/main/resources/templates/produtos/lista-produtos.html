@@ -50,24 +50,21 @@
 					</thead>
 					<tbody>
 						<tr th:each="produto: ${produtos}">
-							<td class="col-md-1 text-center" th:text="${produto.id}">p1</td>
+							<td class="text-center" th:text="${produto.id}">p1</td>
 
-							<td class="col-md-3"
-								th:text="${produto.descricao}">os1</td>
+							<td th:text="${produto.descricao}">os1</td>
 
-							<td class="col-md-1 text-center"
-								th:text="${produto.qtd}">qtd</td>
+							<td class="text-center"	th:text="${produto.qtd}">qtd</td>
 
-							<td class="col-md-1 text-right" th:text="${produto.convertValorToMoney(produto.valorCompra)}">valorcompra</td>
+							<td class="text-right" th:text="${produto.convertValorToMoney(produto.valorCompra)}">valorcompra</td>
 							
-							<td class="col-md-1 text-right" th:text="${produto.convertValorToMoney(produto.valorVenda)}">valorvenda</td>
+							<td class="text-right" th:text="${produto.convertValorToMoney(produto.valorVenda)}">valorvenda</td>
 
-							<td class="col-md-3"
-								th:text="${produto.fornecedor.nome}">fornecedor</td>
+							<td th:text="${produto.fornecedor.nome}">fornecedor</td>
 
 							
 
-							<td class="col-md-1 text-center">
+							<td class="text-center">
 								<form method="POST"
 									th:onsubmit="'return confirm(\'Posso remover o produto: ' + 
 								${produto.descricao} + ' da base de dados?\');'"

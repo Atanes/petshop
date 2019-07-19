@@ -24,8 +24,8 @@
 					class="table  table-sm table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
 					<thead>
 						<tr>
-							<th scope="col" class="text-center col-md-1">Código</th>
-							<th scope="col" class="col-md-1">Data</th>
+							<th scope="col" class="text-center">Código</th>
+							<th scope="col">Data</th>
 							<th scope="col">Veterinário</th>
 							<th scope="col">Animal</th>
 							<th scope="col">Cliente</th>
@@ -35,9 +35,9 @@
 					</thead>
 					<tbody>
 						<tr th:each="consulta: ${consultas}">
-							<td class="text-center col-md-1" th:text="${consulta.codigo}">c1</td>
+							<td class="text-center" th:text="${consulta.codigo}">c1</td>
 
-							<td class="col-md-1" th:text="${consulta.getDataAtendimentoFormatada()}">123</td>
+							<td th:text="${consulta.getDataAtendimentoFormatada()}">123</td>
 							<td th:text="${consulta.colaborador.nome}">123</td>
 							<td th:text="${consulta.animal.nome}">123</td>
 							<td th:text="${consulta.animal.cliente.nome}">123</td>

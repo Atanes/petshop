@@ -49,14 +49,14 @@
 					</thead>
 					<tbody>
 						<tr th:each="fornecedor: ${fornecedores}">
-							<td class="col-md-1 text-center" th:text="${fornecedor.id}">1</td>
+							<td class="text-center" th:text="${fornecedor.id}">1</td>
 
 							<td th:text="${fornecedor.cnpj}">fornecedor1</td>
 							<td th:text="${fornecedor.nome}">123</td>
 							<td th:text="${fornecedor.contato}">123</td>
 							<td th:text="${fornecedor.email}">123</td>
 							<td th:text="${fornecedor.telefone}">123</td>
-							<td class="col-md-1 text-center">
+							<td class="text-center">
 								<form method="POST" th:onsubmit="'return confirm(\'Posso remover o fornecedor: ' + 
 								${fornecedor.nome} + ' da base de dados?\');'" 
 								th:action="@{/fornecedores/excluir/{id}(id=${fornecedor.id})}">

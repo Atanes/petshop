@@ -53,7 +53,7 @@
 						<tr th:each="animal: ${animais}">
 							<td class="col-md-1 text-center" th:text="${animal.id}">a1</td>
 
-							<td class="col-md-3">
+							<td>
 								<a class="btn btn-info btn-xs" th:href="@{/atendimento/consultas/novo/{id}(id=${animal.id})}"
 										th:title="'Incluir Consultas'"> <span class="fa fa-user-md acoes"></span>
 									</a>
@@ -62,17 +62,15 @@
 								
 							<td th:text="${animal.getDataNascFormatada()}">data_nasc</td>
 							
-							<td class="col-md-1"
-								th:text="${animal.raca}">raca</td>
+							<td th:text="${animal.raca}">raca</td>
 
-							<td class="col-md-1" th:text="${animal.especie}">especie</td>
+							<td th:text="${animal.especie}">especie</td>
 							
-							<td class="col-md-1" th:text="${animal.getPedigree()}">pedigree</td>
+							<td th:text="${animal.getPedigree()}">pedigree</td>
 
-							<td class="col-md-3"
-								th:text="${animal.cliente.nome}">cliente</td>
+							<td th:text="${animal.cliente.nome}">cliente</td>
 
-							<td class="col-md-1 text-center">
+							<td class="text-center">
 								<form method="POST"
 									th:onsubmit="'return confirm(\'Posso remover o animal: ' + 
 								${animal.nome} + ' da base de dados?\');'"
