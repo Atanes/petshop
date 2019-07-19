@@ -12,7 +12,7 @@
 	<section layout:fragment="content">
 		<div class="layout-pagina">
 		
-			<h1 class="titulo-formulario">Listagem de produtos</h1>
+			<h1 class="titulo-formulario"><i class="fas fa-list"></i>&nbsp;Listagem de produtos</h1>
 			
 			<div class="alert  alert-success"
 				th:if="${!#strings.isEmpty(mensagem)}">
@@ -20,36 +20,32 @@
 					sucesso!</span>
 			</div>
 			
-			<form method="GET" class="form-horizontal"
-				action="/fornecedores/produtos" th:object="${filtro}">
-				<div class="form-group">
-					<div class="col-sm-4">
-						<div class="input-group">
-							<input class="form-control"
-								placeholder="Qual produto você está procurando?"
-								autofocus="autofocus" th:field="*{descricao}"></input> <span
-								class="input-group-btn">
+			<div class="pesquisa">
+				<form method="GET" class="form-inline" action="/fornecedores/produtos" th:object="${filtro}">
+						<div class="input-group col-sm-4">
+							<input class="form-control"	placeholder="Qual produto você está procurando?"
+								autofocus="autofocus" th:field="*{descricao}">
+							<div class="input-group-append">
 								<button type="submit" class="btn btn-default">
-									<i class="glyphicon glyphicon-search"></i>
+									<i class="fas fa-search"></i>
 								</button>
-							</span>
+							</div>
 						</div>
-					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 
-			<div class="table-responsive">
+			<div class="table-responsive-sm">
 				<table id="tabela-produtos"
-					class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
-					<thead class="aw-table-header-solid">
+					class="table  table-sm table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
+					<thead>
 						<tr>
-							<th class="text-center">Código</th>
-							<th>Descrição</th>
-							<th class="text-center">Qtd</th>
-							<th class="text-center">Valor compra</th>
-							<th class="text-center">Valor venda</th>
-							<th>Fornecedor</th>
-							<th class="text-center">Ações</th>
+							<th scope="col" class="text-center">Código</th>
+							<th scope="col">Descrição</th>
+							<th scope="col" class="text-center">Qtd</th>
+							<th scope="col" class="text-center">Valor compra</th>
+							<th scope="col" class="text-center">Valor venda</th>
+							<th scope="col">Fornecedor</th>
+							<th scope="col" class="text-center">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -77,11 +73,11 @@
 								${produto.descricao} + ' da base de dados?\');'"
 									th:action="@{/fornecedores/produtos/excluir/{id}(id=${produto.id})}">
 									<input type="hidden" name="_method" value="DELETE" />
-									<a class="btn btn-primary btn-xs" th:href="@{/fornecedores/produtos/{id}(id=${produto.id})}"
-										th:title="Editar"> <span class="fa fa-pencil-alt acoes"></span>
+									<a class="btn btn-primary btn-sm" th:href="@{/fornecedores/produtos/{id}(id=${produto.id})}"
+										th:title="Editar"> <span class="fa fa-pencil-alt"></span>
 									</a>
-									<button type="submit" class="btn btn-danger btn-xs" title="Excluir">
-										<span class="far fa-trash-alt acoes"></span>
+									<button type="submit" class="btn btn-danger btn-sm" title="Excluir">
+										<span class="far fa-trash-alt"></span>
 									</button>
 								</form>
 							</td>

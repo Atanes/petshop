@@ -11,26 +11,40 @@
 	<section layout:fragment="content">
 		<div class="layout-pagina">
 			
-			<h1 class="titulo-formulario">Listagem de fornecedores</h1>
+			<h1 class="titulo-formulario"><i class="fas fa-list"></i>&nbsp;Listagem de fornecedores</h1>
 			
 			<div class="alert  alert-success"
 				th:if="${!#strings.isEmpty(mensagem)}">
 				<i class="fa fa-check-circle"></i>
 				<span th:text="${mensagem}">Mensagem sucesso!</span>
 			</div>
+			
+			<div class="pesquisa">
+				<form method="GET" class="form-inline" action="/fornecedores" th:object="${filtro}">
+						<div class="input-group col-sm-4">
+							<input class="form-control"	placeholder="Qual fornecedor você está procurando?"
+									autofocus="autofocus" th:field="*{nome}">
+							<div class="input-group-append">
+								<button type="submit" class="btn btn-default">
+									<i class="fas fa-search"></i>
+								</button>
+							</div>
+						</div>
+				</form>
+			</div>
 
-			<div class="table-responsive">
+			<div class="table-responsive-sm">
 				<table id="tabela-produtos"
-					class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
-					<thead class="aw-table-header-solid">
+					class="table  table-sm table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
+					<thead>
 						<tr>
-							<th class="text-center">Código</th>
-							<th>CNPJ</th>
-							<th>Nome</th>
-							<th>Contato</th>
-							<th>E-mail</th>
-							<th>Telefone</th>
-							<th class="text-center">Ações</th>
+							<th scope="col" class="text-center">Código</th>
+							<th scope="col">CNPJ</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Contato</th>
+							<th scope="col">E-mail</th>
+							<th scope="col">Telefone</th>
+							<th scope="col" class="text-center">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -46,12 +60,12 @@
 								<form method="POST" th:onsubmit="'return confirm(\'Posso remover o fornecedor: ' + 
 								${fornecedor.nome} + ' da base de dados?\');'" 
 								th:action="@{/fornecedores/excluir/{id}(id=${fornecedor.id})}">
-								<a class="btn btn-primary btn-xs" th:href="@{/fornecedores/editar/{id}(id=${fornecedor.id})}"
-										th:title="Editar"> <span class="fas fa-pencil-alt acoes"></span>
+								<a class="btn btn-primary btn-sm" th:href="@{/fornecedores/editar/{id}(id=${fornecedor.id})}"
+										th:title="Editar"> <span class="fas fa-pencil-alt"></span>
 									</a>
 								<input type="hidden" name="_method" value="DELETE"/>
-									<button type="submit" class="btn btn-danger btn-xs" title="Excluir">
-										<i class="far fa-trash-alt acoes"></i>
+									<button type="submit" class="btn btn-danger btn-sm" title="Excluir">
+										<i class="far fa-trash-alt"></i>
 									</button>
 								</form>
 							</td>

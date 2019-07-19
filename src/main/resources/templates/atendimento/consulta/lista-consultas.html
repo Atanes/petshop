@@ -11,7 +11,7 @@
 	<section layout:fragment="content">
 		<div class="layout-pagina">
 		
-			<h1 class="titulo-formulario">Listagem de consultas</h1>
+			<h1 class="titulo-formulario"><i class="fas fa-list"></i>&nbsp;Listagem de consultas</h1>
 			
 			<div class="alert  alert-success"
 				th:if="${!#strings.isEmpty(mensagem)}">
@@ -19,18 +19,18 @@
 					sucesso!</span>
 			</div>
 			
-			<div class="table-responsive">
+			<div class="table-responsive-sm">
 				<table id="tabela-produtos"
-					class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
-					<thead class="aw-table-header-solid">
+					class="table  table-sm table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
+					<thead>
 						<tr>
-							<th class="text-center col-md-1">Código</th>
-							<th class="col-md-1">Data</th>
-							<th>Veterinário</th>
-							<th>Animal</th>
-							<th>Cliente</th>
-							<th>Status</th>
-							<th class="text-center">Ações</th>
+							<th scope="col" class="text-center col-md-1">Código</th>
+							<th scope="col" class="col-md-1">Data</th>
+							<th scope="col">Veterinário</th>
+							<th scope="col">Animal</th>
+							<th scope="col">Cliente</th>
+							<th scope="col">Status</th>
+							<th scope="col" class="text-center">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -48,17 +48,17 @@
 								${consulta.codigo} + ' relativa ao ' + ${consulta.animal.nome} + ' da base de dados?\');'"
 									th:action="@{/atendimento/consultas/excluir/{codigo}(codigo=${consulta.codigo})}">
 									<input type="hidden" name="_method" value="DELETE" />
-									<a class="btn btn-warning btn-xs"
+									<a class="btn btn-warning btn-sm"
 										th:href="@{/atendimento/consultas/atender/{codigo}(codigo=${consulta.codigo})}"
 										th:title="'Realizar Consulta'"> <span class="fa fa-user-md acoes"></span>
 									</a>
-									<a class="btn btn-primary btn-xs"
+									<a class="btn btn-primary btn-sm"
 										th:href="@{/atendimento/consultas/{codigo}(codigo=${consulta.codigo})}"
 										th:title="Editar"> <span class="fa fa-pencil-alt acoes"></span>
 									</a>
-									<button type="submit" class="btn btn-danger btn-xs"
+									<button type="submit" class="btn btn-danger btn-sm"
 										title="Excluir">
-										<i class="far fa-trash-alt acoes"></i>
+										<i class="far fa-trash-alt"></i>
 									</button>
 								</form>
 							</td>

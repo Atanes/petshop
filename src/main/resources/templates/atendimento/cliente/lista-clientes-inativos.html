@@ -11,37 +11,33 @@
 	<section layout:fragment="content">
 		<div class="layout-pagina">
 		
-			<h1 class="titulo-formulario">Listagem de clientes inativos</h1>
+			<h1 class="titulo-formulario"><i class="fas fa-user-slash"></i>&nbsp;Listagem de clientes inativos</h1>
 			
-			<form method="GET" class="form-horizontal"
-				action="/atendimento/clientes/inativos" th:object="${filtro}">
-				<div class="form-group">
-					<div class="col-sm-4">
-						<div class="input-group">
-							<input class="form-control"
-								placeholder="Qual cliente você está procurando?"
-								autofocus="autofocus" th:field="*{nome}"></input> <span
-								class="input-group-btn">
-								<button type="submit" class="btn btn-default">
-									<i class="glyphicon glyphicon-search"></i>
-								</button>
-							</span>
+			<div class="pesquisa">
+				<form method="GET" class="form-inline" action="/atendimento/clientes/inativos" th:object="${filtro}">
+					<div class="input-group col-sm-4">
+						<input class="form-control" placeholder="Qual cliente você está procurando?"
+							autofocus="autofocus" th:field="*{nome}"></input>
+						<div class="input-group-append">
+							<button type="submit" class="btn btn-default">
+								<i class="fas fa-search"></i>
+							</button>
 						</div>
 					</div>
-				</div>
-			</form>
-
-			<div class="table-responsive">
+				</form>
+			</div>
+			
+			<div class="table-responsive-sm">
 				<table id="tabela-produtos"
-					class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
-					<thead class="aw-table-header-solid">
+					class="table  table-sm table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
+					<thead>
 						<tr>
-							<th class="text-center">Código</th>
-							<th class="col-md-3">Nome</th>
-							<th>CPF</th>
-							<th>Telefone</th>
-							<th>e-mail</th>
-							<th class="text-center">Ações</th>
+							<th scope="col" class="text-center">Código</th>
+							<th scope="col" class="col-md-3">Nome</th>
+							<th scope="col">CPF</th>
+							<th scope="col">Telefone</th>
+							<th scope="col">e-mail</th>
+							<th scope="col" class="text-center">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -53,7 +49,7 @@
 							<td th:text="${cliente.telefone1}">123</td>
 							<td th:text="${cliente.email}">123</td>
 							<td class="text-center">
-								<a class="btn btn-warning btn-xs"
+								<a class="btn btn-warning btn-sm"
 									th:href="@{/atendimento/clientes/ativar/{id}(id=${cliente.id})}"
 									th:title="Re-Ativar"> <span class="fa fa-user-check"></span>
 								</a>	

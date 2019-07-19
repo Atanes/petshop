@@ -4,7 +4,8 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/layout}">
 <head>
-<script th:src="@{/webjars/jquery.inputmask/3.1.0/jquery.inputmask.bundle.js}"></script>
+<script th:src="@{/js/BuscaCEP.js}"></script>
+	<script th:src="@{/webjars/jquery.inputmask/4.0.5/jquery.inputmask.bundle.js}"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 	
@@ -25,7 +26,7 @@
 	<section layout:fragment="content">
 		<div class="layout-pagina">
 		
-			<h1 class="titulo-formulario">Cadastro de fornecedor</h1>
+			<h1 class="titulo-formulario"><i class="fas fa-industry"></i>&nbsp;Cadastro de fornecedor</h1>
 
 			<form method="POST" class="form-vertical  js-form-loading"
 				th:object="${fornecedor}" th:action="@{/fornecedores/salvar}">

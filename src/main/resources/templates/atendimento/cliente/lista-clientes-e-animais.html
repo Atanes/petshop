@@ -11,176 +11,170 @@
 	<section layout:fragment="content">
 		<div class="layout-pagina">
 		
-			<h1 class="titulo-formulario">Cliente: <span class="nomeCliente" th:text="${cliente.nome}"></span></h1>
+		<h1 class="titulo-formulario"><i class="far fa-handshake"></i>&nbsp;
+			Cliente: <span class="nomeDestaque" th:text="${cliente.nome}"></span>
+		</h1>
+		
+		<div class="alert  alert-success"
+			th:if="${!#strings.isEmpty(mensagem)}">
+			<i class="fa fa-check-circle"></i>
+			<span th:text="${mensagem}">Mensagem sucesso!</span>
+		</div>
+		
+			<input type="hidden" th:field="*{id}" />
 			
-			<div class="alert  alert-success"
-				th:if="${!#strings.isEmpty(mensagem)}">
-				<i class="fa fa-check-circle"></i>
-				<span th:text="${mensagem}">Mensagem sucesso!</span>
+			<div class="row">
+			
+				<div class="col-sm-2 dadosDestaque">
+					<div class="form-group">
+						<label>Data de nascimento</label>
+						<p class="form-group" th:text="${cliente.getDataNascFormatada()}"></p>
+					</div>
+				</div>
+				
+				<div class="col-sm-2 dadosDestaque">
+					<label>Sexo</label>
+					<p class="form-group" th:text="${cliente.sexo}"></p>
+				</div>
+				
+				<div class="col-sm-2 dadosDestaque">
+					<div class="form-group">
+						<label>CPF</label>
+						<p class="form-group" th:text="${cliente.cpf}"></p>
+					</div>
+				</div>
+				
+				<div class="col-sm-2 dadosDestaque">
+					<div class="form-group">
+						<label>RG</label>
+						<p class="form-group" th:text="${cliente.rg}"></p>
+					</div>
+				</div>
+			
+				<div class="col-sm-4 dadosDestaque">
+					<div class="form-group">
+						<label>E-mail</label>
+						<p class="form-group" th:text="${cliente.email}"></p>
+					</div>
+				</div>
+				
 			</div>
 			
-				<input type="hidden" th:field="*{id}" />
-				
-				<div class="row">
-					
-					<div class="col-sm-2 dadosCliente">
-						<div class="form-group">
-							<label>Data de nascimento</label>
-							<p class="form-group" th:text="${cliente.getDataNascFormatada()}"></p>
-						</div>
-					</div>
-					
-					<div class="col-sm-2 dadosCliente">
-						<label>Sexo</label>
-						<p class="form-group" th:text="${cliente.sexo}"></p>
-					</div>
-					
-					<div class="col-sm-2 dadosCliente">
-						<div class="form-group">
-							<label>CPF</label>
-							<p class="form-group" th:text="${cliente.cpf}"></p>
-						</div>
-					</div>
-					
-					<div class="col-sm-2 dadosCliente">
-						<div class="form-group">
-							<label>RG</label>
-							<p class="form-group" th:text="${cliente.rg}"></p>
-						</div>
-					</div>
-				
-					<div class="col-sm-4 dadosCliente">
-						<div class="form-group">
-							<label>E-mail</label>
-							<p class="form-group" th:text="${cliente.email}"></p>
-						</div>
-					</div>
-					
-				</div>
-				
-				<div class="row">
-				
-					<div class="col-sm-2 dadosCliente">
-						<div class="form-group">
-							<label>Telefone principal</label>
-							<p class="form-group" th:text="${cliente.telefone1}"></p>
-						</div>
-					</div>
-							
-					<div class="col-sm-2 dadosCliente">
-						<div class="form-group">
-							<label>Telefone adicional</label>
-							<p class="form-group" th:text="${cliente.telefone2}"></p>
-						</div>
-					</div>
-					
-					<div class="col-sm-2 dadosCliente">
-						<div class="form-group">
-							<label>CEP</label>
-							<p class="form-group" th:text="${cliente.endereco.CEP}"></p>
-						</div>
-					</div>
-					
-					<div class="col-sm-6 dadosCliente">
-						<div class="form-group">
-							<label>Logradouro</label>
-							<p class="form-group" th:text="${cliente.endereco.getEndereco()}"></p>
-						</div>
-					</div>
-					
-				</div>
-				
-				<div class="row">
-					
-					<div class="col-sm-2 dadosCliente">
-						<div class="form-group">
-							<label>Bairro</label> 
-							<p class="form-group" th:text="${cliente.endereco.bairro}"></p>
-						</div>
-					</div>
-					
-					<div class="col-sm-6 dadosCliente">
-						<div class="form-group">
-							<label>Cidade</label> 
-							<p class="form-group" th:text="${cliente.endereco.cidade}"></p>
-						</div>
-					</div>
-					
-					<div class="col-sm-2 dadosCliente">
-						<div class="form-group">
-							<label>Estado</label> 
-							<p class="form-group" th:text="${cliente.endereco.estado}"></p>
-						</div>
-					</div>
-					
-					
-				
-				</div>
-				
-				<div class="row">
-				
-					<div class="col-sm-6">
-						<a id="btnincluiranimal" class="btn btn-success btn-sm col-sm-2"
-							th:href="@{/clientes/animais/incluirAnimal/{id}(id=${cliente.id})}" th:title="'Incluir Animais'">
-							<span class="fa fa-paw acoes"></span> Animal
-						</a>
-					</div>
-				
-					<div class="col-sm-6">
-						<a id="btneditarcliente" class="btn btn-primary btn-sm col-sm-2 pull-right"
-							th:href="@{/atendimento/clientes/editar/{id}(id=${cliente.id})}" th:title="'Editar Cliente'"> 
-							<span class="fa fa-pencil-alt acoes"></span> Cliente
-						</a>
-					</div>
-				
-				</div>
-				
-			<h1 class="titulo-formulario">Animais</h1>
+			<div class="row">
 			
-			<div class="table-responsive">
+				<div class="col-sm-2 dadosDestaque">
+					<div class="form-group">
+						<label>Telefone principal</label>
+						<p class="form-group" th:text="${cliente.telefone1}"></p>
+					</div>
+				</div>
+						
+				<div class="col-sm-2 dadosDestaque">
+					<div class="form-group">
+						<label>Telefone adicional</label>
+						<p class="form-group" th:text="${cliente.telefone2}"></p>
+					</div>
+				</div>
+				
+				<div class="col-sm-2 dadosDestaque">
+					<div class="form-group">
+						<label>CEP</label>
+						<p class="form-group" th:text="${cliente.endereco.CEP}"></p>
+					</div>
+				</div>
+				
+				<div class="col-sm-6 dadosDestaque">
+					<div class="form-group">
+						<label>Logradouro</label>
+						<p class="form-group" th:text="${cliente.endereco.getEndereco()}"></p>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="row">
+				
+				<div class="col-sm-2 dadosDestaque">
+					<div class="form-group">
+						<label>Bairro</label> 
+						<p class="form-group" th:text="${cliente.endereco.bairro}"></p>
+					</div>
+				</div>
+				
+				<div class="col-sm-6 dadosDestaque">
+					<div class="form-group">
+						<label>Cidade</label> 
+						<p class="form-group" th:text="${cliente.endereco.cidade}"></p>
+					</div>
+				</div>
+				
+				<div class="col-sm-2 dadosDestaque">
+					<div class="form-group">
+						<label>Estado</label> 
+						<p class="form-group" th:text="${cliente.endereco.estado}"></p>
+					</div>
+				</div>
+								
+			</div>
+			<div class="container">
+				<div class="row justify-content-between">
+					
+					<a id="btnincluiranimal" class="btn btn-success btn-sm col-sm-1"
+						th:href="@{/clientes/animais/incluirAnimal/{id}(id=${cliente.id})}" th:title="'Incluir Animais'">
+						<span class="fa fa-paw"></span> Animal
+					</a>
+					<a id="btneditarcliente" class="btn btn-primary btn-sm col-sm-1"
+						th:href="@{/atendimento/clientes/editar/{id}(id=${cliente.id})}" th:title="'Editar Cliente'"> 
+						<span class="fa fa-pencil-alt"></span> Cliente
+					</a>
+				</div>
+			</div>
+				
+			<h1 class="titulo-formulario"><i class="fa fa-paw"></i>&nbsp;Animais</h1>
+			
+			<div class="table-responsive-sm">
 				<table id="tabela-animais"
-					class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
-					<thead class="aw-table-header-solid">
+					class="table  table-sm table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
+					<thead>
 						<tr>
-							<th class="text-center">Código</th>
-							<th>Nome</th>
-							<th>Idade</th>
-							<th>Raça</th>
-							<th>Espécie</th>
-							<th>Pedigree</th>
-							<th class="col-md-1 text-center">Ações</th>
+							<th scope="col" class="text-center">Código</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Idade</th>
+							<th scope="col">Raça</th>
+							<th scope="col">Espécie</th>
+							<th scope="col">Pedigree</th>
+							<th scope="col" class="col-md-1 text-center">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="animal: ${animais}">
-							<td class="col-md-1 text-center" th:text="${animal.id}">a1</td>
+							<td class="text-center" th:text="${animal.id}">a1</td>
 
-							<td class="col-md-3">
-								<a class="btn btn-info btn-xs" th:href="@{/atendimento/consultas/novo/{id}(id=${animal.id})}"
+							<td class="col-sm-3">
+								<a class="btn btn-info btn-sm" th:href="@{/atendimento/consultas/novo/{id}(id=${animal.id})}"
 										th:title="'Incluir Consultas'"> <span class="fa fa-user-md acoes"></span>
 									</a>
 									<span th:text="${animal.nome}"></span>
 								</td>
 							<td	th:text="${animal.getIdade()}">idade</td>
-							<td class="col-md-1"
-								th:text="${animal.raca}">raca</td>
+							<td th:text="${animal.raca}">raca</td>
 
-							<td class="col-md-1" th:text="${animal.especie}">especie</td>
+							<td th:text="${animal.especie}">especie</td>
 							
-							<td class="col-md-1" th:text="${animal.getPedigree()}">pedigree</td>
+							<td th:text="${animal.getPedigree()}">pedigree</td>
 
-							<td class="col-md-1 text-center">
+							<td class="col-sm-2 text-center">
 								<form method="POST"
 									th:onsubmit="'return confirm(\'Posso remover o animal: ' + 
 								${animal.nome} + ' da base de dados?\');'"
 									th:action="@{/clientes/animais/excluir/{id}(id=${animal.id})}">
-									<a class="btn btn-success btn-xs" th:href="@{/clientes/animais/servicos/{id}(id=${animal.id})}"
+									<a class="btn btn-success btn-sm" th:href="@{/clientes/animais/servicos/{id}(id=${animal.id})}"
 										th:title="'Incluir Serviços'"> <span class="fa fa-cart-arrow-down acoes"></span>
 									</a>
-									<a class="btn btn-primary btn-xs" th:href="@{/clientes/animais/{id}(id=${animal.id})}"
+									<a class="btn btn-primary btn-sm" th:href="@{/clientes/animais/{id}(id=${animal.id})}"
 										th:title="Editar"> <span class="fa fa-pencil-alt acoes"></span>
 									</a>
-									<button type="submit" class="btn btn-danger btn-xs" title="Excluir">
+									<button type="submit" class="btn btn-danger btn-sm" title="Excluir">
 										<span class="far fa-trash-alt acoes"></span>
 									</button>
 								</form>

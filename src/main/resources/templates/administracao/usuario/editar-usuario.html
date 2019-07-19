@@ -10,7 +10,7 @@
 	<section layout:fragment="content">	
 		<div class="layout-pagina">
 		
-			<h1 class="titulo-formulario">Editar usuário</h1>
+			<h1 class="titulo-formulario"><i class="fas fa-user-edit"></i>&nbsp;Editar usuário</h1>
 			
 
 			<form name="formulario" method="POST" class="form-vertical  js-form-loading"
@@ -71,8 +71,12 @@
 							th:field="*{email}" type="text" required  placeholder="seunome@dominio.com.br" title="E-mail"/>
 					</div>
 					<div class="col-sm-6 form-group">
-						<input type="checkbox" th:field="*{ativo}" th:value="${ativo}" />
-    					<label>Ativo?</label>
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox" id="ativo" th:field="*{ativo}" th:value="${ativo}">
+						  <label class="form-check-label" for="ativo">
+						    Ativo?
+						  </label>
+						</div>
 					</div>
 				</div>
 				

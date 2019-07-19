@@ -10,7 +10,9 @@
 	<section layout:fragment="content">	
 		<div class="layout-pagina">
 		
-			<h1 class="titulo-formulario">Cadastro de consultas</h1>
+			<h1 class="titulo-formulario"><i class="fas fa-notes-medical"></i>&nbsp;
+				Cadastro de consulta para o animal: <span class="nomeDestaque" th:text="${consulta.animal.nome}"></span>
+			</h1>
 
 			<form name="formulario" method="POST" class="form-vertical  js-form-loading"
 				th:object="${consulta}" th:action="@{/atendimento/consultas/agendar}">

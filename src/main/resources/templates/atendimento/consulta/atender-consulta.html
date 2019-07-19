@@ -10,7 +10,7 @@
 	<section layout:fragment="content">	
 		<div class="layout-pagina">
 		
-			<h1 class="titulo-formulario">Atendimento de consultas</h1>
+			<h1 class="titulo-formulario"><i class="fas fa-user-md"></i>&nbsp;Atendimento de consultas</h1>
 
 			<form name="formulario" method="POST" class="form-vertical  js-form-loading"
 				th:object="${consulta}" th:action="@{/atendimento/consultas/salvar}">
@@ -40,40 +40,57 @@
 				<input type="hidden" th:field="*{colaborador}" />
 				
 				<div class="row">
-					<div class="col-sm-4">
+					<div class="col-sm-3 dadosDestaque">
 						<div class="form-group">
-							<label for="status">Data da Consulta: <span class="layout-cabecalho--consulta" th:text="${consulta.getDataAtendimentoFormatada()}"></span></label>
+							<label>Data da Consulta</label>
+							<p class="layout-cabecalho--consulta" th:text="${consulta.getDataAtendimentoFormatada()}"></p>
 						</div>
 					</div>
 					
-					<div class="col-sm-4">
+					<div class="col-sm-3 dadosDestaque">
 						<div class="form-group">
-							<label for="status">Tipo: <span class="layout-cabecalho--consulta" th:text="${consulta.tipo}"></span></label>
+							<label>Tipo</label>
+							<p class="layout-cabecalho--consulta" th:text="${consulta.tipo}"></p>
+						</div>
+					</div>
+
+					<div class="col-sm-3 dadosDestaque">
+						<div class="form-group">
+							<label>Veterinário</label>
+							<p class="layout-cabecalho--consulta" th:text="${consulta.colaborador.nome}"></p>
+						</div>
+					</div>
+					
+					<div class="col-sm-3 dadosDestaque">
+						<div class="form-group">
+							<label>Animal</label>
+							<p class="layout-cabecalho--consulta" th:text="${consulta.animal.nome}"></p>
 						</div>
 					</div>
 				</div>
-				
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-3 dadosDestaque">
 						<div class="form-group">
-							<label for="status">Veterinário: <span class="layout-cabecalho--consulta" th:text="${consulta.colaborador.nome}"></span></label>
+							<label>Idade</label>
+							<p class="layout-cabecalho--consulta" th:text="${consulta.animal.getIdade()}"></p>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
+					<div class="col-sm-3 dadosDestaque">
 						<div class="form-group">
-							<label for="status">Animal: <span class="layout-cabecalho--consulta" th:text="${consulta.animal.nome}"></span></label>
+							<label>Raça</label>
+							<p class="layout-cabecalho--consulta" th:text="${consulta.animal.raca}"></p>
 						</div>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-3 dadosDestaque">
 						<div class="form-group">
-							<label for="status">Raça: <span class="layout-cabecalho--consulta" th:text="${consulta.animal.raca}"></span></label>
+							<label>Sexo</label>
+							<p class="layout-cabecalho--consulta" th:text="${consulta.animal.sexo}"></p>
 						</div>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-3 dadosDestaque">
 						<div class="form-group">
-							<label for="status">Espécie: <span class="layout-cabecalho--consulta" th:text="${consulta.animal.especie}"></span></label>
+							<label>Espécie</label>
+							<p class="layout-cabecalho--consulta" th:text="${consulta.animal.especie}"></p>
 						</div>
 					</div>
 				</div>
