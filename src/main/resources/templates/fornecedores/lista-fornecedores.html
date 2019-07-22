@@ -11,7 +11,7 @@
 	<section layout:fragment="content">
 		<div class="layout-pagina">
 			
-			<h1 class="titulo-formulario"><i class="fas fa-list"></i>&nbsp;Listagem de fornecedores</h1>
+			<h1 class="titulo-formulario"><i class="fas fa-list"></i>&nbsp;Fornecedores</h1>
 			
 			<div class="alert  alert-success"
 				th:if="${!#strings.isEmpty(mensagem)}">
@@ -39,11 +39,9 @@
 					<thead>
 						<tr>
 							<th scope="col" class="text-center">Código</th>
-							<th scope="col">CNPJ</th>
-							<th scope="col">Nome</th>
+							<th scope="col">CNPJ - Nome</th>
 							<th scope="col">Contato</th>
 							<th scope="col">E-mail</th>
-							<th scope="col">Telefone</th>
 							<th scope="col" class="text-center">Ações</th>
 						</tr>
 					</thead>
@@ -51,11 +49,9 @@
 						<tr th:each="fornecedor: ${fornecedores}">
 							<td class="text-center" th:text="${fornecedor.id}">1</td>
 
-							<td th:text="${fornecedor.cnpj}">fornecedor1</td>
-							<td th:text="${fornecedor.nome}">123</td>
-							<td th:text="${fornecedor.contato}">123</td>
+							<td th:text="${fornecedor.cnpj} + ' - ' + ${fornecedor.nome}">fornecedor1</td>
+							<td th:text="${fornecedor.contato} + ', ' + ${fornecedor.telefone}">123</td>
 							<td th:text="${fornecedor.email}">123</td>
-							<td th:text="${fornecedor.telefone}">123</td>
 							<td class="text-center">
 								<form method="POST" th:onsubmit="'return confirm(\'Posso remover o fornecedor: ' + 
 								${fornecedor.nome} + ' da base de dados?\');'" 

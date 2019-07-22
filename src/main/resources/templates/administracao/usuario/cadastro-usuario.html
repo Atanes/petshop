@@ -39,17 +39,17 @@
 				<div class="row">
 				
 					<div class="col-sm-5 form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
-						<label for="nome">Nome</label>
+						<label for="nome">Nome<span class="obrigatorio"> *</span></label>
 						<input id="nome" type="text" class="form-control" th:field="*{nome}" />
 					</div>
 					
 					<div class="col-sm-5 form-group" th:classappend="${#fields.hasErrors('email')} ? has-error">
-						<label for="email">E-mail</label>
+						<label for="email">E-mail<span class="obrigatorio"> *</span></label>
 						<input id="email" class="form-control" th:field="*{email}" type="text" placeholder="seunome@dominio.com.br" title="E-mail"/>
 					</div>
 					
 					<div class="col-sm-2 form-group" th:classappend="${#fields.hasErrors('permissoes')} ? has-error">
-						<label for="permissao">Permissão</label>
+						<label for="permissao">Permissão<span class="obrigatorio"> *</span></label>
 						
 						<select id="permissao" class="form-control" th:field="*{permissoes}">
 							<option value="">Selecione o tipo de permissão</option>
@@ -63,18 +63,18 @@
 				<div class="row">
 				
 					<div class="col-sm-4 form-group" th:classappend="${#fields.hasErrors('login')} ? has-error">
-						<label for="login">Login</label>
+						<label for="login">Login<span class="obrigatorio"> *</span></label>
 						<input id="login" type="text" class="form-control" th:field="*{login}" />
 					</div>
 					
 					<div class="col-sm-4 form-group" th:classappend="${#fields.hasErrors('senha')} ? has-error">
-						<label for="senha">Senha</label>
+						<label for="senha">Senha<span class="obrigatorio"> *</span></label>
 						<input id="senha" class="form-control" 
 							th:field="*{senha}" type="password" placeholder="Digite uma Senha" title="Senha"/>
 					</div>
 					
 					<div class="col-sm-4 form-group">
-						<label for="senha2">Confirmar Senha</label>
+						<label for="senha2">Confirmar Senha<span class="obrigatorio"> *</span></label>
 						<input id="senha2" class="form-control" 
 						type="password" placeholder="Repetir Senha" title="Repetir Senha"/>
 					</div>

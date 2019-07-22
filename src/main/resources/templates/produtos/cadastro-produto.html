@@ -64,7 +64,7 @@
 					<!-- /.col-sm-6 -->
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label for="descricao">Descrição</label>
+							<label for="descricao">Descrição<span class="obrigatorio"> *</span></label>
 							<input id="descricao" type="text" class="form-control" th:field="*{descricao}" />
 						</div>
 					</div>
@@ -74,7 +74,7 @@
 				<div class="row">
 					<div class="col-sm-3">
 						<div class="form-group">
-							<label for="tipo">Tipo</label>
+							<label for="tipo">Tipo<span class="obrigatorio"> *</span></label>
 							<select	id="tipo" class="form-control" th:field="*{tipo}">
 									<option value="">Selecione o tipo</option>
 									<option value="Acessorio">Acessório</option>
@@ -87,13 +87,13 @@
 					</div>
 					<div class="col-sm-1">
 						<div class="form-group">
-							<label for="qtd">Qtd</label>
+							<label for="qtd">Qtd<span class="obrigatorio"> *</span></label>
 							<input id="qtd" type="text"	class="form-control" th:field="*{qtd}" />
 						</div>
 					</div>
 					<div class="col-sm-2">
 						<div class="form-group">
-							<label for="unidademedida">Unidade de medida</label>
+							<label for="unidademedida">Unidade de medida<span class="obrigatorio"> *</span></label>
 							<select	id="unidademedida" class="form-control" th:field="*{unidadeMedida}">
 									<option value="">Selecione o unidade</option>
 									<option value="Ampola">Ampola</option>
@@ -117,14 +117,28 @@
 
 					<div class="col-sm-3">
 						<div class="form-group">
-							<label for="valorcompra">Valor compra</label>
+							<label for="valorcompra">Valor compra<span class="obrigatorio"> *</span></label>
 							<input id="valorcompra" type="text" class="form-control" th:field="*{valorCompra}" />
 						</div>
 					</div>
 					<div class="col-sm-3">
 						<div class="form-group">
-							<label for="valorvenda">Valor venda</label>
+							<label for="valorvenda">Valor venda<span class="obrigatorio"> *</span></label>
 							<input id="valorvenda" type="text" class="form-control"	th:field="*{valorVenda}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="lote">Lote</label>
+							<input id="lote" type="text" class="form-control"	th:field="*{lote}" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="data_validade">Data de validade</label>
+							<input	id="data_validade" type="date" class="form-control"	th:field="*{data_validade}" />
 						</div>
 					</div>
 				</div>

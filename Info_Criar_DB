@@ -150,3 +150,15 @@ START 1
 INCREMENT 1
 MINVALUE 1
 OWNED BY grupo.id;
+
+CREATE TABLE grupo_permissao (
+  grupo_id bigint NOT NULL,
+  permissao_id bigint NOT NULL,
+  PRIMARY KEY (grupo_id,permissao_id)
+)
+
+CREATE TABLE usuario_grupo (
+  usuario_id bigint NOT NULL,
+  grupo_id bigint NOT NULL,
+  PRIMARY KEY (usuario_id,grupo_id)
+)

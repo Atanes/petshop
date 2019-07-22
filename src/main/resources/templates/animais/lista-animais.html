@@ -12,7 +12,7 @@
 	<section layout:fragment="content">
 		<div class="layout-pagina">
 		
-			<h1 class="titulo-formulario"><i class="fas fa-list"></i>&nbsp;Listagem de animais</h1>
+			<h1 class="titulo-formulario"><i class="fas fa-list"></i>&nbsp;Animais</h1>
 			
 			<div class="alert  alert-success"
 				th:if="${!#strings.isEmpty(mensagem)}">
@@ -60,7 +60,7 @@
 									<span th:text="${animal.nome}"></span>
 								</td>
 								
-							<td th:text="${animal.getDataNascFormatada()}">data_nasc</td>
+							<td th:text="${animal.getDataFormatada(animal.data_nasc)}">data_nasc</td>
 							
 							<td th:text="${animal.raca}">raca</td>
 

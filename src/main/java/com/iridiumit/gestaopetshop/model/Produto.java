@@ -2,7 +2,9 @@ package com.iridiumit.gestaopetshop.model;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,9 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Produto {
@@ -38,6 +44,14 @@ public class Produto {
 	
 	@NotNull (message = "{valorvenda.not.null}")
 	private Double valorVenda;
+	
+	@Column(name="data_validade")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Future (message = "{data_validade.mustbe.future}")
+	private Date data_validade;
+	
+	private String lote;
 
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fornecedor_id", nullable = false)
@@ -48,7 +62,7 @@ public class Produto {
 	}
 	
 	public Produto(Long id, String descricao, String tipo, String unidadeMedida, Float qtd, Double valorCompra,
-			Double valorVenda, Fornecedor fornecedor) {
+			Double valorVenda, Date data_validade, String lote, Fornecedor fornecedor) {
 		this.id = id;
 		this.descricao = descricao;
 		this.tipo = tipo;
@@ -56,6 +70,8 @@ public class Produto {
 		this.qtd = qtd;
 		this.valorCompra = valorCompra;
 		this.valorVenda = valorVenda;
+		this.data_validade = data_validade;
+		this.lote = lote;
 		this.fornecedor = fornecedor;
 	}
 
@@ -124,7 +140,22 @@ public class Produto {
 		return "R$ " + df.format(valor);
 	}
 	
-	
+	public Date getData_validade() {
+		return data_validade;
+	}
+
+	public void setData_validade(Date data_validade) {
+		this.data_validade = data_validade;
+	}
+
+	public String getLote() {
+		return lote;
+	}
+
+	public void setLote(String lote) {
+		this.lote = lote;
+	}
+
 	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}

@@ -1,5 +1,7 @@
 package com.iridiumit.gestaopetshop.controller;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,6 +103,8 @@ public class AnimalController {
 		if (result.hasErrors()) {
 			return novo(animal);
 		}
+		
+		animal.setData_cadastro(new Date());
 
 		animais.save(animal);
 

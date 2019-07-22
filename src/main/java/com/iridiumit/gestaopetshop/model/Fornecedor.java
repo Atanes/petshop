@@ -27,6 +27,8 @@ public class Fornecedor {
 	@NotBlank (message = "{cnpjFornecedor.not.blank}")
 	private String cnpj;
 	
+	private String ie;
+	
 	@NotBlank(message = "{telefoneFornecedor.not.blank}")
 	private String telefone;
 	
@@ -51,10 +53,13 @@ public class Fornecedor {
 		
 	}
 
-	public Fornecedor(Long id, String nome, String telefone, String celular, String email, String site, String contato,
-			Set<Produto> produto) {
+	public Fornecedor(Long id, String nome, String cnpj, String ie, String telefone, String celular, String email,
+			String site, String contato, Set<Produto> produto) {
+		super();
 		this.id = id;
 		this.nome = nome;
+		this.cnpj = cnpj;
+		this.ie = ie;
 		this.telefone = telefone;
 		this.celular = celular;
 		this.email = email;
@@ -62,6 +67,7 @@ public class Fornecedor {
 		this.contato = contato;
 		this.produto = produto;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -85,6 +91,14 @@ public class Fornecedor {
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
+	}
+
+	public String getIe() {
+		return ie;
+	}
+
+	public void setIe(String ie) {
+		this.ie = ie;
 	}
 
 	public String getTelefone() {

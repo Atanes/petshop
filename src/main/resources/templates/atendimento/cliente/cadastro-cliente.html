@@ -61,20 +61,20 @@
 					
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label for="nome">Nome</label>
+							<label for="nome">Nome<span class="obrigatorio"> *</span></label>
 							<input id="nome" type="text" class="form-control" th:field="*{nome}" />
 						</div>
 					</div>
 					
 					<div class="col-sm-3">
 						<div class="form-group">
-							<label for="data_nasc">Data de nascimento</label>
+							<label for="data_nasc">Data de nascimento<span class="obrigatorio"> *</span></label>
 							<input	id="data_nasc" type="date" class="form-control"	th:field="*{data_nasc}" />
 						</div>
 					</div>
 					
 					<div class="col-sm-3">
-						<label for="sexo">Sexo</label>
+						<label for="sexo">Sexo<span class="obrigatorio"> *</span></label>
 							<select	id="sexo" class="form-control" th:field="*{sexo}">
 									<option value="">Selecione o sexo</option>
 									<option value="Feminino">Feminino</option>
@@ -89,7 +89,7 @@
 					
 					<div class="col-sm-2">
 						<div class="form-group">
-							<label for="cpf">CPF</label>
+							<label for="cpf">CPF<span class="obrigatorio"> *</span></label>
 							<input id="cpf" type="text"	class="form-control" placeholder="Ex.: 000.000.000-00" th:field="*{cpf}" />
 						</div>
 					</div>
@@ -102,7 +102,7 @@
 					</div>
 				
 					<div class="col-sm-2 form-group">
-						<label for="telefone1">Telefone principal</label>
+						<label for="telefone1">Telefone principal<span class="obrigatorio"> *</span></label>
 						<input id="telefone1" type="text" class="form-control" th:field="*{telefone1}"/>
 					</div>
 							
@@ -112,7 +112,7 @@
 					</div>
 					
 					<div class="col-sm-4 form-group">
-						<label for="email">E-mail</label>
+						<label for="email">E-mail<span class="obrigatorio"> *</span></label>
 						<input id="email" type="text" class="form-control" th:field="*{email}"/>
 					</div>
 					

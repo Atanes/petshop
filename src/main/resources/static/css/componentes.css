@@ -18,3 +18,8 @@
 	color: blue;
 	font-weight: bold;
 }
+
+.obrigatorio {
+	color: red;
+	font-weight: bold;
+}

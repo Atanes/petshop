@@ -53,16 +53,25 @@
 				<input type="hidden" th:field="*{id}" />
 
 				<div class="row">
-					<div class="col-sm-4">
+					
+					<div class="col-sm-8">
 						<div class="form-group">
-							<label for="cnpj">CNPJ</label>
+							<label for="nome">Nome<span class="obrigatorio"> *</span></label>
+							<input id="nome" type="text" class="form-control" th:field="*{nome}" />
+						</div>
+					</div>
+					
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label for="cnpj">CNPJ<span class="obrigatorio"> *</span></label>
 							<input id="cnpj" type="text" class="form-control" th:field="*{cnpj}" />
 						</div>
 					</div>
-					<div class="col-sm-8">
+					
+					<div class="col-sm-2">
 						<div class="form-group">
-							<label for="nome">Nome</label>
-							<input id="nome" type="text" class="form-control" th:field="*{nome}" />
+							<label for="ie">Inscrição Estadual</label>
+							<input id="ie" type="text" class="form-control" th:field="*{ie}" />
 						</div>
 					</div>
 				</div>
@@ -70,19 +79,19 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="form-group">
-							<label for="contato">Contato</label>
+							<label for="contato">Contato<span class="obrigatorio"> *</span></label>
 							<input id="contato"	type="text" class="form-control" th:field="*{contato}"/>
 						</div>
 					</div>
 					<div class="col-sm-4">
 						<div class="form-group">
-							<label for="telefone">Telefone</label>
+							<label for="telefone">Telefone<span class="obrigatorio"> *</span></label>
 							<input id="telefone" type="text" class="form-control" th:field="*{telefone}" />
 						</div>
 					</div>
 					<div class="col-sm-4">
 						<div class="form-group">
-							<label for="celular">Celular</label>
+							<label for="celular">Celular<span class="obrigatorio"> *</span></label>
 							<input id="celular"	type="text" class="form-control" th:field="*{celular}" />
 						</div>
 					</div>
@@ -91,7 +100,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label for="email">E-mail</label>
+							<label for="email">E-mail<span class="obrigatorio"> *</span></label>
 							<input id="email" type="text" class="form-control" th:field="*{email}" />
 						</div>
 					</div>

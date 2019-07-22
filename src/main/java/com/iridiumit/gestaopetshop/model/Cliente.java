@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Email;
@@ -53,6 +54,7 @@ public class Cliente {
 	@Column(name="data_nasc")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull (message = "{data_nasc.notnull}")
 	@Past (message = "{data_nasc.mustbe.past}")
 	private Date data_nasc;
 	
@@ -156,10 +158,10 @@ public class Cliente {
 		return data_nasc;
 	}
 	
-	public String getDataNascFormatada() {
-		Date data = this.data_nasc; 
+	public String getDataFormatada(Date data) {
+		Date d = data; 
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-		return formato.format(data);
+		return formato.format(d);
 	}
 
 	public void setData_nasc(Date data_nasc) {

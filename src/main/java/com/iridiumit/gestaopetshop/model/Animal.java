@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -38,14 +39,27 @@ public class Animal {
 	@NotBlank (message = "{especie.not.blank}")
 	private String especie;
 	
+	private boolean castrado;
+	
 	private boolean pedigree;
 	
 	@Column(name="data_nasc")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Past (message = "{data_nasc.mustbe.past}")
+	@NotNull (message = "{data_nasc.notnull}")
 	private Date data_nasc;
-
+	
+	private String microship;
+	
+	private String observacoes;
+	
+	@Column(name="data_cadastro")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date data_cadastro;
+	
+	private String resp_cadastro;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
@@ -55,15 +69,21 @@ public class Animal {
 
 	}
 
-	public Animal(Long id, String nome, String sexo, String raca, String especie, boolean pedigree, Date data_nasc,
+	public Animal(Long id, String nome, String sexo, String raca, String especie, boolean castrado, boolean pedigree,
+			Date data_nasc, String microship, String observacoes, Date data_cadastro, String resp_cadastro,
 			Cliente cliente) {
 		this.id = id;
 		this.nome = nome;
 		this.sexo = sexo;
 		this.raca = raca;
 		this.especie = especie;
+		this.castrado = castrado;
 		this.pedigree = pedigree;
 		this.data_nasc = data_nasc;
+		this.microship = microship;
+		this.observacoes = observacoes;
+		this.data_cadastro = data_cadastro;
+		this.resp_cadastro = resp_cadastro;
 		this.cliente = cliente;
 	}
 
@@ -106,6 +126,14 @@ public class Animal {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
+	
+	public boolean isCastrado() {
+		return castrado;
+	}
+
+	public void setCastrado(boolean castrado) {
+		this.castrado = castrado;
+	}
 
 	public boolean isPedigree() {
 		return pedigree;
@@ -126,10 +154,10 @@ public class Animal {
 		return data_nasc;
 	}
 	
-	public String getDataNascFormatada() {
-		Date data = this.data_nasc; 
+	public String getDataFormatada(Date data) {
+		Date d = data; 
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-		return formato.format(data);
+		return formato.format(d);
 	}
 
 	public void setData_nasc(Date data_nasc) {
@@ -145,6 +173,38 @@ public class Animal {
 	    String idade = periodo.getYears() + " ano(s), " + periodo.getMonths() + " mese(s) e " + periodo.getDays() + " dia(s)";
 	    System.out.println(idade);
 	    return idade;
+	}
+	
+	public String getMicroship() {
+		return microship;
+	}
+
+	public void setMicroship(String microship) {
+		this.microship = microship;
+	}
+
+	public String getObservacoes() {
+		return observacoes;
+	}
+
+	public void setObservacoes(String observacoes) {
+		this.observacoes = observacoes;
+	}
+
+	public Date getData_cadastro() {
+		return data_cadastro;
+	}
+
+	public void setData_cadastro(Date data_cadastro) {
+		this.data_cadastro = data_cadastro;
+	}
+
+	public String getResp_cadastro() {
+		return resp_cadastro;
+	}
+
+	public void setResp_cadastro(String resp_cadastro) {
+		this.resp_cadastro = resp_cadastro;
 	}
 
 	public Cliente getCliente() {
