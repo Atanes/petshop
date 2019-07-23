@@ -105,9 +105,10 @@
 							<th scope="col" class="text-center">Código</th>
 							<th scope="col">Descrição</th>
 							<th scope="col" class="text-center">Qtd</th>
-							<th scope="col" class="text-right">Valor compra</th>
-							<th scope="col" class="text-right">Valor venda</th>
-							<th scope="col">Fornecedor</th>
+							<th scope="col" class="text-center">Valor compra</th>
+							<th scope="col" class="text-center">Valor venda</th>
+							<th scope="col" class="text-center">Lote</th>
+							<th scope="col" class="text-center">Validade</th>
 							<th scope="col" class="text-center">Ações</th>
 						</tr>
 					</thead>
@@ -119,13 +120,17 @@
 
 							<td class="text-center" th:text="${produto.qtd}">qtd</td>
 
-							<td class="text-right"
+							<td class="text-center"
 								th:text="${produto.convertValorToMoney(produto.valorCompra)}">valorcompra</td>
 
-							<td class="text-right"
+							<td class="text-center"
 								th:text="${produto.convertValorToMoney(produto.valorVenda)}">valorvenda</td>
 
-							<td th:text="${produto.fornecedor.nome}">fornecedor</td>
+							<td class="text-center" 
+								th:text="${produto.lote}">lote</td>
+							
+							<td class="text-center"
+								th:text="${produto.getDataFormatada(produto.data_validade)}">validade</td>
 
 							<td class="text-center">
 								<form method="POST"

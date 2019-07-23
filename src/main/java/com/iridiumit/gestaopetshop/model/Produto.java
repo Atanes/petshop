@@ -2,6 +2,7 @@ package com.iridiumit.gestaopetshop.model;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -146,6 +147,12 @@ public class Produto {
 
 	public void setData_validade(Date data_validade) {
 		this.data_validade = data_validade;
+	}
+	
+	public String getDataFormatada(Date data) {
+		Date d = data; 
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+		return formato.format(d);
 	}
 
 	public String getLote() {
