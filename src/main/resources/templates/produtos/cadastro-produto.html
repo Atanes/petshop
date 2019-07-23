@@ -12,7 +12,9 @@
 	<section layout:fragment="content">
 		<div class="layout-pagina">
 
-			<h1 class="titulo-formulario"><i class="fas fa-dolly"></i>&nbsp;Cadastro de produtos</h1>
+			<h1 class="titulo-formulario"><i class="fas fa-paw"></i>&nbsp;Cadastro de produtos para o fornecedor: 
+				<span class="nomeDestaque" th:text="${produto.fornecedor.nome}"></span>
+			</h1>
 
 
 			<form method="POST" class="form-vertical  js-form-loading"
@@ -37,41 +39,17 @@
 				</div>
 
 				<input type="hidden" th:field="*{id}" />
+				<input type="hidden" th:field="*{fornecedor}" />
 
 				<div class="row">
-					<div class="col-sm-6">
-					<label for="cbofornecedor">Fornecedor</label>
-						<div class="input-group">
-							<select
-									id="cbofornecedor" class="form-control"
-									th:field="*{fornecedor}">
-									<option value="">Selecione o fornecedor</option>
-									<option th:each="fornecedor: ${fornecedores}"
-										th:value="${fornecedor.id}"
-										th:text="${fornecedor.nome} + ' - ' + ${fornecedor.cnpj}">
-										Opção 1
-									</option>
-							</select>
-							<span class="input-group-btn">
-								<a id="btnfornecedor" class="btn btn-primary"
-										th:href="@{/fornecedores/novo}" title="Incluir Fornecedor">
-										<i class="fas fa-plus"></i>&nbsp;Fornecedor
-								</a>
-							</span>
-						</div>
-						<!-- /input-group -->
-					</div>
-					<!-- /.col-sm-6 -->
+					
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="descricao">Descrição<span class="obrigatorio"> *</span></label>
 							<input id="descricao" type="text" class="form-control" th:field="*{descricao}" />
 						</div>
 					</div>
-				</div>
-				<!-- /.row -->
-
-				<div class="row">
+					
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="tipo">Tipo<span class="obrigatorio"> *</span></label>
@@ -85,12 +63,14 @@
 							</select>
 						</div>
 					</div>
+					
 					<div class="col-sm-1">
 						<div class="form-group">
 							<label for="qtd">Qtd<span class="obrigatorio"> *</span></label>
 							<input id="qtd" type="text"	class="form-control" th:field="*{qtd}" />
 						</div>
 					</div>
+					
 					<div class="col-sm-2">
 						<div class="form-group">
 							<label for="unidademedida">Unidade de medida<span class="obrigatorio"> *</span></label>
@@ -114,34 +94,40 @@
 							</select>
 						</div>
 					</div>
-
+				</div>
+				<!-- /.row -->
+				<div class="row">
+					
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="valorcompra">Valor compra<span class="obrigatorio"> *</span></label>
 							<input id="valorcompra" type="text" class="form-control" th:field="*{valorCompra}" />
 						</div>
 					</div>
+					
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="valorvenda">Valor venda<span class="obrigatorio"> *</span></label>
 							<input id="valorvenda" type="text" class="form-control"	th:field="*{valorVenda}" />
 						</div>
 					</div>
-				</div>
-				<div class="row">
+					
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="lote">Lote</label>
 							<input id="lote" type="text" class="form-control"	th:field="*{lote}" />
 						</div>
 					</div>
+					
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="data_validade">Data de validade</label>
 							<input	id="data_validade" type="date" class="form-control"	th:field="*{data_validade}" />
 						</div>
 					</div>
+					
 				</div>
+
 				<div class="form-group">
 					<button class="btn  btn-primary" type="submit">Salvar</button>
 				</div>

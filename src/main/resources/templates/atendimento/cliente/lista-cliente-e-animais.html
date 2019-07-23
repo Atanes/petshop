@@ -33,21 +33,9 @@
 				</div>
 				
 				<div class="col-sm-2 dadosDestaque">
-					<label>Sexo</label>
-					<p class="form-group" th:text="${cliente.sexo}"></p>
-				</div>
-				
-				<div class="col-sm-2 dadosDestaque">
 					<div class="form-group">
 						<label>CPF</label>
 						<p class="form-group" th:text="${cliente.cpf}"></p>
-					</div>
-				</div>
-				
-				<div class="col-sm-2 dadosDestaque">
-					<div class="form-group">
-						<label>RG</label>
-						<p class="form-group" th:text="${cliente.rg}"></p>
 					</div>
 				</div>
 			
@@ -58,64 +46,26 @@
 					</div>
 				</div>
 				
-			</div>
-			
-			<div class="row">
-			
 				<div class="col-sm-2 dadosDestaque">
 					<div class="form-group">
 						<label>Telefone principal</label>
 						<p class="form-group" th:text="${cliente.telefone1}"></p>
 					</div>
 				</div>
-						
-				<div class="col-sm-2 dadosDestaque">
-					<div class="form-group">
-						<label>Telefone adicional</label>
-						<p class="form-group" th:text="${cliente.telefone2}"></p>
-					</div>
-				</div>
-				
-				<div class="col-sm-2 dadosDestaque">
-					<div class="form-group">
-						<label>CEP</label>
-						<p class="form-group" th:text="${cliente.endereco.CEP}"></p>
-					</div>
-				</div>
-				
-				<div class="col-sm-6 dadosDestaque">
-					<div class="form-group">
-						<label>Logradouro</label>
-						<p class="form-group" th:text="${cliente.endereco.getEndereco()}"></p>
-					</div>
-				</div>
 				
 			</div>
 			
 			<div class="row">
-				
-				<div class="col-sm-2 dadosDestaque">
+			
+				<div class="col-sm-12 dadosDestaque">
 					<div class="form-group">
-						<label>Bairro</label> 
-						<p class="form-group" th:text="${cliente.endereco.bairro}"></p>
+						<label>Endereço</label>
+						<p class="form-group" th:text="${cliente.endereco.getEndereco()}"></p>
 					</div>
-				</div>
+				</div>			
 				
-				<div class="col-sm-6 dadosDestaque">
-					<div class="form-group">
-						<label>Cidade</label> 
-						<p class="form-group" th:text="${cliente.endereco.cidade}"></p>
-					</div>
-				</div>
-				
-				<div class="col-sm-2 dadosDestaque">
-					<div class="form-group">
-						<label>Estado</label> 
-						<p class="form-group" th:text="${cliente.endereco.estado}"></p>
-					</div>
-				</div>
-								
 			</div>
+			
 			<div class="container">
 				<div class="row justify-content-between">
 					
@@ -125,7 +75,7 @@
 					</a>
 					<a id="btneditarcliente" class="btn btn-primary btn-sm col-sm-1"
 						th:href="@{/atendimento/clientes/editar/{id}(id=${cliente.id})}" th:title="'Editar Cliente'"> 
-						<span class="fa fa-pencil-alt"></span> Cliente
+						<span class="fa fa-pencil-alt"></span> Editar
 					</a>
 				</div>
 			</div>

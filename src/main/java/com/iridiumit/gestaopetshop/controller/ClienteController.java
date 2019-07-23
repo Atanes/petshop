@@ -33,70 +33,87 @@ import com.iridiumit.gestaopetshop.service.ClienteService;
 @Controller
 @RequestMapping("/atendimento/clientes")
 public class ClienteController {
-	
+
 	@Autowired
 	private ClienteService clienteService;
-	
+
 	@Autowired
 	private Clientes clientes;
-	
+
 	@Autowired
 	private Enderecos enderecos;
-	
+
 	@Autowired
 	private Animais animais;
-	
+
 	@GetMapping
 	public ModelAndView listar(@ModelAttribute("filtro") ClienteFiltro filtro) {
-		
+
 		String nome = filtro.getNome() == null ? "%" : filtro.getNome();
-		
+
 		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes");
 
 		modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCaseAndAtivo(nome, true));
 		return modelAndView;
 	}
-	
+
 	@GetMapping("/inativos")
 	public ModelAndView listarInativos(@ModelAttribute("filtro") ClienteFiltro filtro) {
-		
+
 		String nome = filtro.getNome() == null ? "%" : filtro.getNome();
-		
+
 		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes-inativos");
 
 		modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCaseAndAtivo(nome, false));
 		return modelAndView;
 	}
-	
+
 	@GetMapping("/{id}")
 	public ModelAndView clienteAnimais(@PathVariable Long id) {
-		
-		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes-e-animais");
-		
+
+		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-cliente-e-animais");
+
 		Cliente c = clientes.findOne(id);
-		
+
 		modelAndView.addObject(c);
 
 		modelAndView.addObject("animais", animais.findByCliente(c));
-		
+
 		modelAndView.addObject("mensagem", "Cliente salvo com sucesso!");
-		
+
 		return modelAndView;
 	}
 	
+	
+	  @GetMapping("/selecao/{id}") public ModelAndView
+	  SelecaoPorCliente(@PathVariable Long id, @ModelAttribute("filtro")
+	  AnimalFiltro filtro) {
+	  
+	  Cliente c = clientes.findOne(id);
+	  
+	  ModelAndView modelAndView = new
+	  ModelAndView("atendimento/cliente/lista-cliente-e-animais");
+	  
+	  modelAndView.addObject(c);
+	  
+	  modelAndView.addObject("animais", animais.findByCliente(c));
+	  
+	  return modelAndView;
+	  
+	  }
+	 
+
 	@DeleteMapping("excluir/{id}")
 	public String excluir(@PathVariable Long id, RedirectAttributes attributes) {
-		
-		//clienteService.excluir(id);
-		
+
 		Cliente c = clientes.findOne(id);
-		
-		c.setAtivo(false);
-		
+
+		c.setAtivo(false); // Inativa o cliente na base de dados, mas mantem as informações de cadastro
+
 		clienteService.salvar(c);
 
 		attributes.addFlashAttribute("mensagem", "Cliente inativado com sucesso!!");
-		
+
 		return "redirect:/atendimento/clientes";
 	}
 
@@ -105,27 +122,26 @@ public class ClienteController {
 
 		return novo(clienteService.localizar(id));
 	}
-	
+
 	@GetMapping("ativar/{id}")
 	public ModelAndView ativar(@PathVariable Long id) {
 
 		Cliente c = clienteService.localizar(id);
-		
+
 		c.setAtivo(true);
-		
+
 		clientes.save(c);
-		
-		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes-e-animais");
-		
+
+		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-cliente-e-animais");
+
 		modelAndView.addObject(c);
 
 		modelAndView.addObject("animais", animais.findByCliente(c));
-		
+
 		modelAndView.addObject("mensagem", "Cliente re-ativado com sucesso!");
-		
+
 		return modelAndView;
-		
-		
+
 	}
 
 	@GetMapping("/novo")
@@ -139,48 +155,32 @@ public class ClienteController {
 
 	@PostMapping("/salvar")
 	public ModelAndView salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attributes) {
-		 
+
 		Cliente c = clienteService.localizarLogin(cliente.getCpf());
 		Endereco e = cliente.getEndereco();
-		
+
 		if (c != null && c.getId() != cliente.getId()) {
 			result.rejectValue("cpf", "cpf.existente");
-        }
-		
+		}
+
 		if (result.hasErrors()) {
 			return novo(cliente);
 		}
-		
+
 		enderecos.save(e);
-		
+
 		cliente.setEndereco(e);
-		
+
 		cliente.setAtivo(true);
 
 		clienteService.salvar(cliente);
 
 		attributes.addFlashAttribute("mensagem", "Cliente salvo com sucesso!!");
-		
+
 		return new ModelAndView("redirect:/atendimento/clientes/" + cliente.getId());
-		
-		
-	}
-	
-	@GetMapping("/selecao/{id}")
-	public ModelAndView SelecaoPorCliente(@PathVariable Long id, @ModelAttribute("filtro") AnimalFiltro filtro) {
-
-		Cliente c = clientes.findOne(id);
-		
-		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes-e-animais");
-		
-		modelAndView.addObject(c);
-
-		modelAndView.addObject("animais", animais.findByCliente(c));
-		
-		return modelAndView;
 
 	}
-	
+
 	@GetMapping(value = "/rel-clientes", produces = MediaType.APPLICATION_PDF_VALUE)
 	public @ResponseBody byte[] getRelClientes() throws IOException {
 
@@ -195,5 +195,5 @@ public class ClienteController {
 		InputStream in = getClass().getResourceAsStream("/relatorios/Relatorio_de_Clientes.pdf");
 		return IOUtils.toByteArray(in);
 	}
-	
+
 }

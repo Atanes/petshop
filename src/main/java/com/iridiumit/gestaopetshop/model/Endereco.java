@@ -94,13 +94,16 @@ public class Endereco {
 	}
 	
 	public String getEndereco() {
-		String logradouro = this.logradouro + ", nrº " + this.nr;
+		String endereco = this.logradouro + ", nrº " + this.nr;
 		
 		if(!this.complemento.equals("")){
-			logradouro += " - " + this.complemento;
+			endereco += " - " + this.complemento;
 		}
 		
-		return logradouro;
+		endereco += ", " + this.bairro + " - " + this.cidade +
+				"/" + this.estado + ", " + this.CEP;
+		
+		return endereco;
 	}
 
 	@Override

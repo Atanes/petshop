@@ -41,6 +41,24 @@ public class ProdutoController {
 		modelAndView.addObject("produtos", produtos.findByDescricaoContainingIgnoreCase(descricao));
 		return modelAndView;
 	}
+	
+	@GetMapping("/selecao/{id}")
+	public ModelAndView SelecaoPorFornecedor(@PathVariable Long id, @ModelAttribute("filtro") ProdutoFiltro filtro) {
+
+		String descricao = filtro.getDescricao() == null ? "%" : filtro.getDescricao();
+		
+		Fornecedor f = fornecedores.findOne(id);
+
+		ModelAndView modelAndView = new ModelAndView("fornecedores/lista-fornecedor-e-produtos");
+
+		modelAndView.addObject(f);
+
+		modelAndView.addObject("produtos", produtos.findByFornecedorAndDescricaoContainingIgnoreCase(f, descricao));
+
+		return modelAndView;
+
+	}
+	 
 
 	@DeleteMapping("/excluir/{id}")
 	public String remover(@PathVariable Long id, RedirectAttributes attributes) {
@@ -54,31 +72,45 @@ public class ProdutoController {
 		return "redirect:/fornecedores/produtos/selecao/" + f.getId();
 	}
 
-	@GetMapping("/{id}")
-	public ModelAndView editar(@PathVariable Long id) {
-
-		return novo(produtos.findOne(id));
-	}
-
-	@GetMapping("/novo")
-	public ModelAndView novo(Produto produto) {
+	
+	  @GetMapping("/{id}") public ModelAndView editar(@PathVariable Long id) {
+	  
+	  return novo(produtos.findOne(id)); }
+	  
+	  @GetMapping("/novo") public ModelAndView novo(Produto produto) { ModelAndView
+	  modelAndView = new ModelAndView("produtos/cadastro-produto");
+	  
+	  modelAndView.addObject(produto);
+	  
+	  return modelAndView; }
+	 
+	
+	@GetMapping("/incluirProduto/{id}")
+	public ModelAndView incluirProduto(@PathVariable Long id) {
 		ModelAndView modelAndView = new ModelAndView("produtos/cadastro-produto");
-
-		modelAndView.addObject(produto);
-		modelAndView.addObject("fornecedores", fornecedores.findAll());
+		
+		Fornecedor f = fornecedores.findOne(id);
+		
+		Produto p = new Produto();
+		
+		p.setFornecedor(f);
+		
+		modelAndView.addObject(p);
 
 		return modelAndView;
 	}
 
-	@GetMapping("/novo/{id}")
-	public ModelAndView incluir(Produto produto, @PathVariable("id") Long id) {
-		ModelAndView modelAndView = new ModelAndView("produtos/cadastro-produto");
-
-		modelAndView.addObject(produto);
-		modelAndView.addObject("fornecedores", fornecedores.findOne(id));
-
-		return modelAndView;
-	}
+	/*
+	 * @GetMapping("/novo/{id}") public ModelAndView incluir(Produto
+	 * produto, @PathVariable("id") Long id) { ModelAndView modelAndView = new
+	 * ModelAndView("produtos/cadastro-produto");
+	 * 
+	 * modelAndView.addObject(produto);
+	 * 
+	 * modelAndView.addObject("fornecedores", fornecedores.findOne(id));
+	 * 
+	 * return modelAndView; }
+	 */
 	
 	@PostMapping("/salvar")
 	public ModelAndView salvar(@Valid Produto produto, BindingResult result, RedirectAttributes attributes) {
@@ -87,10 +119,12 @@ public class ProdutoController {
 		}
 
 		produtos.save(produto);
+		
+		Fornecedor f = produto.getFornecedor();
 
 		attributes.addFlashAttribute("mensagem", "Produto salvo com sucesso!!");
 
-		return new ModelAndView("redirect:/fornecedores/produtos/novo");
+		return new ModelAndView("redirect:/fornecedores/produtos/selecao/" + f.getId());
 	}
 
 }
