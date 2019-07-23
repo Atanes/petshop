@@ -24,7 +24,6 @@
 					class="table  table-sm table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
 					<thead>
 						<tr>
-							<th scope="col" class="text-center">Código</th>
 							<th scope="col">Data</th>
 							<th scope="col">Veterinário</th>
 							<th scope="col">Animal</th>
@@ -35,8 +34,6 @@
 					</thead>
 					<tbody>
 						<tr th:each="consulta: ${consultas}">
-							<td class="text-center" th:text="${consulta.codigo}">c1</td>
-
 							<td th:text="${consulta.getDataAtendimentoFormatada()}">123</td>
 							<td th:text="${consulta.colaborador.nome}">123</td>
 							<td th:text="${consulta.animal.nome}">123</td>

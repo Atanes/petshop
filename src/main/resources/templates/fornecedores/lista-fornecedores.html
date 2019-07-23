@@ -38,7 +38,6 @@
 					class="table  table-sm table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
 					<thead>
 						<tr>
-							<th scope="col" class="text-center">Código</th>
 							<th scope="col">CNPJ - Nome</th>
 							<th scope="col">Contato</th>
 							<th scope="col">E-mail</th>
@@ -47,8 +46,6 @@
 					</thead>
 					<tbody>
 						<tr th:each="fornecedor: ${fornecedores}">
-							<td class="text-center" th:text="${fornecedor.id}">1</td>
-
 							<td th:text="${fornecedor.cnpj} + ' - ' + ${fornecedor.nome}">fornecedor1</td>
 							<td th:text="${fornecedor.contato} + ', ' + ${fornecedor.telefone}">123</td>
 							<td th:text="${fornecedor.email}">123</td>
@@ -58,7 +55,11 @@
 								th:action="@{/fornecedores/excluir/{id}(id=${fornecedor.id})}">
 								<a class="btn btn-primary btn-sm" th:href="@{/fornecedores/editar/{id}(id=${fornecedor.id})}"
 										th:title="Editar"> <span class="fas fa-pencil-alt"></span>
-									</a>
+								</a>
+								<a	class="btn btn-success btn-sm"
+										th:href="@{/fornecedores/produtos/selecao/{id}(id=${fornecedor.id})}"
+										th:title="Animais"> <span class="fas fa-dolly"></span>
+								</a>
 								<input type="hidden" name="_method" value="DELETE"/>
 									<button type="submit" class="btn btn-danger btn-sm" title="Excluir">
 										<i class="far fa-trash-alt"></i>

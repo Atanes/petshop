@@ -32,7 +32,6 @@
 					class="table  table-sm table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
 					<thead>
 						<tr>
-							<th scope="col" class="text-center">Código</th>
 							<th scope="col">Nome</th>
 							<th scope="col">CPF</th>
 							<th scope="col">Telefone</th>
@@ -42,8 +41,6 @@
 					</thead>
 					<tbody>
 						<tr th:each="cliente: ${clientes}">
-							<td class="text-center" th:text="${cliente.id}">1</td>
-
 							<td th:text="${cliente.nome}">123</td>
 							<td th:text="${cliente.cpf}">123</td>
 							<td th:text="${cliente.telefone1}">123</td>
