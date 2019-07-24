@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.iridiumit.gestaopetshop.model.Endereco;
 import com.iridiumit.gestaopetshop.model.Usuario;
 import com.iridiumit.gestaopetshop.relatorios.UsuarioREL;
+import com.iridiumit.gestaopetshop.repository.Enderecos;
 import com.iridiumit.gestaopetshop.repository.filtros.UsuarioFiltro;
 import com.iridiumit.gestaopetshop.service.UsuarioService;
 
@@ -32,6 +34,9 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private Enderecos enderecos;
 	
 	@GetMapping
 	public ModelAndView listar(@ModelAttribute("filtro") UsuarioFiltro filtro) {
@@ -84,17 +89,21 @@ public class UsuarioController {
 
 	@PostMapping("/salvar")
 	public ModelAndView salvar(@Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
-
-		Usuario u = usuarioService.localizarLogin(usuario.getLogin());
+	
+		Usuario u = usuarioService.localizarCPF(usuario.getCpf());
+		Endereco e = usuario.getEndereco();
 		
 		if (u != null) {
-			result.rejectValue("login", "erro.login");
+			result.rejectValue("cpf", "usuario.cpf.existente");
         }
 		
 		if (result.hasErrors()) {
 			usuario.setSenha(null);
             return novo(usuario);
         } else {
+        	enderecos.save(e);
+        	usuario.setEndereco(e);
+        
         	usuarioService.incluir(usuario);
         	attributes.addFlashAttribute("mensagem", "Usuario salvo com sucesso!!");
         }

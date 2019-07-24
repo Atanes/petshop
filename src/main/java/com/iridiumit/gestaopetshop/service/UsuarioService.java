@@ -41,6 +41,10 @@ public class UsuarioService implements UserDetailsService{
 		return usuarios.findOne(id);
 	}
 	
+	public Usuario localizarCPF(String cpf){
+		return usuarios.findByCpf(cpf);
+	}
+	
 	public Usuario localizarLogin(String login){
 		return usuarios.findByLogin(login);
 	}

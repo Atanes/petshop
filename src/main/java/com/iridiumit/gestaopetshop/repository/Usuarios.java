@@ -10,5 +10,7 @@ public interface Usuarios extends JpaRepository<Usuario, Long> {
 	
 	Usuario findByLogin(String login);
 	
+	Usuario findByCpf(String cpf);
+	
 	List<Usuario> findByNomeContainingIgnoreCase(String nome);
 }

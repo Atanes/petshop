@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -33,12 +34,20 @@ public class Usuario implements Serializable, UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank(message = "{CPF.not.blank}")
+	private String cpf;
+	
 	@NotBlank (message = "{name.not.blank}")
 	private String nome;
 	
 	@NotBlank(message = "{email.not.blank}")
 	@Email(message = "{email.not.valid}")
 	private String email;
+	
+	@NotBlank(message = "{telefone1.not.blank}")
+	private String telefone1;
+	
+	private String telefone2;
 	
     @Size (min = 5, max = 20, message = "{login.tamanho}")
     private String login;
@@ -55,21 +64,30 @@ public class Usuario implements Serializable, UserDetails {
              inverseJoinColumns = { @JoinColumn(name = "permissao_id") })
     private Set<Permissao> permissoes = new HashSet<Permissao>();
     
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "endereco_id", nullable = false)
+    private Endereco endereco;
+    
     public Usuario() {
     	
     }
     
-	public Usuario(Long id, String nome, String email, String login, String senha, boolean ativo,
-			Set<Permissao> permissoes) {
+	public Usuario(Long id, String cpf, String nome, String email, String telefone1, String telefone2, String login,
+			String senha, boolean ativo, Set<Permissao> permissoes, Endereco endereco) {
 		super();
 		this.id = id;
+		this.cpf = cpf;
 		this.nome = nome;
 		this.email = email;
+		this.telefone1 = telefone1;
+		this.telefone2 = telefone2;
 		this.login = login;
 		this.senha = senha;
 		this.ativo = ativo;
 		this.permissoes = permissoes;
+		this.endereco = endereco;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -136,6 +154,38 @@ public class Usuario implements Serializable, UserDetails {
 
 	public void setPermissoes(Set<Permissao> permissoes) {
 		this.permissoes = permissoes;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getTelefone1() {
+		return telefone1;
+	}
+
+	public void setTelefone1(String telefone1) {
+		this.telefone1 = telefone1;
+	}
+
+	public String getTelefone2() {
+		return telefone2;
+	}
+
+	public void setTelefone2(String telefone2) {
+		this.telefone2 = telefone2;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	@Override
