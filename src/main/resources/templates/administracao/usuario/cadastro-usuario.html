@@ -98,16 +98,6 @@
 				
 				<div class="row">
 				
-					<div class="col-sm-4 form-group">
-						<label for="login">Login</label>
-						<input id="login" type="text" class="form-control" th:field="*{login}" readonly/>
-					</div>
-					
-					<div class="col-sm-4 form-group">
-						<label for="senha">Senha</label>
-						<input id="senha" class="form-control" th:field="*{senha}" type="password" readonly/>
-					</div>
-					
 					<div class="col-sm-2 form-group">
 						<label for="telefone1">Telefone principal<span class="obrigatorio"> *</span></label>
 						<input id="telefone1" type="text" class="form-control" th:field="*{telefone1}"/>
@@ -116,6 +106,16 @@
 					<div class="col-sm-2 form-group">
 						<label for="telefone2">Telefone adicional</label>
 						<input id="telefone2" type="text" class="form-control" th:field="*{telefone2}"/>
+					</div>
+				
+					<div class="col-sm-4 form-group">
+						<label for="login">Login</label>
+						<input id="login" type="text" class="form-control" th:field="*{login}" readonly/>
+					</div>
+					
+					<div class="col-sm-4 form-group">
+						<label for="senha">Senha</label>
+						<input id="senha" class="form-control" th:field="*{senha}" type="password" readonly/>
 					</div>
 					
 				</div>
