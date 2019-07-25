@@ -56,7 +56,7 @@
 								<td th:text="${usuario.ativo} ? 'Ativo' : 'Inativo'">123</td>
 								<td class="text-center">
 									<form method="POST"
-										th:onsubmit="'return confirm(\'Posso remover o usuário: ' + 
+										th:onsubmit="'return confirm(\'Posso inativar o usuário: ' + 
 								${usuario.nome} + ' da base de dados?\');'"
 										th:action="@{/administracao/usuarios/{id}(id=${usuario.id})}">
 										<a class="btn btn-primary btn-sm" th:href="@{/administracao/usuarios/{id}(id=${usuario.id})}"

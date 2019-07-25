@@ -54,7 +54,7 @@ public class UsuarioController {
 		
 		usuarioService.excluir(id);
 
-		attributes.addFlashAttribute("mensagem", "Usuário excluido com sucesso!!");
+		attributes.addFlashAttribute("mensagem", "Usuário inativado com sucesso!!");
 		
 		return "redirect:/administracao/usuarios";
 	}

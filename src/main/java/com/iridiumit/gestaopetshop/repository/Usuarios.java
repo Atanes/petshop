@@ -14,5 +14,5 @@ public interface Usuarios extends JpaRepository<Usuario, Long> {
 	
 	List<Usuario> findByNomeContainingIgnoreCase(String nome);
 	
-	List<Usuario> findByPermissao(String permissao);
+	List<Usuario> findByPermissoes(String permissao);
 }

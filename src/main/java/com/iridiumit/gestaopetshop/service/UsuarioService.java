@@ -34,7 +34,9 @@ public class UsuarioService implements UserDetailsService{
 	}
 	
 	public void excluir(Long codigo) {
-		usuarios.delete(codigo);
+		Usuario u = usuarios.findOne(codigo);
+		u.setAtivo(false);
+		usuarios.save(u);
 	}
 	
 	public Usuario localizar(Long id){
