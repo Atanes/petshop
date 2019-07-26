@@ -57,7 +57,7 @@
 								<td class="text-center">
 									<form method="POST"
 										th:onsubmit="'return confirm(\'Posso inativar o usuário: ' + 
-								${usuario.nome} + ' da base de dados?\');'"
+								${usuario.nome} + ' na base de dados?\');'"
 										th:action="@{/administracao/usuarios/{id}(id=${usuario.id})}">
 										<a class="btn btn-primary btn-sm" th:href="@{/administracao/usuarios/{id}(id=${usuario.id})}"
 											th:title="Editar"> <span class="fa fa-pencil-alt acoes"></span>

@@ -113,6 +113,8 @@ public class UsuarioController {
 	
 	@PostMapping("/atualizar")
 	public ModelAndView atualizar(@Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
+		
+		enderecos.save(usuario.getEndereco());
 
 		if (result.hasErrors()) {
             return editar(usuario);

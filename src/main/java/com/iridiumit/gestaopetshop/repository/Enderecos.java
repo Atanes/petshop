@@ -6,5 +6,4 @@ import com.iridiumit.gestaopetshop.model.Endereco;
 
 public interface Enderecos extends JpaRepository<Endereco, Long>{
 	
-
 }

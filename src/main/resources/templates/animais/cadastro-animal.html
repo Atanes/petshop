@@ -67,22 +67,22 @@
 					
 					<div class="col-sm-2">
 						<div class="form-group">
-							<label for="raca">Raça<span class="obrigatorio"> *</span></label>
-							<input id="raca" type="text" class="form-control" th:field="*{raca}" />
+							<label for="especie">Espécie<span class="obrigatorio"> *</span></label>
+							<select	id="especie" class="form-control" th:field="*{especie}">
+									<option value="">Selecione a espécie</option>
+									<option value="Anfíbios">Anfíbio</option>
+									<option value="Aves">Ave</option>
+									<option value="Mamíferos">Mamífero</option>
+									<option value="Peixes">Peixe</option>
+									<option value="Repteis">Réptel</option>
+							</select>
 						</div>
 					</div>
 					
 					<div class="col-sm-2">
 						<div class="form-group">
-							<label for="especie">Espécie<span class="obrigatorio"> *</span></label>
-							<select	id="especie" class="form-control" th:field="*{especie}">
-									<option value="">Selecione a espécie</option>
-									<option value="Anfíbios">Anfíbios</option>
-									<option value="Aves">Aves</option>
-									<option value="Mamíferos">Mamíferos</option>
-									<option value="Peixes">Peixes</option>
-									<option value="Repteis">Repteis</option>
-							</select>
+							<label for="raca">Raça<span class="obrigatorio"> *</span></label>
+							<input id="raca" type="text" class="form-control" th:field="*{raca}" />
 						</div>
 					</div>
 					
