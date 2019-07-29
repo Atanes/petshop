@@ -9,9 +9,6 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 	
-			$("#cpf").inputmask("999.999.999-99");
-			$("#rg").inputmask("99.999.999-*");
-	
 			$("#telefone1").inputmask({
 				mask : [ "(99) 9999-9999", "(99) 99999-9999", ],
 				keepStatic : true
@@ -20,16 +17,8 @@
 			$("#telefone2").inputmask({
 				mask : [ "(99) 9999-9999", "(99) 99999-9999", ],
 				keepStatic : true
-			});
-	
+			});	
 		});
-	</script>
-	<script type="text/javascript">
-		function preencher_cpf(el)
-		{
-			document.getElementById('senha').value = el.value.replace(/\D/g, '');
-			document.getElementById('login').value = el.value.replace(/\D/g, '');
-		}
 	</script>
 </head>
 
@@ -103,7 +92,7 @@
 						<input id="telefone1" type="text" class="form-control" th:field="*{telefone1}"/>
 					</div>
 							
-					<div class="col-sm-2 form-group">
+					<div id="fone2" class="col-sm-2 form-group">
 						<label for="telefone2">Telefone adicional</label>
 						<input id="telefone2" type="text" class="form-control" th:field="*{telefone2}"/>
 					</div>
@@ -124,7 +113,7 @@
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="cep">CEP</label>
-							<input id="cep" type="text"	class="form-control" onblur="pesquisacep(this.value);" th:field="*{endereco.CEP}"/>
+							<input id="cep" type="text"	class="form-control" onfocusout="pesquisacep(this.value);" th:field="*{endereco.CEP}"/>
 						</div>
 					</div>
 					<div class="col-sm-6">

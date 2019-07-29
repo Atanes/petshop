@@ -4,6 +4,23 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/layout}">
 <head>
+	<script th:src="@{/webjars/jquery.inputmask/4.0.5/jquery.inputmask.bundle.js}"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		
+			mostraCampo();
+	
+		});
+	</script>
+	<script type="text/javascript">
+		function mostraCampo(){
+			if(!document.getElementById("pedigree").checked){
+				document.getElementById("divpedigree").style.display = "none";
+			}else{
+				document.getElementById("divpedigree").style.display = "initial";
+			}
+		}
+	</script>
 </head>
 
 <body>
@@ -92,19 +109,26 @@
 				
 					<div class="col-sm-1">
 						<div class="form-check">
-						  <input class="form-check-input" type="checkbox" id="pedigree" th:field="*{pedigree}">
+						  <input class="form-check-input" type="checkbox" id="castrado" th:field="*{castrado}">
+						  <label class="form-check-label" for="castrado">
+						    Castrado
+						  </label>
+						</div>
+					</div>
+				
+					<div class="col-sm-1">
+						<div class="form-check">
+						  <input class="form-check-input" type="checkbox" id="pedigree" th:field="*{pedigree}" onchange="mostraCampo(this)">
 						  <label class="form-check-label" for="pedigree">
 						    Pedigree
 						  </label>
 						</div>
 					</div>
 					
-					<div class="col-sm-1">
-						<div class="form-check">
-						  <input class="form-check-input" type="checkbox" id="castrado" th:field="*{castrado}">
-						  <label class="form-check-label" for="castrado">
-						    Castrado
-						  </label>
+					<div id="divpedigree" class="col-sm-2">
+						<div class="form-group">
+							<label for="nrpedigree">Nº Pedigree</label>
+							<input id="nrpedigree" type="text" class="form-control"/>
 						</div>
 					</div>
 					
@@ -115,7 +139,7 @@
 						</div>
 					</div>
 					
-					<div class="col-sm-8">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="observacoes">Observações</label>
 							<input	id="observacoes" type="text" class="form-control"	th:field="*{observacoes}" />
