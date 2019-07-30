@@ -42,11 +42,13 @@ public class PetShopUserDetailsService implements UserDetailsService {
 			Collection<GrantedAuthority> permissoesPorUsuario = buscarPermissoes(connection,
 					login, PERMISSOES_POR_USUARIO);
 
-			Collection<GrantedAuthority> permissoesPorGrupo = buscarPermissoes(connection,
-					login, PERMISSOES_POR_GRUPO);
+			/*
+			 * Collection<GrantedAuthority> permissoesPorGrupo =
+			 * buscarPermissoes(connection, login, PERMISSOES_POR_GRUPO);
+			 */
 
 			userDetails.getAuthorities().addAll(permissoesPorUsuario);
-			userDetails.getAuthorities().addAll(permissoesPorGrupo);
+			//userDetails.getAuthorities().addAll(permissoesPorGrupo);
 
 			return userDetails;
 		} catch (Exception e) {

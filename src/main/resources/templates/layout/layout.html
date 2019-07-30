@@ -51,11 +51,6 @@
 									<i class="fas fa-user-plus"></i>
 										&nbsp; Incluir Cliente
 									</a>
-									<a class="dropdown-item" sec:authorize="hasRole('PS_ADMIN')"
-										href="/atendimento/clientes/inativos">
-										<i class="fas fa-user-slash"></i>
-										&nbsp; Listar Clientes	(Inativos)
-									</a>
 									<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="/atendimento/consultas">
 										<i class="fas fa-notes-medical"></i>
@@ -92,12 +87,11 @@
 					
 					<!-- Menu com as funções de administração do sistema -->
 
-					
 						<li class="nav-item dropdown" sec:authorize="hasRole('PS_ADMIN')">
-						<a	href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
-							role="button" aria-haspopup="true" aria-expanded="false">
-								Administração
-						</a>
+							<a	href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+								role="button" aria-haspopup="true" aria-expanded="false">
+									Administração
+							</a>
 
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="/administracao/usuarios">
@@ -108,14 +102,10 @@
 									<i class="fas fa-user-plus"></i>&nbsp;
 										Incluir Usuário
 								</a>
-								<a class="dropdown-item" href="/administracao/colaboradores">
-									<i class="fas fa-address-book"></i>&nbsp;
-									Listar Colaboradores
-								</a>
-								<a class="dropdown-item" href="/administracao/colaboradores/novo">
-									<i class="fas fa-user-tie"></i>&nbsp;
-										Incluir Colaborador
-								</a>
+								<a class="dropdown-item" href="/atendimento/clientes/inativos">
+										<i class="fas fa-user-slash"></i>
+										&nbsp; Listar Clientes	(Inativos)
+									</a>
 								<a class="dropdown-item" href="/fornecedores">
 									<i class="fas fa-clipboard"></i>&nbsp;
 										Listar Fornecedores
@@ -125,17 +115,17 @@
 										Incluir Fornecedores
 								</a>
 							</div>
-							</li>
-							</ul>
-							<form class="form-inline my-2 my-lg-0" action="/logout" method="post">
-								<i class="far fa-user-circle"></i>&nbsp;
-								<span th:text="${#authentication.principal.nome}"></span>&nbsp;
-								<button type="submit" class="btn btn-secondary my-2 my-sm-0">
-									<i class="fas fa-sign-out-alt"></i>&nbsp;Sair
-								</button>
+						</li>
+					</ul>
+					<form class="form-inline my-2 my-lg-0" action="/logout" method="post">
+						<i class="far fa-user-circle"></i>&nbsp;
+						<span th:text="${#authentication.principal.nome}"></span>&nbsp;
+						<button type="submit" class="btn btn-secondary my-2 my-sm-0">
+							<i class="fas fa-sign-out-alt"></i>&nbsp;Sair
+						</button>
 
-								<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-							</form>
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					</form>
 				</div>
 			</div>
 		</nav>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.iridiumit.gestaopetshop.model.Permissao;
 import com.iridiumit.gestaopetshop.model.Usuario;
 
 public interface Usuarios extends JpaRepository<Usuario, Long> {
@@ -14,5 +15,5 @@ public interface Usuarios extends JpaRepository<Usuario, Long> {
 	
 	List<Usuario> findByNomeContainingIgnoreCase(String nome);
 	
-	List<Usuario> findByPermissoes(String permissao);
+	List<Usuario> findByPermissoes(Permissao p);
 }

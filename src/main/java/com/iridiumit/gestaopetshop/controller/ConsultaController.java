@@ -20,11 +20,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iridiumit.gestaopetshop.model.Animal;
 import com.iridiumit.gestaopetshop.model.Consulta;
-import com.iridiumit.gestaopetshop.model.TipoConsulta;
 import com.iridiumit.gestaopetshop.model.StatusConsulta;
+import com.iridiumit.gestaopetshop.model.TipoConsulta;
 import com.iridiumit.gestaopetshop.repository.Animais;
-import com.iridiumit.gestaopetshop.repository.Colaboradores;
 import com.iridiumit.gestaopetshop.repository.Consultas;
+import com.iridiumit.gestaopetshop.repository.Permissoes;
+import com.iridiumit.gestaopetshop.repository.Usuarios;
 
 @Controller
 @RequestMapping("/atendimento/consultas")
@@ -37,7 +38,10 @@ public class ConsultaController {
 	private Animais animais;
 
 	@Autowired
-	private Colaboradores colaboradores;
+	private Usuarios usuarios;
+	
+	@Autowired
+	private Permissoes permissoes;
 
 	@GetMapping
 	public ModelAndView listar() {
@@ -76,7 +80,7 @@ public class ConsultaController {
 		consulta.setAnimal(a);
 
 		modelAndView.addObject(consulta);
-		modelAndView.addObject("colaboradores", colaboradores.findByFuncao("VETERINARIO"));
+		modelAndView.addObject("usuarios", usuarios.findByPermissoes(permissoes.findByNome("ROLE_PS_VETERINARIO")));
 
 		return modelAndView;
 	}

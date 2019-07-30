@@ -56,15 +56,15 @@ public class Consulta {
     private Animal animal;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "colaborador_matricula", nullable = false)
-    private Colaborador colaborador;
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
 
 	public Consulta(){
 		
 	}
 	
 	public Consulta(Long codigo, Date data_registro, Date data_confirmacao, Date data_atendimento, String sintomas,
-			String diagnostico, Animal animal, Colaborador colaborador) {
+			String diagnostico, Animal animal, Usuario usuario) {
 		
 		this.codigo = codigo;
 		this.dataRegistro = data_registro;
@@ -73,7 +73,7 @@ public class Consulta {
 		this.sintomas = sintomas;
 		this.diagnostico = diagnostico;
 		this.animal = animal;
-		this.colaborador = colaborador;
+		this.usuario = usuario;
 	}
 
 	public Long getCodigo() {
@@ -154,12 +154,12 @@ public class Consulta {
 		this.animal = animal;
 	}
 
-	public Colaborador getColaborador() {
-		return colaborador;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setColaborador(Colaborador colaborador) {
-		this.colaborador = colaborador;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override

@@ -37,7 +37,7 @@
 				<input type="hidden" th:field="*{codigo}" />
 				<input type="hidden" th:field="*{dataAtendimento}" />
 				<input type="hidden" th:field="*{animal}" />
-				<input type="hidden" th:field="*{colaborador}" />
+				<input type="hidden" th:field="*{usuario}" />
 				
 				<div class="row">
 					<div class="col-sm-3 dadosDestaque">
@@ -57,7 +57,7 @@
 					<div class="col-sm-3 dadosDestaque">
 						<div class="form-group">
 							<label>Veterinário</label>
-							<p class="layout-cabecalho--consulta" th:text="${consulta.colaborador.nome}"></p>
+							<p class="layout-cabecalho--consulta" th:text="${consulta.usuario.nome}"></p>
 						</div>
 					</div>
 					

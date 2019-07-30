@@ -70,9 +70,9 @@
 					<div class="col-sm-4">
 						<div class="form-group">
 							<label for="cboveterinario">Veterinário</label> <select id="cboveterinario"
-								class="form-control" th:field="*{colaborador}">
+								class="form-control" th:field="*{usuario}">
 								<option value="">Selecione o Veterinário</option>
-								<option th:each="veterinario: ${colaboradores}" th:value="${veterinario.matricula}"
+								<option th:each="veterinario: ${usuarios}" th:value="${veterinario.id}"
 									th:text="${veterinario.nome}">Opção 1</option>
 							</select>
 						</div>

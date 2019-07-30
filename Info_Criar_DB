@@ -120,13 +120,13 @@ insert into permissao (id, nome) values
 	, (4, 'ROLE_PS_ATENDIMENTO')
     ;
 	
-insert into usuario (id, ativo, email, login, nome, senha) values 
-	(1, true,'086.060.808-02', 'aatanes100@gmail.com', 'Atanes', 'Atanes', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', '(11) 4312-1212')
-	, (2, true,'086.060.808-04', 'alexandre@a2d.com.br', 'Alexandre', 'Alexandre', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', '(11) 4312-1212')
-	, (3, true,'086.060.808-03', 'daniel@a2d.com.br','Daniel', 'Daniel', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', '(11) 4312-1212')
-	, (4, true,'086.060.808-01','veterinario@teste.com', 'Veterinario', 'Veterinario', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', '(11) 4312-1212')
-	, (5, true,'086.060.808-07', 'caixa@teste.com', 'Caixa', 'Caixa', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', '(11) 4312-1212')
-	, (6, true,'086.060.808-09', 'atendimento@teste.com','Atendimento', 'Atendimento', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', '(11) 4312-1212')
+insert into usuario (id, ativo, cpf, email, login, nome, senha, telefone1, endereco_id) values 
+	(1, true,'086.060.808-02', 'aatanes100@gmail.com', 'Atanes', 'Atanes', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', '(11) 4312-1212',1)
+	, (2, true,'086.060.808-04', 'alexandre@a2d.com.br', 'Alexandre', 'Alexandre', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', '(11) 4312-1212',2)
+	, (3, true,'086.060.808-03', 'daniel@a2d.com.br','Daniel', 'Daniel', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', '(11) 4312-1212',3)
+	, (4, true,'086.060.808-01','veterinario@teste.com', 'Veterinario', 'Veterinario', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', '(11) 4312-1212',4)
+	, (5, true,'086.060.808-07', 'caixa@teste.com', 'Caixa', 'Caixa', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', '(11) 4312-1212',5)
+	, (6, true,'086.060.808-09', 'atendimento@teste.com','Atendimento', 'Atendimento', '$2a$10$JvyF9q/k/eYwXTVjc4Ay0OT/dCwjW14eT88q3e587jaENTvtt30s2', '(11) 4312-1212',6)
 ;
 	
 insert into usuario_permissao (usuario_id, permissao_id) values 

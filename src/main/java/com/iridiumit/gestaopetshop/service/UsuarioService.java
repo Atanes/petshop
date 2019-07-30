@@ -71,6 +71,11 @@ public class UsuarioService implements UserDetailsService{
 		
 	}
 	
+	public void atualizar(Usuario usuario) {
+		
+        usuarios.save(usuario);
+	}
+	
 	public List<Permissao> permissoes(){
 		return permissoes.findAll();
 	}
