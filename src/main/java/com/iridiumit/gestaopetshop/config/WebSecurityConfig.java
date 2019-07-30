@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/").hasAnyRole("PS_ADMIN", "PS_ATENDIMENTO", "PS_VETERINARIO", "PS_CAIXA")
 				.antMatchers("/administracao/**").hasAnyRole("PS_ADMIN")
 				.antMatchers("/relatorios/**").hasAnyRole("PS_ADMIN","PS_VETERINARIO")
-				.antMatchers("/atendimento/**").hasAnyRole("PS_ADMIN","PS_ATENDIMENTO")
+				.antMatchers("/atendimento/**").hasAnyRole("PS_ADMIN","PS_ATENDIMENTO", "PS_VETERINARIO")
 				.antMatchers("/veterinario/**").hasAnyRole("PS_ADMIN","PS_VETERINARIO")
 				.antMatchers("/caixa/**").hasAnyRole("PS_ADMIN","PS_CAIXA")
 				.anyRequest()

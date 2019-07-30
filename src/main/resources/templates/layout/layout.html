@@ -62,7 +62,7 @@
 						<li class="nav-item" sec:authorize="hasRole('PS_CAIXA') or hasRole('PS_ADMIN')">
 							<a class="nav-link" href="/atendimento/caixa">Caixa</a>
 						</li>
-						<li class="nav-item" sec:authorize="hasRole('PS_VETERINARIO')">
+						<li class="nav-item" sec:authorize="hasRole('PS_VETERINARIO') or hasRole('PS_ADMIN')">
 							<a class="nav-link"	href="/atendimento/consultas">Consulta</a>
 						</li>
 						<li class="nav-item dropdown" sec:authorize="hasRole('PS_VETERINARIO') or hasRole('PS_ADMIN')">
@@ -76,7 +76,8 @@
 										Clientes
 								</a>
 								<a class="dropdown-item" href="/administracao/usuarios/rel-usuarios"
-									target="_blank"> <i class="far fa-address-book"></i>&nbsp;
+									target="_blank" sec:authorize="hasRole('PS_ADMIN')">
+									<i class="far fa-address-book"></i>&nbsp;
 										Usuários
 								</a>
 								<a class="dropdown-item" href="/relatorios/os" target="_blank"> <i
