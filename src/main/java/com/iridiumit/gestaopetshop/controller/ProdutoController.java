@@ -99,18 +99,6 @@ public class ProdutoController {
 
 		return modelAndView;
 	}
-
-	/*
-	 * @GetMapping("/novo/{id}") public ModelAndView incluir(Produto
-	 * produto, @PathVariable("id") Long id) { ModelAndView modelAndView = new
-	 * ModelAndView("produtos/cadastro-produto");
-	 * 
-	 * modelAndView.addObject(produto);
-	 * 
-	 * modelAndView.addObject("fornecedores", fornecedores.findOne(id));
-	 * 
-	 * return modelAndView; }
-	 */
 	
 	@PostMapping("/salvar")
 	public ModelAndView salvar(@Valid Produto produto, BindingResult result, RedirectAttributes attributes) {

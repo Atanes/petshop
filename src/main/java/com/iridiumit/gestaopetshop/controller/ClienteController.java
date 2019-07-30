@@ -188,7 +188,6 @@ public class ClienteController {
 		try {
 			relatorio.imprimir(clientes.findAll());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

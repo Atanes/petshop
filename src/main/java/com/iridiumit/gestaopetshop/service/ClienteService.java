@@ -21,12 +21,6 @@ public class ClienteService{
 		return clientes.findByNomeContainingIgnoreCaseAndAtivo(nome, true);
 	}
 	
-	/*public List<Cliente> filtrar(String nome) {
-		
-		String pesquisa = nome == null ? "%" : nome;
-		return clientes.findByNomeContainingIgnoreCaseAndAtivo(pesquisa, true);
-	}*/
-	
 	public void excluir(Long codigo) {
 		clientes.delete(codigo);
 	}

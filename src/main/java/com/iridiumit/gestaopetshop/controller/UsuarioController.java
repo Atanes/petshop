@@ -136,7 +136,6 @@ public class UsuarioController {
 		try {
 			relatorio.imprimir(usuarioService.listarTodos());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		InputStream in = getClass().getResourceAsStream("/relatorios/Relatorio_de_Usuarios.pdf");

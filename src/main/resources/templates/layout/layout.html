@@ -72,7 +72,8 @@
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="/atendimento/clientes/rel-clientes"
-									target="_blank"> <i class="far fa-handshake"></i>&nbsp;
+									target="_blank" sec:authorize="hasRole('PS_ATENDIMENTO') or hasRole('PS_ADMIN')">
+									<i class="far fa-handshake"></i>&nbsp;
 										Clientes
 								</a>
 								<a class="dropdown-item" href="/administracao/usuarios/rel-usuarios"

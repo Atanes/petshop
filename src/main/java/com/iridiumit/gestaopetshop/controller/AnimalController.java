@@ -84,18 +84,6 @@ public class AnimalController {
 
 		return modelAndView;
 	}
-
-	/*
-	 * @GetMapping("/novo/{id}") public ModelAndView incluir(Animal
-	 * animal, @PathVariable("id") Long id) { ModelAndView modelAndView = new
-	 * ModelAndView("animais/cadastro-animal");
-	 * 
-	 * modelAndView.addObject(animal);
-	 * 
-	 * modelAndView.addObject("clientes", clientes.findOne(id));
-	 * 
-	 * return modelAndView; }
-	 */
 	
 	@PostMapping("/salvar")
 	public ModelAndView salvar(@Valid Animal animal, BindingResult result, RedirectAttributes attributes) {
