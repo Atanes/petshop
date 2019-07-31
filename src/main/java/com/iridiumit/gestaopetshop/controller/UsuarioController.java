@@ -138,6 +138,7 @@ public class UsuarioController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		InputStream in = getClass().getResourceAsStream("/relatorios/Relatorio_de_Usuarios.pdf");
 		return IOUtils.toByteArray(in);
 	}
