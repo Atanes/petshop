@@ -31,7 +31,7 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank (message = "{name.not.blank}")
+	@NotBlank (message = "{nome.not.blank}")
 	private String nome;
 	
 	@NotBlank(message = "{CPF.not.blank}")
