@@ -34,6 +34,7 @@ public class Animal {
 	@NotBlank (message = "{sexo.not.blank}")
 	private String sexo;
 	
+	@NotBlank (message = "{raca.not.blank}")
 	private String raca;
 	
 	@NotBlank (message = "{especie.not.blank}")

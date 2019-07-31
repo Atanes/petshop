@@ -37,7 +37,7 @@ public class Usuario implements Serializable, UserDetails {
 	@NotBlank(message = "{CPF.not.blank}")
 	private String cpf;
 	
-	@NotBlank (message = "{name.not.blank}")
+	@NotBlank (message = "{nome.not.blank}")
 	private String nome;
 	
 	@NotBlank(message = "{email.not.blank}")

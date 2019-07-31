@@ -146,10 +146,20 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="form-group">
-					<button class="btn btn-primary" type="submit">Salvar</button>
+				
+				<div class="container">
+					<div class="row justify-content-between">
+						
+						<button class="btn  btn-primary btn-sm col-sm-1 "type="submit" title="Salvar">
+							<i class="far fa-save"></i> Salvar
+						</button>
+						<a id="btncancelar" class="btn btn-warning btn-sm col-sm-1"
+							th:href="@{/atendimento/clientes/selecao/{id}(id=${animal.cliente.id})}" th:title="'Cancelar operação'"> 
+							<i class="far fa-window-close"></i> Cancelar
+						</a>
+					</div>
 				</div>
+
 			</form>
 		</div>
 	</section>
