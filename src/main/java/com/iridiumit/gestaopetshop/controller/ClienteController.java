@@ -181,18 +181,22 @@ public class ClienteController {
 
 	}
 
-	@GetMapping(value = "/rel-clientes", produces = MediaType.APPLICATION_PDF_VALUE)
-	public @ResponseBody byte[] getRelClientes() throws IOException {
-
-		ClienteREL relatorio = new ClienteREL();
-		try {
-			relatorio.imprimir(clientes.findAll());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		InputStream in = getClass().getResourceAsStream("/relatorios/Relatorio_de_Clientes.pdf");
-		return IOUtils.toByteArray(in);
-	}
+	
+	  @GetMapping(value = "/rel-clientes", produces =
+	  MediaType.APPLICATION_PDF_VALUE) public @ResponseBody byte[] getRelClientes()
+	  throws IOException {
+	  
+	  ClienteREL relatorio = new ClienteREL();
+	  
+	  try {
+		  relatorio.imprimir(clientes.findAll());
+	  } catch (Exception e) {
+		  e.printStackTrace(); 
+	  }
+	  
+	  InputStream in = this.getClass().getResourceAsStream("/relatorios/Relatorio_de_Clientes.pdf");
+	  return IOUtils.toByteArray(in); 
+	  
+	  }
 
 }

@@ -139,7 +139,7 @@ public class UsuarioController {
 			e.printStackTrace();
 		}
 		
-		InputStream in = getClass().getResourceAsStream("/relatorios/Relatorio_de_Usuarios.pdf");
+		InputStream in = this.getClass().getResourceAsStream("/relatorios/Relatorio_de_Usuarios.pdf");
 		return IOUtils.toByteArray(in);
 	}
 
