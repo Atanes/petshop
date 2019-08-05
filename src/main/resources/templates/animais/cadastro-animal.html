@@ -5,6 +5,7 @@
 	layout:decorate="~{layout/layout}">
 <head>
 	<script th:src="@{/webjars/jquery.inputmask/4.0.5/jquery.inputmask.bundle.js}"></script>
+	<script th:src="@{/js/iridiumit.js}"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 		
@@ -85,12 +86,15 @@
 					<div class="col-sm-2">
 						<div class="form-group">
 							<label for="especie">Espécie<span class="obrigatorio"> *</span></label>
-							<select	id="especie" class="form-control" th:field="*{especie}">
+							<select	id="especie" class="form-control" th:field="*{especie}" onchange="filtraRaca()">
 									<option value="">Selecione a espécie</option>
 									<option value="Anfíbios">Anfíbio</option>
 									<option value="Aves">Ave</option>
+									<option value="Canino">Canino</option>
+									<option value="Equino">Equino</option>
+									<option value="Felino">Felino</option>
 									<option value="Mamíferos">Mamífero</option>
-									<option value="Peixes">Peixe</option>
+									<option value="Peixe">Peixe</option>
 									<option value="Repteis">Réptel</option>
 							</select>
 						</div>
@@ -99,7 +103,10 @@
 					<div class="col-sm-2">
 						<div class="form-group">
 							<label for="raca">Raça<span class="obrigatorio"> *</span></label>
-							<input id="raca" type="text" class="form-control" th:field="*{raca}" />
+							<select id="raca" class="form-control" th:field="*{raca}">
+							<option th:each="raca: ${racas}" th:value="${raca.nome}"
+									th:text="${raca.nome}">Opção 1</option>
+							</select>
 						</div>
 					</div>
 					

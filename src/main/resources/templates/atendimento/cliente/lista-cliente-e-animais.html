@@ -118,7 +118,7 @@
 									th:onsubmit="'return confirm(\'Posso remover o animal: ' + 
 								${animal.nome} + ' da base de dados?\');'"
 									th:action="@{/clientes/animais/excluir/{id}(id=${animal.id})}">
-									<a class="btn btn-success btn-sm" th:href="@{/clientes/animais/servicos/{id}(id=${animal.id})}"
+									<a class="btn btn-success btn-sm" th:href="@{/atendimento/servicos/incluir/{id}(id=${animal.id})}"
 										th:title="'Incluir Serviços'"> <span class="fa fa-cart-arrow-down acoes"></span>
 									</a>
 									<a class="btn btn-primary btn-sm" th:href="@{/clientes/animais/{id}(id=${animal.id})}"

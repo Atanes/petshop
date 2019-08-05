@@ -9,5 +9,7 @@ import com.iridiumit.gestaopetshop.model.Raca;
 public interface Racas extends JpaRepository<Raca, Long> {
 	
 	List<Raca> findAllByOrderByNome();
+	
+	List<Raca> findByEspecieIgnoreCaseOrderByNome(String especie);
 
 }

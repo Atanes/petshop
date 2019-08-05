@@ -1,56 +1,17 @@
-function adicionados() {
-    var valor = $("#s1").val();
-    var comboAdicionados = document.getElementById("Equipamento");
-
-    $.ajax({
-        type : 'GET',
-        url : '/adicionados',
-
-        crossDomain : true,
-        data : ({
-            valor : valor
-        }),
-        contentType : "application/json; charset=utf-8",
-        dataType : "json",
-
-        success : function(data) {
-            console.log("sucesso");
-
-            console.log(data);
-            var listaDados = data; // Lista retornada pelo banco
-
-            for (var i = 0; i < listaDados.length; i++) {
-                console.log(listaDados[i]);
-                $("#equip").prepend($('<option>', {
-
-                    value : listaDados[i].id,
-                    text : listaDados[i].descricao
-                }));
-            }
-
-        },
-        error : function(data) {
-            console.log("erro na funçao");
-        }
-
-    });
-
-}
-
-function comboEquipamentos() {
-    var valor = $("#cbocliente").val();
+function filtraRaca() {
+    var especie = $("#especie").val();
     
-    let dropdown = $('#cboequipamento');    
+    let dropdown = $('#raca');    
 
     dropdown.empty();
 
     $.ajax({
         type : 'GET',
-        url : '/atendimento/cboEquipamentos',
+        url : '/clientes/animais/listaRacas',
 
         crossDomain : true,
         data : ({
-            valor : valor
+            especie : especie
         }),
         contentType : "application/json; charset=utf-8",
         dataType : "json",
@@ -60,11 +21,11 @@ function comboEquipamentos() {
 
             console.log(data);
             var listaDados = data; // Lista retornada pelo banco
-            dropdown.append($('<option></option>').attr('value', '').text('Selecione o equipamento'));
+            dropdown.append($('<option></option>').attr('value', '').text('Selecione a raça'));
             
             for (var i = 0; i < listaDados.length; i++) {
                 console.log(listaDados[i]);
-                dropdown.append($('<option></option>').attr('value', listaDados[i].id).text(listaDados[i].descricao));
+                dropdown.append($('<option></option>').attr('value', listaDados[i].id).text(listaDados[i].nome));
             }
 
         },

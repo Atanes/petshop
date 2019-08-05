@@ -15,6 +15,13 @@ public class Raca {
 	
 	@NotBlank (message = "{name.not.blank}")
 	private String nome;
+	
+	@NotBlank (message = "{especie.not.blank}")
+	private String especie;
+	
+	public Raca() {
+		
+	}
 
 	public Raca(Long id, String nome) {
 		this.id = id;
@@ -35,6 +42,14 @@ public class Raca {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public String getEspecie() {
+		return especie;
+	}
+
+	public void setEspecie(String especie) {
+		this.especie = especie;
 	}
 
 	@Override
