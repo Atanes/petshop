@@ -4,27 +4,24 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/layout}">
 <head>
-<script th:src="@{/js/BuscaCEP.js}"></script>
+	<script th:src="@{/js/BuscaCEP.js}"></script>
+	<script th:src="@{/javascripts/jquery.mask.min.js}"></script>
+	<script th:src="@{/js/mascaras.js}"></script>
 	<script th:src="@{/webjars/jquery.inputmask/4.0.5/jquery.inputmask.bundle.js}"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 	
-			$("#cnpj").inputmask("99.999.999/9999-99");
-	
-			$("#telefone").inputmask({
+			$(".fone").inputmask({
 				mask : [ "(99) 9999-9999", "(99) 99999-9999", ],
 				keepStatic : true
 			});
-			
-			$("#celular").inputmask("(99) 99999-9999");
 	
 		});
 	</script>
 </head>
 
 <body>
-	<section layout:fragment="content">
-		<div class="layout-pagina">
+	<section class="aw-layout-content  js-content layout-pagina" layout:fragment="content">
 		
 			<h1 class="titulo-formulario"><i class="fas fa-industry"></i>&nbsp;Cadastro de fornecedor</h1>
 
@@ -64,7 +61,7 @@
 					<div class="col-sm-4">
 						<div class="form-group">
 							<label for="cnpj">CNPJ<span class="obrigatorio"> *</span></label>
-							<input id="cnpj" type="text" class="form-control" th:field="*{cnpj}" />
+							<input id="cnpj" type="text" class="form-control cnpj" th:field="*{cnpj}" />
 						</div>
 					</div>
 					
@@ -88,14 +85,14 @@
 					<div class="col-sm-2">
 						<div class="form-group">
 							<label for="telefone">Telefone<span class="obrigatorio"> *</span></label>
-							<input id="telefone" type="text" class="form-control" th:field="*{telefone}" />
+							<input id="telefone" type="text" class="form-control fone" th:field="*{telefone}" />
 						</div>
 					</div>
 					
 					<div class="col-sm-2">
 						<div class="form-group">
 							<label for="celular">Celular<span class="obrigatorio"> *</span></label>
-							<input id="celular"	type="text" class="form-control" th:field="*{celular}" />
+							<input id="celular"	type="text" class="form-control fone" th:field="*{celular}" />
 						</div>
 					</div>
 					
@@ -130,7 +127,6 @@
 					</div>
 				</div>
 			</form>
-		</div>
 	</section>
 </body>
 </html>

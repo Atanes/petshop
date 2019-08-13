@@ -6,6 +6,8 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	layout:decorate="~{layout/layout}">
 <head>
+	<script th:src="@{/javascripts/jquery.mask.min.js}"></script>
+	<script th:src="@{/js/mascaras.js}"></script>
 </head>
 
 <body>
@@ -67,7 +69,7 @@
 					<div class="col-sm-1">
 						<div class="form-group">
 							<label for="qtd">Qtd<span class="obrigatorio"> *</span></label>
-							<input id="qtd" type="text"	class="form-control" th:field="*{qtd}" />
+							<input id="qtd" type="text"	class="form-control sonumeros" th:field="*{qtd}" />
 						</div>
 					</div>
 					
@@ -101,14 +103,14 @@
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="valorcompra">Valor compra<span class="obrigatorio"> *</span></label>
-							<input id="valorcompra" type="text" class="form-control" th:field="*{valorCompra}" />
+							<input id="valorcompra" type="text" class="form-control dinheiro" th:field="*{valorCompra}" />
 						</div>
 					</div>
 					
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="valorvenda">Valor venda<span class="obrigatorio"> *</span></label>
-							<input id="valorvenda" type="text" class="form-control"	th:field="*{valorVenda}" />
+							<input id="valorvenda" type="text" class="form-control dinheiro" th:field="*{valorVenda}" />
 						</div>
 					</div>
 					

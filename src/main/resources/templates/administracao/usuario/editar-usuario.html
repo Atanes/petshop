@@ -5,26 +5,22 @@
 	layout:decorate="~{layout/layout}">
 <head>
 	<script th:src="@{/js/BuscaCEP.js}"></script>
+	<script th:src="@{/javascripts/jquery.mask.min.js}"></script>
 	<script th:src="@{/webjars/jquery.inputmask/4.0.5/jquery.inputmask.bundle.js}"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 	
-			$("#telefone1").inputmask({
+			$(".fone").inputmask({
 				mask : [ "(99) 9999-9999", "(99) 99999-9999", ],
 				keepStatic : true
 			});
-	
-			$("#telefone2").inputmask({
-				mask : [ "(99) 9999-9999", "(99) 99999-9999", ],
-				keepStatic : true
-			});	
+
 		});
 	</script>
 </head>
 
 <body>
-	<section layout:fragment="content">	
-		<div class="layout-pagina">
+	<section class="aw-layout-content  js-content layout-pagina" layout:fragment="content">
 		
 			<h1 class="titulo-formulario"><i class="fas fa-user-edit"></i>
 			&nbsp;Editar usuário: <span class="nomeDestaque" th:text="${usuario.cpf}"></span> </h1>
@@ -90,12 +86,12 @@
 				
 					<div class="col-sm-2 form-group">
 						<label for="telefone1">Telefone principal<span class="obrigatorio"> *</span></label>
-						<input id="telefone1" type="text" class="form-control" th:field="*{telefone1}"/>
+						<input id="telefone1" type="text" class="form-control fone" th:field="*{telefone1}"/>
 					</div>
 							
 					<div id="fone2" class="col-sm-2 form-group">
 						<label for="telefone2">Telefone adicional</label>
-						<input id="telefone2" type="text" class="form-control" th:field="*{telefone2}"/>
+						<input id="telefone2" type="text" class="form-control fone" th:field="*{telefone2}"/>
 					</div>
 					
 					<div class="col-sm-2 form-group">
@@ -114,7 +110,7 @@
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="cep">CEP</label>
-							<input id="cep" type="text"	class="form-control" onfocusout="pesquisacep(this.value);" th:field="*{endereco.CEP}"/>
+							<input id="cep" type="text"	class="form-control cep" onblur="pesquisacep(this.value);" th:field="*{endereco.CEP}"/>
 						</div>
 					</div>
 					<div class="col-sm-6">
@@ -126,7 +122,7 @@
 					<div class="col-sm-1">
 						<div class="form-group">
 							<label for="nr">Nº</label>
-							<input id="nr" type="text" class="form-control" th:field="*{endereco.nr}"/>
+							<input id="nr" type="text" class="form-control sonumeros" th:field="*{endereco.nr}"/>
 						</div>
 					</div>
 					<div class="col-sm-2">
@@ -155,7 +151,7 @@
 					<div class="col-sm-3">
 						<div class="form-group">
 							<label for="estado">Estado</label> 
-							<input id="estado" type="text" class="form-control" th:field="*{endereco.estado}"/>
+							<input id="estado" type="text" class="form-control estado" th:field="*{endereco.estado}"/>
 						</div>
 					</div>
 				
@@ -175,7 +171,6 @@
 				</div>
 				
 			</form>
-		</div>
 	</section>
 </body>
 </html>

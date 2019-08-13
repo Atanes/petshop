@@ -120,16 +120,16 @@ public class Produto {
 		return valorCompra;
 	}
 
-	public void setValorCompra(Double valorCompra) {
-		this.valorCompra = valorCompra;
+	public void setValorCompra(String valorCompra) {
+		this.valorCompra = Double.valueOf(valorCompra.replace(",", "."));
 	}
 
 	public Double getValorVenda() {
 		return valorVenda;
 	}
 
-	public void setValorVenda(Double valorVenda) {
-		this.valorVenda = valorVenda;
+	public void setValorVenda(String valorVenda) {
+		this.valorVenda = Double.valueOf(valorVenda.replace(",", "."));;
 	}
 
 	public String convertValorToMoney(Double valor){

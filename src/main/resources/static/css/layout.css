@@ -1,11 +1,8 @@
 .titulo-formulario {
-	
 	margin: 0;
-	margin-bottom: 20px;
-	margin-top: 20px;
-
+	padding-top: 10px;
+	margin-bottom: 15px;
 	border-bottom: 1px solid #ccc;
-
 	font-size: 1.2rem;
 	font-weight: normal;
 }
@@ -17,35 +14,34 @@
 }
 
 .layout-cabecalho {
-  height: 50px;
-  line-height: 50px;
-  border-bottom: 1px solid #ccc;
-
-  background-color: #fff;
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 1px solid #ccc;
+	background-color: #fff;
 }
 
 .layout-cabecalho--home {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 9999;
 }
 
 .layout-pagina {
-  padding: 60px 0;
+	padding-top: 75px;
+	padding-bottom: 30px;
 }
 
 .layout-chamada {
-  padding: 80px 0;
-  margin-top: 60px;
-
-  background-color: #7ab55c;
+	padding: 80px 0;
+	margin-top: 60px;
+	background-color: #7ab55c;
 }
 
 .layout-depoimento {
-  padding: 80px 0;
-  background-color: #e7e7e7;
+	padding: 80px 0;
+	background-color: #e7e7e7;
 }
 
 .layout-menu {
@@ -54,20 +50,31 @@
 }
 
 .layout-rodape {
-  padding: 25px;
-
-  background-color: #484848;
-
-  color: #fff;
-  
-  position: relative;
+	padding: 25px;
+	background-color: #484848;
+	color: #fff;
+	position: relative;
 }
 
 .layout-assinatura {
 	padding: 60px;
 }
-@media(max-width: 749px) {
-  .layout-planos .row > div:not(.ultima-coluna) {
-    margin-bottom: 40px;
-  }
+
+@media ( max-width : 749px) {
+	.layout-planos 
+	.row > div:not(.ultima-coluna){
+	margin-bottom: 40 px;
+}
+
+}
+.menulateral {
+	display: inline;
+}
+
+.conteudo {
+	float: right;
+}
+
+.rodape {
+	clear: both;
 }

@@ -73,16 +73,21 @@ public class ProdutoController {
 	}
 
 	
-	  @GetMapping("/{id}") public ModelAndView editar(@PathVariable Long id) {
+	  @GetMapping("/{id}")
+	  public ModelAndView editar(@PathVariable Long id) {
 	  
-	  return novo(produtos.findOne(id)); }
+		  return novo(produtos.findOne(id)); 
+	  }
 	  
-	  @GetMapping("/novo") public ModelAndView novo(Produto produto) { ModelAndView
-	  modelAndView = new ModelAndView("produtos/cadastro-produto");
+	  @GetMapping("/novo")
+	  public ModelAndView novo(Produto produto) {
+		  
+		  ModelAndView  modelAndView = new ModelAndView("produtos/cadastro-produto");
 	  
-	  modelAndView.addObject(produto);
+		  modelAndView.addObject(produto);
 	  
-	  return modelAndView; }
+		  return modelAndView; 
+	  }
 	 
 	
 	@GetMapping("/incluirProduto/{id}")

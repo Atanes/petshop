@@ -25,8 +25,7 @@
 </head>
 
 <body>
-	<section layout:fragment="content">
-		<div class="layout-pagina">
+	<section class="aw-layout-content  js-content layout-pagina" layout:fragment="content">
 		
 			<h1 class="titulo-formulario"><i class="fas fa-paw"></i>&nbsp;Cadastro de animais para o cliente: 
 				<span class="nomeDestaque" th:text="${animal.cliente.nome}"></span>
@@ -168,7 +167,6 @@
 				</div>
 
 			</form>
-		</div>
 	</section>
 </body>
 </html>
