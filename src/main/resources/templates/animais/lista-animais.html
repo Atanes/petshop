@@ -9,11 +9,11 @@
 
 <body>
 
-	<section class="aw-layout-content  js-content layout-pagina"
+	<section class="aw-layout-content js-content layout-pagina"
 		layout:fragment="content">
 
 		<h1 class="titulo-formulario">
-			<i class="fas fa-list"></i>&nbsp;Animais
+			<i class="fas fa-list"></i>Animais
 		</h1>
 
 		<div class="alert  alert-success"
@@ -95,7 +95,7 @@
 						</tr>
 
 						<tr>
-							<td colspan="7" th:if="${animais.empty}">Nenhum Animal
+							<td colspan="8" th:if="${animais.empty}">Nenhum Animal
 								cadastrado na base de dados!</td>
 						</tr>
 					</tbody>
@@ -103,6 +103,5 @@
 			</div>
 		</div>
 	</section>
-
 </body>
 </html>

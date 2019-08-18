@@ -31,40 +31,40 @@
 					</form>
 				</div>
 			</div>
+			<div class="form-row">
+				<div class="table-responsive-sm col-sm-12">
+					<table id="tabela-produtos"
+						class="table table-sm table-striped table-bordered table-hover table-condensed js-sticky-table">
+						<thead>
+							<tr>
+								<th scope="col">Nome</th>
+								<th scope="col">CPF</th>
+								<th scope="col">Telefone</th>
+								<th scope="col">e-mail</th>
+								<th scope="col" class="text-center">Ações</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="cliente: ${clientes}">
+								<td th:text="${cliente.nome}">123</td>
+								<td th:text="${cliente.cpf}">123</td>
+								<td th:text="${cliente.telefone1}">123</td>
+								<td th:text="${cliente.email}">123</td>
+								<td class="text-center"><a class="btn btn-warning btn-sm"
+									th:href="@{/atendimento/clientes/ativar/{id}(id=${cliente.id})}"
+									th:title="Re-Ativar"> <span class="fa fa-user-check"></span>
+								</a></td>
+							</tr>
 
-			<div class="table-responsive-sm col-sm-12">
-				<table id="tabela-produtos"
-					class="table table-sm table-striped table-bordered table-hover table-condensed js-sticky-table">
-					<thead>
-						<tr>
-							<th scope="col">Nome</th>
-							<th scope="col">CPF</th>
-							<th scope="col">Telefone</th>
-							<th scope="col">e-mail</th>
-							<th scope="col" class="text-center">Ações</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="cliente: ${clientes}">
-							<td th:text="${cliente.nome}">123</td>
-							<td th:text="${cliente.cpf}">123</td>
-							<td th:text="${cliente.telefone1}">123</td>
-							<td th:text="${cliente.email}">123</td>
-							<td class="text-center"><a class="btn btn-warning btn-sm"
-								th:href="@{/atendimento/clientes/ativar/{id}(id=${cliente.id})}"
-								th:title="Re-Ativar"> <span class="fa fa-user-check"></span>
-							</a></td>
-						</tr>
+							<tr>
+								<td colspan="6" th:if="${clientes.empty}">Nenhum cliente
+									inativo cadastrado!!</td>
+							</tr>
 
-						<tr>
-							<td colspan="6" th:if="${clientes.empty}">Nenhum cliente
-								inativo cadastrado!!</td>
-						</tr>
-
-					</tbody>
-				</table>
+						</tbody>
+					</table>
+				</div>
 			</div>
-		</div>
 		</div>
 	</section>
 </body>

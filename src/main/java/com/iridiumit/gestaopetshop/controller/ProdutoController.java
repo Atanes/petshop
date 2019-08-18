@@ -34,26 +34,31 @@ public class ProdutoController {
 	@GetMapping
 	public ModelAndView listar(@ModelAttribute("filtro") ProdutoFiltro filtro) {
 		
-		String descricao = filtro.getDescricao() == null ? "%" : filtro.getDescricao();
-		
 		ModelAndView modelAndView = new ModelAndView("produtos/lista-produtos");
-
-		modelAndView.addObject("produtos", produtos.findByDescricaoContainingIgnoreCase(descricao));
+		
+		if(filtro.getDescricao() == null) {
+			modelAndView.addObject("produtos", produtos.findAll());
+		}else {
+			modelAndView.addObject("produtos", produtos.findByDescricaoContainingIgnoreCase(filtro.getDescricao()));
+		}
+		
 		return modelAndView;
 	}
 	
 	@GetMapping("/selecao/{id}")
 	public ModelAndView SelecaoPorFornecedor(@PathVariable Long id, @ModelAttribute("filtro") ProdutoFiltro filtro) {
 
-		String descricao = filtro.getDescricao() == null ? "%" : filtro.getDescricao();
-		
-		Fornecedor f = fornecedores.findOne(id);
+		Fornecedor f = fornecedores.getOne(id);
 
 		ModelAndView modelAndView = new ModelAndView("fornecedores/lista-fornecedor-e-produtos");
 
 		modelAndView.addObject(f);
-
-		modelAndView.addObject("produtos", produtos.findByFornecedorAndDescricaoContainingIgnoreCase(f, descricao));
+		
+		if(filtro.getDescricao() == null) {
+			modelAndView.addObject("produtos", produtos.findByFornecedor(f));
+		}else {
+			modelAndView.addObject("produtos", produtos.findByFornecedorAndDescricaoContainingIgnoreCase(f, filtro.getDescricao()));
+		}
 
 		return modelAndView;
 
@@ -63,7 +68,7 @@ public class ProdutoController {
 	@DeleteMapping("/excluir/{id}")
 	public String remover(@PathVariable Long id, RedirectAttributes attributes) {
 
-		Fornecedor f = produtos.findOne(id).getFornecedor();
+		Fornecedor f = produtos.getOne(id).getFornecedor();
 
 		produtos.delete(id);
 
@@ -76,7 +81,7 @@ public class ProdutoController {
 	  @GetMapping("/{id}")
 	  public ModelAndView editar(@PathVariable Long id) {
 	  
-		  return novo(produtos.findOne(id)); 
+		  return novo(produtos.getOne(id)); 
 	  }
 	  
 	  @GetMapping("/novo")
@@ -94,7 +99,7 @@ public class ProdutoController {
 	public ModelAndView incluirProduto(@PathVariable Long id) {
 		ModelAndView modelAndView = new ModelAndView("produtos/cadastro-produto");
 		
-		Fornecedor f = fornecedores.findOne(id);
+		Fornecedor f = fornecedores.getOne(id);
 		
 		Produto p = new Produto();
 		
