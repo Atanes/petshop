@@ -1,5 +1,6 @@
 package com.iridiumit.gestaopetshop.model;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
@@ -41,10 +42,10 @@ public class Produto {
 	private Float qtd;
 	
 	@NotNull (message = "{valorcompra.not.null}")
-	private Double valorCompra;
+	private BigDecimal valorCompra;
 	
 	@NotNull (message = "{valorvenda.not.null}")
-	private Double valorVenda;
+	private BigDecimal valorVenda;
 	
 	@Column(name="data_validade")
 	@Temporal(TemporalType.DATE)
@@ -62,8 +63,8 @@ public class Produto {
 		
 	}
 	
-	public Produto(Long id, String descricao, String tipo, String unidadeMedida, Float qtd, Double valorCompra,
-			Double valorVenda, Date data_validade, String lote, Fornecedor fornecedor) {
+	public Produto(Long id, String descricao, String tipo, String unidadeMedida, Float qtd, BigDecimal valorCompra,
+			BigDecimal valorVenda, Date data_validade, String lote, Fornecedor fornecedor) {
 		this.id = id;
 		this.descricao = descricao;
 		this.tipo = tipo;
@@ -116,31 +117,22 @@ public class Produto {
 		this.qtd = qtd;
 	}
 
-	public Double getValorCompra() {
+	public BigDecimal getValorCompra() {
 		return valorCompra;
 	}
 
-	public void setValorCompra(String valorCompra) {
-		this.valorCompra = Double.valueOf(valorCompra.replace(",", "."));
+	public void setValorCompra(BigDecimal valorCompra) {
+		this.valorCompra = valorCompra;
 	}
 
-	public Double getValorVenda() {
+	public BigDecimal getValorVenda() {
 		return valorVenda;
 	}
 
-	public void setValorVenda(String valorVenda) {
-		this.valorVenda = Double.valueOf(valorVenda.replace(",", "."));;
+	public void setValorVenda(BigDecimal valorVenda) {
+		this.valorVenda = valorVenda;
 	}
 
-	public String convertValorToMoney(Double valor){
-		DecimalFormat df = new DecimalFormat("###,###.00");
-		DecimalFormatSymbols dfs = new DecimalFormatSymbols();
-		dfs.setDecimalSeparator(',');
-		dfs.setGroupingSeparator('.');
-		df.setDecimalFormatSymbols(dfs);
-		return "R$ " + df.format(valor);
-	}
-	
 	public Date getData_validade() {
 		return data_validade;
 	}
