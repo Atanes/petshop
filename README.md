@@ -6,5 +6,7 @@ branch 'master' of https://github.com/Atanes/petshop.git
 
 # Link para a aplicação no Heroku
 https://gestaopetshop.herokuapp.com/entrar
+
 Usuário: Convidado
+
 Senha: convidado
