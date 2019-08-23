@@ -1,8 +1,6 @@
 package com.iridiumit.gestaopetshop.model;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
