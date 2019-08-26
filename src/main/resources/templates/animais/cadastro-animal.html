@@ -101,11 +101,19 @@
 
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label class="campo_obrigatorio" for="raca">Raça</label> <select
-							id="raca" class="form-control" th:field="*{raca}">
-							<option th:each="raca: ${racas}" th:value="${raca.nome}"
-								th:text="${raca.nome}">Opção 1</option>
-						</select>
+						<label class="campo_obrigatorio" for="raca">Raça</label> 
+						<div class="bw-field-action">
+							<select
+								id="raca" class="form-control" th:field="*{raca}">
+								<option th:each="raca: ${racas}" th:value="${raca.nome}"
+									th:text="${raca.nome}">Opção 1</option>
+							</select>
+							<div class="bw-field-action__icon">
+								<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoRacaEspecie" title="Incluir nova Raça/Especie">
+									<i class="fas fa-plus-circle bw-glyphicon-large"></i>
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -158,6 +166,7 @@
 			</div>
 
 		</form>
+		<div th:replace="raca/cadastro-raca-especie-modal :: modalRacaEspecie"></div>
 	</section>
 </body>
 </html>
