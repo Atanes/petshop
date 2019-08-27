@@ -1,50 +1,69 @@
 $(function() {
 	
-	var modal = $('#modalCadastroRapidoEstilo');
-	var botaoSalvar = modal.find('.js-modal-cadastro-estilo-salvar-btn');
+	var modal = $('#modalCadastroRapidoRacaEspecie');
+	var botaoSalvar = modal.find('.js-modal-cadastro-raca_especie-salvar-btn');
 	var form = modal.find('form');
 	form.on('submit', function(event) { event.preventDefault() });
-	var url = form.attr('action');
-	var inputNomeEstilo = $('#nomeEstilo');
-	var containerMensagemErro = $('.js-mensagem-cadastro-rapido-estilo');
+	var url = '/incluirRaca';
+	var inputNomeRaca = $('#raca');
+	var inputNomeEspecie = $('#especie');
+	var containerMensagemErro = $('.js-mensagem-cadastro-rapido-raca_especie');
+	
+	var comboEspecie = $('#comboespecie');
 	
 	modal.on('shown.bs.modal', onModalShow);
 	modal.on('hide.bs.modal', onModalClose)
 	botaoSalvar.on('click', onBotaoSalvarClick);
 	
 	function onModalShow() {
-		inputNomeEstilo.focus();
+		inputNomeRaca.focus();
+		inputNomeEspecie.val(comboEspecie.val());
 	}
 	
 	function onModalClose() {
-		inputNomeEstilo.val('');
-		containerMensagemErro.addClass('hidden');
-		form.find('.form-group').removeClass('has-error');
+		inputNomeRaca.val('');
+		inputNomeEspecie.val('');
+		containerMensagemErro.addClass('d-none');
+		form.find('.js-label-alert').removeClass('text-danger');
+		form.find('.js-input-alert').removeClass('border-danger');
 	}
 	
 	function onBotaoSalvarClick() {
-		var nomeEstilo = inputNomeEstilo.val().trim();
+		var nomeRaca = inputNomeRaca.val().trim();
+		var nomeEspecie = inputNomeEspecie.val().trim();
+		
+		var obj = { raca: nomeRaca, especie: nomeEspecie };
+		
 		$.ajax({
+			type : 'GET',
 			url: url,
-			method: 'POST',
-			contentType: 'application/json',
-			data: JSON.stringify({ nome: nomeEstilo }),
-			error: onErroSalvandoEstilo,
-			success: onEstiloSalvo
+			
+			crossDomain : true,
+	        data : ({
+	            raca : nomeRaca ,
+	            especie : nomeEspecie
+	        }),
+	        contentType : "application/json; charset=utf-8",
+	        dataType : "json",
+	        
+			error: onErroSalvandoRacaEspecie,
+			success: onRacaEspecieSalvo
 		});
 	}
 	
-	function onErroSalvandoEstilo(obj) {
+	function onErroSalvandoRacaEspecie(obj) {
 		var mensagemErro = obj.responseText;
-		containerMensagemErro.removeClass('hidden');
+		containerMensagemErro.removeClass('d-none');
 		containerMensagemErro.html('<span>' + mensagemErro + '</span>');
-		form.find('.form-group').addClass('has-error');
+		form.find('.js-label-alert').addClass('text-danger');
+		form.find('.js-input-alert').addClass('border-danger');
+		inputNomeRaca.focus();
 	}
 	
-	function onEstiloSalvo(estilo) {
-		var comboEstilo = $('#estilo');
-		comboEstilo.append('<option value=' + estilo.codigo + '>' + estilo.nome + '</option>');
-		comboEstilo.val(estilo.codigo);
+	function onRacaEspecieSalvo(raca) {
+		var comboRaca = $('#comboraca');
+		comboRaca.append('<option value=' + raca.nome + '>' + raca.nome + '</option>');
+		comboRaca.val(raca.nome);
 		modal.modal('hide');
 	}
 	

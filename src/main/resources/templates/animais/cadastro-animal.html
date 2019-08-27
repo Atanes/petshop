@@ -10,6 +10,7 @@
 		$(document).ready(function() {
 		
 			mostraCampo();
+			mostraBotao();
 	
 		});
 	</script>
@@ -20,6 +21,7 @@
 			}else{
 				document.getElementById("divpedigree").style.display = "initial";
 			}
+			
 		}
 	</script>
 </head>
@@ -83,8 +85,8 @@
 
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label class="campo_obrigatorio" for="especie">Espécie</label> <select
-							id="especie" class="form-control" th:field="*{especie}"
+						<label class="campo_obrigatorio" for="comboespecie">Espécie</label>
+						<select	id="comboespecie" class="form-control" th:field="*{especie}"
 							onchange="filtraRaca()">
 							<option value="">Selecione a espécie</option>
 							<option value="Anfíbios">Anfíbio</option>
@@ -101,14 +103,14 @@
 
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label class="campo_obrigatorio" for="raca">Raça</label> 
+						<label class="campo_obrigatorio" for="comboraca">Raça</label> 
 						<div class="bw-field-action">
 							<select
-								id="raca" class="form-control" th:field="*{raca}">
+								id="comboraca" class="form-control" th:field="*{raca}">
 								<option th:each="raca: ${racas}" th:value="${raca.nome}"
 									th:text="${raca.nome}">Opção 1</option>
 							</select>
-							<div class="bw-field-action__icon">
+							<div id="botaoModal" class="bw-field-action__icon" style="display: none;">
 								<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoRacaEspecie" title="Incluir nova Raça/Especie">
 									<i class="fas fa-plus-circle bw-glyphicon-large"></i>
 								</a>

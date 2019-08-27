@@ -13,10 +13,10 @@ public class Raca {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank (message = "{name.not.blank}")
+	@NotBlank (message = "Nome da raça é obrigatório.")
 	private String nome;
 	
-	@NotBlank (message = "{especie.not.blank}")
+	@NotBlank (message = "Espécie é obrigatório.")
 	private String especie;
 	
 	public Raca() {
