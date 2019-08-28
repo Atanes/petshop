@@ -8,8 +8,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="ModalLabel">Cadastro de Raças e
-						Especies</h5>
+					<h5 class="modal-title" id="ModalLabel">Cadastro de Raças</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Fechar">
 						<span aria-hidden="true">&times;</span>
@@ -21,13 +20,13 @@
 					</div>
 					
 					<form th:action="@{/raca_especie/incluir}">
-						<div class="form-group">
-							<label for="raca" class="col-form-label js-label-alert">Raça:</label>
-							<input type="text" class="form-control js-input-alert" id="raca" />
+						<div class="form-group form-row">
+							<label for="raca" class="form-label col-sm-2 js-label-alert">Raça:</label>
+							<input type="text" class="form-control col-sm-6 js-input-alert" id="raca" />
 						</div>
-						<div class="form-group">
-							<label for="especie" class="col-form-label">Espécie:</label>
-							<input class="form-control" id="especie" readonly/>
+						<div class="form-group form-row">
+							<label for="especie" class="form-label col-sm-2">Espécie:</label>
+							<input class="form-control col-sm-6" id="especie" readonly/>
 						</div>
 					</form>
 				</div>
