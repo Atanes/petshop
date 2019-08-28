@@ -42,8 +42,11 @@
 
 			<th:block th:insert="layout/fragments/MensagemErro :: erro"></th:block>
 
-			<input type="hidden" th:field="*{id}" /> <input type="hidden"
-				th:field="*{cliente}" /> <input type="hidden" id="resp_cadastro"
+			<input type="hidden" th:field="*{id}" />
+			<input type="hidden" th:field="*{cliente}" />
+			<input type="hidden" th:field="*{raca}" />
+			
+			<input type="hidden" id="resp_cadastro"
 				name="resp_cadastro" th:value="${#authentication.principal.nome}" />
 
 			<div class="form-row">
@@ -86,7 +89,7 @@
 				<div class="col-sm-3">
 					<div class="form-group">
 						<label class="campo_obrigatorio" for="comboespecie">Espécie</label>
-						<select	id="comboespecie" class="form-control" th:field="*{especie}"
+						<select	id="comboespecie" class="form-control" th:field="*{raca.especie}"
 							onchange="filtraRaca()">
 							<option value="">Selecione a espécie</option>
 							<option value="Anfíbios">Anfíbio</option>
@@ -106,7 +109,7 @@
 						<label class="campo_obrigatorio" for="comboraca">Raça</label> 
 						<div class="bw-field-action">
 							<select
-								id="comboraca" class="form-control" th:field="*{raca}">
+								id="comboraca" class="form-control" th:field="*{raca.nome}">
 								<option th:each="raca: ${racas}" th:value="${raca.nome}"
 									th:text="${raca.nome}">Opção 1</option>
 							</select>

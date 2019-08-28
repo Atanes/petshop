@@ -12,7 +12,7 @@ public interface Racas extends JpaRepository<Raca, Long> {
 	
 	List<Raca> findByEspecieIgnoreCaseOrderByNome(String especie);
 	
-	List<Raca> findByNomeIgnoreCase(String nome);
+	Raca findByNomeIgnoreCase(String nome);
 
 	List<Raca> findByNomeContainingIgnoreCase(String raca);
 

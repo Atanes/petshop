@@ -87,6 +87,7 @@ public class AnimalController {
 
 	@GetMapping("/incluirAnimal/{id}")
 	public ModelAndView incluirAnimal(@PathVariable Long id) {
+		
 		ModelAndView modelAndView = new ModelAndView("animais/cadastro-animal");
 
 		Cliente c = clientes.findOne(id);
@@ -102,11 +103,17 @@ public class AnimalController {
 
 	@PostMapping("/salvar")
 	public ModelAndView salvar(@Valid Animal animal, BindingResult result, RedirectAttributes attributes) {
+		
+		//Raca r = animal.getRaca();
+		
 		if (result.hasErrors()) {
 			return novo(animal);
 		}
+		
+		//racas.save(r);
 
 		animal.setData_cadastro(new Date());
+		//animal.setRaca(r);
 
 		animais.save(animal);
 

@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,18 +56,21 @@ public class RacaEspecieController {
 		return new ModelAndView("raca/cadastro-raca_especie");
 	}
 
-	@PostMapping("/salvar")
+	@RequestMapping(value = "/salvar" , method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Raca raca, BindingResult result, RedirectAttributes attributes) {
+		
+		if (raca.getId() == null) {
+			Raca r = racas.findByNomeIgnoreCase(raca.getNome());
+			if(r != null){
+				result.rejectValue("nome", "nome.existente");
+			}
+        }
+		
 		if (result.hasErrors()) {
 			return novo(raca);
 		}
 		
-		if(racas.findByNomeIgnoreCase(raca.getNome())== null) {
-			racas.save(raca);
-		}else {
-			result.rejectValue("nome", "Já existe uma raça cadastrada com esse nome!");
-			return novo(raca);
-		}
+		racas.save(raca);
 		
 		attributes.addFlashAttribute("mensagem", "Raça salva com sucesso!!");
 		return new ModelAndView("redirect:/raca_especie/novo");
@@ -84,9 +86,7 @@ public class RacaEspecieController {
 		
 		Raca r = new Raca();
 		
-		System.out.println(racas.findByNomeIgnoreCase(raca).isEmpty());
-		
-		if(racas.findByNomeIgnoreCase(raca).isEmpty()) {
+		if(racas.findByNomeIgnoreCase(raca) == null) {
 			r.setEspecie(especie);
 			r.setNome(raca);
 			

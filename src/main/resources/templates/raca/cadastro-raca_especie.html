@@ -18,7 +18,7 @@
 		<th:block th:insert="layout/fragments/MensagemGeral :: sucesso"></th:block>
 
 		<form method="POST" class="form-vertical  js-form-loading"
-			th:object="${raca}" th:action="@{/raca_especie/novo}">
+			th:object="${raca}" th:action="@{/raca_especie/salvar}">
 
 			<th:block th:insert="layout/fragments/MensagemErro :: erro"></th:block>
 
