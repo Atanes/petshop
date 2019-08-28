@@ -41,7 +41,7 @@ public class Raca {
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nome = nome.toUpperCase();
 	}
 	
 	public String getEspecie() {

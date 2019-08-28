@@ -26,8 +26,7 @@ import com.iridiumit.gestaopetshop.relatorios.ClienteREL;
 import com.iridiumit.gestaopetshop.repository.Animais;
 import com.iridiumit.gestaopetshop.repository.Clientes;
 import com.iridiumit.gestaopetshop.repository.Enderecos;
-import com.iridiumit.gestaopetshop.repository.filtros.AnimalFiltro;
-import com.iridiumit.gestaopetshop.repository.filtros.ClienteFiltro;
+import com.iridiumit.gestaopetshop.repository.filtros.FiltroGeral;
 import com.iridiumit.gestaopetshop.service.ClienteService;
 
 @Controller
@@ -47,22 +46,34 @@ public class ClienteController {
 	private Animais animais;
 
 	@GetMapping
-	public ModelAndView listar(@ModelAttribute("filtro") ClienteFiltro filtro) {
-
-		String nome = filtro.getNome() == null ? "%" : filtro.getNome();
+	public ModelAndView listar(@ModelAttribute("filtro") FiltroGeral filtro) {
 
 		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes");
+		
+		String nome = "";
+		
+		if(filtro.getTextoFiltro() == null) {
+			nome = "%";
+		}else {
+			nome = filtro.getTextoFiltro();
+		}
 
 		modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCaseAndAtivo(nome, true));
 		return modelAndView;
 	}
 
 	@GetMapping("/inativos")
-	public ModelAndView listarInativos(@ModelAttribute("filtro") ClienteFiltro filtro) {
-
-		String nome = filtro.getNome() == null ? "%" : filtro.getNome();
+	public ModelAndView listarInativos(@ModelAttribute("filtro") FiltroGeral filtro) {
 
 		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes-inativos");
+		
+		String nome = "";
+		
+		if(filtro.getTextoFiltro() == null) {
+			nome = "%";
+		}else {
+			nome = filtro.getTextoFiltro();
+		}
 
 		modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCaseAndAtivo(nome, false));
 		return modelAndView;
@@ -87,7 +98,7 @@ public class ClienteController {
 	
 	  @GetMapping("/selecao/{id}") public ModelAndView
 	  SelecaoPorCliente(@PathVariable Long id, @ModelAttribute("filtro")
-	  AnimalFiltro filtro) {
+	  FiltroGeral filtro) {
 	  
 	  Cliente c = clientes.findOne(id);
 	  

@@ -17,8 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.iridiumit.gestaopetshop.model.Fornecedor;
 import com.iridiumit.gestaopetshop.repository.Fornecedores;
 import com.iridiumit.gestaopetshop.repository.Produtos;
-import com.iridiumit.gestaopetshop.repository.filtros.FornecedorFiltro;
-import com.iridiumit.gestaopetshop.repository.filtros.ProdutoFiltro;
+import com.iridiumit.gestaopetshop.repository.filtros.FiltroGeral;
 import com.iridiumit.gestaopetshop.service.FornecedorService;
 
 @Controller
@@ -35,20 +34,29 @@ public class FornecedorController {
 	private Produtos produtos;
 	
 	@GetMapping
-	public ModelAndView listar(@ModelAttribute("filtro") FornecedorFiltro filtro) {
-		
-		String nome = filtro.getNome() == null ? "%" : filtro.getNome();
+	public ModelAndView listar(@ModelAttribute("filtro") FiltroGeral filtro) {
 		
 		ModelAndView modelAndView = new ModelAndView("fornecedores/lista-fornecedores");
-
-		modelAndView.addObject("fornecedores", fornecedores.findByNomeContainingIgnoreCase(nome));
+		
+		if(filtro.getTextoFiltro() == null) {
+			modelAndView.addObject("fornecedores", fornecedores.findAll());
+		}else {
+			modelAndView.addObject("fornecedores", fornecedores.findByNomeContainingIgnoreCase(filtro.getTextoFiltro()));
+		}
+		
 		return modelAndView;
 	}
 	
 	@GetMapping("/{id}")
-	public ModelAndView fornecedorProduto(@PathVariable Long id, @ModelAttribute("filtro") ProdutoFiltro filtro) {
+	public ModelAndView fornecedorProduto(@PathVariable Long id, @ModelAttribute("filtro") FiltroGeral filtro) {
 		
-		String descricao = filtro.getDescricao() == null ? "%" : filtro.getDescricao();
+		String descricao = "";
+		
+		if(filtro.getTextoFiltro() == null) {
+			descricao = "%";
+		}else {
+			descricao = filtro.getTextoFiltro();
+		}
 		
 		ModelAndView modelAndView = new ModelAndView("fornecedores/lista-fornecedor-e-produtos");
 		

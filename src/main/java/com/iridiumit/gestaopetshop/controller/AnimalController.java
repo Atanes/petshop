@@ -26,7 +26,7 @@ import com.iridiumit.gestaopetshop.model.Raca;
 import com.iridiumit.gestaopetshop.repository.Animais;
 import com.iridiumit.gestaopetshop.repository.Clientes;
 import com.iridiumit.gestaopetshop.repository.Racas;
-import com.iridiumit.gestaopetshop.repository.filtros.AnimalFiltro;
+import com.iridiumit.gestaopetshop.repository.filtros.FiltroGeral;
 
 @Controller
 @RequestMapping("/clientes/animais")
@@ -42,11 +42,17 @@ public class AnimalController {
 	private Racas racas;
 
 	@GetMapping
-	public ModelAndView listar(@ModelAttribute("filtro") AnimalFiltro filtro) {
-
-		String nome = filtro.getNome() == null ? "%" : filtro.getNome();
+	public ModelAndView listar(@ModelAttribute("filtro") FiltroGeral filtro) {
 
 		ModelAndView modelAndView = new ModelAndView("animais/lista-animais");
+		
+		String nome = "";
+		
+		if(filtro.getTextoFiltro() == null) {
+			nome = "%";
+		}else {
+			nome = filtro.getTextoFiltro();
+		}
 
 		modelAndView.addObject("animais", animais.findByNomeContainingIgnoreCase(nome));
 		return modelAndView;

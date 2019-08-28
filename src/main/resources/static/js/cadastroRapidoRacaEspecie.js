@@ -4,7 +4,7 @@ $(function() {
 	var botaoSalvar = modal.find('.js-modal-cadastro-raca_especie-salvar-btn');
 	var form = modal.find('form');
 	form.on('submit', function(event) { event.preventDefault() });
-	var url = '/incluirRaca';
+	var url = '/raca_especie/incluirRaca';
 	var inputNomeRaca = $('#raca');
 	var inputNomeEspecie = $('#especie');
 	var containerMensagemErro = $('.js-mensagem-cadastro-rapido-raca_especie');

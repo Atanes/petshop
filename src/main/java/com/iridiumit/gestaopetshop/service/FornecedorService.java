@@ -7,19 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.iridiumit.gestaopetshop.model.Fornecedor;
 import com.iridiumit.gestaopetshop.repository.Fornecedores;
-import com.iridiumit.gestaopetshop.repository.filtros.FornecedorFiltro;
 
 @Service
 public class FornecedorService {
 	
 	@Autowired
 	private Fornecedores fornecedores;
-		
-	public List<Fornecedor> filtrar(FornecedorFiltro filtro) {
-		
-		String nome = filtro.getNome() == null ? "%" : filtro.getNome();
-		return fornecedores.findByNomeContainingIgnoreCase(nome);
-	}
 	
 	public List<Fornecedor> filtrar(String nome) {
 		
