@@ -152,20 +152,13 @@
 }
 
 /*
-######################
-# UTILIDADES
-######################
+##############################################
+# Campo com botão para ativar formulário Modal
+##############################################
 */
 .bw-glyphicon-large {
 	font-size: 18px;
 }
-
-
-/*
-######################
-# COMPONENTES
-######################
-*/
 
 /* Field Action */
 .bw-field-action {
