@@ -39,9 +39,6 @@ public class Animal {
     @JoinColumn(name = "raca_id", nullable = false)
     private Raca raca;
 	
-	@NotBlank (message = "{especie.not.blank}")
-	private String especie;
-	
 	private boolean castrado;
 	
 	private boolean pedigree;
@@ -79,7 +76,6 @@ public class Animal {
 		this.nome = nome;
 		this.sexo = sexo;
 		this.raca = raca;
-		this.especie = especie;
 		this.castrado = castrado;
 		this.pedigree = pedigree;
 		this.data_nasc = data_nasc;
@@ -112,14 +108,6 @@ public class Animal {
 
 	public void setRaca(Raca raca) {
 		this.raca = raca;
-	}
-
-	public String getEspecie() {
-		return especie;
-	}
-
-	public void setEspecie(String especie) {
-		this.especie = especie;
 	}
 
 	public String getSexo() {

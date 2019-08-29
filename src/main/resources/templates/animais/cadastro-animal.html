@@ -10,7 +10,6 @@
 		$(document).ready(function() {
 		
 			mostraCampo();
-			mostraBotao();
 	
 		});
 	</script>
@@ -44,7 +43,6 @@
 
 			<input type="hidden" th:field="*{id}" />
 			<input type="hidden" th:field="*{cliente}" />
-			<input type="hidden" th:field="*{raca}" />
 			
 			<input type="hidden" id="resp_cadastro"
 				name="resp_cadastro" th:value="${#authentication.principal.nome}" />
@@ -108,9 +106,9 @@
 					<div class="form-group">
 						<label class="campo_obrigatorio" for="comboraca">Raça</label> 
 						<div class="bw-field-action">
-							<select
-								id="comboraca" class="form-control" th:field="*{raca.nome}">
-								<option th:each="raca: ${racas}" th:value="${raca.nome}"
+							<select	id="comboraca" class="form-control" th:field="*{raca.id}">
+								<option th:value="${animal.raca.id}" th:text="${animal.raca.nome}">Selecione a espécie</option>
+								<option th:each="raca: ${racas}" th:value="${raca.id}"
 									th:text="${raca.nome}">Opção 1</option>
 							</select>
 							<div id="botaoModal" class="bw-field-action__icon" style="display: none;">

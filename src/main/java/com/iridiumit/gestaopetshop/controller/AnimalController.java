@@ -104,16 +104,11 @@ public class AnimalController {
 	@PostMapping("/salvar")
 	public ModelAndView salvar(@Valid Animal animal, BindingResult result, RedirectAttributes attributes) {
 		
-		//Raca r = animal.getRaca();
-		
 		if (result.hasErrors()) {
 			return novo(animal);
 		}
 		
-		//racas.save(r);
-
 		animal.setData_cadastro(new Date());
-		//animal.setRaca(r);
 
 		animais.save(animal);
 

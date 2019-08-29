@@ -5,14 +5,14 @@ $(function() {
 	var form = modal.find('form');
 	form.on('submit', function(event) { event.preventDefault() });
 	var url = '/raca_especie/incluirRaca';
-	var inputNomeRaca = $('#raca');
+	var inputNomeRaca = $('#nomeRaca');
 	var inputNomeEspecie = $('#especie');
 	var containerMensagemErro = $('.js-mensagem-cadastro-rapido-raca_especie');
 	
 	var comboEspecie = $('#comboespecie');
 	
 	modal.on('shown.bs.modal', onModalShow);
-	modal.on('hide.bs.modal', onModalClose)
+	modal.on('hide.bs.modal', onModalClose);
 	botaoSalvar.on('click', onBotaoSalvarClick);
 	
 	function onModalShow() {
@@ -62,8 +62,8 @@ $(function() {
 	
 	function onRacaEspecieSalvo(raca) {
 		var comboRaca = $('#comboraca');
-		comboRaca.append('<option value=' + raca.nome + '>' + raca.nome + '</option>');
-		comboRaca.val(raca.nome);
+		comboRaca.append('<option value=' + raca.id + '>' + raca.nome + '</option>');
+		comboRaca.val(raca.id);
 		modal.modal('hide');
 	}
 	
