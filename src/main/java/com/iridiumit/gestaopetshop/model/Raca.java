@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -28,6 +30,12 @@ public class Raca {
 		this.nome = nome;
 		this.especie = especie;
 	}
+	
+	//Antes de inserir ou atualizar os dados no banco deixa a informação em caixa alta!
+	@PrePersist @PreUpdate 
+	private void prePersistUpdate() {
+		this.nome = nome.toUpperCase();
+	}
 
 	public Long getId() {
 		return id;
@@ -42,7 +50,7 @@ public class Raca {
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome.toUpperCase();
+		this.nome = nome;
 	}
 
 	public String getEspecie() {

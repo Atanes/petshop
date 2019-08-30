@@ -1,3 +1,16 @@
+function mostraCampo(){
+	if(!document.getElementById("pedigree").checked){
+		document.getElementById("divpedigree").style.display = "none";
+	}else{
+		document.getElementById("divpedigree").style.display = "initial";
+	}
+}
+
+function preencher_cpf(el) {
+	document.getElementById('senha').value = el.value.replace(/\D/g, '');
+	document.getElementById('login').value = el.value.replace(/\D/g, '');
+}
+
 function filtraRaca() {
     var especie = $("#comboespecie").val();
     
@@ -45,3 +58,27 @@ function filtraRaca() {
     });
 
 }
+
+var Iridiumit = Iridiumit || {};
+
+Iridiumit.MaskMoney = (function() {
+	
+	function MaskMoney() {
+		this.decimal = $('.js-decimal');
+		this.plain = $('.js-plain');
+	}
+	
+	MaskMoney.prototype.enable = function() {
+		this.decimal.maskMoney({ decimal: ',', thousands: '.' });
+		this.plain.maskMoney({ precision: 0, thousands: '.' });
+	}
+	
+	return MaskMoney;
+	
+}());
+
+$(function() {
+	var maskMoney = new Iridiumit.MaskMoney();
+	maskMoney.enable();
+	mostraCampo();
+});
