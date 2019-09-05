@@ -151,6 +151,10 @@
 	line-height: 1;
 }
 
+.grupo_salvar_cancelar{
+	margin-top: 10px;
+}
+
 /*
 ##############################################
 # Campo com botão para ativar formulário Modal
@@ -167,4 +171,15 @@
 
 .bw-field-action__icon {
 	margin: 6px 0 0 5px;
+}
+
+/*
+################################################
+# Campo para preview da imagem antes de carregar
+################################################
+*/
+
+.image_upload_preview {
+	max-width: 100px;
+	max-height: 100px;
 }

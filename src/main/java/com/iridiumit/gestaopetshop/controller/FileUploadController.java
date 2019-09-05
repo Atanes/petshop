@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iridiumit.gestaopetshop.uploadfiles.MyUploadForm;
  
 @Controller
-public class MyFileUploadController {
+public class FileUploadController {
  
    @RequestMapping(value = "/fotos")
    public String homePage() {
@@ -91,6 +91,10 @@ public class MyFileUploadController {
          // Client File Name
          String name = fileData.getOriginalFilename();
          System.out.println("Client File Name = " + name);
+         
+         // Client File Content Type
+         String contentType = fileData.getContentType();
+         System.out.println("Client File Content Type = " + contentType);
  
          if (name != null && name.length() > 0) {
             try {

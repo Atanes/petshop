@@ -59,26 +59,13 @@ function filtraRaca() {
 
 }
 
-var Iridiumit = Iridiumit || {};
-
-Iridiumit.MaskMoney = (function() {
-	
-	function MaskMoney() {
-		this.decimal = $('.js-decimal');
-		this.plain = $('.js-plain');
-	}
-	
-	MaskMoney.prototype.enable = function() {
-		this.decimal.maskMoney({ decimal: ',', thousands: '.' });
-		this.plain.maskMoney({ precision: 0, thousands: '.' });
-	}
-	
-	return MaskMoney;
-	
-}());
 
 $(function() {
-	var maskMoney = new Iridiumit.MaskMoney();
-	maskMoney.enable();
 	mostraCampo();
+	
+	$(document).on('change', '.custom-file-input', function (event) {
+	    $(this).next('.custom-file-label').html(event.target.files[0].name);
+	    document.getElementById('foto').value = event.target.files[0].name;
+	    document.getElementById('fotoType').value = event.target.files[0].type;
+	})
 });

@@ -1,5 +1,10 @@
 package com.iridiumit.gestaopetshop.controller;
 
+import static java.nio.file.FileSystems.getDefault;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -45,12 +51,12 @@ public class AnimalController {
 	public ModelAndView listar(@ModelAttribute("filtro") FiltroGeral filtro) {
 
 		ModelAndView modelAndView = new ModelAndView("animais/lista-animais");
-		
+
 		String nome = "";
-		
-		if(filtro.getTextoFiltro() == null) {
+
+		if (filtro.getTextoFiltro() == null) {
 			nome = "%";
-		}else {
+		} else {
 			nome = filtro.getTextoFiltro();
 		}
 
@@ -87,7 +93,7 @@ public class AnimalController {
 
 	@GetMapping("/incluirAnimal/{id}")
 	public ModelAndView incluirAnimal(@PathVariable Long id) {
-		
+
 		ModelAndView modelAndView = new ModelAndView("animais/cadastro-animal");
 
 		Cliente c = clientes.findOne(id);
@@ -102,10 +108,22 @@ public class AnimalController {
 	}
 
 	@PostMapping("/salvar")
-	public ModelAndView salvar(@Valid Animal animal, BindingResult result, RedirectAttributes attributes) {
-		
+	public ModelAndView salvar(@RequestParam("file") MultipartFile file, @Valid Animal animal, BindingResult result,
+			RedirectAttributes attributes) {
+
 		if (result.hasErrors()) {
 			return novo(animal);
+		}
+		
+		if(!file.isEmpty()) {
+			String arquivoFoto = doUpload(file, animal);
+			
+			if(arquivoFoto.equals("erro")){
+				attributes.addFlashAttribute("mensagem", "Problemas para salvar a foto do animal!!");
+				return novo(animal);
+			}else {
+				animal.setFoto(arquivoFoto);
+			}
 		}
 		
 		animal.setData_cadastro(new Date());
@@ -126,6 +144,44 @@ public class AnimalController {
 		model.addAttribute("adicionados", r);
 		return r;
 
+	}
+
+	private String doUpload(MultipartFile file, Animal animal) {
+
+		// Root Directory.
+		String uploadRootPath = getDefault().getPath(System.getenv("HOMEPATH"), "animaisfotos").toString();
+		System.out.println("uploadRootPath=" + uploadRootPath);
+
+		File uploadRootDir = new File(uploadRootPath);
+		// Create directory if it not exists.
+		if (!uploadRootDir.exists()) {
+			uploadRootDir.mkdirs();
+		}
+
+		String nomeArquivo = animal.getCliente().getId() + "_" + animal.getNome() + "_" + file.getOriginalFilename();
+		System.out.println("Nome do arquivo: " + nomeArquivo);
+
+		// Client File Content Type
+		String contentType = file.getContentType();
+		System.out.println("Tipo do arquivo: " + contentType);
+
+		if (nomeArquivo != null && nomeArquivo.length() > 0) {
+			try {
+				// Create the file at server
+				File serverFile = new File(uploadRootDir.getAbsolutePath() + File.separator + nomeArquivo);
+
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+				stream.write(file.getBytes());
+				stream.close();
+				//
+				System.out.println("Arquivo gravado: " + serverFile);
+			} catch (Exception e) {
+				System.out.println("Erro ao gravar o arquivo: " + nomeArquivo);
+				return "erro";
+			}
+		}
+
+		return nomeArquivo;
 	}
 
 }

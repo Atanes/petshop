@@ -24,6 +24,7 @@
 <script type="text/javascript">
 	$(document).on('change', '.custom-file-input', function (event) {
 	    $(this).next('.custom-file-label').html(event.target.files[0].name);
+	    document.getElementById('descricao').value = event.target.files[0].name + ', ' + event.target.files[0].type;
 	})
 </script>
 </head>
@@ -42,8 +43,8 @@
 			<div class="form-row">
 				<div class="col-sm-6">
 					<div class="form-group">
-						<label for="site">Descrição</label> <input id="site" type="text"
-							class="form-control" th:field="*{description}" />
+						<label for="descricao">Descrição</label>
+						<input id="descricao" type="text" class="form-control" th:field="*{description}" />
 					</div>
 				</div>
 

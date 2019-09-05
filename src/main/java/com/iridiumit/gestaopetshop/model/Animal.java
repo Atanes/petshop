@@ -63,6 +63,10 @@ public class Animal {
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
+	
+	private String foto;
+	
+	private String fotoType;
 
 	public Animal() {
 
@@ -70,7 +74,7 @@ public class Animal {
 
 	public Animal(Long id, String nome, String sexo, Raca raca, String especie, boolean castrado, boolean pedigree,
 			Date data_nasc, String microship, String observacoes, Date data_cadastro, String resp_cadastro,
-			Cliente cliente) {
+			Cliente cliente, String foto, String ftype) {
 		this.id = id;
 		this.nome = nome;
 		this.sexo = sexo;
@@ -83,6 +87,8 @@ public class Animal {
 		this.data_cadastro = data_cadastro;
 		this.resp_cadastro = resp_cadastro;
 		this.cliente = cliente;
+		this.foto = foto;
+		this.fotoType = ftype;
 	}
 
 	public Long getId() {
@@ -203,6 +209,22 @@ public class Animal {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getFotoType() {
+		return fotoType;
+	}
+
+	public void setFotoType(String fotoType) {
+		this.fotoType = fotoType;
 	}
 
 	@Override

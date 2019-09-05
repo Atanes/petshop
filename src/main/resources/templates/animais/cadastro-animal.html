@@ -25,7 +25,7 @@
 		<th:block th:insert="layout/fragments/MensagemGeral :: sucesso"></th:block>
 
 		<form method="POST" class="form-vertical  js-form-loading"
-			th:object="${animal}" th:action="@{/clientes/animais/salvar}">
+			th:object="${animal}" th:action="@{/clientes/animais/salvar}" enctype="multipart/form-data">
 
 			<th:block th:insert="layout/fragments/MensagemErro :: erro"></th:block>
 
@@ -76,7 +76,7 @@
 					<div class="form-group">
 						<label class="campo_obrigatorio" for="comboespecie">Espécie</label>
 						<select	id="comboespecie" class="form-control" th:field="*{raca.especie}"
-							onchange="filtraRaca()">
+							onchange="filtraRaca()" required>
 							<option value="">Selecione a espécie</option>
 							<option value="Anfíbio">Anfíbio</option>
 							<option value="Ave">Ave</option>
@@ -94,7 +94,8 @@
 					<div class="form-group">
 						<label class="campo_obrigatorio" for="comboraca">Raça</label> 
 						<div class="bw-field-action">
-							<select	id="comboraca" class="form-control" th:field="*{raca.id}">
+							<select	id="comboraca" class="form-control" th:field="*{raca.id}" required oninvalid="this.setCustomValidity('Campo obrigatório')" 
+									onchange="try{setCustomValidity('')}catch(e){}">
 								<option th:value="${animal.raca.id}" th:text="${animal.raca.nome}">Selecione a espécie</option>
 								<option th:each="raca: ${racas}" th:value="${raca.id}"
 									th:text="${raca.nome}">Opção 1</option>
@@ -117,6 +118,22 @@
 				</div>
 			</div>
 			<div class="form-row">
+			
+				<div class="col-sm-4">
+					<div class="form-group ">
+						<label for="customFile">Foto</label>
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" id="inputFile" name="file"
+							onchange="document.getElementById('previewImage').src = window.URL.createObjectURL(this.files[0])">
+							<label class="custom-file-label" for="inputFile">Selecione a foto do animal</label>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-sm-2">
+					<img class="image_upload_preview" id="previewImage" th:src="@{/images/petsimage2.jpg}" title="Foto do animal" />
+				</div>
+				
 				<div class="col-sm-2">
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox" id="castrado"
@@ -141,8 +158,11 @@
 				</div>
 
 			</div>
-
-			<div class="container">
+				
+			<input id="fotoType" type="hidden" class="form-control" th:field="*{fotoType}" />
+			<input id="foto" type="hidden" class="form-control" th:field="*{foto}" />
+				
+			<div class="container grupo_salvar_cancelar">
 				<div class="form-row justify-content-between">
 					<button class="btn btn-primary btn-sm col-sm-2" type="submit"
 						title="Salvar">
@@ -157,6 +177,9 @@
 			</div>
 
 		</form>
+	
+				
+	
 		<div th:replace="raca/cadastro-raca-especie-modal :: modalRacaEspecie"></div>
 	</section>
 </body>

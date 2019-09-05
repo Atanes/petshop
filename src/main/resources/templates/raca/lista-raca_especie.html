@@ -58,10 +58,12 @@
 									th:onsubmit="'return confirm(\'Posso remover a raça: ' + 
 								${raca_especie.nome} + ' da base de dados?\');'"
 									th:action="@{/raca_especie/excluir/{id}(id=${raca_especie.id})}">
+										
 									<a class="btn btn-primary btn-sm"
 										th:href="@{/raca_especie/{id}(id=${raca_especie.id})}"
 										th:title="Editar"> <span class="fa fa-pencil-alt acoes"></span>
 									</a>
+				
 									<button type="submit" class="btn btn-danger btn-sm"
 										title="Excluir">
 										<span class="far fa-trash-alt acoes"></span>
