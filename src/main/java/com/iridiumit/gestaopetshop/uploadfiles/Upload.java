@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,8 +24,12 @@ public class Upload {
 	}
 
 	private void criarPastas() {
+		
+		Map<String, String> map = System.getenv();
+        map.entrySet().forEach(System.out::println);
+        
 		try {
-			this.local = getDefault().getPath(System.getenv("HOMEPATH"), "animaisfotos");
+			this.local = getDefault().getPath(System.getenv("USERPROFILE"), "//animaisfotos");
 			Files.createDirectories(this.local);
 			this.localTemporario = getDefault().getPath(this.local.toString(), "temp");
 			Files.createDirectories(this.localTemporario);

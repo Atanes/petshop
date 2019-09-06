@@ -37,6 +37,9 @@ import com.iridiumit.gestaopetshop.repository.filtros.FiltroGeral;
 @Controller
 @RequestMapping("/clientes/animais")
 public class AnimalController {
+	
+	// Root Directory.
+	String uploadRootPath = getDefault().getPath(System.getenv("USERPROFILE"), "//animaisfotos").toString();
 
 	@Autowired
 	private Clientes clientes;
@@ -147,10 +150,6 @@ public class AnimalController {
 	}
 
 	private String doUpload(MultipartFile file, Animal animal) {
-
-		// Root Directory.
-		String uploadRootPath = getDefault().getPath(System.getenv("HOMEPATH"), "animaisfotos").toString();
-		System.out.println("uploadRootPath=" + uploadRootPath);
 
 		File uploadRootDir = new File(uploadRootPath);
 		// Create directory if it not exists.
