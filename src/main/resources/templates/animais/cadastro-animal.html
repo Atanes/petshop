@@ -132,6 +132,7 @@
 				
 				<div class="col-sm-2">
 					<img class="image_upload_preview" id="previewImage" th:src="@{/images/petsimage2.jpg}" title="Foto do animal" />
+					<img class="image_upload_preview" th:src="@{/clientes/animais/fotos/{nome}(nome=${animal.foto})}" title="Foto do animal" />
 				</div>
 				
 				<div class="col-sm-2">

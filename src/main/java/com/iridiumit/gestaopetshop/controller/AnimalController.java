@@ -5,6 +5,9 @@ import static java.nio.file.FileSystems.getDefault;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +42,10 @@ import com.iridiumit.gestaopetshop.repository.filtros.FiltroGeral;
 public class AnimalController {
 	
 	// Root Directory.
-	String uploadRootPath = getDefault().getPath(System.getenv("USERPROFILE"), "//animaisfotos").toString();
+	// para Windows 7
+	private Path uploadRootPath = getDefault().getPath(System.getenv("USERPROFILE"), "//animaisfotos");
+	// para Windows 10
+	//private Path uploadRootPath = getDefault().getPath(System.getenv("HOMEPATH"), "animaisfotos");
 
 	@Autowired
 	private Clientes clientes;
@@ -151,7 +157,7 @@ public class AnimalController {
 
 	private String doUpload(MultipartFile file, Animal animal) {
 
-		File uploadRootDir = new File(uploadRootPath);
+		File uploadRootDir = new File(uploadRootPath.toString());
 		// Create directory if it not exists.
 		if (!uploadRootDir.exists()) {
 			uploadRootDir.mkdirs();
@@ -181,6 +187,18 @@ public class AnimalController {
 		}
 
 		return nomeArquivo;
+	}
+	
+	@GetMapping("/fotos/{nome:.*}")
+	public @ResponseBody byte[] recuperarFoto(@PathVariable String nome) {
+
+		System.out.println(nome);
+		
+		try {
+			return Files.readAllBytes(this.uploadRootPath.resolve(nome));
+		} catch (IOException e) {
+			throw new RuntimeException("Erro lendo a foto", e);
+		}
 	}
 
 }
