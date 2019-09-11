@@ -65,7 +65,7 @@ $(function() {
 	
 	$(document).on('change', '.custom-file-input', function (event) {
 	    $(this).next('.custom-file-label').html(event.target.files[0].name);
-	    document.getElementById('foto').value = event.target.files[0].name;
-	    document.getElementById('fotoType').value = event.target.files[0].type;
+	    /*document.getElementById('foto').value = event.target.files[0].name;
+	    document.getElementById('fotoType').value = event.target.files[0].type;*/
 	})
 });

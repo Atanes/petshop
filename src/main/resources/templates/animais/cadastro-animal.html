@@ -36,8 +36,26 @@
 				name="resp_cadastro" th:value="${#authentication.principal.nome}" />
 
 			<div class="form-row">
-
-				<div class="col-sm-6">
+				<div class="col-sm-2">
+					<div class="form-group">
+						
+						<a data-toggle="modal" class="btn btn-primary btn-foto" href="#"
+										th:title="'Editar foto'" data-target="#modalCadastroFotoAnimal">
+							<i class="fas fa-camera"></i>
+						</a>
+						<label for="fotoAnimal">Foto</label>
+						<!-- IF Animal has Foto -->
+						<div th:if="${animal.foto}">
+						   <img id="fotoAnimal" class="image_upload_preview" th:src="@{/clientes/animais/fotos/{nome}(nome=${animal.foto})}" title="Foto do animal" />
+						</div>
+						<!-- ELSE -->
+						<div th:unless="${animal.foto}">
+						   <img id="fotoAnimal" class="image_upload_preview" th:src="@{/images/PetSemFoto.png}" title="Foto do animal" />
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-sm-4">
 					<div class="form-group">
 						<label class="campo_obrigatorio" for="nome">Nome</label> <input
 							id="nome" type="text" class="form-control" th:field="*{nome}" />
@@ -118,22 +136,6 @@
 				</div>
 			</div>
 			<div class="form-row">
-			
-				<div class="col-sm-4">
-					<div class="form-group ">
-						<label for="customFile">Foto</label>
-						<div class="custom-file">
-							<input type="file" class="custom-file-input" id="inputFile" name="file"
-							onchange="document.getElementById('previewImage').src = window.URL.createObjectURL(this.files[0])">
-							<label class="custom-file-label" for="inputFile">Selecione a foto do animal</label>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-sm-2">
-					<img class="image_upload_preview" id="previewImage" th:src="@{/images/petsimage2.jpg}" title="Foto do animal" />
-					<img class="image_upload_preview" th:src="@{/clientes/animais/fotos/{nome}(nome=${animal.foto})}" title="Foto do animal" />
-				</div>
 				
 				<div class="col-sm-2">
 					<div class="form-check">
@@ -176,11 +178,12 @@
 					</a>
 				</div>
 			</div>
+			
+			<div th:replace="animais/cadastro-foto-animal-modal :: modalFotoAnimal"></div>
 
 		</form>
-	
 				
-	
+		
 		<div th:replace="raca/cadastro-raca-especie-modal :: modalRacaEspecie"></div>
 	</section>
 </body>
