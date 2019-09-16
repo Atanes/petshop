@@ -1,13 +1,6 @@
 package com.iridiumit.gestaopetshop.controller;
 
-import static java.nio.file.FileSystems.getDefault;
-
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Date;
 import java.util.List;
 
@@ -36,16 +29,11 @@ import com.iridiumit.gestaopetshop.repository.Animais;
 import com.iridiumit.gestaopetshop.repository.Clientes;
 import com.iridiumit.gestaopetshop.repository.Racas;
 import com.iridiumit.gestaopetshop.repository.filtros.FiltroGeral;
+import com.iridiumit.gestaopetshop.service.FotoService;
 
 @Controller
 @RequestMapping("/clientes/animais")
 public class AnimalController {
-	
-	// Root Directory.
-	// para Windows 7
-	private Path uploadRootPath = getDefault().getPath(System.getenv("USERPROFILE"), "//animaisfotos");
-	// para Windows 10
-	//private Path uploadRootPath = getDefault().getPath(System.getenv("HOMEPATH"), "animaisfotos");
 
 	@Autowired
 	private Clientes clientes;
@@ -55,6 +43,9 @@ public class AnimalController {
 
 	@Autowired
 	private Racas racas;
+	
+	@Autowired
+	private FotoService fotoService;
 
 	@GetMapping
 	public ModelAndView listar(@ModelAttribute("filtro") FiltroGeral filtro) {
@@ -125,7 +116,7 @@ public class AnimalController {
 		}
 		
 		if(!file.isEmpty()) {
-			String arquivoFoto = doUpload(file, animal);
+			String arquivoFoto = fotoService.doUpload(file, animal);
 			
 			if(arquivoFoto.equals("erro")){
 				attributes.addFlashAttribute("mensagem", "Problemas para salvar a foto do animal!!");
@@ -154,51 +145,13 @@ public class AnimalController {
 		return r;
 
 	}
-
-	private String doUpload(MultipartFile file, Animal animal) {
-
-		File uploadRootDir = new File(uploadRootPath.toString());
-		// Create directory if it not exists.
-		if (!uploadRootDir.exists()) {
-			uploadRootDir.mkdirs();
-		}
-
-		String nomeArquivo = animal.getCliente().getId() + "_" + animal.getNome() + "_" + file.getOriginalFilename();
-		System.out.println("Nome do arquivo: " + nomeArquivo);
-
-		// Client File Content Type
-		String contentType = file.getContentType();
-		System.out.println("Tipo do arquivo: " + contentType);
-
-		if (nomeArquivo != null && nomeArquivo.length() > 0) {
-			try {
-				// Create the file at server
-				File serverFile = new File(uploadRootDir.getAbsolutePath() + File.separator + nomeArquivo);
-
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-				stream.write(file.getBytes());
-				stream.close();
-				//
-				System.out.println("Arquivo gravado: " + serverFile);
-			} catch (Exception e) {
-				System.out.println("Erro ao gravar o arquivo: " + nomeArquivo);
-				return "erro";
-			}
-		}
-
-		return nomeArquivo;
-	}
 	
 	@GetMapping("/fotos/{nome:.*}")
-	public @ResponseBody byte[] recuperarFoto(@PathVariable String nome) {
+	public @ResponseBody byte[] recuperarFoto(@PathVariable String nome) throws IOException {
 
 		System.out.println(nome);
 		
-		try {
-			return Files.readAllBytes(this.uploadRootPath.resolve(nome));
-		} catch (IOException e) {
-			throw new RuntimeException("Erro lendo a foto", e);
-		}
+		return fotoService.recuperarFoto(nome);
 	}
 
 }

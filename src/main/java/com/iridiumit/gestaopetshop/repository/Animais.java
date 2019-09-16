@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.iridiumit.gestaopetshop.model.Animal;
 import com.iridiumit.gestaopetshop.model.Cliente;
+import com.iridiumit.gestaopetshop.model.Raca;
 
 public interface Animais extends JpaRepository<Animal, Long>{
 	
@@ -15,6 +16,6 @@ public interface Animais extends JpaRepository<Animal, Long>{
 
 	List<Animal> findByNomeContainingIgnoreCase(String nome);
 	
-	List<Animal> findByRaca(String raca);
+	List<Animal> findByRaca(Raca raca);
 
 }
