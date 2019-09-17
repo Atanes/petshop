@@ -45,11 +45,11 @@
 						</a>
 						<label for="fotoAnimal">Foto</label>
 						<!-- IF Animal has Foto -->
-						<div th:if="${animal.foto}">
+						<div th:if="${animal.temFoto()}">
 						   <img id="fotoAnimal" class="image_upload_preview" th:src="@{/clientes/animais/fotos/{nome}(nome=${animal.foto})}" title="Foto do animal" />
 						</div>
 						<!-- ELSE -->
-						<div th:unless="${animal.foto}">
+						<div th:unless="${animal.temFoto()}">
 						   <img id="fotoAnimal" class="image_upload_preview" th:src="@{/images/PetSemFoto.png}" title="Foto do animal" />
 						</div>
 						
@@ -155,8 +155,8 @@
 
 				<div id="divpedigree" class="col-sm-2">
 					<div class="form-group">
-						<label for="nrpedigree">Nº Pedigree</label> <input id="nrpedigree"
-							type="text" class="form-control" />
+						<label for="nrpedigree">Nº Pedigree</label>
+						<input id="nrpedigree" type="text" class="form-control" th:field="*{nrpedigree}"/>
 					</div>
 				</div>
 

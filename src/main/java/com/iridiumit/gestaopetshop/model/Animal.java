@@ -42,6 +42,8 @@ public class Animal {
 	
 	private boolean pedigree;
 	
+	private String nrpedigree;
+	
 	@Column(name="data_nasc")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -73,7 +75,7 @@ public class Animal {
 	}
 
 	public Animal(Long id, String nome, String sexo, Raca raca, String especie, boolean castrado, boolean pedigree,
-			Date data_nasc, String microship, String observacoes, Date data_cadastro, String resp_cadastro,
+			String nrpedigree, Date data_nasc, String microship, String observacoes, Date data_cadastro, String resp_cadastro,
 			Cliente cliente, String foto, String ftype) {
 		this.id = id;
 		this.nome = nome;
@@ -81,6 +83,7 @@ public class Animal {
 		this.raca = raca;
 		this.castrado = castrado;
 		this.pedigree = pedigree;
+		this.nrpedigree = nrpedigree;
 		this.data_nasc = data_nasc;
 		this.microship = microship;
 		this.observacoes = observacoes;
@@ -144,6 +147,14 @@ public class Animal {
 			return "Sim";
 		}
 		return "Não";
+	}
+	
+	public String getNrpedigree() {
+		return nrpedigree;
+	}
+
+	public void setNrpedigree(String nrpedigree) {
+		this.nrpedigree = nrpedigree;
 	}
 
 	public Date getData_nasc() {
@@ -217,6 +228,10 @@ public class Animal {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+	
+	public boolean temFoto() {
+		return !this.foto.isEmpty();
 	}
 
 	public String getFotoType() {

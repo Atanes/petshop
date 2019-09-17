@@ -60,7 +60,7 @@ public class AnimalController {
 			nome = filtro.getTextoFiltro();
 		}
 
-		modelAndView.addObject("animais", animais.findByNomeContainingIgnoreCase(nome));
+		modelAndView.addObject("animais", animais.findByNomeContainingIgnoreCaseOrderByNome(nome));
 		return modelAndView;
 	}
 

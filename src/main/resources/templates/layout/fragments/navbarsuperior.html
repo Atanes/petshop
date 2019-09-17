@@ -35,11 +35,6 @@
 										<i class="fas fa-notes-medical"></i>
 										&nbsp; Listar Consultas
 									</a>
-									<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="/fotos">
-										<i class="fas fa-notes-medical"></i>
-										&nbsp; Upload Fotos
-									</a>
 								</div>
 							</li>
 
@@ -79,18 +74,18 @@
 					
 					<!-- Menu com as funções de administração do sistema -->
 
-						<li class="nav-item dropdown" sec:authorize="hasRole('PS_ADMIN')">
+						<li class="nav-item dropdown" sec:authorize="hasRole('PS_ATENDIMENTO') or hasRole('PS_ADMIN')">
 							<a	href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
 								role="button" aria-haspopup="true" aria-expanded="false">
 									Administração
 							</a>
 
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="/administracao/usuarios">
+								<a class="dropdown-item" href="/administracao/usuarios" sec:authorize="hasRole('PS_ADMIN')">
 									<i class="fas fa-users"></i>&nbsp;
 										Listar Usuários
 								</a>
-								<a class="dropdown-item" href="/administracao/usuarios/novo">
+								<a class="dropdown-item" href="/administracao/usuarios/novo" sec:authorize="hasRole('PS_ADMIN')">
 									<i class="fas fa-user-plus"></i>&nbsp;
 										Incluir Usuário
 								</a>
@@ -98,11 +93,15 @@
 										<i class="fas fa-user-slash"></i>
 										&nbsp; Listar Clientes	(Inativos)
 									</a>
-								<a class="dropdown-item" href="/fornecedores">
+								<a class="dropdown-item" href="/clientes/animais">
+										<i class="fa fa-paw"></i>
+										&nbsp; Listar Animais (Todos)
+									</a>
+								<a class="dropdown-item" href="/fornecedores" sec:authorize="hasRole('PS_ADMIN')">
 									<i class="fas fa-clipboard"></i>&nbsp;
 										Listar Fornecedores
 								</a>
-								<a class="dropdown-item" href="/fornecedores/novo">
+								<a class="dropdown-item" href="/fornecedores/novo" sec:authorize="hasRole('PS_ADMIN')">
 									<i class="fas fa-industry"></i>&nbsp;
 										Incluir Fornecedores
 								</a>
@@ -113,10 +112,6 @@
 								<a class="dropdown-item" href="/atendimento/servicos/novo">
 									<i class="fa fa-cart-arrow-down"></i>&nbsp;
 										Incluir Serviços
-								</a>
-								<a class="dropdown-item" href="/atendimento/servicos">
-									<i class="fas fa-clipboard"></i>&nbsp;
-										Listar Serviços
 								</a>
 								<a class="dropdown-item" href="/raca_especie/novo">
 									<i class="fas fa-dog"></i>&nbsp;
