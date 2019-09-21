@@ -229,10 +229,6 @@ public class Animal {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	
-	public boolean temFoto() {
-		return !this.foto.isEmpty();
-	}
 
 	public String getFotoType() {
 		return fotoType;

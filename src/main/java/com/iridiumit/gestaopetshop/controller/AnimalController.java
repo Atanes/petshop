@@ -99,6 +99,8 @@ public class AnimalController {
 		Cliente c = clientes.findOne(id);
 
 		Animal a = new Animal();
+		
+		System.out.println(a.getFoto());
 
 		a.setCliente(c);
 
