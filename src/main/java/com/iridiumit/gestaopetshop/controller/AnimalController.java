@@ -1,11 +1,12 @@
 package com.iridiumit.gestaopetshop.controller;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,11 +30,13 @@ import com.iridiumit.gestaopetshop.repository.Animais;
 import com.iridiumit.gestaopetshop.repository.Clientes;
 import com.iridiumit.gestaopetshop.repository.Racas;
 import com.iridiumit.gestaopetshop.repository.filtros.FiltroGeral;
-import com.iridiumit.gestaopetshop.service.FotoService;
+import com.iridiumit.gestaopetshop.service.AmazonClient;
 
 @Controller
 @RequestMapping("/clientes/animais")
 public class AnimalController {
+	
+	private Logger logger = LoggerFactory.getLogger(AmazonClient.class);
 
 	@Autowired
 	private Clientes clientes;
@@ -43,9 +46,9 @@ public class AnimalController {
 
 	@Autowired
 	private Racas racas;
-	
+
 	@Autowired
-	private FotoService fotoService;
+	private AmazonClient amazonClient;
 
 	@GetMapping
 	public ModelAndView listar(@ModelAttribute("filtro") FiltroGeral filtro) {
@@ -68,8 +71,12 @@ public class AnimalController {
 	public String remover(@PathVariable Long id, RedirectAttributes attributes) {
 
 		Cliente c = animais.findOne(id).getCliente();
+		
+		Animal a = animais.getOne(id);
 
 		animais.delete(id);
+		
+		System.out.println(amazonClient.deleteFileFromS3Bucket(a.getFoto()));
 
 		attributes.addFlashAttribute("mensagem", "Animal excluido com sucesso!!");
 
@@ -99,7 +106,7 @@ public class AnimalController {
 		Cliente c = clientes.findOne(id);
 
 		Animal a = new Animal();
-		
+
 		System.out.println(a.getFoto());
 
 		a.setCliente(c);
@@ -116,18 +123,24 @@ public class AnimalController {
 		if (result.hasErrors()) {
 			return novo(animal);
 		}
-		
-		if(!file.isEmpty()) {
-			String arquivoFoto = fotoService.doUpload(file, animal);
+
+		if (!file.isEmpty()) {
 			
-			if(arquivoFoto.equals("erro")){
+			if(!animal.getFoto().isEmpty()) {
+				logger.info(amazonClient.deleteFileFromS3Bucket(animal.getFoto()));
+			}
+			
+			// String arquivoFoto = fotoService.doUpload(file, animal);
+			String arquivoFoto = amazonClient.uploadFile(file, animal);
+
+			if (arquivoFoto.equals("erro")) {
 				attributes.addFlashAttribute("mensagem", "Problemas para salvar a foto do animal!!");
 				return novo(animal);
-			}else {
+			} else {
 				animal.setFoto(arquivoFoto);
 			}
 		}
-		
+
 		animal.setData_cadastro(new Date());
 
 		animais.save(animal);
@@ -146,14 +159,6 @@ public class AnimalController {
 		model.addAttribute("adicionados", r);
 		return r;
 
-	}
-	
-	@GetMapping("/fotos/{nome:.*}")
-	public @ResponseBody byte[] recuperarFoto(@PathVariable String nome) throws IOException {
-
-		System.out.println(nome);
-		
-		return fotoService.recuperarFoto(nome);
 	}
 
 }

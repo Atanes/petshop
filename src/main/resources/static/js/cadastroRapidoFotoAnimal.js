@@ -24,8 +24,8 @@ $(function() {
 
 	function onBotaoSalvarClick() {
 		if(nome != null){
-			document.getElementById('foto').value = nome;
-		    document.getElementById('fotoType').value = tipo;
+			/*document.getElementById('foto').value = nome;
+		    document.getElementById('fotoType').value = tipo;*/
 		    document.getElementById('fotoAnimal').src = urlFoto;
 		}
 		modal.modal('hide');

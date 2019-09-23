@@ -56,12 +56,12 @@
 						<tr th:each="animal: ${animais}">
 							<td class="text-center" th:text="${animal.id}">a1</td>
 							
-							<td class="text-center" th:if="${animal.temFoto()}">
+							<td class="text-center" th:if="${animal.foto}">
 								<img  id="fotoAnimal" class="foto_animal_listagem" 
-								th:src="@{/clientes/animais/fotos/{nome}(nome=${animal.foto})}" 
+								th:src="${animal.foto}" 
 									title="Foto do animal" />
 							</td>
-							<td class="text-center" th:unless="${animal.temFoto()}">
+							<td class="text-center" th:unless="${animal.foto}">
 								<img  id="fotoAnimal" class="foto_animal_listagem" 
 									th:src="@{/images/PetSemFoto.png}" title="Foto do animal" />
 							</td>

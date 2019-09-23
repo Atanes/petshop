@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,10 +21,16 @@ public class FotoService {
 
 	private Path local;
 	private Path localTemporario;
+	
+	@Value("${petshop.s3.endpointUrl}")
+	private String endpointUrl;
+	
+	
 
 	// Root Directory.
 	// para Windows 7
 	private Path uploadRootPath = getDefault().getPath(System.getenv("USERPROFILE"), "//animaisfotos");
+	
 	// para Windows 10
 	// private Path uploadRootPath = getDefault().getPath(System.getenv("HOMEPATH"),
 	// "animaisfotos");
@@ -78,8 +85,9 @@ public class FotoService {
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 				stream.write(file.getBytes());
 				stream.close();
-				//
+
 				System.out.println("Arquivo gravado: " + serverFile);
+				
 			} catch (Exception e) {
 				System.out.println("Erro ao gravar o arquivo: " + nomeArquivo);
 				return "erro";
@@ -91,6 +99,7 @@ public class FotoService {
 
 	public byte[] recuperarFoto(String nomeFoto) {
 		try {
+			//return Files.readAllBytes(this.uploadRootPath.resolve(nomeFoto));
 			return Files.readAllBytes(this.uploadRootPath.resolve(nomeFoto));
 		} catch (IOException e) {
 			e.printStackTrace();
