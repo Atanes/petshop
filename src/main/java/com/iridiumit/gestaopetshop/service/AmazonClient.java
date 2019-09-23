@@ -76,6 +76,7 @@ public class AmazonClient {
 			file.delete();
 		} catch (Exception e) {
 			System.out.println("Erro ao gravar o arquivo: " + fileName);
+			System.out.println(e.getMessage());
 			return "erro";
 		}
 		
