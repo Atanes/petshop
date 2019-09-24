@@ -40,7 +40,9 @@ public class AmazonClient {
 	@PostConstruct
 	private void initializeAmazon() {
 
-		BasicAWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
+		//BasicAWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
+		
+		BasicAWSCredentials credentials = new BasicAWSCredentials("AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY");
 		this.s3client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
 				.withRegion(this.regiao)
 				.build();
