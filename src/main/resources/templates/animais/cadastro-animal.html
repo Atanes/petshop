@@ -46,7 +46,7 @@
 						<label for="fotoAnimal">Foto</label>
 						<!-- IF Animal has Foto -->
 						<div th:if="${animal.foto}">
-						   <img id="fotoAnimal" class="image_upload_preview" th:src="${animal.foto}" title="Foto do animal" />
+						   <img id="fotoAnimal" class="image_upload_preview" th:src="@{/clientes/animais/fotos/{nome}(nome=${animal.foto})}" title="Foto do animal" />
 						</div>
 						<!-- ELSE -->
 						<div th:unless="${animal.foto}">

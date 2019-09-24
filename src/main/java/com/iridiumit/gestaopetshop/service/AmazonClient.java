@@ -23,7 +23,7 @@ import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.iridiumit.gestaopetshop.model.Animal;
 
-@Service
+//@Service
 public class AmazonClient {
 
 	@Autowired

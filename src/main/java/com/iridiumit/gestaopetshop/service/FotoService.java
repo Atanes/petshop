@@ -8,9 +8,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Date;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,20 +20,10 @@ import com.iridiumit.gestaopetshop.model.Animal;
 public class FotoService {
 
 	private Path local;
-	private Path localTemporario;
-	
-	@Value("${petshop.s3.endpointUrl}")
-	private String endpointUrl;
-	
-	
+	private Path localTemporario;	
 
 	// Root Directory.
-	// para Windows 7
 	private Path uploadRootPath = getDefault().getPath(System.getenv("USERPROFILE"), "//animaisfotos");
-	
-	// para Windows 10
-	// private Path uploadRootPath = getDefault().getPath(System.getenv("HOMEPATH"),
-	// "animaisfotos");
 	
 	public FotoService() {
 	}
@@ -70,7 +60,13 @@ public class FotoService {
 			uploadRootDir.mkdirs();
 		}
 
-		String nomeArquivo = animal.getCliente().getId() + "_" + animal.getNome() + "_" + file.getOriginalFilename();
+		String nomeArquivo = generateFileName(animal);
+		
+		String extensao = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."), 
+				file.getOriginalFilename().length());
+		
+		nomeArquivo += extensao;
+		
 		System.out.println("Nome do arquivo: " + nomeArquivo);
 
 		// Client File Content Type
@@ -99,12 +95,27 @@ public class FotoService {
 
 	public byte[] recuperarFoto(String nomeFoto) {
 		try {
-			//return Files.readAllBytes(this.uploadRootPath.resolve(nomeFoto));
 			return Files.readAllBytes(this.uploadRootPath.resolve(nomeFoto));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public String removerFoto(String nomeArquivo) {
+		boolean excluido = new File(uploadRootPath + File.separator + nomeArquivo).delete();
+		if(excluido) {
+			return "Arquivo excluido com sucesso!!";
+		}
+		return "Arquivo não foi encontrado ou não foi excluido com sucesso!!";
+	}
+	
+	private String generateFileName(Animal animal) {
+		
+		String nome = animal.getNome().replace(" ", "_");
+		
+		return animal.getCliente().getId() + "-" + nome + "-" + new Date().getTime();
+
 	}
 
 }

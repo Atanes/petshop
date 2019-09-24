@@ -1,5 +1,6 @@
 package com.iridiumit.gestaopetshop.controller;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -30,13 +31,15 @@ import com.iridiumit.gestaopetshop.repository.Animais;
 import com.iridiumit.gestaopetshop.repository.Clientes;
 import com.iridiumit.gestaopetshop.repository.Racas;
 import com.iridiumit.gestaopetshop.repository.filtros.FiltroGeral;
-import com.iridiumit.gestaopetshop.service.AmazonClient;
+import com.iridiumit.gestaopetshop.service.FotoService;
 
 @Controller
 @RequestMapping("/clientes/animais")
 public class AnimalController {
 	
-	private Logger logger = LoggerFactory.getLogger(AmazonClient.class);
+	//private Logger logger = LoggerFactory.getLogger(AmazonClient.class);
+	
+	private Logger logger = LoggerFactory.getLogger(FotoService.class);
 
 	@Autowired
 	private Clientes clientes;
@@ -46,9 +49,13 @@ public class AnimalController {
 
 	@Autowired
 	private Racas racas;
-
+	
 	@Autowired
-	private AmazonClient amazonClient;
+	private FotoService fotoService;
+
+	/*
+	 * @Autowired private AmazonClient amazonClient;
+	 */
 
 	@GetMapping
 	public ModelAndView listar(@ModelAttribute("filtro") FiltroGeral filtro) {
@@ -76,7 +83,8 @@ public class AnimalController {
 
 		animais.delete(id);
 		
-		System.out.println(amazonClient.deleteFileFromS3Bucket(a.getFoto()));
+		//System.out.println(amazonClient.deleteFileFromS3Bucket(a.getFoto()));
+		logger.info(fotoService.removerFoto(a.getFoto()));
 
 		attributes.addFlashAttribute("mensagem", "Animal excluido com sucesso!!");
 
@@ -127,11 +135,12 @@ public class AnimalController {
 		if (!file.isEmpty()) {
 			
 			if(!animal.getFoto().isEmpty()) {
-				logger.info(amazonClient.deleteFileFromS3Bucket(animal.getFoto()));
+				//logger.info(amazonClient.deleteFileFromS3Bucket(animal.getFoto()));
+				logger.info(fotoService.removerFoto(animal.getFoto()));
 			}
 			
-			// String arquivoFoto = fotoService.doUpload(file, animal);
-			String arquivoFoto = amazonClient.uploadFile(file, animal);
+			String arquivoFoto = fotoService.doUpload(file, animal);
+			// String arquivoFoto = amazonClient.uploadFile(file, animal);
 
 			if (arquivoFoto.equals("erro")) {
 				attributes.addFlashAttribute("mensagem", "Problemas para salvar a foto do animal!!");
@@ -159,6 +168,14 @@ public class AnimalController {
 		model.addAttribute("adicionados", r);
 		return r;
 
+	}
+	
+	@GetMapping("/fotos/{nome:.*}")
+	public @ResponseBody byte[] recuperarFoto(@PathVariable String nome) throws IOException {
+
+		logger.info("Foto retornada:" + nome);
+		
+		return fotoService.recuperarFoto(nome);
 	}
 
 }

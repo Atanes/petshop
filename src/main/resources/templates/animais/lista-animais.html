@@ -58,7 +58,7 @@
 							
 							<td class="text-center" th:if="${animal.foto}">
 								<img  id="fotoAnimal" class="foto_animal_listagem" 
-								th:src="${animal.foto}" 
+								th:src="@{/clientes/animais/fotos/{nome}(nome=${animal.foto})}"
 									title="Foto do animal" />
 							</td>
 							<td class="text-center" th:unless="${animal.foto}">
