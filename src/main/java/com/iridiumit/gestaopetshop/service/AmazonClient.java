@@ -7,10 +7,13 @@ import java.util.Date;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
@@ -23,6 +26,9 @@ import com.iridiumit.gestaopetshop.model.Animal;
 @Service
 public class AmazonClient {
 
+	@Autowired
+	private Environment env;
+	
 	private AmazonS3 s3client;
 
 	@Value("${petshop.s3.endpointUrl}")
@@ -42,7 +48,9 @@ public class AmazonClient {
 
 		//BasicAWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
 		
-		BasicAWSCredentials credentials = new BasicAWSCredentials("AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY");
+		//BasicAWSCredentials credentials = new BasicAWSCredentials("AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY");
+		AWSCredentials credentials = new BasicAWSCredentials(
+				env.getProperty("AWS_ACCESS_KEY_ID"), env.getProperty("AWS_SECRET_ACCESS_KEY"));
 		this.s3client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
 				.withRegion(this.regiao)
 				.build();
