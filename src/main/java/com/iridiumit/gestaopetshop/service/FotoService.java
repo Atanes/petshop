@@ -22,7 +22,7 @@ public class FotoService {
 	private Path local;
 	private Path localTemporario;	
 
-	// Root Directory.
+	//Diretório para armazenar as fotos na máquina local
 	private Path uploadRootPath = getDefault().getPath(System.getenv("USERPROFILE"), "//animaisfotos");
 	
 	public FotoService() {
