@@ -13,7 +13,6 @@ import com.iridiumit.gestaopetshop.model.Permissao;
 import com.iridiumit.gestaopetshop.model.Usuario;
 import com.iridiumit.gestaopetshop.repository.Permissoes;
 import com.iridiumit.gestaopetshop.repository.Usuarios;
-import com.iridiumit.gestaopetshop.repository.filtros.UsuarioFiltro;
 
 @Service
 public class UsuarioService implements UserDetailsService{
@@ -28,8 +27,7 @@ public class UsuarioService implements UserDetailsService{
 		return usuarios.findAll();
 	}
 	
-	public List<Usuario> filtrar(UsuarioFiltro filtro) {
-		String nome = filtro.getNome() == null ? "%" : filtro.getNome();
+	public List<Usuario> filtrar(String nome) {
 		return usuarios.findByNomeContainingIgnoreCase(nome);
 	}
 	
