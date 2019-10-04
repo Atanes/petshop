@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -36,8 +35,8 @@ public class UsuarioService implements UserDetailsService{
 		return usuarios.findAll();
 	}
 	
-	public List<Usuario> filtrar(String nome) {
-		return usuarios.findByNomeContainingIgnoreCase(nome);
+	public List<Usuario> filtrar(String nome, Pageable pageable) {
+		return usuarios.findByNomeContainingIgnoreCase(nome, pageable);
 	}
 	
 	public void excluir(Long codigo) {

@@ -34,6 +34,9 @@ import com.iridiumit.gestaopetshop.service.UsuarioService;
 @RequestMapping("/administracao/usuarios")
 public class UsuarioController {
 	
+	private static final String ORDERBYUSUARIO = "nome";
+	private static final int RECORDSPERPAGE = 5;
+	
 	@Autowired
 	private UsuarioService usuarioService;
 	
@@ -41,14 +44,14 @@ public class UsuarioController {
 	private Enderecos enderecos;
 	
 	@GetMapping
-	public ModelAndView listar(@ModelAttribute("filtro") UsuarioFiltro filtro, @PageableDefault(size = 5, sort = "nome", direction = Direction.ASC) Pageable pageable) {
+	public ModelAndView listar(@ModelAttribute("filtro") UsuarioFiltro filtro, @PageableDefault(size = RECORDSPERPAGE, sort = ORDERBYUSUARIO, direction = Direction.ASC) Pageable pageable) {
 		
 		ModelAndView modelAndView = new ModelAndView("administracao/usuario/lista-usuarios");
 		
 		if(filtro.getNome() == null) {
 			modelAndView.addObject("usuarios", usuarioService.listarTodos(pageable));
 		}else {
-			modelAndView.addObject("usuarios", usuarioService.filtrar(filtro.getNome()));
+			modelAndView.addObject("usuarios", usuarioService.filtrar(filtro.getNome(), pageable));
 		}
 		
 		return modelAndView;
