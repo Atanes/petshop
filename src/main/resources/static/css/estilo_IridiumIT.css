@@ -127,6 +127,10 @@
 	margin-top: 10px;
 }
 
+.paginacao {
+	margin-top: 15px;
+}
+
 .campo_obrigatorio::after {
 	content: " *";
 	color: red;

@@ -7,7 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.iridiumit.gestaopetshop.security.PetShopUserDetailsService;
 
-
 @Configuration
 public class UdsSecurityConfig {
 	

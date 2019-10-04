@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 import com.iridiumit.gestaopetshop.security.PetShopUserDetailsService;
 
-
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	

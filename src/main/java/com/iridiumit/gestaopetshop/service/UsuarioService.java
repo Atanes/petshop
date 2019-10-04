@@ -3,6 +3,9 @@ package com.iridiumit.gestaopetshop.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,7 +26,13 @@ public class UsuarioService implements UserDetailsService{
 	@Autowired
 	private Permissoes permissoes;
 	
+	public Page<Usuario> listarTodos(Pageable pageable) {
+	
+		return usuarios.findAll(pageable);
+	}
+	
 	public List<Usuario> listarTodos() {
+		
 		return usuarios.findAll();
 	}
 	

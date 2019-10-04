@@ -62,15 +62,13 @@ public class AnimalController {
 
 		ModelAndView modelAndView = new ModelAndView("animais/lista-animais");
 
-		String nome = "";
 
 		if (filtro.getTextoFiltro() == null) {
-			nome = "%";
+			modelAndView.addObject("animais", animais.findAll());
 		} else {
-			nome = filtro.getTextoFiltro();
+			modelAndView.addObject("animais", animais.findByNomeContainingIgnoreCaseOrderByNome(filtro.getTextoFiltro()));
 		}
-
-		modelAndView.addObject("animais", animais.findByNomeContainingIgnoreCaseOrderByNome(nome));
+		
 		return modelAndView;
 	}
 
