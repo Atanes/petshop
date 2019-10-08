@@ -73,12 +73,40 @@
 						</tr>
 
 						<tr>
-							<td colspan="4" th:if="${racas.empty}">Nenhuma Raça e Espécie
+							<td colspan="4" th:if="${#lists.isEmpty(racas.content)}">Nenhuma Raça e Espécie
 								cadastrados na base de dados!</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
+						
+			<div class="col-sm-12 paginacao" th:if="${not #lists.isEmpty(racas.content)}">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination pagination-sm justify-content-center" th:with="paginaAtual=${racas.number}">
+						
+							<li th:class="${racas.first} ? 'page-item disabled'">
+								<a class="page-link" th:href="|?page=${paginaAtual - 1}|" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+									<span class="sr-only">Previous</span>
+								</a>
+							</li>
+							<th:block th:each="p : ${#numbers.sequence(1, racas.totalPages)}" th:with="numeroPagina=${p - 1}">
+								
+								<li th:class="${paginaAtual == numeroPagina} ? 'page-item active'">
+									<a class="page-link" th:href="|?page=${numeroPagina}|">[[${p}]]</a>
+								</li>
+								
+							</th:block>
+							<li th:class="${racas.last} ? 'page-item disabled'">
+								<a class="page-link" th:href="|?page=${paginaAtual + 1}|" aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+									<span class="sr-only">Next</span>
+								</a>
+							</li>
+					</ul>
+				</nav>
+			</div>
+			
 		</div>
 	</section>
 </body>

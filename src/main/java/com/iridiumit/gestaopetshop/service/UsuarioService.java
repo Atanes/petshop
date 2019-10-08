@@ -35,7 +35,7 @@ public class UsuarioService implements UserDetailsService{
 		return usuarios.findAll();
 	}
 	
-	public List<Usuario> filtrar(String nome, Pageable pageable) {
+	public Page<Usuario> filtrar(String nome, Pageable pageable) {
 		return usuarios.findByNomeContainingIgnoreCase(nome, pageable);
 	}
 	

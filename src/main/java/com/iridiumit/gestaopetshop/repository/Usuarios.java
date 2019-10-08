@@ -16,7 +16,7 @@ public interface Usuarios extends JpaRepository<Usuario, Long>, PagingAndSorting
 	
 	Usuario findByCpf(String cpf);
 	
-	List<Usuario> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
+	Page<Usuario> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
 	
 	List<Usuario> findByPermissoes(Permissao p);
 	

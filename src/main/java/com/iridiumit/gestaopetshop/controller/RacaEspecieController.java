@@ -1,9 +1,13 @@
 package com.iridiumit.gestaopetshop.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -25,19 +29,24 @@ import com.iridiumit.gestaopetshop.repository.filtros.FiltroGeral;
 @Controller
 @RequestMapping("/raca_especie")
 public class RacaEspecieController {
+	
+	private static final String ORDERBYRACA = "nome";
+	private static final int RECORDSPERPAGE = 10;
 
 	@Autowired
 	private Racas racas;
 
 	@GetMapping
-	public ModelAndView listar(@ModelAttribute("filtro") FiltroGeral filtro) {
+	public ModelAndView listar(@ModelAttribute("filtro") FiltroGeral filtro, 
+			@PageableDefault(size = RECORDSPERPAGE, sort = ORDERBYRACA, direction = Direction.ASC) Pageable pageable
+			, HttpServletRequest httpServletRequest) {
 
 		ModelAndView modelAndView = new ModelAndView("raca/lista-raca_especie");
 
 		if (filtro.getTextoFiltro() == null) {
-			modelAndView.addObject("racas", racas.findAllByOrderByNome());
+			modelAndView.addObject("racas", racas.findAll(pageable));
 		} else {
-			modelAndView.addObject("racas", racas.findByNomeContainingIgnoreCaseOrderByNome(filtro.getTextoFiltro()));
+			modelAndView.addObject("racas", racas.findByNomeContainingIgnoreCase(filtro.getTextoFiltro(), pageable));
 		}
 
 		return modelAndView;
