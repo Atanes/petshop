@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.iridiumit.gestaopetshop.model.Raca;
 import com.iridiumit.gestaopetshop.repository.Racas;
 import com.iridiumit.gestaopetshop.repository.filtros.FiltroGeral;
+import com.iridiumit.gestaopetshop.utils.PageUtils;
 
 @Controller
 @RequestMapping("/raca_especie")
@@ -35,12 +36,15 @@ public class RacaEspecieController {
 
 	@Autowired
 	private Racas racas;
+	
+	@Autowired
+	private PageUtils pageUtils;
 
 	@GetMapping
 	public ModelAndView listar(@ModelAttribute("filtro") FiltroGeral filtro, 
 			@PageableDefault(size = RECORDSPERPAGE, sort = ORDERBYRACA, direction = Direction.ASC) Pageable pageable
 			, HttpServletRequest httpServletRequest) {
-
+		
 		ModelAndView modelAndView = new ModelAndView("raca/lista-raca_especie");
 
 		if (filtro.getTextoFiltro() == null) {
@@ -48,6 +52,8 @@ public class RacaEspecieController {
 		} else {
 			modelAndView.addObject("racas", racas.findByNomeContainingIgnoreCase(filtro.getTextoFiltro(), pageable));
 		}
+		
+		modelAndView.addObject("urlPaginacao", pageUtils.URIPaginacao(httpServletRequest, "textoFiltro"));
 
 		return modelAndView;
 	}

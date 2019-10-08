@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -35,6 +36,7 @@ import com.iridiumit.gestaopetshop.repository.Clientes;
 import com.iridiumit.gestaopetshop.repository.Racas;
 import com.iridiumit.gestaopetshop.repository.filtros.FiltroGeral;
 import com.iridiumit.gestaopetshop.service.FotoService;
+import com.iridiumit.gestaopetshop.utils.PageUtils;
 
 @Controller
 @RequestMapping("/clientes/animais")
@@ -58,13 +60,18 @@ public class AnimalController {
 	
 	@Autowired
 	private FotoService fotoService;
+	
+	@Autowired
+	private PageUtils pageUtils;
 
 	/*
 	 * @Autowired private AmazonClient amazonClient;
 	 */
 
 	@GetMapping
-	public ModelAndView listar(@ModelAttribute("filtro") FiltroGeral filtro, @PageableDefault(size = RECORDSPERPAGE, sort = ORDERBYANIMAL, direction = Direction.ASC) Pageable pageable) {
+	public ModelAndView listar(@ModelAttribute("filtro") FiltroGeral filtro, 
+			@PageableDefault(size = RECORDSPERPAGE, sort = ORDERBYANIMAL, direction = Direction.ASC) Pageable pageable
+			, HttpServletRequest httpServletRequest) {
 
 		ModelAndView modelAndView = new ModelAndView("animais/lista-animais");
 
@@ -74,6 +81,8 @@ public class AnimalController {
 		} else {
 			modelAndView.addObject("animais", animais.findByNomeContainingIgnoreCaseOrderByNome(filtro.getTextoFiltro(), pageable));
 		}
+		
+		modelAndView.addObject("urlPaginacao", pageUtils.URIPaginacao(httpServletRequest, "textoFiltro"));
 		
 		return modelAndView;
 	}

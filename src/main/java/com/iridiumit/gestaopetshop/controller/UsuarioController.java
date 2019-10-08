@@ -3,6 +3,7 @@ package com.iridiumit.gestaopetshop.controller;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
@@ -29,6 +30,7 @@ import com.iridiumit.gestaopetshop.relatorios.UsuarioREL;
 import com.iridiumit.gestaopetshop.repository.Enderecos;
 import com.iridiumit.gestaopetshop.repository.filtros.UsuarioFiltro;
 import com.iridiumit.gestaopetshop.service.UsuarioService;
+import com.iridiumit.gestaopetshop.utils.PageUtils;
 
 @Controller
 @RequestMapping("/administracao/usuarios")
@@ -43,8 +45,13 @@ public class UsuarioController {
 	@Autowired
 	private Enderecos enderecos;
 	
+	@Autowired
+	private PageUtils pageUtils;
+	
 	@GetMapping
-	public ModelAndView listar(@ModelAttribute("filtro") UsuarioFiltro filtro, @PageableDefault(size = RECORDSPERPAGE, sort = ORDERBYUSUARIO, direction = Direction.ASC) Pageable pageable) {
+	public ModelAndView listar(@ModelAttribute("filtro") UsuarioFiltro filtro, 
+			@PageableDefault(size = RECORDSPERPAGE, sort = ORDERBYUSUARIO, direction = Direction.ASC) Pageable pageable
+			, HttpServletRequest httpServletRequest) {
 		
 		ModelAndView modelAndView = new ModelAndView("administracao/usuario/lista-usuarios");
 		
@@ -53,6 +60,8 @@ public class UsuarioController {
 		}else {
 			modelAndView.addObject("usuarios", usuarioService.filtrar(filtro.getNome(), pageable));
 		}
+		
+		modelAndView.addObject("urlPaginacao", pageUtils.URIPaginacao(httpServletRequest, "nome"));
 		
 		return modelAndView;
 	}
