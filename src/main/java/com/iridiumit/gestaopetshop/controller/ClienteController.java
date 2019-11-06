@@ -3,10 +3,14 @@ package com.iridiumit.gestaopetshop.controller;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -28,10 +32,14 @@ import com.iridiumit.gestaopetshop.repository.Clientes;
 import com.iridiumit.gestaopetshop.repository.Enderecos;
 import com.iridiumit.gestaopetshop.repository.filtros.FiltroGeral;
 import com.iridiumit.gestaopetshop.service.ClienteService;
+import com.iridiumit.gestaopetshop.utils.PageUtils;
 
 @Controller
 @RequestMapping("/atendimento/clientes")
 public class ClienteController {
+	
+	private static final String ORDERBYCLIENTE = "nome";
+	private static final int RECORDSPERPAGE = 5;
 
 	@Autowired
 	private ClienteService clienteService;
@@ -46,19 +54,22 @@ public class ClienteController {
 	private Animais animais;
 
 	@GetMapping
-	public ModelAndView listar(@ModelAttribute("filtro") FiltroGeral filtro) {
+	public ModelAndView listar(@ModelAttribute("filtro") FiltroGeral filtro,
+			@PageableDefault(size = RECORDSPERPAGE, sort = ORDERBYCLIENTE, direction = Direction.ASC) Pageable pageable
+			, HttpServletRequest httpServletRequest) {
 
 		ModelAndView modelAndView = new ModelAndView("atendimento/cliente/lista-clientes");
 		
-		String nome = "";
-		
 		if(filtro.getTextoFiltro() == null) {
-			nome = "%";
+			modelAndView.addObject("clientes", clientes.findByAtivo(true, pageable));
 		}else {
-			nome = filtro.getTextoFiltro();
+			modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCaseAndAtivo(filtro.getTextoFiltro(), true, pageable));
 		}
+		
+		PageUtils pageUtils = new PageUtils(httpServletRequest, pageable);
 
-		modelAndView.addObject("clientes", clientes.findByNomeContainingIgnoreCaseAndAtivo(nome, true));
+		modelAndView.addObject("controlePagina", pageUtils);
+
 		return modelAndView;
 	}
 
