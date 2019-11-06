@@ -60,9 +60,6 @@ public class AnimalController {
 	
 	@Autowired
 	private FotoService fotoService;
-	
-	@Autowired
-	private PageUtils pageUtils;
 
 	/*
 	 * @Autowired private AmazonClient amazonClient;
@@ -79,10 +76,12 @@ public class AnimalController {
 		if (filtro.getTextoFiltro() == null) {
 			modelAndView.addObject("animais", animais.findAll(pageable));
 		} else {
-			modelAndView.addObject("animais", animais.findByNomeContainingIgnoreCaseOrderByNome(filtro.getTextoFiltro(), pageable));
+			modelAndView.addObject("animais", animais.findByNomeContainingIgnoreCase(filtro.getTextoFiltro(), pageable));
 		}
 		
-		modelAndView.addObject("urlPaginacao", pageUtils.URIPaginacao(httpServletRequest, "textoFiltro"));
+		PageUtils pageUtils = new PageUtils(httpServletRequest, pageable);
+
+		modelAndView.addObject("controlePagina", pageUtils);
 		
 		return modelAndView;
 	}

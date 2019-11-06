@@ -45,9 +45,6 @@ public class UsuarioController {
 	@Autowired
 	private Enderecos enderecos;
 	
-	@Autowired
-	private PageUtils pageUtils;
-	
 	@GetMapping
 	public ModelAndView listar(@ModelAttribute("filtro") UsuarioFiltro filtro, 
 			@PageableDefault(size = RECORDSPERPAGE, sort = ORDERBYUSUARIO, direction = Direction.ASC) Pageable pageable
@@ -61,7 +58,9 @@ public class UsuarioController {
 			modelAndView.addObject("usuarios", usuarioService.filtrar(filtro.getNome(), pageable));
 		}
 		
-		modelAndView.addObject("urlPaginacao", pageUtils.URIPaginacao(httpServletRequest, "nome"));
+		PageUtils pageUtils = new PageUtils(httpServletRequest, pageable);
+
+		modelAndView.addObject("controlePagina", pageUtils);
 		
 		return modelAndView;
 	}

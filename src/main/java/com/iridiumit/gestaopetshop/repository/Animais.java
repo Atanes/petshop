@@ -19,6 +19,8 @@ public interface Animais extends JpaRepository<Animal, Long>, PagingAndSortingRe
 
 	Page<Animal> findByNomeContainingIgnoreCaseOrderByNome(String nome, Pageable pageable);
 	
+	Page<Animal> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
+	
 	List<Animal> findByRaca(Raca raca);
 	
 	Page<Animal> findAll(Pageable pageable);

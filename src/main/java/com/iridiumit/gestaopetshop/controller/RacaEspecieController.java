@@ -30,21 +30,18 @@ import com.iridiumit.gestaopetshop.utils.PageUtils;
 @Controller
 @RequestMapping("/raca_especie")
 public class RacaEspecieController {
-	
+
 	private static final String ORDERBYRACA = "nome";
 	private static final int RECORDSPERPAGE = 10;
 
 	@Autowired
 	private Racas racas;
-	
-	@Autowired
-	private PageUtils pageUtils;
 
 	@GetMapping
-	public ModelAndView listar(@ModelAttribute("filtro") FiltroGeral filtro, 
-			@PageableDefault(size = RECORDSPERPAGE, sort = ORDERBYRACA, direction = Direction.ASC) Pageable pageable
-			, HttpServletRequest httpServletRequest) {
-		
+	public ModelAndView listar(@ModelAttribute("filtro") FiltroGeral filtro,
+			@PageableDefault(size = RECORDSPERPAGE, sort = ORDERBYRACA, direction = Direction.ASC) Pageable pageable,
+			HttpServletRequest httpServletRequest) {
+
 		ModelAndView modelAndView = new ModelAndView("raca/lista-raca_especie");
 
 		if (filtro.getTextoFiltro() == null) {
@@ -53,7 +50,9 @@ public class RacaEspecieController {
 			modelAndView.addObject("racas", racas.findByNomeContainingIgnoreCase(filtro.getTextoFiltro(), pageable));
 		}
 		
-		modelAndView.addObject("urlPaginacao", pageUtils.URIPaginacao(httpServletRequest, "textoFiltro"));
+		PageUtils pageUtils = new PageUtils(httpServletRequest, pageable);
+
+		modelAndView.addObject("controlePagina", pageUtils);
 
 		return modelAndView;
 	}
@@ -133,6 +132,23 @@ public class RacaEspecieController {
 		modelAndView.addObject(r);
 
 		return modelAndView;
+	}
+
+	public String montaURI(HttpServletRequest httpServletRequest) {
+
+		System.out.println(httpServletRequest.getRequestURL().toString() + "?" + httpServletRequest.getQueryString());
+
+		String uri = httpServletRequest.getRequestURI();
+
+		if (httpServletRequest.getQueryString() != null) {
+
+			uri += "?" + httpServletRequest.getQueryString() + "&";
+
+		} else {
+			return uri + "?";
+		}
+
+		return uri;
 	}
 
 }
